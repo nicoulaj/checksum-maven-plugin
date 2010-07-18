@@ -47,11 +47,11 @@
   </developers>
 
   <!-- Version control system -->
-  <!--<scm>
-    <connection>scm:svn:http://flex-iframe.googlecode.com/svn/trunk/</connection>
-    <developerConnection>scm:svn:https://flex-iframe.googlecode.com/svn/trunk/</developerConnection>
-    <url>http://code.google.com/p/flex-iframe/source/browse/</url>
-  </scm>-->
+  <scm>
+    <connection>scm:git:git@github.com:nicoulaj/maven-checksum-plugin.git</connection>
+    <url>scm:git:git@github.com:nicoulaj/maven-checksum-plugin.git</url>
+    <developerConnection>scm:git:git@nicoulaj/maven-checksum-plugin.git</developerConnection>
+  </scm>
 
   <!-- Issues management -->
   <issueManagement>
@@ -208,6 +208,11 @@
           </goals>
           <settingsFile>src/test/integration/settings.xml</settingsFile>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.0</version>
       </plugin>
     </plugins>
 
