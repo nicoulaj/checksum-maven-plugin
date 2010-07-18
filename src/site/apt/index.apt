@@ -22,14 +22,14 @@
 
 maven-checksum-plugin
 
-  Generate file checksums.
+  Coming soon.
 
-* Goals Overview
-
-  General information about the goals.
-
-  * {{{./checksum-mojo.html}checksum:checksum}} calculate the checksum of the given files.
-
+~~* Goals Overview
+~~
+~~General information about the goals.
+~~
+~~* {{{./checksum-mojo.html}checksum:checksum}} calculate the checksum of the given files.
+~~
 ~~* Usage
 ~~
 ~~  General instructions on how to use the Plugin Name can be found on the {{{usage.html}usage page}}. Some more

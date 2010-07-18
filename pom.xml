@@ -26,8 +26,59 @@
 
   <!-- Project info -->
   <name>maven-checksum-plugin</name>
-  <description><![CDATA[]]></description>
+  <description><![CDATA[Calculate files checksums.]]></description>
   <url>http://maven.ju-n.net/maven-checksum-plugin</url>
+
+  <!-- License -->
+  <licenses>
+    <license>
+      <name>Apache License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+    </license>
+  </licenses>
+
+  <!-- Team -->
+  <developers>
+    <developer>
+      <id>nicoulaj</id>
+      <name>Julien Nicoulaud</name>
+      <timezone>1</timezone>
+    </developer>
+  </developers>
+
+  <!-- Version control system -->
+  <!--<scm>
+    <connection>scm:svn:http://flex-iframe.googlecode.com/svn/trunk/</connection>
+    <developerConnection>scm:svn:https://flex-iframe.googlecode.com/svn/trunk/</developerConnection>
+    <url>http://code.google.com/p/flex-iframe/source/browse/</url>
+  </scm>-->
+
+  <!-- Issues management -->
+  <issueManagement>
+    <system>Github</system>
+    <url>http://github.com/nicoulaj/maven-checkstyle-plugin/issues</url>
+  </issueManagement>
+
+  <!-- Distribution management -->
+  <distributionManagement>
+    <downloadUrl>http://maven.ju-n.net/maven2</downloadUrl>
+    <repository>
+      <id>ju-n.net</id>
+      <name>ju-n.net repository</name>
+      <url>ftp://ftp.ju-n.net/maven/maven2</url>
+    </repository>
+    <snapshotRepository>
+      <id>ju-n.net</id>
+      <name>ju-n.net snapshots repository</name>
+      <url>ftp://ftp.ju-n.net/maven/maven2</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+    <site>
+      <id>ju-n.net</id>
+      <name>maven-checksum-plugin site on ju-n.net</name>
+      <url>ftp://ftp.ju-n.net/maven/maven-checksum-plugin</url>
+    </site>
+  </distributionManagement>
 
   <!-- Properties -->
   <properties>
@@ -54,6 +105,11 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <!-- Build prerequisites -->
+  <prerequisites>
+    <maven>2.2.1</maven>
+  </prerequisites>
 
   <!-- Build -->
   <build>
@@ -102,6 +158,15 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <!-- Extensions -->
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ftp</artifactId>
+        <version>1.0-beta-6</version>
+      </extension>
+    </extensions>
 
     <!-- Plugins -->
     <plugins>

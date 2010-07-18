@@ -19,13 +19,33 @@
          xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
 
   <body>
+
+    <!-- Google analytics tracking code -->
+    <head>
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-2189278-8']);
+        _gaq.push(['_setDomainName', '.ju-n.net']);
+        _gaq.push(['_trackPageview']);
+        (function()
+        {
+          var ga = document.createElement('script');
+          ga.type = 'text/javascript';
+          ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+    </head>
+
+    <!-- Menus -->
     <menu name="Overview">
       <item name="Introduction" href="index.html"/>
-      <item name="Goals" href="plugin-info.html"/>
+      <!--<item name="Goals" href="plugin-info.html"/>-->
       <!--<item name="Usage" href="usage.html"/>-->
       <!--<item name="FAQ" href="faq.html"/>-->
     </menu>
-
     <!--<menu name="Examples">
       <item name="Creating Content" href="/examples/creating-content.html"/>
       <item name="Configuring the Site Descriptor" href="/examples/sitedescriptor.html"/>
@@ -36,8 +56,10 @@
       <item name="Excluding Document Formats" href="/examples/moduleexcludes.html"/>
       <item name="Deploying to sourceforge.net" href="/examples/site-deploy-to-sourceforge.net.html"/>
     </menu>-->
-
-    <menu ref="reports"/>
+    <!--<menu ref="reports"/>-->
+    <menu name="Links">
+      <item name="Project home" href="http://www.github.com/nicoulaj/maven-checksum-plugin"/>
+    </menu>
 
   </body>
 </project>
