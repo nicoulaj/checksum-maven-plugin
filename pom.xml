@@ -50,7 +50,7 @@
   <scm>
     <connection>scm:git:git@github.com:nicoulaj/maven-checksum-plugin.git</connection>
     <url>scm:git:git@github.com:nicoulaj/maven-checksum-plugin.git</url>
-    <developerConnection>scm:git:git@nicoulaj/maven-checksum-plugin.git</developerConnection>
+    <developerConnection>scm:git:git@github.com:nicoulaj/maven-checksum-plugin.git</developerConnection>
   </scm>
 
   <!-- Issues management -->
