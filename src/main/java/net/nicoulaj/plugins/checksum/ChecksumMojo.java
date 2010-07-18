@@ -24,20 +24,12 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 
 /**
- * TODO.
+ * bla bla bla.
  *
  * @goal checksum
  */
 public class ChecksumMojo extends AbstractMojo
 {
-  /**
-   * The maven project.
-   *
-   * @parameter expression="${project}"
-   * @required
-   * @readonly
-   */
-  //protected MavenProject project;
 
   /**
    * Files for which a checksum should be computed.
@@ -47,6 +39,11 @@ public class ChecksumMojo extends AbstractMojo
    */
   private File[] files;
 
+  /**
+   * {@inheritDoc}
+   *
+   * @throws MojoExecutionException
+   */
   public void execute() throws MojoExecutionException
   {
     try
@@ -60,6 +57,12 @@ public class ChecksumMojo extends AbstractMojo
     }
   }
 
+  /**
+   * 
+   * @param file
+   * @return
+   * @throws Exception
+   */
   private String getMD5Checksum(File file) throws Exception
   {
     InputStream fis = new FileInputStream(file);

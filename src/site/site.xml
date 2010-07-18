@@ -22,11 +22,11 @@
     <menu name="Overview">
       <item name="Introduction" href="index.html"/>
       <item name="Goals" href="plugin-info.html"/>
-      <item name="Usage" href="usage.html"/>
-      <item name="FAQ" href="faq.html"/>
+      <!--<item name="Usage" href="usage.html"/>-->
+      <!--<item name="FAQ" href="faq.html"/>-->
     </menu>
 
-    <menu name="Examples">
+    <!--<menu name="Examples">
       <item name="Creating Content" href="/examples/creating-content.html"/>
       <item name="Configuring the Site Descriptor" href="/examples/sitedescriptor.html"/>
       <item name="Configuring Reports" href="/examples/configuring-reports.html"/>
@@ -35,7 +35,7 @@
       <item name="Creating Skins" href="/examples/creatingskins.html"/>
       <item name="Excluding Document Formats" href="/examples/moduleexcludes.html"/>
       <item name="Deploying to sourceforge.net" href="/examples/site-deploy-to-sourceforge.net.html"/>
-    </menu>
+    </menu>-->
 
     <menu ref="reports"/>
 
