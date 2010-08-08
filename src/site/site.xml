@@ -28,12 +28,13 @@
         _gaq.push(['_trackPageview']);
         (function()
         {
-          var ga = document.createElement('script');
-          ga.type = 'text/javascript';
-          ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(ga, s);
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
+        '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
         })();
       </script>
     </head>
@@ -41,7 +42,7 @@
     <!-- Menus -->
     <menu name="Overview">
       <item name="Introduction" href="index.html"/>
-      <!--<item name="Goals" href="plugin-info.html"/>-->
+      <item name="Goals" href="plugin-info.html"/>
       <!--<item name="Usage" href="usage.html"/>-->
       <!--<item name="FAQ" href="faq.html"/>-->
     </menu>
@@ -55,7 +56,7 @@
       <item name="Excluding Document Formats" href="/examples/moduleexcludes.html"/>
       <item name="Deploying to sourceforge.net" href="/examples/site-deploy-to-sourceforge.net.html"/>
     </menu>-->
-    <!--<menu ref="reports"/>-->
+    <menu ref="reports"/>
     <menu name="Links">
       <item name="Project home" href="http://www.github.com/nicoulaj/maven-checksum-plugin"/>
     </menu>

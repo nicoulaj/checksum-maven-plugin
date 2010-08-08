@@ -14,18 +14,19 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Project coordinates -->
-  <groupId>net.nicoulaj.plugins</groupId>
+  <groupId>net.nicoulaj.maven.plugins</groupId>
   <artifactId>maven-checksum-plugin</artifactId>
   <version>0.1-alpha2-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <!-- Project info -->
   <name>maven-checksum-plugin</name>
-  <description><![CDATA[Calculate files checksums.]]></description>
+  <description><![CDATA[Calculate project artifacts, dependencies and files checksums and generate digests.]]></description>
   <url>http://maven.ju-n.net/maven-checksum-plugin</url>
 
   <!-- License -->
@@ -41,7 +42,9 @@
     <developer>
       <id>nicoulaj</id>
       <name>Julien Nicoulaud</name>
+      <email>julien.nicoulaud@gmail.com</email>
       <timezone>1</timezone>
+      <url>http://www.github.com/nicoulaj</url>
     </developer>
   </developers>
 
@@ -55,7 +58,7 @@
   <!-- Issues management -->
   <issueManagement>
     <system>Github</system>
-    <url>http://github.com/nicoulaj/maven-checkstyle-plugin/issues</url>
+    <url>http://github.com/nicoulaj/maven-checksum-plugin/issues</url>
   </issueManagement>
 
   <!-- Distribution management -->
@@ -81,8 +84,9 @@
 
   <!-- Properties -->
   <properties>
-    <mavenVersion>2.2.0</mavenVersion>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.target-version>2.2.0</maven.target-version>
+    <debug>false</debug>
   </properties>
 
   <!-- Dependencies -->
@@ -90,12 +94,12 @@
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>${mavenVersion}</version>
+      <version>${maven.target-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-project</artifactId>
-      <version>${mavenVersion}</version>
+      <version>${maven.target-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.plugin-testing</groupId>
@@ -103,11 +107,21 @@
       <version>1.2</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-digest</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.1</version>
+    </dependency>
   </dependencies>
 
   <!-- Build prerequisites -->
   <prerequisites>
-    <maven>2.2.1</maven>
+    <maven>${maven.target-version}</maven>
   </prerequisites>
 
   <!-- Build -->
@@ -133,6 +147,9 @@
           <configuration>
             <source>1.5</source>
             <target>1.5</target>
+            <optimize>true</optimize>
+            <showWarnings>true</showWarnings>
+            <showDeprecation>true</showDeprecation>
           </configuration>
         </plugin>
         <plugin>
@@ -170,19 +187,6 @@
     <!-- Plugins -->
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>generate-helpmojo</id>
-            <goals>
-              <goal>helpmojo</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-invoker-plugin</artifactId>
         <executions>
           <execution>
@@ -194,13 +198,13 @@
           </execution>
         </executions>
         <configuration>
-          <projectsDirectory>src/test/integration</projectsDirectory>
-          <cloneProjectsTo>${project.build.directory}/integration-tests</cloneProjectsTo>
-          <pomIncludes>
-            <pomInclude>*/pom.xml</pomInclude>
-          </pomIncludes>
-          <postBuildHookScript>verify</postBuildHookScript>
           <localRepositoryPath>${project.build.directory}/integration-tests/local-repository</localRepositoryPath>
+          <showErrors>${debug}</showErrors>
+          <debug>${debug}</debug>
+          <streamLogs>true</streamLogs>
+          <projectsDirectory>src/test/integration</projectsDirectory>
+          <cloneProjectsTo>${project.build.directory}/integration-tests/projects</cloneProjectsTo>
+          <reportsDirectory>${project.build.directory}/integration-tests/reports</reportsDirectory>
           <goals>
             <goal>clean</goal>
             <goal>install</goal>
@@ -209,7 +213,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <version>2.0</version>
       </plugin>
@@ -217,33 +220,65 @@
 
   </build>
 
+  <!-- Profiles -->
+  <profiles>
+
+    <!-- Increase verbosity -->
+    <profile>
+      <id>debug</id>
+      <properties>
+        <debug>true</debug>
+      </properties>
+    </profile>
+
+    <!-- Target Maven 2.2.0 -->
+    <profile>
+      <id>maven-2.2.0</id>
+      <properties>
+        <maven.target-version>2.2.0</maven.target-version>
+      </properties>
+    </profile>
+
+    <!-- Target Maven 3.0-beta-1 -->
+    <profile>
+      <id>maven-3.0-beta-1</id>
+      <properties>
+        <maven.target-version>3.0-beta-1</maven.target-version>
+      </properties>
+    </profile>
+
+  </profiles>
+
   <!-- Reporting and site -->
   <reporting>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
         <version>2.1.1</version>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-        <version>2.6</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>2.1</version>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
+        <version>2.6</version>
+      </plugin>
+      <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.7</version>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
         <version>2.2</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.5</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-invoker-plugin</artifactId>
+        <version>1.5</version>
       </plugin>
     </plugins>
   </reporting>

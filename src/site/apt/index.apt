@@ -22,14 +22,18 @@
 
 maven-checksum-plugin
 
-  Coming soon.
+  Calculate project artifacts, dependencies and files checksums and generate digests.
 
-~~* Goals Overview
-~~
-~~General information about the goals.
-~~
-~~* {{{./checksum-mojo.html}checksum:checksum}} calculate the checksum of the given files.
-~~
+* Goals Overview
+
+  General information about the goals.
+
+  * {{{./artifacts-mojo.html}checksum:artifacts}} calculate the checksums of the project artifacts.
+
+  * {{{./dependencies-mojo.html}checksum:dependencies}} calculate the checksums of the project dependencies.
+  
+  * {{{./files-mojo.html}checksum:files}} calculate the checksums of the given files.
+
 ~~* Usage
 ~~
 ~~  General instructions on how to use the Plugin Name can be found on the {{{usage.html}usage page}}. Some more
