@@ -24,26 +24,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * TODO
+ * TODO.
  *
  * @author Julien Nicoulaud <julien.nicoulaud@gmail.com>
- * @since 0.1
  * @see org.codehaus.plexus.digest.Digester
+ * @since 0.1
  */
 public class DigesterFactory
 {
     /**
-     * TODO
+     * TODO.
      */
     private static DigesterFactory instance;
 
     /**
-     * TODO
+     * TODO.
      */
-    protected Map<String, Digester> digesters = new HashMap<String, Digester>(7);
+    protected Map<String, Digester> digesters = new HashMap<String, Digester>( 7 );
 
     /**
-     * TODO
+     * TODO.
      *
      * @see #getInstance()
      */
@@ -52,41 +52,67 @@ public class DigesterFactory
     }
 
     /**
-     * TODO
+     * TODO.
      *
-     * @return
+     * @return TODO
      */
     public static DigesterFactory getInstance()
     {
-        if (instance == null)
+        if ( instance == null )
+        {
             instance = new DigesterFactory();
+        }
         return instance;
     }
 
     /**
-     * TODO
+     * TODO.
      *
-     * @param algorithm
-     * @return
-     * @throws NoSuchAlgorithmException
-     * @see org.codehaus.plexus.digest.Digester
+     * @param algorithm TODO
+     * @return TODO
+     * @throws NoSuchAlgorithmException TODO
+     * @see org.codehaus.plexus.digest.Digester TODO
      */
-    public Digester getDigester(String algorithm) throws NoSuchAlgorithmException
+    public Digester getDigester( String algorithm ) throws NoSuchAlgorithmException
     {
-        Digester digester = digesters.get(algorithm);
+        Digester digester = digesters.get( algorithm );
 
-        if (digester == null)
+        if ( digester == null )
         {
-            if ("CRC32".equalsIgnoreCase(algorithm)) digester = new CRC32Digester();
-            else if ("MD2".equalsIgnoreCase(algorithm)) digester = new Md2Digester();
-            else if ("MD5".equalsIgnoreCase(algorithm)) digester = new Md5Digester();
-            else if ("SHA-1".equalsIgnoreCase(algorithm)) digester = new Sha1Digester();
-            else if ("SHA-256".equalsIgnoreCase(algorithm)) digester = new Sha256Digester();
-            else if ("SHA-384".equalsIgnoreCase(algorithm)) digester = new Sha384Digester();
-            else if ("SHA-512".equalsIgnoreCase(algorithm)) digester = new Sha512Digester();
-            else throw new NoSuchAlgorithmException();
+            if ( "CRC32".equalsIgnoreCase( algorithm ) )
+            {
+                digester = new CRC32Digester();
+            }
+            else if ( "MD2".equalsIgnoreCase( algorithm ) )
+            {
+                digester = new Md2Digester();
+            }
+            else if ( "MD5".equalsIgnoreCase( algorithm ) )
+            {
+                digester = new Md5Digester();
+            }
+            else if ( "SHA-1".equalsIgnoreCase( algorithm ) )
+            {
+                digester = new Sha1Digester();
+            }
+            else if ( "SHA-256".equalsIgnoreCase( algorithm ) )
+            {
+                digester = new Sha256Digester();
+            }
+            else if ( "SHA-384".equalsIgnoreCase( algorithm ) )
+            {
+                digester = new Sha384Digester();
+            }
+            else if ( "SHA-512".equalsIgnoreCase( algorithm ) )
+            {
+                digester = new Sha512Digester();
+            }
+            else
+            {
+                throw new NoSuchAlgorithmException();
+            }
 
-            digesters.put(algorithm, digester);
+            digesters.put( algorithm, digester );
         }
 
         return digester;

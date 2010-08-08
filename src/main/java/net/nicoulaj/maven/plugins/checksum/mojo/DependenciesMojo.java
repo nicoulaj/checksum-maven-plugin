@@ -19,7 +19,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * TODO
+ * TODO.
  *
  * @author Julien Nicoulaud <julien.nicoulaud@gmail.com>
  * @goal dependencies
@@ -33,11 +33,11 @@ public class DependenciesMojo extends AbstractChecksumMojo
     /**
      * {@inheritDoc}
      *
-     * @throws MojoExecutionException
-     * @throws MojoFailureException
+     * @throws MojoExecutionException TODO
+     * @throws MojoFailureException   TODO
      */
     public void prepareExecution() throws MojoExecutionException, MojoFailureException
     {
-        throw new MojoFailureException("Not implemented");
+        throw new MojoFailureException( "Not implemented" );
     }
 }

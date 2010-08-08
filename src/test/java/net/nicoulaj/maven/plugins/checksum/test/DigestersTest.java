@@ -15,7 +15,11 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test;
 
-import net.nicoulaj.maven.plugins.checksum.digester.*;
+import net.nicoulaj.maven.plugins.checksum.digester.CRC32Digester;
+import net.nicoulaj.maven.plugins.checksum.digester.Md2Digester;
+import net.nicoulaj.maven.plugins.checksum.digester.Sha256Digester;
+import net.nicoulaj.maven.plugins.checksum.digester.Sha384Digester;
+import net.nicoulaj.maven.plugins.checksum.digester.Sha512Digester;
 import org.codehaus.plexus.digest.Digester;
 import org.codehaus.plexus.digest.Md5Digester;
 import org.codehaus.plexus.digest.Sha1Digester;
@@ -34,7 +38,7 @@ import java.util.Collection;
  * @see org.codehaus.plexus.digest.Digester
  * @since 0.1
  */
-@RunWith(Parameterized.class)
+@RunWith( Parameterized.class )
 public class DigestersTest
 {
     /**
@@ -50,17 +54,22 @@ public class DigestersTest
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters()
     {
-        Object[][] data = new Object[][]{{new CRC32Digester()}, {new Md2Digester()}, {new Md5Digester()},
-            {new Sha1Digester()}, {new Sha256Digester()}, {new Sha384Digester()}, {new Sha512Digester()}};
-        return Arrays.asList(data);
+        Object[][] data = new Object[][]{{new CRC32Digester()},
+                                        {new Md2Digester()},
+                                        {new Md5Digester()},
+                                        {new Sha1Digester()},
+                                        {new Sha256Digester()},
+                                        {new Sha384Digester()},
+                                        {new Sha512Digester()}};
+        return Arrays.asList( data );
     }
 
     /**
      * Build a new {@link ChecksumFactoryDigestersTest}.
      *
-     * @param digester an instance of the tested {@link org.codehaus.plexus.digest.Digester} implementating class.
+     * @param digester an instance of the tested {@link org.codehaus.plexus.digest.Digester} implementing class.
      */
-    public DigestersTest(Digester digester)
+    public DigestersTest( Digester digester )
     {
         this.digester = digester;
     }
@@ -72,8 +81,8 @@ public class DigestersTest
     public void testAlgorithmNameDefined()
     {
         String algorithmName = digester.getAlgorithm();
-        Assert.assertNotNull("The algorithm name is null.", algorithmName);
-        Assert.assertTrue("The algorithm name is empty.", algorithmName.length() > 0);
+        Assert.assertNotNull( "The algorithm name is null.", algorithmName );
+        Assert.assertTrue( "The algorithm name is empty.", algorithmName.length() > 0 );
     }
 
     /**
@@ -83,7 +92,7 @@ public class DigestersTest
     public void testFilenameExtensionDefined()
     {
         String filenameExtension = digester.getFilenameExtension();
-        Assert.assertNotNull("The file name extension is null.", filenameExtension);
-        Assert.assertTrue("The file name extension is empty.", filenameExtension.length() > 0);
+        Assert.assertNotNull( "The file name extension is null.", filenameExtension );
+        Assert.assertTrue( "The file name extension is empty.", filenameExtension.length() > 0 );
     }
 }

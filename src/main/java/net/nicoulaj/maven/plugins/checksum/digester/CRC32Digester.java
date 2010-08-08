@@ -26,7 +26,7 @@ import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
 
 /**
- * TODO
+ * TODO.
  *
  * @author Julien Nicoulaud <julien.nicoulaud@gmail.com>
  * @since 0.1
@@ -34,9 +34,9 @@ import java.util.zip.CheckedInputStream;
 public class CRC32Digester implements Digester
 {
     /**
-     * TODO
+     * TODO.
      *
-     * @return
+     * @return TODO
      */
     public String getAlgorithm()
     {
@@ -44,9 +44,9 @@ public class CRC32Digester implements Digester
     }
 
     /**
-     * TODO
+     * TODO.
      *
-     * @return
+     * @return TODO
      */
     public String getFilenameExtension()
     {
@@ -54,48 +54,49 @@ public class CRC32Digester implements Digester
     }
 
     /**
-     * TODO
+     * TODO.
      *
-     * @param file
-     * @return
-     * @throws DigesterException
+     * @param file TODO
+     * @return TODO
+     * @throws DigesterException TODO
      */
-    public String calc(File file) throws DigesterException
+    public String calc( File file ) throws DigesterException
     {
         CheckedInputStream cis;
         try
         {
-            cis = new CheckedInputStream(new FileInputStream(file), new CRC32());
+            cis = new CheckedInputStream( new FileInputStream( file ), new CRC32() );
         }
-        catch (FileNotFoundException e)
+        catch ( FileNotFoundException e )
         {
-            throw new DigesterException(e);
+            throw new DigesterException( e );
         }
 
         byte[] buf = new byte[128];
         try
         {
-            while (cis.read(buf) >= 0)
+            while ( cis.read( buf ) >= 0 )
             {
+                continue;
             }
         }
-        catch (IOException e)
+        catch ( IOException e )
         {
-            throw new DigesterException(e);
+            throw new DigesterException( e );
         }
 
-        return Long.toString(cis.getChecksum().getValue());
+        return Long.toString( cis.getChecksum().getValue() );
     }
 
     /**
-     * TODO
+     * TODO.
      *
-     * @param file
-     * @param checksum
-     * @throws DigesterException
+     * @param file     TODO
+     * @param checksum TODO
+     * @throws DigesterException TODO
      */
-    public void verify(File file, String checksum) throws DigesterException
+    public void verify( File file, String checksum ) throws DigesterException
     {
-        throw new DigesterException("Not implemented.");
+        throw new DigesterException( "Not implemented." );
     }
 }

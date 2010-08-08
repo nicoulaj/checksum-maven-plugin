@@ -31,7 +31,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * TODO
+ * TODO.
  *
  * @author Julien Nicoulaud <julien.nicoulaud@gmail.com>
  * @since 0.1
@@ -46,48 +46,51 @@ public abstract class AbstractChecksumMojo extends AbstractMojo
      * @readonly
      */
     protected MavenProject project;
-    
+
     /**
-     * TODO
+     * TODO.
      */
     protected List<File> filesToProcess = new LinkedList<File>();
 
     /**
-     * TODO
+     * TODO.
      *
      * @parameter
      */
     protected String[] algorithms = new String[]{"MD5", "SHA-1", "CRC32"};
 
     /**
-     * TODO
+     * TODO.
+     *
+     * @throws MojoExecutionException TODO
+     * @throws MojoFailureException   TODO
      */
     public void execute() throws MojoExecutionException, MojoFailureException
     {
         prepareExecution();
 
-        if (filesToProcess.isEmpty())
+        if ( filesToProcess.isEmpty() )
         {
-            getLog().warn("No file to generate checksums for.");
+            getLog().warn( "No file to generate checksums for." );
         }
         else
         {
-            for (File file : filesToProcess)
+            for ( File file : filesToProcess )
             {
-                getLog().debug("Processing file " + file.getName() + ".");
+                getLog().debug( "Processing file " + file.getName() + "." );
 
-                for (String algorithm : algorithms)
+                for ( String algorithm : algorithms )
                 {
-                    getLog().debug("Computing checksum for " + algorithm + " algorithm.");
+                    getLog().debug( "Computing checksum for " + algorithm + " algorithm." );
 
                     Digester digester;
                     try
                     {
-                        digester = DigesterFactory.getInstance().getDigester(algorithm);
+                        digester = DigesterFactory.getInstance().getDigester( algorithm );
                     }
-                    catch (NoSuchAlgorithmException e)
+                    catch ( NoSuchAlgorithmException e )
                     {
-                        throw new MojoExecutionException(e.getMessage());
+                        throw new MojoExecutionException( e.getMessage() );
                     }
                     try
                     {
@@ -95,18 +98,19 @@ public abstract class AbstractChecksumMojo extends AbstractMojo
                         // if (file.getPath().startsWith(project.getBuild().getDirectory())) {
                         //     targetFile = file.getPath() + digester.getFilenameExtension();
                         // } else {
-                        //     targetFile = project.getBuild().getDirectory() + File.separator + file.getName() + digester.getFilenameExtension();
+                        //     targetFile = project.getBuild().getDirectory() + File.separator
+                        //                  + file.getName() + digester.getFilenameExtension();
                         //     FileUtils.mkdir(project.getBuild().getDirectory());
                         // }
-                        FileUtils.fileWrite(file.getPath() + digester.getFilenameExtension(), digester.calc(file));
+                        FileUtils.fileWrite( file.getPath() + digester.getFilenameExtension(), digester.calc( file ) );
                     }
-                    catch (IOException e)
+                    catch ( IOException e )
                     {
-                        throw new MojoExecutionException(e.getMessage());
+                        throw new MojoExecutionException( e.getMessage() );
                     }
-                    catch (DigesterException e)
+                    catch ( DigesterException e )
                     {
-                        throw new MojoExecutionException(e.getMessage());
+                        throw new MojoExecutionException( e.getMessage() );
                     }
                 }
             }
@@ -114,7 +118,10 @@ public abstract class AbstractChecksumMojo extends AbstractMojo
     }
 
     /**
-     * TODO
+     * TODO.
+     *
+     * @throws MojoExecutionException TODO
+     * @throws MojoFailureException   TODO
      */
     abstract protected void prepareExecution() throws MojoExecutionException, MojoFailureException;
 }

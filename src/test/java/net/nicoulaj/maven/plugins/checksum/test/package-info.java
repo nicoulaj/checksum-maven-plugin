@@ -13,35 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.nicoulaj.maven.plugins.checksum.digester;
-
-import org.codehaus.plexus.digest.AbstractDigester;
 
 /**
  * TODO.
  *
- * @author Julien Nicoulaud <julien.nicoulaud@gmail.com>
- * @see <a href="http://download-llnw.oracle.com/javase/1.5.0/docs/guide/security/CryptoSpec.html#AppA">Java
- *      Cryptography Architecture API specification and reference</a>
  * @since 0.1
  */
-public class Md2Digester extends AbstractDigester
-{
-    /**
-     * TODO.
-     */
-    public Md2Digester()
-    {
-        super( new StreamingMd2Digester() );
-    }
-
-    /**
-     * TODO.
-     *
-     * @return TODO
-     */
-    public String getFilenameExtension()
-    {
-        return ".md2";
-    }
-}
+package net.nicoulaj.maven.plugins.checksum.test;

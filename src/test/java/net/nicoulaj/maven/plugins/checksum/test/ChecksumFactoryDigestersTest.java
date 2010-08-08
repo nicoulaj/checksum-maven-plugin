@@ -33,7 +33,7 @@ import java.util.Collection;
  * @see net.nicoulaj.maven.plugins.checksum.digester.DigesterFactory
  * @since 0.1
  */
-@RunWith(Parameterized.class)
+@RunWith( Parameterized.class )
 public class ChecksumFactoryDigestersTest
 {
     /**
@@ -50,7 +50,7 @@ public class ChecksumFactoryDigestersTest
     public static Collection<Object[]> getTestParameters()
     {
         Object[][] data = new Object[][]{{"CRC32"}, {"MD2"}, {"MD5"}, {"SHA-1"}, {"SHA-256"}, {"SHA-384"}, {"SHA-512"}};
-        return Arrays.asList(data);
+        return Arrays.asList( data );
     }
 
     /**
@@ -58,7 +58,7 @@ public class ChecksumFactoryDigestersTest
      *
      * @param algorithm the target checksum algorithm to run the test for.
      */
-    public ChecksumFactoryDigestersTest(String algorithm)
+    public ChecksumFactoryDigestersTest( String algorithm )
     {
         this.algorithm = algorithm;
     }
@@ -71,8 +71,8 @@ public class ChecksumFactoryDigestersTest
     @Test
     public void testDigesterIsNotNull() throws NoSuchAlgorithmException
     {
-        Digester digester = DigesterFactory.getInstance().getDigester(algorithm);
-        Assert.assertNotNull(digester);
+        Digester digester = DigesterFactory.getInstance().getDigester( algorithm );
+        Assert.assertNotNull( "The returned digester for  '" + algorithm + "' algorithm is null.", digester );
     }
 
     /**
@@ -83,8 +83,24 @@ public class ChecksumFactoryDigestersTest
     @Test
     public void testDigesterIsSingleton() throws NoSuchAlgorithmException
     {
-        Digester digester1 = DigesterFactory.getInstance().getDigester(algorithm);
-        Digester digester2 = DigesterFactory.getInstance().getDigester(algorithm);
-        Assert.assertEquals(digester1, digester2);
+        Digester digester1 = DigesterFactory.getInstance().getDigester( algorithm );
+        Digester digester2 = DigesterFactory.getInstance().getDigester( algorithm );
+        Assert.assertEquals( "The returned digester for  '" + algorithm + "' algorithm is not a singleton.",
+                           digester1,
+                           digester2 );
+    }
+
+    /**
+     * Assert the returned {@link org.codehaus.plexus.digest.Digester} object is the good one..
+     *
+     * @throws NoSuchAlgorithmException should never happen.
+     */
+    @Test
+    public void testDigesterIsRightOne() throws NoSuchAlgorithmException
+    {
+        Digester digester = DigesterFactory.getInstance().getDigester( algorithm );
+        Assert.assertEquals( "The returned digester for  '" + algorithm + "' algorithm is not the right one.",
+                           digester.getAlgorithm(),
+                           algorithm );
     }
 }

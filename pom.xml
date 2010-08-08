@@ -26,7 +26,9 @@
 
   <!-- Project info -->
   <name>maven-checksum-plugin</name>
-  <description><![CDATA[Calculate project artifacts, dependencies and files checksums and generate digests.]]></description>
+  <description>
+    <![CDATA[Calculate project artifacts, dependencies and files checksums and generate digests.]]>
+  </description>
   <url>http://maven.ju-n.net/maven-checksum-plugin</url>
 
   <!-- License -->
@@ -84,8 +86,10 @@
 
   <!-- Properties -->
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <encoding>UTF-8</encoding>
+    <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
     <maven.target-version>2.2.0</maven.target-version>
+    <java.target-version>1.5</java.target-version>
     <debug>false</debug>
   </properties>
 
@@ -101,12 +105,12 @@
       <artifactId>maven-project</artifactId>
       <version>${maven.target-version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.apache.maven.plugin-testing</groupId>
-      <artifactId>maven-plugin-testing-harness</artifactId>
-      <version>1.2</version>
-      <scope>test</scope>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.apache.maven.plugin-testing</groupId>-->
+      <!--<artifactId>maven-plugin-testing-harness</artifactId>-->
+      <!--<version>1.2</version>-->
+      <!--<scope>test</scope>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-digest</artifactId>
@@ -145,8 +149,8 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>2.3.1</version>
           <configuration>
-            <source>1.5</source>
-            <target>1.5</target>
+            <source>${java.target-version}</source>
+            <target>${java.target-version}</target>
             <optimize>true</optimize>
             <showWarnings>true</showWarnings>
             <showDeprecation>true</showDeprecation>
@@ -202,14 +206,14 @@
           <showErrors>${debug}</showErrors>
           <debug>${debug}</debug>
           <streamLogs>true</streamLogs>
-          <projectsDirectory>src/test/integration</projectsDirectory>
+          <projectsDirectory>${project.basedir}/src/test-integration</projectsDirectory>
           <cloneProjectsTo>${project.build.directory}/integration-tests/projects</cloneProjectsTo>
           <reportsDirectory>${project.build.directory}/integration-tests/reports</reportsDirectory>
           <goals>
             <goal>clean</goal>
             <goal>install</goal>
           </goals>
-          <settingsFile>src/test/integration/settings.xml</settingsFile>
+          <settingsFile>src/test-integration/settings.xml</settingsFile>
         </configuration>
       </plugin>
       <plugin>
@@ -255,10 +259,34 @@
       <plugin>
         <artifactId>maven-site-plugin</artifactId>
         <version>2.1.1</version>
+        <configuration>
+          <outputEncoding>${encoding}</outputEncoding>
+        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>2.1</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>dependencies</report>
+              <report>dependency-convergence</report>
+              <report>dependency-management</report>
+              <report>index</report>
+              <report>issue-tracking</report>
+              <report>license</report>
+              <report>plugin-management</report>
+              <report>plugins</report>
+              <report>project-team</report>
+              <report>scm</report>
+              <report>summary</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+        <configuration>
+          <webAccessUrl>http://github.com/nicoulaj/maven-checksum-plugin
+          </webAccessUrl>
+        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-plugin-plugin</artifactId>
@@ -279,6 +307,62 @@
       <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
         <version>1.5</version>
+        <configuration>
+          <reportsDirectory>${project.build.directory}/integration-tests/reports
+          </reportsDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>2.5</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>pmd</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+        <configuration>
+          <targetJdk>${java.target-version}</targetJdk>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+          <configLocation>config/maven_checks.xml</configLocation>
+          <headerLocation>${project.basedir}/src/resources/checkstyle-header.txt</headerLocation>
+          <includeTestSourceDirectory>true</includeTestSourceDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <tagListOptions>
+            <tagClasses>
+              <tagClass>
+                <displayName>TODO tags</displayName>
+                <tags>
+                  <tag>
+                    <matchString>todo</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                </tags>
+              </tagClass>
+              <tagClass>
+                <displayName>FIXME tags</displayName>
+                <tags>
+                  <tag>
+                    <matchString>fixme</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                </tags>
+              </tagClass>
+            </tagClasses>
+          </tagListOptions>
+        </configuration>
       </plugin>
     </plugins>
   </reporting>

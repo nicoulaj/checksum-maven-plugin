@@ -19,10 +19,10 @@ import org.codehaus.plexus.util.FileUtils
 try
 {
   // Open the build.log file.
-  String buildLogContent = FileUtils.fileRead(new File(basedir, "build.log"), "UTF-8");
+  String buildLogContent = FileUtils.fileRead(new File(basedir, "build.log"));
 
   // Fail if no traces maven-checksum invocation.
-  if (!buildLogContent.contains("maven-checksum-plugin"))
+  if ( !buildLogContent.contains("maven-checksum-plugin") )
   {
     System.err.println("maven-checksum-plugin has not been invoked.");
     return false;
@@ -32,12 +32,12 @@ try
   String[] filesToCheck = ["target/single-artifact-1.0-SNAPSHOT.jar.crc32",
           "target/single-artifact-1.0-SNAPSHOT.jar.md5",
           "target/single-artifact-1.0-SNAPSHOT.jar.sha1"];
-  for (String fileName in filesToCheck)
+  for ( String fileName in filesToCheck )
   {
     File file = new File(basedir, fileName);
-    if (file.exists())
+    if ( file.exists() )
     {
-      if (FileUtils.fileRead(file).length() == 0)
+      if ( FileUtils.fileRead(file).length() == 0 )
       {
         System.err.println("The file " + fileName + " is empty.");
         return false;

@@ -18,26 +18,27 @@ package net.nicoulaj.maven.plugins.checksum.digester;
 import org.codehaus.plexus.digest.AbstractDigester;
 
 /**
- * TODO
+ * TODO.
  *
  * @author Julien Nicoulaud <julien.nicoulaud@gmail.com>
- * @see <a href="http://download-llnw.oracle.com/javase/1.5.0/docs/guide/security/CryptoSpec.html#AppA">Java Cryptography Architecture API cpecification and reference</a>
+ * @see <a href="http://download-llnw.oracle.com/javase/1.5.0/docs/guide/security/CryptoSpec.html#AppA">Java
+ *      Cryptography Architecture API specification and reference</a>
  * @since 0.1
  */
 public class Sha384Digester extends AbstractDigester
 {
     /**
-     * TODO
+     * TODO.
      */
     public Sha384Digester()
     {
-        super(new StreamingSha384Digester());
+        super( new StreamingSha384Digester() );
     }
 
     /**
-     * TODO
+     * TODO.
      *
-     * @return
+     * @return TODO
      */
     public String getFilenameExtension()
     {

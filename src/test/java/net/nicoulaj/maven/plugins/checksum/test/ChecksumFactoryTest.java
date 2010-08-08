@@ -38,8 +38,8 @@ public class ChecksumFactoryTest
     public ExpectedException exception = ExpectedException.none();
 
     /**
-     * Assert a {@link java.security.NoSuchAlgorithmException} is thrown when trying get the
-     * {@link org.codehaus.plexus.digest.Digester} for an unknown algorithm.
+     * Assert a {@link java.security.NoSuchAlgorithmException} is thrown when trying get the {@link
+     * org.codehaus.plexus.digest.Digester} for an unknown algorithm.
      *
      * @throws java.security.NoSuchAlgorithmException
      *          should never happen.
@@ -47,7 +47,7 @@ public class ChecksumFactoryTest
     @Test
     public void testNoSuchAlgorithmExceptionThrownOnInvalidAlgorithm() throws NoSuchAlgorithmException
     {
-        exception.expect(NoSuchAlgorithmException.class);
-        DigesterFactory.getInstance().getDigester("SHA-666");
+        exception.expect( NoSuchAlgorithmException.class );
+        DigesterFactory.getInstance().getDigester( "SHA-666" );
     }
 }

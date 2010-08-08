@@ -18,7 +18,7 @@ package net.nicoulaj.maven.plugins.checksum.digester;
 import org.codehaus.plexus.digest.AbstractStreamingDigester;
 
 /**
- * TODO
+ * TODO.
  *
  * @author Julien Nicoulaud <julien.nicoulaud@gmail.com>
  * @since 0.1
@@ -26,10 +26,10 @@ import org.codehaus.plexus.digest.AbstractStreamingDigester;
 public class StreamingSha256Digester extends AbstractStreamingDigester
 {
     /**
-     * TODO
+     * TODO.
      */
     public StreamingSha256Digester()
     {
-        super("SHA-256");
+        super( "SHA-256" );
     }
 }

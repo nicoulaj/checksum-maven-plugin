@@ -22,7 +22,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import java.util.List;
 
 /**
- * TODO
+ * TODO.
  *
  * @author Julien Nicoulaud <julien.nicoulaud@gmail.com>
  * @goal artifacts
@@ -36,27 +36,28 @@ public class ArtifactsMojo extends AbstractChecksumMojo
     /**
      * {@inheritDoc}
      *
-     * @throws MojoExecutionException
+     * @throws MojoExecutionException TODO
+     * @throws MojoFailureException   TODO
      */
     protected void prepareExecution() throws MojoExecutionException, MojoFailureException
     {
         // Add project main artifact to the files to be processed.
-        if (project.getArtifact() != null &&
-            project.getArtifact().getFile() != null &&
-            project.getArtifact().getFile().getPath().startsWith(project.getBuild().getDirectory()) &&
-            !project.getArtifact().getFile().getPath().equals(project.getFile().getPath()))
+        if ( project.getArtifact() != null &&
+             project.getArtifact().getFile() != null &&
+             project.getArtifact().getFile().getPath().startsWith( project.getBuild().getDirectory() ) &&
+             !project.getArtifact().getFile().getPath().equals( project.getFile().getPath() ) )
         {
-            filesToProcess.add(project.getArtifact().getFile());
+            filesToProcess.add( project.getArtifact().getFile() );
         }
 
         // Add projects attached artifacts to the files to be processed.
-        if (project.getAttachedArtifacts() != null)
+        if ( project.getAttachedArtifacts() != null )
         {
-            for (Artifact artifact : (List<Artifact>) project.getAttachedArtifacts())
+            for ( Artifact artifact : (List<Artifact>) project.getAttachedArtifacts() )
             {
-                if (artifact != null && artifact.getFile() != null)
+                if ( artifact != null && artifact.getFile() != null )
                 {
-                    filesToProcess.add(artifact.getFile());
+                    filesToProcess.add( artifact.getFile() );
                 }
             }
         }
