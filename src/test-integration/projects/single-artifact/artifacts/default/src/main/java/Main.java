@@ -15,8 +15,17 @@
  */
 
 /**
- * Tests for maven-checksum-plugin.
- *
- * @since 0.1
+ * Just an "hello world" class.
  */
-package net.nicoulaj.maven.plugins.checksum.test;
+class Main
+{
+    /**
+     * Print "Hello world".
+     *
+     * @param args arguments
+     */
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}

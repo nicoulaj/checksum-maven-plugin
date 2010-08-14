@@ -13,10 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.nicoulaj.maven.plugins.checksum.execution;
 
 /**
- * Tests for maven-checksum-plugin.
+ * An exception that occured while running an {@link Execution}.
  *
+ * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
+ * @see Execution#run()
  * @since 0.1
  */
-package net.nicoulaj.maven.plugins.checksum.test;
+public class ExecutionException extends Exception
+{
+    /**
+     * Build a new instance of {@link ExecutionException}.
+     *
+     * @param message the message describing the error.
+     */
+    public ExecutionException( String message )
+    {
+        super( message );
+    }
+}

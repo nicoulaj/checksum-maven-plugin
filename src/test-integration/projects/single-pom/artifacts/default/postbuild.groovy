@@ -14,9 +14,22 @@
  * limitations under the License.
  */
 
-/**
- * Tests for maven-checksum-plugin.
- *
- * @since 0.1
- */
-package net.nicoulaj.maven.plugins.checksum.test;
+import net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelper
+
+try
+{
+  // Instantiate a helper.
+  PostBuildScriptHelper helper = new PostBuildScriptHelper(basedir, localRepositoryPath, context)
+
+  // Fail if no traces of maven-checksum-plugin invocation.
+  helper.assertBuildLogContains("maven-checksum-plugin");
+
+  // Look for the right log message.
+  helper.assertBuildLogContains("[ERROR] No file to process.");
+
+}
+catch (Exception e)
+{
+  System.err.println(e.getMessage())
+  return false;
+}

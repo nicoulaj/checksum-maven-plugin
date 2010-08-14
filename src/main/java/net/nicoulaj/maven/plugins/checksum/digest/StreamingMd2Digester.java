@@ -13,10 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.nicoulaj.maven.plugins.checksum.digest;
+
+import org.codehaus.plexus.digest.AbstractStreamingDigester;
 
 /**
- * Tests for maven-checksum-plugin.
+ * Gradually create a MD2 digest for a stream.
  *
+ * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
+ * @see org.codehaus.plexus.digest.StreamingDigester
  * @since 0.1
  */
-package net.nicoulaj.maven.plugins.checksum.test;
+public class StreamingMd2Digester extends AbstractStreamingDigester
+{
+    /**
+     * Build a new instance of {@link StreamingMd2Digester}.
+     */
+    public StreamingMd2Digester()
+    {
+        super( "MD2" );
+    }
+}

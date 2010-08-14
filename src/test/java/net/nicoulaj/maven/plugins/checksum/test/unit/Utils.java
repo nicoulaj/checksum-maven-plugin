@@ -13,29 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.nicoulaj.maven.plugins.checksum.mojo;
+package net.nicoulaj.maven.plugins.checksum.test.unit;
 
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
+import java.io.File;
 
 /**
- * TODO add Javadoc comment.
+ * Utilities used by unit test classes.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @goal files
- * @phase verify
- * @inheritByDefault false
- * @requiresProject true
  * @since 0.1
  */
-public class FilesMojo extends AbstractMojo
+public class Utils
 {
     /**
-     * {@inheritDoc}
+     * Path of the test resources directory.
      */
-    public void execute() throws MojoExecutionException, MojoFailureException
-    {
-        throw new MojoFailureException( "Not implemented." );
-    }
+    public static final String RESOURCES_PATH = "target" + File.separator + "test-classes";
+
+    /**
+     * Path of the sample test files directory.
+     */
+    public static final String SAMPLE_FILES_PATH = RESOURCES_PATH + File.separator + "files";
+
+    /**
+     * Path of the sample files hashcodes directory.
+     */
+    public static final String SAMPLE_FILES_HASHCODES_PATH = RESOURCES_PATH + File.separator + "hashcodes";
 }

@@ -13,29 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.nicoulaj.maven.plugins.checksum.mojo;
+package net.nicoulaj.maven.plugins.checksum.digest;
 
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
+import org.codehaus.plexus.digest.AbstractDigester;
 
 /**
- * TODO add Javadoc comment.
+ * Implementation of {@link org.codehaus.plexus.digest.Digester} for the SHA-384 algorithm.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @goal files
- * @phase verify
- * @inheritByDefault false
- * @requiresProject true
+ * @see <a href="http://download-llnw.oracle.com/javase/1.5.0/docs/guide/security/CryptoSpec.html#AppA">Java
+ *      Cryptography Architecture API specification and reference</a>
+ * @see org.codehaus.plexus.digest.Digester
  * @since 0.1
  */
-public class FilesMojo extends AbstractMojo
+public class Sha384Digester extends AbstractDigester
 {
+    /**
+     * Build a new instance of {@link Sha384Digester}.
+     */
+    public Sha384Digester()
+    {
+        super( new StreamingSha384Digester() );
+    }
+
     /**
      * {@inheritDoc}
      */
-    public void execute() throws MojoExecutionException, MojoFailureException
+    public String getFilenameExtension()
     {
-        throw new MojoFailureException( "Not implemented." );
+        return ".sha384";
     }
 }

@@ -15,8 +15,9 @@
  */
 
 /**
- * Tests for maven-checksum-plugin.
+ * Classes for calculating files digests.
  *
  * @since 0.1
+ * @see net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory
  */
-package net.nicoulaj.maven.plugins.checksum.test;
+package net.nicoulaj.maven.plugins.checksum.digest;

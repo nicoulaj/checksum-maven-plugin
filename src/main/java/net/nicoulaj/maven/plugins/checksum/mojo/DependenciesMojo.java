@@ -15,29 +15,41 @@
  */
 package net.nicoulaj.maven.plugins.checksum.mojo;
 
+import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.project.MavenProject;
 
 /**
- * TODO.
+ * TODO add Javadoc comment.
  *
- * @author Julien Nicoulaud <julien.nicoulaud@gmail.com>
+ * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @goal dependencies
- * @phase install
+ * @phase verify
  * @inheritByDefault false
  * @requiresProject true
  * @since 0.1
  */
-public class DependenciesMojo extends AbstractChecksumMojo
+public class DependenciesMojo extends AbstractMojo
 {
     /**
-     * {@inheritDoc}
+     * The Maven project.
      *
-     * @throws MojoExecutionException TODO
-     * @throws MojoFailureException   TODO
+     * @parameter expression="${project}"
+     * @required
+     * @readonly
+     * @since 0.1
      */
-    public void prepareExecution() throws MojoExecutionException, MojoFailureException
+    protected MavenProject project;
+
+    /**
+     * {@inheritDoc}
+     */
+    public void execute() throws MojoExecutionException, MojoFailureException
     {
-        throw new MojoFailureException( "Not implemented" );
+//        for ( Artifact artifact : ( Set<Artifact> ) project.getDependencyArtifacts() )
+//        {
+//            getLog().info( artifact.getFile().getPath() );
+//        }
     }
 }

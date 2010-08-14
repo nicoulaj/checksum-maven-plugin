@@ -15,8 +15,10 @@
  */
 
 /**
- * Tests for maven-checksum-plugin.
+ * Integration tests for maven-checksum-plugin.
+ *
+ * <p>See {@code src/main/test-integration}.</p>
  *
  * @since 0.1
  */
-package net.nicoulaj.maven.plugins.checksum.test;
+package net.nicoulaj.maven.plugins.checksum.test.integration;

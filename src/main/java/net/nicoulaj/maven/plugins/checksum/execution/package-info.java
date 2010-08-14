@@ -15,8 +15,11 @@
  */
 
 /**
- * Tests for maven-checksum-plugin.
+ * Classes used by {@link org.apache.maven.plugin.Mojo} implementations to execute the file digests calcul and output
+ * them to various targets.
  *
  * @since 0.1
+ * @see net.nicoulaj.maven.plugins.checksum.execution.Execution
+ * @see net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget
  */
-package net.nicoulaj.maven.plugins.checksum.test;
+package net.nicoulaj.maven.plugins.checksum.execution;

@@ -15,8 +15,8 @@
  */
 
 /**
- * Tests for maven-checksum-plugin.
+ * Unit tests for the {@code net.nicoulaj.maven.plugins.checksum.mojo} package.
  *
  * @since 0.1
  */
-package net.nicoulaj.maven.plugins.checksum.test;
+package net.nicoulaj.maven.plugins.checksum.test.unit.mojo;
