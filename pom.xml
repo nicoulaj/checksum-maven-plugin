@@ -20,7 +20,7 @@
   <!-- Project coordinates -->
   <groupId>net.nicoulaj.maven.plugins</groupId>
   <artifactId>maven-checksum-plugin</artifactId>
-  <version>0.1-alpha2</version>
+  <version>0.1-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <!-- Project info -->
