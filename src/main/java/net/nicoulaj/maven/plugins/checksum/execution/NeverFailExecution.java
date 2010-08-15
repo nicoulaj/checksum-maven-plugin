@@ -56,73 +56,84 @@ public class NeverFailExecution extends AbstractExecution
      */
     public void run()
     {
-        if ( files == null || files.isEmpty() )
+        // Check parameters are initialized.
+        try
         {
-            logger.warn( "No file to process." );
+            checkParameters();
         }
-        else
+        catch ( ExecutionException e )
         {
-            // Initialize targets
-            for ( ExecutionTarget target : getTargets() )
+            logger.error( e.getMessage() );
+            return;
+        }
+
+        // Initialize targets
+        for ( ExecutionTarget target : getTargets() )
+        {
+            try
+            {
+                target.init();
+            }
+            catch ( Exception e )
+            {
+                // Remove the target in fault
+                removeTarget( target );
+                logger.warn( e.getMessage() );
+
+                // If this was the last target, cancel the execution.
+                if ( getTargets().isEmpty() )
+                {
+                    return;
+                }
+            }
+        }
+
+        // Process files
+        for ( File file : files )
+        {
+            for ( String algorithm : getAlgorithms() )
             {
                 try
                 {
-                    target.init();
-                }
-                catch ( Exception e )
-                {
-                    logger.warn( e.getMessage() );
-                    removeTarget( target );
-                }
-            }
+                    // Calculate the hash for the file/algo
+                    Digester digester = DigesterFactory.getInstance().getDigester( algorithm );
+                    String hash = digester.calc( file );
 
-            // Process files
-            for ( File file : files )
-            {
-                for ( String algorithm : getAlgorithms() )
-                {
-                    try
+                    // Write it to each target defined
+                    for ( ExecutionTarget target : getTargets() )
                     {
-                        // Calculate the hash for the file/algo
-                        Digester digester = DigesterFactory.getInstance().getDigester( algorithm );
-                        String hash = digester.calc( file );
-
-                        // Write it to each target defined
-                        for ( ExecutionTarget target : getTargets() )
+                        try
                         {
-                            try
-                            {
-                                target.write( hash, file, algorithm );
-                            }
-                            catch ( ExecutionTargetWriteException e )
-                            {
-                                logger.warn( e.getMessage() );
-                            }
+                            target.write( hash, file, algorithm );
+                        }
+                        catch ( ExecutionTargetWriteException e )
+                        {
+                            logger.warn( e.getMessage() );
                         }
                     }
-                    catch ( NoSuchAlgorithmException e )
-                    {
-                        logger.warn( "Unsupported algorithm " + algorithm + "." );
-                    }
-                    catch ( DigesterException e )
-                    {
-                        logger.warn( "Unable to calculate " + algorithm
-                                     + " hash for " + file.getName() + ": " + e.getMessage() );
-                    }
+                }
+                catch ( NoSuchAlgorithmException e )
+                {
+                    logger.warn( "Unsupported algorithm " + algorithm + "." );
+                }
+                catch ( DigesterException e )
+                {
+                    logger.warn( "Unable to calculate " + algorithm
+                                 + " hash for " + file.getName() + ": " + e.getMessage() );
                 }
             }
+        }
 
-            // Close targets
-            for ( ExecutionTarget target : getTargets() )
+        // Close targets
+        for ( ExecutionTarget target : getTargets() )
+        {
+            try
             {
-                try
-                {
-                    target.close();
-                }
-                catch ( Exception e )
-                {
-                    logger.warn( e.getMessage() );
-                }
+                target.close();
+            }
+            catch ( Exception e )
+            {
+                logger.warn( e.getMessage() );
             }
         }
     }

@@ -24,8 +24,9 @@ try
   // Fail if no traces of maven-checksum-plugin invocation.
   helper.assertBuildLogContains("maven-checksum-plugin");
 
-  // Assert the file has been created.
-  helper.assertFileIsNotEmpty("target/dependencies-checksums.csv")
+  // Check files have been created and are not empty.
+  helper.assertFileIsNotEmpty("target/artifacts-checksums.csv")
+
 }
 catch (Exception e)
 {

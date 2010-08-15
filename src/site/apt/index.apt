@@ -22,7 +22,7 @@
 
 maven-checksum-plugin
 
-  Calculate project artifacts, dependencies and files checksums and generate digests.
+  Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.
 
 * Goals Overview
 

@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>net.nicoulaj.maven.plugins.checksum.test.projects</groupId>
-  <artifactId>attached-artifacts.artifacts.default</artifactId>
+  <artifactId>attached-artifacts.artifacts.summary-file</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -35,6 +35,10 @@
             <goals>
               <goal>artifacts</goal>
             </goals>
+            <configuration>
+              <individualFiles>false</individualFiles>
+              <summaryFile>true</summaryFile>
+            </configuration>
           </execution>
         </executions>
       </plugin>

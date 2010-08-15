@@ -161,4 +161,23 @@ public abstract class AbstractExecution implements Execution
     {
         this.targets = targets;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void checkParameters() throws ExecutionException
+    {
+        if ( files == null || files.isEmpty() )
+        {
+            throw new ExecutionException( "No file to process." );
+        }
+        if ( algorithms == null || algorithms.isEmpty() )
+        {
+            throw new ExecutionException( "No checksum algorithm defined." );
+        }
+        if ( targets == null || targets.isEmpty() )
+        {
+            throw new ExecutionException( "No output target defined." );
+        }
+    }
 }

@@ -21,99 +21,111 @@ import java.io.File;
 import java.util.List;
 
 /**
- * TODO add Javadoc comment.
+ * Effective execution of plugin goals used {@link org.apache.maven.plugin.Mojo} implementations.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
+ * @see net.nicoulaj.maven.plugins.checksum.mojo
  * @since 0.1
  */
 public interface Execution
 {
     /**
-     * TODO add Javadoc comment.
+     * Get the list of files to be processed by the execution.
      *
-     * @return TODO add Javadoc comment.
+     * @return the files configured for this execution.
      */
     List<File> getFiles();
 
     /**
-     * TODO add Javadoc comment.
+     * Set the list of files to be processed by the execution.
      *
-     * @param files TODO add Javadoc comment.
+     * @param files the value to set.
      */
     void setFiles( List<File> files );
 
     /**
-     * TODO add Javadoc comment.
+     * Add a file to the list of files to be processed by the execution.
      *
-     * @param file TODO add Javadoc comment.
+     * @param file the file to add.
      */
     void addFile( File file );
 
     /**
-     * TODO add Javadoc comment.
+     * Remove a file from the list of files to be processed by the execution.
      *
-     * @param file TODO add Javadoc comment.
+     * @param file the file to remove.
      */
     void removeFile( File file );
 
     /**
-     * TODO add Javadoc comment.
+     * Get the list of checksum algorithms to be used by the execution.
      *
-     * @return TODO add Javadoc comment.
+     * @return the algorithms configured for this execution.
      */
     List<String> getAlgorithms();
 
     /**
-     * TODO add Javadoc comment.
+     * Set the list of checksum algorithms to be used by the execution.
      *
-     * @param algorithms TODO add Javadoc comment.
+     * @param algorithms the value to set.
      */
     void setAlgorithms( List<String> algorithms );
 
     /**
-     * TODO add Javadoc comment.
+     * Add an algorithm to the list of checksum algorithms to be used by the execution.
      *
-     * @param algorithm TODO add Javadoc comment.
+     * @param algorithm the algorithm to add.
      */
     void addAlgorithm( String algorithm );
 
     /**
-     * TODO add Javadoc comment.
+     * Remove an algorithm from the list of checksum algorithms to be used by the execution.
      *
-     * @param algorithm TODO add Javadoc comment.
+     * @param algorithm the algorithm to remove.
      */
     void removeAlgorithm( String algorithm );
 
     /**
-     * TODO add Javadoc comment.
+     * Get the list of {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} to be used by the
+     * execution.
      *
-     * @return TODO add Javadoc comment.
+     * @return the targets configured for this execution.
      */
     List<ExecutionTarget> getTargets();
 
     /**
-     * TODO add Javadoc comment.
+     * Set the list of {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} to be used by the
+     * execution.
      *
-     * @param targets TODO add Javadoc comment.
+     * @param targets the value to set.
      */
     void setTargets( List<ExecutionTarget> targets );
 
     /**
-     * TODO add Javadoc comment.
+     * Add a target to the list of {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} to be
+     * used by the execution.
      *
-     * @param target TODO add Javadoc comment.
+     * @param target the target to add.
      */
     void addTarget( ExecutionTarget target );
 
     /**
-     * TODO add Javadoc comment.
+     * Remove a target from the list of {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} to
+     * be used by the execution.
      *
-     * @param target TODO add Javadoc comment.
+     * @param target the target to remove.
      */
     void removeTarget( ExecutionTarget target );
 
     /**
-     * Run the execution.
+     * Check that an execution can be run with the {#run} method.
+     *
+     * @throws ExecutionException if some parameters are not initialized or invalid.
+     */
+    void checkParameters() throws ExecutionException;
+
+    /**
+     * Run the execution using for the files, algorithms and targets set.
      *
      * @throws ExecutionException if an error happens while running the execution.
      */

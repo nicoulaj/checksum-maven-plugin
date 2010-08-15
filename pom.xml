@@ -27,7 +27,7 @@
   <!-- Project info -->
   <name>maven-checksum-plugin</name>
   <description>
-    <![CDATA[Calculate project artifacts, dependencies and files checksums and generate digests.]]>
+    <![CDATA[Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.]]>
   </description>
   <url>http://maven.ju-n.net/maven-checksum-plugin</url>
 
@@ -134,6 +134,7 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.8.1</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -375,6 +376,7 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>${maven-javadoc-plugin.version}</version>
         <configuration>
+          <encoding>${encoding}</encoding>
           <links>
             <link>http://download-llnw.oracle.com/javase/1.5.0/docs/api</link>
             <link>http://maven.apache.org/ref/${maven.target-version}/apidocs</link>

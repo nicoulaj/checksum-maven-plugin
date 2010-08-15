@@ -21,41 +21,47 @@ import java.io.File;
 import java.util.Map;
 
 /**
- * Utility object used by post-build scripts.
+ * Utility object used by post-build hook scripts.
  *
  * <p>See {@code src/main/test-integration/projects/.../postbuild.groovy} scripts.</p>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
+ * @see <a href="http://maven.apache.org/plugins/maven-invoker-plugin/examples/post-build-script.html">
+ *      maven-invoker-plugin post-build script invocation</a>
  * @since 0.1
  */
 public class PostBuildScriptHelper
 {
     /**
-     * TODO.
+     * The name of the build log file.
      */
     public static final String BUILD_LOG_FILE = "build.log";
 
     /**
-     * TODO.
+     * The absolute path to the base directory of the test project.
      */
     protected File baseDirectory;
 
     /**
-     * TODO.
+     * The absolute path to the local repository used for the Maven invocation on the test project.
      */
     protected File localRepositoryPath;
 
     /**
-     * TODO.
+     * The storage of key-value pairs used to pass data from the pre-build hook script to the post-build hook script.
      */
     protected Map context;
 
     /**
-     * TODO.
+     * Build a new {@link PostBuildScriptHelper} instance.
      *
-     * @param baseDirectory       TODO.
-     * @param localRepositoryPath TODO.
-     * @param context             TODO.
+     * @param baseDirectory       the absolute path to the base directory of the test project..
+     * @param localRepositoryPath the absolute path to the local repository used for the Maven invocation on the test
+     *                            project..
+     * @param context             the storage of key-value pairs used to pass data from the pre-build hook script to the
+     *                            post-build hook script..
+     * @see <a href="http://maven.apache.org/plugins/maven-invoker-plugin/examples/post-build-script.html">
+     *      maven-invoker-plugin post-build script invocation</a>
      */
     public PostBuildScriptHelper( File baseDirectory, File localRepositoryPath, Map context )
     {
@@ -65,42 +71,43 @@ public class PostBuildScriptHelper
     }
 
     /**
-     * TODO.
+     * Get the project build log content.
      *
-     * @return TODO.
-     * @throws Exception TODO.
+     * @return the project build log content.
+     * @throws Exception if the build log could not be open.
      */
     public String getBuildLog() throws Exception
     {
+        // FIXME Read it only once, store it in a variable.
         return FileUtils.fileRead( new File( baseDirectory, BUILD_LOG_FILE ) );
     }
 
     /**
-     * TODO.
+     * Assert the given file exists and is a file.
      *
-     * @param path TODO.
-     * @throws Exception TODO.
+     * @param path the path to the file relative to {@link #baseDirectory}.
+     * @throws Exception if conditions are not fulfilled.
      */
     public void assertFileExists( String path ) throws Exception
     {
-        if ( !new File( baseDirectory, path ).exists() )
+        if ( !new File( baseDirectory, path ).isFile() )
         {
             throw new Exception( "The file " + path + " is missing." );
         }
     }
 
     /**
-     * TODO.
+     * Assert the given file exists and is a non-empty file.
      *
-     * @param path TODO.
-     * @throws Exception TODO.
+     * @param path the path to the file relative to {@link #baseDirectory}.
+     * @throws Exception if conditions are not fulfilled.
      */
     public void assertFileIsNotEmpty( String path ) throws Exception
     {
         File file = new File( baseDirectory, path );
         if ( !file.isFile() )
         {
-            throw new Exception( "The file " + path + " is missing." );
+            throw new Exception( "The file " + path + " is missing or not a file." );
         }
         else
         {
@@ -112,10 +119,10 @@ public class PostBuildScriptHelper
     }
 
     /**
-     * TODO.
+     * Assert the project build log contains the given search.
      *
-     * @param search TODO.
-     * @throws Exception TODO.
+     * @param search the expression to search in the build log.
+     * @throws Exception if conditions are not fulfilled.
      */
     public void assertBuildLogContains( String search ) throws Exception
     {

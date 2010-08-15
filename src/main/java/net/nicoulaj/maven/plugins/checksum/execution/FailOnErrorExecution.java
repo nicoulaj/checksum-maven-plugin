@@ -42,72 +42,68 @@ public class FailOnErrorExecution extends AbstractExecution
      */
     public void run() throws ExecutionException
     {
-        if ( files == null || files.isEmpty() )
+        // Check parameters are initialized.
+        checkParameters();
+
+        // Initialize targets.
+        for ( ExecutionTarget target : getTargets() )
         {
-            throw new ExecutionException( "No file to process." );
+            try
+            {
+                target.init();
+            }
+            catch ( ExecutionTargetInitializationException e )
+            {
+                throw new ExecutionException( e.getMessage() );
+            }
         }
-        else
+
+        // Process files.
+        for ( File file : files )
         {
-            // Initialize targets
-            for ( ExecutionTarget target : getTargets() )
+            for ( String algorithm : getAlgorithms() )
             {
                 try
                 {
-                    target.init();
-                }
-                catch ( ExecutionTargetInitializationException e )
-                {
-                    throw new ExecutionException( e.getMessage() );
-                }
-            }
+                    // Calculate the hash for the file/algo
+                    Digester digester = DigesterFactory.getInstance().getDigester( algorithm );
+                    String hash = digester.calc( file );
 
-            // Process files
-            for ( File file : files )
-            {
-                for ( String algorithm : getAlgorithms() )
-                {
-                    try
+                    // Write it to each target defined
+                    for ( ExecutionTarget target : getTargets() )
                     {
-                        // Calculate the hash for the file/algo
-                        Digester digester = DigesterFactory.getInstance().getDigester( algorithm );
-                        String hash = digester.calc( file );
-
-                        // Write it to each target defined
-                        for ( ExecutionTarget target : getTargets() )
+                        try
                         {
-                            try
-                            {
-                                target.write( hash, file, algorithm );
-                            }
-                            catch ( ExecutionTargetWriteException e )
-                            {
-                                throw new ExecutionException( e.getMessage() );
-                            }
+                            target.write( hash, file, algorithm );
+                        }
+                        catch ( ExecutionTargetWriteException e )
+                        {
+                            throw new ExecutionException( e.getMessage() );
                         }
                     }
-                    catch ( NoSuchAlgorithmException e )
-                    {
-                        throw new ExecutionException( "Unsupported algorithm " + algorithm + "." );
-                    }
-                    catch ( DigesterException e )
-                    {
-                        throw new ExecutionException( "Unable to calculate " + algorithm
-                                                      + " hash for " + file.getName() + ": " + e.getMessage() );
-                    }
+                }
+                catch ( NoSuchAlgorithmException e )
+                {
+                    throw new ExecutionException( "Unsupported algorithm " + algorithm + "." );
+                }
+                catch ( DigesterException e )
+                {
+                    throw new ExecutionException( "Unable to calculate " + algorithm
+                                                  + " hash for " + file.getName() + ": " + e.getMessage() );
                 }
             }
+        }
 
-            // Close targets
-            for ( ExecutionTarget target : getTargets() )
+        // Close targets.
+        for ( ExecutionTarget target : getTargets() )
+        {
+            try
             {
-                try
-                {
-                    target.close();
-                }
-                catch ( ExecutionTargetCloseException e )
-                {
-                    throw new ExecutionException( e.getMessage() );
-                }
+                target.close();
+            }
+            catch ( ExecutionTargetCloseException e )
+            {
+                throw new ExecutionException( e.getMessage() );
             }
         }
     }
