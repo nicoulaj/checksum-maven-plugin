@@ -1,7 +1,7 @@
 maven-checksum-plugin
 =====================
 
-[Maven](http://maven.apache.org) plugin to **compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.**
+**Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.**
 
 ## Documentation
 The Maven generated documentation site is available [here](http://maven.ju-n.net/maven-checksum-plugin).
