@@ -27,7 +27,7 @@ import java.security.NoSuchAlgorithmException;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
-public class MessageDigestDigester extends AbstractDigester
+public class MessageDigester extends AbstractDigester
 {
     private static final byte[] DIGITS = "0123456789abcdef".getBytes();
 
@@ -35,7 +35,7 @@ public class MessageDigestDigester extends AbstractDigester
 
     protected final MessageDigest md;
 
-    protected MessageDigestDigester( String algorithm ) throws NoSuchAlgorithmException
+    protected MessageDigester( String algorithm ) throws NoSuchAlgorithmException
     {
         super( algorithm );
         md = MessageDigest.getInstance( algorithm );
