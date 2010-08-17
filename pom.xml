@@ -64,7 +64,7 @@
 
   <!-- Distribution management -->
   <distributionManagement>
-    <downloadUrl>http://maven.ju-n.net/maven2</downloadUrl>
+    <downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
     <repository>
       <id>sonatype-oss-staging</id>
       <name>Sonatype OSS staging repository</name>
