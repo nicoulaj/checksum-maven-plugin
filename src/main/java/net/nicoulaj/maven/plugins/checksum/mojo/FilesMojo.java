@@ -40,7 +40,7 @@ import java.util.List;
  * @goal files
  * @phase verify
  * @inheritByDefault false
- * @since 0.1
+ * @since 1.0
  */
 public class FilesMojo extends AbstractMojo
 {
@@ -50,7 +50,7 @@ public class FilesMojo extends AbstractMojo
      * @parameter expression="${project}"
      * @required
      * @readonly
-     * @since 0.1
+     * @since 1.0
      */
     protected MavenProject project;
 
@@ -68,7 +68,7 @@ public class FilesMojo extends AbstractMojo
      * </p>
      *
      * @parameter
-     * @since 0.1
+     * @since 1.0
      */
     protected List<String> algorithms = Arrays.asList( new String[]{"MD5", "SHA-1"} );
 
@@ -77,7 +77,7 @@ public class FilesMojo extends AbstractMojo
      *
      * @parameter
      * @required
-     * @since 0.1
+     * @since 1.0
      */
     protected List<File> files = new LinkedList<File>();
 
@@ -85,7 +85,7 @@ public class FilesMojo extends AbstractMojo
      * Indicates whether the build will fail if there are errors.
      *
      * @parameter default-value="true"
-     * @since 0.1
+     * @since 1.0
      */
     protected boolean failOnError;
 
@@ -93,7 +93,7 @@ public class FilesMojo extends AbstractMojo
      * Indicates whether the build will store checksums in separate files (one file per algorithm per artifact).
      *
      * @parameter default-value="true"
-     * @since 0.1
+     * @since 1.0
      */
     protected boolean individualFiles;
 
@@ -101,7 +101,7 @@ public class FilesMojo extends AbstractMojo
      * Indicates whether the build will print checksums in the build log.
      *
      * @parameter default-value="false"
-     * @since 0.1
+     * @since 1.0
      */
     protected boolean quiet;
 
@@ -109,7 +109,7 @@ public class FilesMojo extends AbstractMojo
      * Indicates whether the build will store checksums to a single summary file.
      *
      * @parameter default-value="false"
-     * @since 0.1
+     * @since 1.0
      */
     protected boolean summaryFile;
 
@@ -119,7 +119,7 @@ public class FilesMojo extends AbstractMojo
      * @parameter
      * @required
      * @see #summaryFile
-     * @since 0.1
+     * @since 1.0
      */
     protected String summaryFileName;
 

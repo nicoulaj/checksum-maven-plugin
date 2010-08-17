@@ -21,7 +21,7 @@ import java.io.File;
  * Utilities used by unit test classes.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @since 0.1
+ * @since 1.0
  */
 public class Utils
 {

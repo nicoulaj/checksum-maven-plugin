@@ -24,7 +24,7 @@ import java.io.File;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see org.apache.maven.plugin.logging.Log
- * @since 0.1
+ * @since 1.0
  */
 public class MavenLogTarget implements ExecutionTarget
 {

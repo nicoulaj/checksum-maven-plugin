@@ -17,6 +17,6 @@
 /**
  * Tests for maven-checksum-plugin.
  *
- * @since 0.1
+ * @since 1.0
  */
 package net.nicoulaj.maven.plugins.checksum.test;

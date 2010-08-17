@@ -42,7 +42,7 @@ import java.util.List;
  * @phase verify
  * @requiresProject true
  * @inheritByDefault false
- * @since 0.1
+ * @since 1.0
  */
 public class ArtifactsMojo extends AbstractMojo
 {
@@ -52,7 +52,7 @@ public class ArtifactsMojo extends AbstractMojo
      * @parameter expression="${project}"
      * @required
      * @readonly
-     * @since 0.1
+     * @since 1.0
      */
     protected MavenProject project;
 
@@ -70,7 +70,7 @@ public class ArtifactsMojo extends AbstractMojo
      * </p>
      *
      * @parameter
-     * @since 0.1
+     * @since 1.0
      */
     protected List<String> algorithms = Arrays.asList( new String[]{"MD5", "SHA-1"} );
 
@@ -78,7 +78,7 @@ public class ArtifactsMojo extends AbstractMojo
      * Indicates whether the build will fail if there are errors.
      *
      * @parameter default-value="true"
-     * @since 0.1
+     * @since 1.0
      */
     protected boolean failOnError;
 
@@ -86,7 +86,7 @@ public class ArtifactsMojo extends AbstractMojo
      * Indicates whether the build will store checksums in separate files (one file per algorithm per artifact).
      *
      * @parameter default-value="true"
-     * @since 0.1
+     * @since 1.0
      */
     protected boolean individualFiles;
 
@@ -94,7 +94,7 @@ public class ArtifactsMojo extends AbstractMojo
      * Indicates whether the build will print checksums in the build log.
      *
      * @parameter default-value="false"
-     * @since 0.1
+     * @since 1.0
      */
     protected boolean quiet;
 
@@ -102,7 +102,7 @@ public class ArtifactsMojo extends AbstractMojo
      * Indicates whether the build will store checksums to a single summary file.
      *
      * @parameter default-value="false"
-     * @since 0.1
+     * @since 1.0
      */
     protected boolean summaryFile;
 
@@ -111,7 +111,7 @@ public class ArtifactsMojo extends AbstractMojo
      *
      * @parameter default-value="artifacts-checksums.csv"
      * @see #summaryFile
-     * @since 0.1
+     * @since 1.0
      */
     protected String summaryFileName;
 

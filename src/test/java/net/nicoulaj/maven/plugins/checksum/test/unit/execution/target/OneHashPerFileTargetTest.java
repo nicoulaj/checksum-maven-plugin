@@ -59,8 +59,8 @@ public class OneHashPerFileTargetTest
         String testAlgorithm = "MD5";
         String testFile = Utils.SAMPLE_FILES_PATH + File.separator + "simple-text-file";
         String hashcodeFile = testFile + DigesterFactory.getInstance()
-                                                        .getDigester( testAlgorithm )
-                                                        .getFilenameExtension();
+                                                        .getFileDigester( testAlgorithm )
+                                                        .getFileExtension();
 
         // Call write()
         target.write( "hash-file-content", new File( testFile ), testAlgorithm );

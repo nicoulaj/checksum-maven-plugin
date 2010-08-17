@@ -15,41 +15,42 @@
  */
 package net.nicoulaj.maven.plugins.checksum.digest;
 
-import java.io.File;
-
 /**
- * TODO.
+ * Base class for implementations of {@link FileDigester}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
-public abstract class AbstractDigester implements Digester
+public abstract class AbstractFileDigester implements FileDigester
 {
+    /**
+     * The algorithm used to compute checksum digests.
+     */
     protected final String algorithm;
 
-    protected AbstractDigester( String algorithm )
+    /**
+     * Build a new instance of {@link AbstractFileDigester}.
+     *
+     * @param algorithm the algorithm used to compute checksum digests.
+     */
+    protected AbstractFileDigester( String algorithm )
     {
         this.algorithm = algorithm;
-    }
-
-    public String getAlgorithm()
-    {
-        return algorithm;
-    }
-
-    public String getFilenameExtension()
-    {
-        return "." + algorithm.toLowerCase().replace( "-", "" );
     }
 
     /**
      * {@inheritDoc}
      */
-    public void verify( File file, String checksum ) throws DigesterException
+    public String getAlgorithm()
     {
-        if ( !checksum.equalsIgnoreCase( calc( file ) ) )
-        {
-            throw new DigesterException( "Checksum failed" );
-        }
+        return algorithm;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getFileExtension()
+    {
+        return "." + algorithm.toLowerCase().replace( "-", "" );
     }
 }

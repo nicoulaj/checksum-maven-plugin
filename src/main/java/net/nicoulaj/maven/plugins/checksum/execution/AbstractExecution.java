@@ -26,7 +26,7 @@ import java.util.List;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see net.nicoulaj.maven.plugins.checksum.execution.Execution
- * @since 0.1
+ * @since 1.0
  */
 public abstract class AbstractExecution implements Execution
 {

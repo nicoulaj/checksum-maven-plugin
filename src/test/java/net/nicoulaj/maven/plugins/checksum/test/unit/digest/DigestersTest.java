@@ -15,9 +15,9 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test.unit.digest;
 
-import net.nicoulaj.maven.plugins.checksum.digest.Digester;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterException;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
+import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
 import net.nicoulaj.maven.plugins.checksum.test.unit.Utils;
 
 import org.codehaus.plexus.util.FileUtils;
@@ -36,19 +36,19 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Tests for each implementation of {@link Digester}.
+ * Tests for each implementation of {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @see Digester
- * @since 0.1
+ * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester
+ * @since 1.0
  */
 @RunWith( Parameterized.class )
 public class DigestersTest
 {
     /**
-     * The {@link Digester} tested.
+     * The {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} tested.
      */
-    private Digester digester;
+    private FileDigester digester;
 
     /**
      * Rule used to specify per-test expected exceptions.
@@ -59,7 +59,7 @@ public class DigestersTest
     /**
      * Generate the list of arguments with which the test should be run.
      *
-     * @return the list of tested {@link Digester} implementations.
+     * @return the list of tested {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} implementations.
      */
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters()
@@ -72,10 +72,11 @@ public class DigestersTest
      * Build a new {@link DigestersTest}.
      *
      * @param algorithm the target checksum algorithm to run the test for.
+     * @throws NoSuchAlgorithmException should never happen.
      */
     public DigestersTest( String algorithm ) throws NoSuchAlgorithmException
     {
-        this.digester = DigesterFactory.getInstance().getDigester( algorithm );
+        this.digester = DigesterFactory.getInstance().getFileDigester( algorithm );
     }
 
     /**
@@ -95,77 +96,42 @@ public class DigestersTest
     @Test
     public void testFilenameExtensionDefined()
     {
-        String filenameExtension = digester.getFilenameExtension();
+        String filenameExtension = digester.getFileExtension();
         Assert.assertNotNull( "The file name extension is null.", filenameExtension );
         Assert.assertTrue( "The file name extension is empty.", filenameExtension.length() > 0 );
     }
 
     /**
-     * Check the calculated checksum for a specific file with the {@link Digester#calc(File)} method is valid against a
-     * pre-calculated checksum.
+     * Check the calculated checksum for a specific file is valid against a pre-calculated checksum.
      *
      * @throws DigesterException if there was a problem while calculating the checksum.
      * @throws IOException       if there was a problem reading the file containing the pre-calculated checksum.
-     * @see Digester#calc(java.io.File)
+     * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester#calculate(java.io.File)
      */
     @Test
-    public void testCalc() throws DigesterException, IOException
+    public void testCalculate() throws DigesterException, IOException
     {
         List<File> testFiles = FileUtils.getFiles( new File( Utils.SAMPLE_FILES_PATH ), null, null );
         for ( File testFile : testFiles )
         {
-            String calculatedHash = digester.calc( testFile );
+            String calculatedHash = digester.calculate( testFile );
             String correctHash = FileUtils.fileRead( Utils.SAMPLE_FILES_HASHCODES_PATH + File.separator
-                                                     + testFile.getName() + digester.getFilenameExtension() );
+                                                     + testFile.getName() + digester.getFileExtension() );
             Assert.assertEquals( "The calculated " + digester.getAlgorithm() + " hashcode for "
                                  + testFile.getName() + " is incorrect.", correctHash, calculatedHash );
         }
     }
 
     /**
-     * Check an exception is thrown when attempting to call {@link Digester#calc(File)} on a file that does not exist.
+     * Check an exception is thrown when attempting to calculate the checksum of a file that does not exist.
      *
      * @throws DigesterException should always happen.
-     * @see Digester#calc(java.io.File)
+     * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester#calculate(java.io.File)
      */
     @Test
-    public void testCalcExceptionThrownOnFileNotFound() throws DigesterException
+    public void testCalculateExceptionThrownOnFileNotFound() throws DigesterException
     {
         exception.expect( DigesterException.class );
-        digester.calc( new File( "some/path/that/does/not/exist" ) );
-    }
-
-    /**
-     * Check the {@link Digester#verify(java.io.File, String)} method response is valid against a pre-calculated
-     * checksum.
-     *
-     * @throws DigesterException should never happen.
-     * @throws IOException       should never happen.
-     * @see Digester#verify(java.io.File, String)
-     */
-    @Test
-    public void testVerify() throws DigesterException, IOException
-    {
-        List<File> testFiles = FileUtils.getFiles( new File( Utils.SAMPLE_FILES_PATH ), null, null );
-        for ( File testFile : testFiles )
-        {
-            String correctHash = FileUtils.fileRead( Utils.SAMPLE_FILES_HASHCODES_PATH + File.separator
-                                                     + testFile.getName() + digester.getFilenameExtension() );
-            digester.verify( testFile, correctHash );
-        }
-    }
-
-    /**
-     * Check an exception is thrown when attempting to call {@link Digester#verify(File, String)} on a file that does
-     * not exist.
-     *
-     * @throws DigesterException should always happen.
-     * @see Digester#verify(java.io.File, String)
-     */
-    @Test
-    public void testVerifyExceptionThrownOnFileNotFound() throws DigesterException
-    {
-        exception.expect( DigesterException.class );
-        digester.verify( new File( "some/path/that/does/not/exist" ), "this is not a hashcode" );
+        digester.calculate( new File( "some/path/that/does/not/exist" ) );
     }
 }

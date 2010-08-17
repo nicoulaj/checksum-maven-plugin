@@ -16,30 +16,20 @@
 package net.nicoulaj.maven.plugins.checksum.digest;
 
 /**
- * TODO
+ * Thrown when an error happens while using a {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
 public class DigesterException extends Exception
 {
-    public DigesterException()
-    {
-        super();
-    }
-
+    /**
+     * Build a new instance of {@link DigesterException}.
+     *
+     * @param message the message describing the error.
+     */
     public DigesterException( String message )
     {
         super( message );
-    }
-
-    public DigesterException( String message, Throwable cause )
-    {
-        super( message, cause );
-    }
-
-    public DigesterException( Throwable cause )
-    {
-        super( cause );
     }
 }

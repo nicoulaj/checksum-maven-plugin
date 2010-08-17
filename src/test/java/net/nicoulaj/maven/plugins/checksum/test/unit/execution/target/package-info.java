@@ -17,6 +17,6 @@
 /**
  * Unit tests for the {@code net.nicoulaj.maven.plugins.checksum.execution.target} package.
  *
- * @since 0.1
+ * @since 1.0
  */
 package net.nicoulaj.maven.plugins.checksum.test.unit.execution.target;

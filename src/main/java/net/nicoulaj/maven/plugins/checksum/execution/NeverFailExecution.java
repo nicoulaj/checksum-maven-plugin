@@ -15,9 +15,9 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution;
 
-import net.nicoulaj.maven.plugins.checksum.digest.Digester;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterException;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
+import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
 
@@ -32,7 +32,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution
- * @since 0.1
+ * @since 1.0
  */
 public class NeverFailExecution extends AbstractExecution
 {
@@ -96,8 +96,8 @@ public class NeverFailExecution extends AbstractExecution
                 try
                 {
                     // Calculate the hash for the file/algo
-                    Digester digester = DigesterFactory.getInstance().getDigester( algorithm );
-                    String hash = digester.calc( file );
+                    FileDigester digester = DigesterFactory.getInstance().getFileDigester( algorithm );
+                    String hash = digester.calculate( file );
 
                     // Write it to each target defined
                     for ( ExecutionTarget target : getTargets() )

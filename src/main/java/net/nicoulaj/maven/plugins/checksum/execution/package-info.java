@@ -18,7 +18,7 @@
  * Classes used by {@link org.apache.maven.plugin.Mojo} implementations to execute the file digests calcul and output
  * them to various targets.
  *
- * @since 0.1
+ * @since 1.0
  * @see net.nicoulaj.maven.plugins.checksum.execution.Execution
  * @see net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget
  */

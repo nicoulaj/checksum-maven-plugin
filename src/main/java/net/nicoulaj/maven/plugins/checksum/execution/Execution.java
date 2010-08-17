@@ -25,7 +25,7 @@ import java.util.List;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see net.nicoulaj.maven.plugins.checksum.mojo
- * @since 0.1
+ * @since 1.0
  */
 public interface Execution
 {

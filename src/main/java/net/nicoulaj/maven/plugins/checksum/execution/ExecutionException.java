@@ -16,11 +16,11 @@
 package net.nicoulaj.maven.plugins.checksum.execution;
 
 /**
- * An exception that occured while running an {@link Execution}.
+ * Thrown when an error occurs while using an {@link Execution}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see Execution#run()
- * @since 0.1
+ * @since 1.0
  */
 public class ExecutionException extends Exception
 {

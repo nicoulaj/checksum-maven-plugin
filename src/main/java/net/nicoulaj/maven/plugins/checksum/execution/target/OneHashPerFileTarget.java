@@ -27,7 +27,7 @@ import java.security.NoSuchAlgorithmException;
  * An {@link ExecutionTarget} that writes digests to separate files.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @since 0.1
+ * @since 1.0
  */
 public class OneHashPerFileTarget implements ExecutionTarget
 {
@@ -47,8 +47,8 @@ public class OneHashPerFileTarget implements ExecutionTarget
         try
         {
             FileUtils.fileWrite( file.getPath() + DigesterFactory.getInstance()
-                                                                 .getDigester( algorithm )
-                                                                 .getFilenameExtension(),
+                                                                 .getFileDigester( algorithm )
+                                                                 .getFileExtension(),
                                digest );
         }
         catch ( IOException e )

@@ -18,17 +18,17 @@ package net.nicoulaj.maven.plugins.checksum.digest;
 import java.io.File;
 
 /**
- * TODO.
+ * Class for computing checksums digests from files.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
-public interface Digester
+public interface FileDigester
 {
     /**
-     * Get the algorithm used for the checksum.
+     * Get the algorithm used to compute checksum digests.
      *
-     * @return the algorithm
+     * @return the algorithm.
      */
     String getAlgorithm();
 
@@ -37,23 +37,14 @@ public interface Digester
      *
      * @return the filename extension.
      */
-    String getFilenameExtension();
+    String getFileExtension();
 
     /**
      * Calculate a checksum for a file.
      *
-     * @param file the file to calculate the checksum for
+     * @param file the file to compute the checksum for.
      * @return the current checksum.
      * @throws DigesterException if there was a problem computing the hashcode.
      */
-    String calc( File file ) throws DigesterException;
-
-    /**
-     * Verify that a checksum is correct.
-     *
-     * @param file     the file to compute the checksum for
-     * @param checksum the checksum to compare to
-     * @throws DigesterException if there was a problem computing the hashcode.
-     */
-    void verify( File file, String checksum ) throws DigesterException;
+    String calculate( File file ) throws DigesterException;
 }

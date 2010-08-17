@@ -19,6 +19,6 @@
  *
  * <p>See {@code src/main/test-integration}.</p>
  *
- * @since 0.1
+ * @since 1.0
  */
 package net.nicoulaj.maven.plugins.checksum.test.integration;

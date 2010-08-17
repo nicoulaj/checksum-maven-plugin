@@ -28,7 +28,7 @@ import java.util.Map;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see <a href="http://maven.apache.org/plugins/maven-invoker-plugin/examples/post-build-script.html">
  *      maven-invoker-plugin post-build script invocation</a>
- * @since 0.1
+ * @since 1.0
  */
 public class PostBuildScriptHelper
 {

@@ -21,7 +21,7 @@ import java.io.File;
  * An {@link ExecutionTarget} is an output target for calculated digests.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @since 0.1
+ * @since 1.0
  */
 public interface ExecutionTarget
 {

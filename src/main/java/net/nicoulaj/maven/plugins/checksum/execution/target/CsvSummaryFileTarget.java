@@ -26,7 +26,7 @@ import java.io.IOException;
  * FIXME This should output a CSV doc with one column per algorithm.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @since 0.1
+ * @since 1.0
  */
 public class CsvSummaryFileTarget implements ExecutionTarget
 {

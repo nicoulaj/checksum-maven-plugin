@@ -23,15 +23,18 @@ import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
 
 /**
- * Implementation of {@link Digester} for the CRC32 algorithm.
+ * Implementation of {@link FileDigester} for the CRC32 algorithm.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @see Digester
+ * @see FileDigester
  * @since 1.0
  */
-public class CRC32Digester extends AbstractDigester
+public class CRC32FileDigester extends AbstractFileDigester
 {
-    protected CRC32Digester()
+    /**
+     * Build a new instance of {@link CRC32FileDigester}.
+     */
+    public CRC32FileDigester()
     {
         super( "CRC32" );
     }
@@ -39,7 +42,7 @@ public class CRC32Digester extends AbstractDigester
     /**
      * {@inheritDoc}
      */
-    public String calc( File file ) throws DigesterException
+    public String calculate( File file ) throws DigesterException
     {
         CheckedInputStream cis;
         try
@@ -48,7 +51,7 @@ public class CRC32Digester extends AbstractDigester
         }
         catch ( FileNotFoundException e )
         {
-            throw new DigesterException( e );
+            throw new DigesterException( "Unable not read " + file.getPath() + ": " + e.getMessage() );
         }
 
         byte[] buf = new byte[128];
@@ -61,7 +64,8 @@ public class CRC32Digester extends AbstractDigester
         }
         catch ( IOException e )
         {
-            throw new DigesterException( e );
+            throw new DigesterException( "Unable to calculate the " + getAlgorithm() + " hashcode for "
+                                         + file.getPath() + ": " + e.getMessage() );
         }
 
         return Long.toString( cis.getChecksum().getValue() );

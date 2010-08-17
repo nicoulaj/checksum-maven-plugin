@@ -16,11 +16,11 @@
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
 /**
- * An exception that occured while trying to write to an {@link ExecutionTarget}.
+ * Thrown when an error occurs while trying to write to an {@link ExecutionTarget}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see ExecutionTarget#write(String, java.io.File, String)
- * @since 0.1
+ * @since 1.0
  */
 public class ExecutionTargetWriteException extends Exception
 {

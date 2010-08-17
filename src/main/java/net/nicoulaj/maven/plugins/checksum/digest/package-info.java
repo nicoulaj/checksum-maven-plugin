@@ -17,8 +17,8 @@
 /**
  * Classes for calculating files digests.
  *
- * @since 0.1
+ * @since 1.0
  * @see net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory
- * @see net.nicoulaj.maven.plugins.checksum.digest.Digester
+ * @see FileDigester
  */
 package net.nicoulaj.maven.plugins.checksum.digest;

@@ -31,7 +31,7 @@ import java.util.Collection;
  * Tests for {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} implementations.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @since 0.1
+ * @since 1.0
  */
 @RunWith( Parameterized.class )
 public class ExecutionTargetsTest

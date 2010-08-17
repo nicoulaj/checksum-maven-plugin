@@ -43,7 +43,7 @@ import java.util.Set;
  * @inheritByDefault false
  * @requiresProject true
  * @requiresDependencyResolution runtime
- * @since 0.1
+ * @since 1.0
  */
 public class DependenciesMojo extends AbstractMojo
 {
@@ -53,7 +53,7 @@ public class DependenciesMojo extends AbstractMojo
      * @parameter expression="${project}"
      * @required
      * @readonly
-     * @since 0.1
+     * @since 1.0
      */
     protected MavenProject project;
 
@@ -71,7 +71,7 @@ public class DependenciesMojo extends AbstractMojo
      * </p>
      *
      * @parameter
-     * @since 0.1
+     * @since 1.0
      */
     protected List<String> algorithms = Arrays.asList( new String[]{"MD5", "SHA-1"} );
 
@@ -79,7 +79,7 @@ public class DependenciesMojo extends AbstractMojo
      * Indicates whether the build will fail if there are errors.
      *
      * @parameter default-value="true"
-     * @since 0.1
+     * @since 1.0
      */
     protected boolean failOnError;
 
@@ -87,7 +87,7 @@ public class DependenciesMojo extends AbstractMojo
      * Indicates whether the build will print checksums in the build log.
      *
      * @parameter default-value="false"
-     * @since 0.1
+     * @since 1.0
      */
     protected boolean quiet;
 
@@ -95,7 +95,7 @@ public class DependenciesMojo extends AbstractMojo
      * The name of the summary file created.
      *
      * @parameter default-value="dependencies-checksums.csv"
-     * @since 0.1
+     * @since 1.0
      */
     protected String summaryFileName;
 

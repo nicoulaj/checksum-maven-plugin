@@ -20,12 +20,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Singleton class used to get instances of implementations of {@link Digester}.
+ * Singleton class used to get instances of {@link FileDigester}.
  *
- * <p>Each {@link Digester} object is a singleton itself.</p>
+ * <p>Each {@link FileDigester} object is a singleton itself.</p>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @see Digester
+ * @see FileDigester
  * @since 1.0
  */
 public class DigesterFactory
@@ -38,7 +38,7 @@ public class DigesterFactory
     /**
      * The map (algorithm, digester).
      */
-    protected Map<String, Digester> digesters = new HashMap<String, Digester>( 7 );
+    protected Map<String, FileDigester> digesters = new HashMap<String, FileDigester>( 7 );
 
     /**
      * Build a new {@link net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory}.
@@ -64,47 +64,37 @@ public class DigesterFactory
     }
 
     /**
-     * Get an instance of {@link Digester} for the given checksum algorithm.
+     * Get an instance of {@link FileDigester} for the given checksum algorithm.
      *
      * @param algorithm the target checksum algorithm.
-     * @return an instance of {@link Digester}.
+     * @return an instance of {@link FileDigester}.
      * @throws NoSuchAlgorithmException if the checksum algorithm is not supported or invalid.
-     * @see Digester
+     * @see FileDigester
      */
-    public Digester getDigester( String algorithm ) throws NoSuchAlgorithmException
+    public FileDigester getFileDigester( String algorithm ) throws NoSuchAlgorithmException
     {
-        Digester digester = digesters.get( algorithm );
+        FileDigester digester = digesters.get( algorithm );
 
         if ( digester == null )
         {
-            if ( "CRC32".equalsIgnoreCase( algorithm ) )
+            // Algorithms supported by Sun provider
+            if ( "MD2".equalsIgnoreCase( algorithm )
+                 || "MD5".equalsIgnoreCase( algorithm )
+                 || "SHA-1".equalsIgnoreCase( algorithm )
+                 || "SHA-256".equalsIgnoreCase( algorithm )
+                 || "SHA-384".equalsIgnoreCase( algorithm )
+                 || "SHA-512".equalsIgnoreCase( algorithm ) )
             {
-                digester = new CRC32Digester();
+                digester = new MessageDigestFileDigester( algorithm );
             }
-            else if ( "MD2".equalsIgnoreCase( algorithm ) )
+
+            // Algorithms supported by custom digesters
+            else if ( "CRC32".equalsIgnoreCase( algorithm ) )
             {
-                digester = new MessageDigestDigester( "MD2" );
+                digester = new CRC32FileDigester();
             }
-            else if ( "MD5".equalsIgnoreCase( algorithm ) )
-            {
-                digester = new MessageDigestDigester( "MD5" );
-            }
-            else if ( "SHA-1".equalsIgnoreCase( algorithm ) )
-            {
-                digester = new MessageDigestDigester( "SHA-1" );
-            }
-            else if ( "SHA-256".equalsIgnoreCase( algorithm ) )
-            {
-                digester = new MessageDigestDigester( "SHA-256" );
-            }
-            else if ( "SHA-384".equalsIgnoreCase( algorithm ) )
-            {
-                digester = new MessageDigestDigester( "SHA-384" );
-            }
-            else if ( "SHA-512".equalsIgnoreCase( algorithm ) )
-            {
-                digester = new MessageDigestDigester( "SHA-512" );
-            }
+
+            // Unsupported algorithms
             else
             {
                 throw new NoSuchAlgorithmException();

@@ -28,7 +28,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory
- * @since 0.1
+ * @since 1.0
  */
 public class ChecksumFactoryTest
 {
@@ -40,7 +40,7 @@ public class ChecksumFactoryTest
 
     /**
      * Assert a {@link java.security.NoSuchAlgorithmException} is thrown when trying get the {@link
-     * net.nicoulaj.maven.plugins.checksum.digest.Digester} for an unknown algorithm.
+     * net.nicoulaj.maven.plugins.checksum.digest.FileDigester} for an unknown algorithm.
      *
      * @throws java.security.NoSuchAlgorithmException
      *          should never happen.
@@ -49,6 +49,6 @@ public class ChecksumFactoryTest
     public void testNoSuchAlgorithmExceptionThrownOnInvalidAlgorithm() throws NoSuchAlgorithmException
     {
         exception.expect( NoSuchAlgorithmException.class );
-        DigesterFactory.getInstance().getDigester( "SHA-666" );
+        DigesterFactory.getInstance().getFileDigester( "SHA-666" );
     }
 }

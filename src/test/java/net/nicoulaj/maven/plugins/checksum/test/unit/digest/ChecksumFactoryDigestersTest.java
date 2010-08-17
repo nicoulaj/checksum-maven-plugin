@@ -15,8 +15,8 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test.unit.digest;
 
-import net.nicoulaj.maven.plugins.checksum.digest.Digester;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
+import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,7 +32,7 @@ import java.util.Collection;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory
- * @since 0.1
+ * @since 1.0
  */
 @RunWith( Parameterized.class )
 public class ChecksumFactoryDigestersTest
@@ -65,41 +65,41 @@ public class ChecksumFactoryDigestersTest
     }
 
     /**
-     * Assert the returned {@link Digester} object is not null.
+     * Assert the returned {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} object is not null.
      *
      * @throws NoSuchAlgorithmException should never happen.
      */
     @Test
     public void testDigesterIsNotNull() throws NoSuchAlgorithmException
     {
-        Digester digester = DigesterFactory.getInstance().getDigester( algorithm );
+        FileDigester digester = DigesterFactory.getInstance().getFileDigester( algorithm );
         Assert.assertNotNull( "The returned digester for  '" + algorithm + "' algorithm is null.", digester );
     }
 
     /**
-     * Assert the returned {@link Digester} object is a singleton.
+     * Assert the returned {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} object is a singleton.
      *
      * @throws NoSuchAlgorithmException should never happen.
      */
     @Test
     public void testDigesterIsSingleton() throws NoSuchAlgorithmException
     {
-        Digester digester1 = DigesterFactory.getInstance().getDigester( algorithm );
-        Digester digester2 = DigesterFactory.getInstance().getDigester( algorithm );
+        FileDigester digester1 = DigesterFactory.getInstance().getFileDigester( algorithm );
+        FileDigester digester2 = DigesterFactory.getInstance().getFileDigester( algorithm );
         Assert.assertEquals( "The returned digester for  '" + algorithm + "' algorithm is not a singleton.",
                            digester1,
                            digester2 );
     }
 
     /**
-     * Assert the returned {@link Digester} object is the good one..
+     * Assert the returned {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} object is the good one..
      *
      * @throws NoSuchAlgorithmException should never happen.
      */
     @Test
     public void testDigesterIsRightOne() throws NoSuchAlgorithmException
     {
-        Digester digester = DigesterFactory.getInstance().getDigester( algorithm );
+        FileDigester digester = DigesterFactory.getInstance().getFileDigester( algorithm );
         Assert.assertEquals( "The returned digester for  '" + algorithm + "' algorithm is not the right one.",
                            digester.getAlgorithm(),
                            algorithm );

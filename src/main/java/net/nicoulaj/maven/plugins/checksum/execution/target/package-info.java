@@ -17,7 +17,7 @@
 /**
  * Classes for writing calculated file digests to various output targets.
  *
- * @since 0.1
+ * @since 1.0
  * @see net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget
  */
 package net.nicoulaj.maven.plugins.checksum.execution.target;
