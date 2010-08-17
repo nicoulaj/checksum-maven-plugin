@@ -15,22 +15,31 @@
  */
 package net.nicoulaj.maven.plugins.checksum.digest;
 
-import org.codehaus.plexus.digest.AbstractStreamingDigester;
-
 /**
- * Gradually create a MD2 digest for a stream.
+ * TODO
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @see org.codehaus.plexus.digest.StreamingDigester
- * @since 0.1
+ * @since 1.0
  */
-public class StreamingMd2Digester extends AbstractStreamingDigester
+public class DigesterException extends Exception
 {
-    /**
-     * Build a new instance of {@link StreamingMd2Digester}.
-     */
-    public StreamingMd2Digester()
+    public DigesterException()
     {
-        super( "MD2" );
+        super();
+    }
+
+    public DigesterException( String message )
+    {
+        super( message );
+    }
+
+    public DigesterException( String message, Throwable cause )
+    {
+        super( message, cause );
+    }
+
+    public DigesterException( Throwable cause )
+    {
+        super( cause );
     }
 }

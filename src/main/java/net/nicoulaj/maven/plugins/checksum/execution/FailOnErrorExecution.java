@@ -15,14 +15,13 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution;
 
+import net.nicoulaj.maven.plugins.checksum.digest.Digester;
+import net.nicoulaj.maven.plugins.checksum.digest.DigesterException;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetCloseException;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetInitializationException;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
-
-import org.codehaus.plexus.digest.Digester;
-import org.codehaus.plexus.digest.DigesterException;
 
 import java.io.File;
 import java.security.NoSuchAlgorithmException;

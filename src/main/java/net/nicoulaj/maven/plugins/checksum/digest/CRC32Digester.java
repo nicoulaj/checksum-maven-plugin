@@ -15,9 +15,6 @@
  */
 package net.nicoulaj.maven.plugins.checksum.digest;
 
-import org.codehaus.plexus.digest.Digester;
-import org.codehaus.plexus.digest.DigesterException;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,28 +23,17 @@ import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
 
 /**
- * Implementation of {@link org.codehaus.plexus.digest.Digester} for the CRC32 algorithm.
+ * Implementation of {@link Digester} for the CRC32 algorithm.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @see org.codehaus.plexus.digest.Digester
- * @since 0.1
+ * @see Digester
+ * @since 1.0
  */
-public class CRC32Digester implements Digester
+public class CRC32Digester extends AbstractDigester
 {
-    /**
-     * {@inheritDoc}
-     */
-    public String getAlgorithm()
+    protected CRC32Digester()
     {
-        return "CRC32";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String getFilenameExtension()
-    {
-        return ".crc32";
+        super( "CRC32" );
     }
 
     /**
@@ -79,16 +65,5 @@ public class CRC32Digester implements Digester
         }
 
         return Long.toString( cis.getChecksum().getValue() );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void verify( File file, String checksum ) throws DigesterException
-    {
-        if ( !checksum.equalsIgnoreCase( calc( file ) ) )
-        {
-            throw new DigesterException( "Checksum failed" );
-        }
     }
 }

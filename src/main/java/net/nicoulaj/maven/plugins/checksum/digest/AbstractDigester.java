@@ -15,22 +15,41 @@
  */
 package net.nicoulaj.maven.plugins.checksum.digest;
 
-import org.codehaus.plexus.digest.AbstractStreamingDigester;
+import java.io.File;
 
 /**
- * Gradually create a SHA-384 digest for a stream.
+ * TODO.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @see org.codehaus.plexus.digest.StreamingDigester
- * @since 0.1
+ * @since 1.0
  */
-public class StreamingSha384Digester extends AbstractStreamingDigester
+public abstract class AbstractDigester implements Digester
 {
-    /**
-     * Build a new instance of {@link StreamingSha384Digester}.
-     */
-    public StreamingSha384Digester()
+    protected final String algorithm;
+
+    protected AbstractDigester( String algorithm )
     {
-        super( "SHA-384" );
+        this.algorithm = algorithm;
+    }
+
+    public String getAlgorithm()
+    {
+        return algorithm;
+    }
+
+    public String getFilenameExtension()
+    {
+        return "." + algorithm.toLowerCase().replace( "-", "" );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void verify( File file, String checksum ) throws DigesterException
+    {
+        if ( !checksum.equalsIgnoreCase( calc( file ) ) )
+        {
+            throw new DigesterException( "Checksum failed" );
+        }
     }
 }

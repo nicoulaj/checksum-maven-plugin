@@ -15,17 +15,11 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test.unit.digest;
 
-import net.nicoulaj.maven.plugins.checksum.digest.CRC32Digester;
-import net.nicoulaj.maven.plugins.checksum.digest.Md2Digester;
-import net.nicoulaj.maven.plugins.checksum.digest.Sha256Digester;
-import net.nicoulaj.maven.plugins.checksum.digest.Sha384Digester;
-import net.nicoulaj.maven.plugins.checksum.digest.Sha512Digester;
+import net.nicoulaj.maven.plugins.checksum.digest.Digester;
+import net.nicoulaj.maven.plugins.checksum.digest.DigesterException;
+import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.test.unit.Utils;
 
-import org.codehaus.plexus.digest.Digester;
-import org.codehaus.plexus.digest.DigesterException;
-import org.codehaus.plexus.digest.Md5Digester;
-import org.codehaus.plexus.digest.Sha1Digester;
 import org.codehaus.plexus.util.FileUtils;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -36,22 +30,23 @@ import org.junit.runners.Parameterized;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 /**
- * Tests for each implementation of {@link org.codehaus.plexus.digest.Digester}.
+ * Tests for each implementation of {@link Digester}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @see org.codehaus.plexus.digest.Digester
+ * @see Digester
  * @since 0.1
  */
 @RunWith( Parameterized.class )
 public class DigestersTest
 {
     /**
-     * The {@link org.codehaus.plexus.digest.Digester} tested.
+     * The {@link Digester} tested.
      */
     private Digester digester;
 
@@ -64,29 +59,23 @@ public class DigestersTest
     /**
      * Generate the list of arguments with which the test should be run.
      *
-     * @return the list of tested {@link org.codehaus.plexus.digest.Digester} implementations.
+     * @return the list of tested {@link Digester} implementations.
      */
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters()
     {
-        Object[][] data = new Object[][]{{new CRC32Digester()},
-                                        {new Md2Digester()},
-                                        {new Md5Digester()},
-                                        {new Sha1Digester()},
-                                        {new Sha256Digester()},
-                                        {new Sha384Digester()},
-                                        {new Sha512Digester()}};
+        Object[][] data = new Object[][]{{"CRC32"}, {"MD2"}, {"MD5"}, {"SHA-1"}, {"SHA-256"}, {"SHA-384"}, {"SHA-512"}};
         return Arrays.asList( data );
     }
 
     /**
      * Build a new {@link DigestersTest}.
      *
-     * @param digester an instance of the tested {@link org.codehaus.plexus.digest.Digester} implementing class.
+     * @param algorithm the target checksum algorithm to run the test for.
      */
-    public DigestersTest( Digester digester )
+    public DigestersTest( String algorithm ) throws NoSuchAlgorithmException
     {
-        this.digester = digester;
+        this.digester = DigesterFactory.getInstance().getDigester( algorithm );
     }
 
     /**
@@ -112,12 +101,12 @@ public class DigestersTest
     }
 
     /**
-     * Check the calculated checksum for a specific file with the {@link org.codehaus.plexus.digest.Digester#calc(File)}
-     * method is valid against a pre-calculated checksum.
+     * Check the calculated checksum for a specific file with the {@link Digester#calc(File)} method is valid against a
+     * pre-calculated checksum.
      *
      * @throws DigesterException if there was a problem while calculating the checksum.
      * @throws IOException       if there was a problem reading the file containing the pre-calculated checksum.
-     * @see org.codehaus.plexus.digest.Digester#calc(java.io.File)
+     * @see Digester#calc(java.io.File)
      */
     @Test
     public void testCalc() throws DigesterException, IOException
@@ -134,11 +123,10 @@ public class DigestersTest
     }
 
     /**
-     * Check an exception is thrown when attempting to call {@link org.codehaus.plexus.digest.Digester#calc(File)} on a
-     * file that does not exist.
+     * Check an exception is thrown when attempting to call {@link Digester#calc(File)} on a file that does not exist.
      *
      * @throws DigesterException should always happen.
-     * @see org.codehaus.plexus.digest.Digester#calc(java.io.File)
+     * @see Digester#calc(java.io.File)
      */
     @Test
     public void testCalcExceptionThrownOnFileNotFound() throws DigesterException
@@ -148,12 +136,12 @@ public class DigestersTest
     }
 
     /**
-     * Check the {@link org.codehaus.plexus.digest.Digester#verify(java.io.File, String)} method response is valid
-     * against a pre-calculated checksum.
+     * Check the {@link Digester#verify(java.io.File, String)} method response is valid against a pre-calculated
+     * checksum.
      *
      * @throws DigesterException should never happen.
      * @throws IOException       should never happen.
-     * @see org.codehaus.plexus.digest.Digester#verify(java.io.File, String)
+     * @see Digester#verify(java.io.File, String)
      */
     @Test
     public void testVerify() throws DigesterException, IOException
@@ -168,11 +156,11 @@ public class DigestersTest
     }
 
     /**
-     * Check an exception is thrown when attempting to call {@link org.codehaus.plexus.digest.Digester#verify(File,
-     * String)} on a file that does not exist.
+     * Check an exception is thrown when attempting to call {@link Digester#verify(File, String)} on a file that does
+     * not exist.
      *
      * @throws DigesterException should always happen.
-     * @see org.codehaus.plexus.digest.Digester#verify(java.io.File, String)
+     * @see Digester#verify(java.io.File, String)
      */
     @Test
     public void testVerifyExceptionThrownOnFileNotFound() throws DigesterException

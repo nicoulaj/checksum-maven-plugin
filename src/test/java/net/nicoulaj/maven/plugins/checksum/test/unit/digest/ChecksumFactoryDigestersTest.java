@@ -15,9 +15,9 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test.unit.digest;
 
+import net.nicoulaj.maven.plugins.checksum.digest.Digester;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 
-import org.codehaus.plexus.digest.Digester;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -65,7 +65,7 @@ public class ChecksumFactoryDigestersTest
     }
 
     /**
-     * Assert the returned {@link org.codehaus.plexus.digest.Digester} object is not null.
+     * Assert the returned {@link Digester} object is not null.
      *
      * @throws NoSuchAlgorithmException should never happen.
      */
@@ -77,7 +77,7 @@ public class ChecksumFactoryDigestersTest
     }
 
     /**
-     * Assert the returned {@link org.codehaus.plexus.digest.Digester} object is a singleton.
+     * Assert the returned {@link Digester} object is a singleton.
      *
      * @throws NoSuchAlgorithmException should never happen.
      */
@@ -92,7 +92,7 @@ public class ChecksumFactoryDigestersTest
     }
 
     /**
-     * Assert the returned {@link org.codehaus.plexus.digest.Digester} object is the good one..
+     * Assert the returned {@link Digester} object is the good one..
      *
      * @throws NoSuchAlgorithmException should never happen.
      */

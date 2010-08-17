@@ -15,22 +15,18 @@
  */
 package net.nicoulaj.maven.plugins.checksum.digest;
 
-import org.codehaus.plexus.digest.Digester;
-import org.codehaus.plexus.digest.Md5Digester;
-import org.codehaus.plexus.digest.Sha1Digester;
-
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Singleton class used to get instances of implementations of {@link org.codehaus.plexus.digest.Digester}.
+ * Singleton class used to get instances of implementations of {@link Digester}.
  *
  * <p>Each {@link Digester} object is a singleton itself.</p>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @see org.codehaus.plexus.digest.Digester
- * @since 0.1
+ * @see Digester
+ * @since 1.0
  */
 public class DigesterFactory
 {
@@ -68,12 +64,12 @@ public class DigesterFactory
     }
 
     /**
-     * Get an instance of {@link org.codehaus.plexus.digest.Digester} for the given checksum algorithm.
+     * Get an instance of {@link Digester} for the given checksum algorithm.
      *
      * @param algorithm the target checksum algorithm.
-     * @return an instance of {@link org.codehaus.plexus.digest.Digester}.
+     * @return an instance of {@link Digester}.
      * @throws NoSuchAlgorithmException if the checksum algorithm is not supported or invalid.
-     * @see org.codehaus.plexus.digest.Digester
+     * @see Digester
      */
     public Digester getDigester( String algorithm ) throws NoSuchAlgorithmException
     {
@@ -87,27 +83,27 @@ public class DigesterFactory
             }
             else if ( "MD2".equalsIgnoreCase( algorithm ) )
             {
-                digester = new Md2Digester();
+                digester = new MessageDigestDigester( "MD2" );
             }
             else if ( "MD5".equalsIgnoreCase( algorithm ) )
             {
-                digester = new Md5Digester();
+                digester = new MessageDigestDigester( "MD5" );
             }
             else if ( "SHA-1".equalsIgnoreCase( algorithm ) )
             {
-                digester = new Sha1Digester();
+                digester = new MessageDigestDigester( "SHA-1" );
             }
             else if ( "SHA-256".equalsIgnoreCase( algorithm ) )
             {
-                digester = new Sha256Digester();
+                digester = new MessageDigestDigester( "SHA-256" );
             }
             else if ( "SHA-384".equalsIgnoreCase( algorithm ) )
             {
-                digester = new Sha384Digester();
+                digester = new MessageDigestDigester( "SHA-384" );
             }
             else if ( "SHA-512".equalsIgnoreCase( algorithm ) )
             {
-                digester = new Sha512Digester();
+                digester = new MessageDigestDigester( "SHA-512" );
             }
             else
             {

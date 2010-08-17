@@ -40,7 +40,7 @@ public class ChecksumFactoryTest
 
     /**
      * Assert a {@link java.security.NoSuchAlgorithmException} is thrown when trying get the {@link
-     * org.codehaus.plexus.digest.Digester} for an unknown algorithm.
+     * net.nicoulaj.maven.plugins.checksum.digest.Digester} for an unknown algorithm.
      *
      * @throws java.security.NoSuchAlgorithmException
      *          should never happen.

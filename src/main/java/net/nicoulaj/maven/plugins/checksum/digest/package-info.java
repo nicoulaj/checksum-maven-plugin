@@ -19,5 +19,6 @@
  *
  * @since 0.1
  * @see net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory
+ * @see net.nicoulaj.maven.plugins.checksum.digest.Digester
  */
 package net.nicoulaj.maven.plugins.checksum.digest;
