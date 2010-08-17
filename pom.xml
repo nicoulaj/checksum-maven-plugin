@@ -18,7 +18,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Project coordinates -->
-  <groupId>net.nicoulaj.maven.plugins</groupId>
+  <groupId>net.ju-n.maven.plugins</groupId>
   <artifactId>maven-checksum-plugin</artifactId>
   <version>1.0-alpha-2-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
@@ -64,16 +64,16 @@
 
   <!-- Distribution management -->
   <distributionManagement>
-    <downloadUrl>http://maven.ju-n.net/maven2</downloadUrl>
+    <downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
     <repository>
-      <id>ju-n.net</id>
-      <name>ju-n.net repository</name>
-      <url>ftp://ftp.ju-n.net/maven/maven2</url>
+      <id>sonatype-oss-staging</id>
+      <name>Sonatype OSS staging repository</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
     <snapshotRepository>
-      <id>ju-n.net</id>
-      <name>ju-n.net snapshots repository</name>
-      <url>ftp://ftp.ju-n.net/maven/maven2</url>
+      <id>sonatype-oss-snapshots</id>
+      <name>Sonatype OSS snapshots repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
       <uniqueVersion>false</uniqueVersion>
     </snapshotRepository>
     <site>
