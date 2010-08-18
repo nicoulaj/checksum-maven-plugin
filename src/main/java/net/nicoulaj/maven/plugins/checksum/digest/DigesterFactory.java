@@ -15,7 +15,10 @@
  */
 package net.nicoulaj.maven.plugins.checksum.digest;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
 import java.security.NoSuchAlgorithmException;
+import java.security.Security;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,27 +80,35 @@ public class DigesterFactory
 
         if ( digester == null )
         {
-            // Algorithms supported by Sun provider
-            if ( "MD2".equalsIgnoreCase( algorithm )
-                 || "MD5".equalsIgnoreCase( algorithm )
-                 || "SHA-1".equalsIgnoreCase( algorithm )
-                 || "SHA-256".equalsIgnoreCase( algorithm )
-                 || "SHA-384".equalsIgnoreCase( algorithm )
-                 || "SHA-512".equalsIgnoreCase( algorithm ) )
-            {
-                digester = new MessageDigestFileDigester( algorithm );
-            }
-
-            // Algorithms supported by custom digesters
-            else if ( "CRC32".equalsIgnoreCase( algorithm ) )
+            // Algorithms with custom digesters
+            if ( CRC32FileDigester.ALGORITHM.equals( algorithm ) )
             {
                 digester = new CRC32FileDigester();
             }
 
-            // Unsupported algorithms
+            // Default case: try to use Java Security providers.
             else
             {
-                throw new NoSuchAlgorithmException();
+                // Try with the current providers.
+                try
+                {
+                    digester = new MessageDigestFileDigester( algorithm );
+                }
+                catch ( NoSuchAlgorithmException e )
+                {
+                    // If the algorithm is not supported by default providers, try with Bouncy Castle.
+                    if ( Security.getProvider( BouncyCastleProvider.PROVIDER_NAME ) == null )
+                    {
+                        Security.addProvider( new BouncyCastleProvider() );
+                        digester = new MessageDigestFileDigester( algorithm );
+                    }
+
+                    // If Bouncy Castle was already used, fail.
+                    else
+                    {
+                        throw e;
+                    }
+                }
             }
 
             digesters.put( algorithm, digester );

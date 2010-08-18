@@ -36,6 +36,11 @@
       <name>The Apache Software License, Version 2.0</name>
       <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
     </license>
+    <license>
+      <name>The Legion of the Bouncy Castle license</name>
+      <url>http://www.bouncycastle.org/license.html</url>
+      <comments>The Legion of the Bouncy Castle is cryptography library used by maven-checksum-plugin.</comments>
+    </license>
   </licenses>
 
   <!-- Team -->
@@ -88,7 +93,7 @@
 
     <!-- Target versions -->
     <maven.target-version>2.2.0</maven.target-version>
-    <java.target-version>1.5</java.target-version>
+    <java.target-version>5</java.target-version>
 
     <!-- Build settings -->
     <debug>false</debug>
@@ -125,6 +130,11 @@
         <version>${maven.target-version}</version>
       </dependency>
       <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk1${java.target-version}</artifactId>
+        <version>1.45</version>
+      </dependency>
+      <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.8.1</version>
@@ -148,6 +158,10 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk15</artifactId>
+    </dependency>
   </dependencies>
 
   <!-- Build prerequisites -->
@@ -165,8 +179,8 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>2.3.1</version>
           <configuration>
-            <source>${java.target-version}</source>
-            <target>${java.target-version}</target>
+            <source>1.${java.target-version}</source>
+            <target>1.${java.target-version}</target>
             <optimize>true</optimize>
             <showWarnings>true</showWarnings>
             <showDeprecation>true</showDeprecation>
@@ -418,7 +432,7 @@
         <artifactId>maven-pmd-plugin</artifactId>
         <version>${maven-pmd-plugin.version}</version>
         <configuration>
-          <targetJdk>${java.target-version}</targetJdk>
+          <targetJdk>1.${java.target-version}</targetJdk>
         </configuration>
       </plugin>
       <plugin>

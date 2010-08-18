@@ -32,11 +32,16 @@ import java.util.zip.CheckedInputStream;
 public class CRC32FileDigester extends AbstractFileDigester
 {
     /**
+     * The identifier of the algorithm supported by this implementation.
+     */
+    public static final String ALGORITHM = "CRC32";
+
+    /**
      * Build a new instance of {@link CRC32FileDigester}.
      */
     public CRC32FileDigester()
     {
-        super( "CRC32" );
+        super( ALGORITHM );
     }
 
     /**

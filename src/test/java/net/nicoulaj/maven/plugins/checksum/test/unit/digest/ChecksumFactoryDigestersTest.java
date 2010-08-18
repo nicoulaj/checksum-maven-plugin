@@ -15,6 +15,7 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test.unit.digest;
 
+import net.nicoulaj.maven.plugins.checksum.Constants;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
 
@@ -24,8 +25,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Tests for each checksum algorithm supported by the {@link DigesterFactory} class.
@@ -50,8 +52,12 @@ public class ChecksumFactoryDigestersTest
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters()
     {
-        Object[][] data = new Object[][]{{"CRC32"}, {"MD2"}, {"MD5"}, {"SHA-1"}, {"SHA-256"}, {"SHA-384"}, {"SHA-512"}};
-        return Arrays.asList( data );
+        List<Object[]> data = new ArrayList<Object[]>();
+        for ( String algorithm : Constants.SUPPORTED_ALGORITHMS )
+        {
+            data.add( new String[]{algorithm} );
+        }
+        return data;
     }
 
     /**

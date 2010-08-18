@@ -15,6 +15,7 @@
  */
 package net.nicoulaj.maven.plugins.checksum.mojo;
 
+import net.nicoulaj.maven.plugins.checksum.Constants;
 import net.nicoulaj.maven.plugins.checksum.execution.Execution;
 import net.nicoulaj.maven.plugins.checksum.execution.ExecutionException;
 import net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution;
@@ -59,8 +60,8 @@ public class ArtifactsMojo extends AbstractMojo
     /**
      * The list of checksum algorithms used.
      *
-     * <p>Default value is MD5 and SHA-1.<br/>Allowed values are CRC32, MD2, MD5, SHA-1, SHA-256, SHA-384 and
-     * SHA-512.</p>
+     * <p>Default value is MD5 and SHA-1.<br/>Allowed values are CRC32, MD2, MD4, MD5, SHA-1, SHA-224, SHA-256, SHA-384,
+     * SHA-512, RIPEMD128, RIPEMD160, RIPEMD256, RIPEMD320, GOST3411 and Tiger.</p>
      *
      * <p> Use the following syntax:
      * <pre>&lt;algorithms&gt;
@@ -72,7 +73,7 @@ public class ArtifactsMojo extends AbstractMojo
      * @parameter
      * @since 1.0
      */
-    protected List<String> algorithms = Arrays.asList( new String[]{"MD5", "SHA-1"} );
+    protected List<String> algorithms = Arrays.asList( Constants.DEFAULT_EXECUTION_ALGORITHMS );
 
     /**
      * Indicates whether the build will fail if there are errors.

@@ -15,6 +15,8 @@
  */
 package net.nicoulaj.maven.plugins.checksum.digest;
 
+import org.bouncycastle.util.encoders.Hex;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -82,7 +84,7 @@ public class MessageDigestFileDigester extends AbstractFileDigester
                 size = fis.read( buffer, 0, STREAMING_BUFFER_SIZE );
             }
 
-            return getHexString( messageDigest.digest() );
+            return new String( Hex.encode( messageDigest.digest() ) );
         }
         catch ( IOException e )
         {
@@ -100,21 +102,5 @@ public class MessageDigestFileDigester extends AbstractFileDigester
                 // Do nothing, we already did what we had to do.
             }
         }
-    }
-
-    /**
-     * Get the hexadecimal representation of the given byte array.
-     *
-     * @param bytes the byte array to convert.
-     * @return a {@link String} with the hexadecimal representation of the byte array.
-     */
-    private static String getHexString( byte[] bytes )
-    {
-        String result = "";
-        for ( int i = 0; i < bytes.length; i++ )
-        {
-            result += Integer.toString( ( bytes[i] & 0xff ) + 0x100, 16 ).substring( 1 );
-        }
-        return result;
     }
 }
