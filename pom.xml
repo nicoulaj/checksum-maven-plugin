@@ -348,6 +348,19 @@
       </properties>
     </profile>
 
+    <!-- Skip tests -->
+    <profile>
+      <id>skip-tests</id>
+      <activation>
+        <property>
+          <name>skipTests</name>
+        </property>
+      </activation>
+      <properties>
+        <invoker.skip>true</invoker.skip>
+      </properties>
+    </profile>
+
     <!-- Release profile -->
     <profile>
       <id>release</id>
