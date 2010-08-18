@@ -49,7 +49,7 @@
       <id>nicoulaj</id>
       <name>Julien Nicoulaud</name>
       <email>julien.nicoulaud@gmail.com</email>
-      <timezone>GMT+1</timezone>
+      <timezone>+1</timezone>
       <url>http://www.github.com/nicoulaj</url>
     </developer>
   </developers>
@@ -193,6 +193,9 @@
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
           <version>2.0</version>
+          <configuration>
+            <mavenExecutorId>forked-path</mavenExecutorId>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-gpg-plugin</artifactId>
@@ -205,6 +208,10 @@
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
           <version>2.1.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>1.0-beta-1</version>
         </plugin>
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
@@ -221,6 +228,23 @@
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>${maven-javadoc-plugin.version}</version>
+          <configuration>
+            <encoding>${encoding}</encoding>
+            <links>
+              <link>http://download-llnw.oracle.com/javase/1.5.0/docs/api</link>
+              <link>http://maven.apache.org/ref/${maven.target-version}/apidocs</link>
+              <link>http://plexus.codehaus.org/plexus-components/plexus-digest/apidocs</link>
+              <link>http://plexus.codehaus.org/plexus-utils/apidocs</link>
+              <link>http://junit.sourceforge.net/javadoc</link>
+            </links>
+            <tagletArtifacts>
+              <tagletArtifact>
+                <groupId>org.apache.maven.plugin-tools</groupId>
+                <artifactId>maven-plugin-tools-javadoc</artifactId>
+                <version>2.6</version>
+              </tagletArtifact>
+            </tagletArtifacts>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-jxr-plugin</artifactId>
@@ -257,6 +281,8 @@
 
     <!-- Default build -->
     <plugins>
+
+      <!-- Run integration tests -->
       <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
         <executions>
@@ -322,9 +348,9 @@
       </properties>
     </profile>
 
-    <!-- Sign artifacts with GPG on releases -->
+    <!-- Release profile -->
     <profile>
-      <id>gpg-sign</id>
+      <id>release</id>
       <activation>
         <property>
           <name>performRelease</name>
@@ -345,6 +371,28 @@
                 <configuration>
                   <useAgent>true</useAgent>
                 </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
               </execution>
             </executions>
           </plugin>
