@@ -30,10 +30,9 @@ import java.util.Arrays;
 
 /**
  * Compute specified file checksum digest for all supported checksum algorithms.
- * 
- * <p>This goal is a facility for invoking maven-checksum-plugin through the
- * command line.</p>
- * 
+ *
+ * <p>This goal is a facility for invoking maven-checksum-plugin through the command line.</p>
+ *
  * <p>Here is an example of use:<pre>
  * mvn checksum:file -Dfile=some-file.zip
  * </pre></p>

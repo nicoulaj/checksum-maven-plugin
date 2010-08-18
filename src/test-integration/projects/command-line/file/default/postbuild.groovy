@@ -26,7 +26,8 @@ try
   helper.assertBuildLogContains("maven-checksum-plugin");
 
   // Check a line has been printed in the log for each algorithm.
-  for (String algorithm : Constants.SUPPORTED_ALGORITHMS) {
+  for ( String algorithm: Constants.SUPPORTED_ALGORITHMS )
+  {
     helper.assertBuildLogContains("[INFO] invoker.properties - " + algorithm + " : ");
   }
 

@@ -55,7 +55,7 @@ public class MessageDigestFileDigester extends AbstractFileDigester
     }
 
     /**
-     * @{@inheritDoc}
+     * {@inheritDoc}
      */
     public String calculate( File file ) throws DigesterException
     {
