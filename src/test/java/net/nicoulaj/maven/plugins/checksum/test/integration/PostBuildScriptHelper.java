@@ -71,6 +71,17 @@ public class PostBuildScriptHelper
     }
 
     /**
+     * Get the contents of the file.
+     *
+     * @return the file content.
+     * @throws Exception if the build log could not be open.
+     */
+    public String getFileContent( String path ) throws Exception
+    {
+        return FileUtils.fileRead( new File( baseDirectory, path ) );
+    }
+
+    /**
      * Get the project build log content.
      *
      * @return the project build log content.
@@ -78,8 +89,7 @@ public class PostBuildScriptHelper
      */
     public String getBuildLog() throws Exception
     {
-        // FIXME Read it only once, store it in a variable.
-        return FileUtils.fileRead( new File( baseDirectory, BUILD_LOG_FILE ) );
+        return getFileContent( BUILD_LOG_FILE );
     }
 
     /**
@@ -93,6 +103,20 @@ public class PostBuildScriptHelper
         if ( !new File( baseDirectory, path ).isFile() )
         {
             throw new Exception( "The file " + path + " is missing." );
+        }
+    }
+
+    /**
+     * Assert the given file does not exist.
+     *
+     * @param path the path to the file relative to {@link #baseDirectory}.
+     * @throws Exception if conditions are not fulfilled.
+     */
+    public void assertFileDoesNotExist( String path ) throws Exception
+    {
+        if ( new File( baseDirectory, path ).isFile() )
+        {
+            throw new Exception( "The file " + path + " exists, but it should not." );
         }
     }
 
@@ -119,6 +143,20 @@ public class PostBuildScriptHelper
     }
 
     /**
+     * Assert the file contains the given search.
+     *
+     * @param search the expression to search in the build log.
+     * @throws Exception if conditions are not fulfilled.
+     */
+    public void assertFileContains( String path, String search ) throws Exception
+    {
+        if ( !FileUtils.fileRead( new File( baseDirectory, path ) ).contains( search ) )
+        {
+            throw new Exception( path + " does not contain '" + search + "'." );
+        }
+    }
+
+    /**
      * Assert the project build log contains the given search.
      *
      * @param search the expression to search in the build log.
@@ -126,9 +164,31 @@ public class PostBuildScriptHelper
      */
     public void assertBuildLogContains( String search ) throws Exception
     {
-        if ( !getBuildLog().contains( search ) )
+        assertFileContains( BUILD_LOG_FILE, search );
+    }
+
+    /**
+     * Assert the file does not contain the given search.
+     *
+     * @param search the expression to search in the build log.
+     * @throws Exception if conditions are not fulfilled.
+     */
+    public void assertFileDoesNotContain( String path, String search ) throws Exception
+    {
+        if ( FileUtils.fileRead( new File( baseDirectory, path ) ).contains( search ) )
         {
-            throw new Exception( "The build log does not contain '" + search + "'." );
+            throw new Exception( path + " contains '" + search + "'." );
         }
+    }
+
+    /**
+     * Assert the project build log does not contain the given search.
+     *
+     * @param search the expression to search in the build log.
+     * @throws Exception if conditions are not fulfilled.
+     */
+    public void assertBuildLogDoesNotContain( String search ) throws Exception
+    {
+        assertFileDoesNotContain( BUILD_LOG_FILE, search );
     }
 }
