@@ -39,7 +39,7 @@
     <license>
       <name>The Legion of the Bouncy Castle license</name>
       <url>http://www.bouncycastle.org/license.html</url>
-      <comments>The Legion of the Bouncy Castle is cryptography library used by maven-checksum-plugin.</comments>
+      <comments>The Legion of the Bouncy Castle is a cryptography library used by maven-checksum-plugin.</comments>
     </license>
   </licenses>
 
