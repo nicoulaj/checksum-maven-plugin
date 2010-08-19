@@ -115,11 +115,24 @@ public class DependenciesMojo extends AbstractMojo
      * @parameter
      * @since 1.0
      */
-    protected List<String> scopes = Arrays.asList( Artifact.SCOPE_COMPILE,
-                                                   Artifact.SCOPE_TEST,
-                                                   Artifact.SCOPE_RUNTIME,
-                                                   Artifact.SCOPE_PROVIDED,
-                                                   Artifact.SCOPE_SYSTEM );
+    protected List<String> scopes;
+
+    /**
+     * The dependency types to include.
+     *
+     * <p>All types are included by default.</p>
+     *
+     * <p> Use the following syntax:
+     * <pre>&lt;types&gt;
+     *   &lt;type&gt;jar&lt;type&gt;
+     *   &lt;type&gt;zip&lt;type&gt;
+     * &lt;/types&gt;</pre>
+     * </p>
+     *
+     * @parameter
+     * @since 1.0
+     */
+    protected List<String> types;
 
     /**
      * {@inheritDoc}
@@ -162,7 +175,8 @@ public class DependenciesMojo extends AbstractMojo
 
         for ( Artifact artifact : ( Set<Artifact> ) project.getDependencyArtifacts() )
         {
-            if ( scopes.contains( artifact.getScope() ) )
+            if ( ( scopes == null || scopes != null && scopes.contains( artifact.getScope() ) )
+                 && ( types == null || types != null && types.contains( artifact.getType() ) ) )
             {
                 files.add( artifact.getFile() );
             }
