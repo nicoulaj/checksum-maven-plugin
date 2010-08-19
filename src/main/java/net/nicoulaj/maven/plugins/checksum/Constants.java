@@ -27,23 +27,23 @@ public class Constants
      * The CRC/checksum digest algorithms supported by maven-checksum-plugin.
      */
     public static final String[] SUPPORTED_ALGORITHMS = {"CRC32",
-                                                        "MD2",
-                                                        "MD4",
-                                                        "MD5",
-                                                        "SHA-1",
-                                                        "SHA-224",
-                                                        "SHA-256",
-                                                        "SHA-384",
-                                                        "SHA-512",
-                                                        "RIPEMD128",
-                                                        "RIPEMD160",
-                                                        "RIPEMD256",
-                                                        "RIPEMD320",
-                                                        "GOST3411",
-                                                        "Tiger"};
+                                                         "MD2",
+                                                         "MD4",
+                                                         "MD5",
+                                                         "SHA-1",
+                                                         "SHA-224",
+                                                         "SHA-256",
+                                                         "SHA-384",
+                                                         "SHA-512",
+                                                         "RIPEMD128",
+                                                         "RIPEMD160",
+                                                         "RIPEMD256",
+                                                         "RIPEMD320",
+                                                         "GOST3411",
+                                                         "Tiger"};
 
     /**
-     * The algorithms by default for a mojo execution.
+     * The algorithms used by default for a mojo execution.
      */
     public static final String[] DEFAULT_EXECUTION_ALGORITHMS = {"MD5", "SHA-1"};
 }

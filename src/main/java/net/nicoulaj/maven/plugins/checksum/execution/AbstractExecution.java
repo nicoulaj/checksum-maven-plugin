@@ -31,7 +31,7 @@ import java.util.List;
 public abstract class AbstractExecution implements Execution
 {
     /**
-     * The list of files processed for the execution.
+     * The list of files used for the execution.
      */
     protected List<File> files;
 

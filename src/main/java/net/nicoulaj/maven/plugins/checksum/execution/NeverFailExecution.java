@@ -118,8 +118,8 @@ public class NeverFailExecution extends AbstractExecution
                 }
                 catch ( DigesterException e )
                 {
-                    logger.warn( "Unable to calculate " + algorithm
-                                 + " hash for " + file.getName() + ": " + e.getMessage() );
+                    logger.warn( "Unable to calculate " + algorithm + " hash for " + file.getName() + ": "
+                                 + e.getMessage() );
                 }
             }
         }

@@ -51,8 +51,8 @@ public class ExecutionTargetsTest
     public static Collection<Object[]> getTestParameters()
     {
         Object[][] data = new Object[][]{{new MavenLogTarget( null )},
-                                        {new OneHashPerFileTarget()},
-                                        {new CsvSummaryFileTarget( "" )}};
+                                         {new OneHashPerFileTarget()},
+                                         {new CsvSummaryFileTarget( "" )}};
         return Arrays.asList( data );
     }
 

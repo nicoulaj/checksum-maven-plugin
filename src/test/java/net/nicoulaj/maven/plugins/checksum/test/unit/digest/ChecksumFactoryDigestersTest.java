@@ -93,8 +93,8 @@ public class ChecksumFactoryDigestersTest
         FileDigester digester1 = DigesterFactory.getInstance().getFileDigester( algorithm );
         FileDigester digester2 = DigesterFactory.getInstance().getFileDigester( algorithm );
         Assert.assertEquals( "The returned digester for  '" + algorithm + "' algorithm is not a singleton.",
-                           digester1,
-                           digester2 );
+                             digester1,
+                             digester2 );
     }
 
     /**
@@ -107,7 +107,7 @@ public class ChecksumFactoryDigestersTest
     {
         FileDigester digester = DigesterFactory.getInstance().getFileDigester( algorithm );
         Assert.assertEquals( "The returned digester for  '" + algorithm + "' algorithm is not the right one.",
-                           digester.getAlgorithm(),
-                           algorithm );
+                             digester.getAlgorithm(),
+                             algorithm );
     }
 }

@@ -26,6 +26,7 @@ try
 
   // Assert the file has been created.
   helper.assertFileIsNotEmpty("target/dependencies-checksums.csv")
+
 }
 catch (Exception e)
 {

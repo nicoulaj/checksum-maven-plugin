@@ -87,8 +87,8 @@ public class FailOnErrorExecution extends AbstractExecution
                 }
                 catch ( DigesterException e )
                 {
-                    throw new ExecutionException( "Unable to calculate " + algorithm
-                                                  + " hash for " + file.getName() + ": " + e.getMessage() );
+                    throw new ExecutionException( "Unable to calculate " + algorithm + " hash for " + file.getName()
+                                                  + ": " + e.getMessage() );
                 }
             }
         }

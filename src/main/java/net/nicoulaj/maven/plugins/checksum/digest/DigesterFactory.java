@@ -15,6 +15,8 @@
  */
 package net.nicoulaj.maven.plugins.checksum.digest;
 
+import net.nicoulaj.maven.plugins.checksum.Constants;
+
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import java.security.NoSuchAlgorithmException;
@@ -41,7 +43,8 @@ public class DigesterFactory
     /**
      * The map (algorithm, digester).
      */
-    protected Map<String, FileDigester> digesters = new HashMap<String, FileDigester>( 7 );
+    protected Map<String, FileDigester> digesters = new HashMap<String, FileDigester>
+                                                    ( Constants.SUPPORTED_ALGORITHMS.length );
 
     /**
      * Build a new {@link net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory}.

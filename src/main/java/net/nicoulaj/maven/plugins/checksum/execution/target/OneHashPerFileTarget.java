@@ -49,7 +49,7 @@ public class OneHashPerFileTarget implements ExecutionTarget
             FileUtils.fileWrite( file.getPath() + DigesterFactory.getInstance()
                                                                  .getFileDigester( algorithm )
                                                                  .getFileExtension(),
-                               digest );
+                                 digest );
         }
         catch ( IOException e )
         {

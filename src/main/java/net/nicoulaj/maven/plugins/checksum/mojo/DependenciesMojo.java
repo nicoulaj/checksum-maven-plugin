@@ -41,8 +41,8 @@ import java.util.Set;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @goal dependencies
  * @phase verify
- * @inheritByDefault false
  * @requiresProject true
+ * @inheritByDefault false
  * @requiresDependencyResolution runtime
  * @since 1.0
  */
