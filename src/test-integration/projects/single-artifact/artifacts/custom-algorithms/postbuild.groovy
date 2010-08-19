@@ -25,10 +25,21 @@ try
   helper.assertBuildLogContains("maven-checksum-plugin");
 
   // Check files have been created and are not empty.
+  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.crc32")
+  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.md2")
   helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.md4")
   helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.md5")
   helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.sha1")
+  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.sha224")
+  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.sha256")
+  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.sha384")
   helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.sha512")
+  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.ripemd128")
+  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.ripemd160")
+  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.ripemd256")
+  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.ripemd320")
+  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.gost3411")
+  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.custom-algorithms-1.0-SNAPSHOT.jar.tiger")
 
 }
 catch (Exception e)
