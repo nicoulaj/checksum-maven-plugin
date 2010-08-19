@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>net.ju-n.maven.plugins.checksum.test.projects</groupId>
-  <artifactId>single-artifact-with-dependencies.dependencies.default</artifactId>
+  <artifactId>single-artifact-with-dependencies.dependencies.filter-scopes</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -60,6 +60,11 @@
             <goals>
               <goal>dependencies</goal>
             </goals>
+            <configuration>
+              <scopes>
+                <scope>compile</scope>
+              </scopes>
+            </configuration>
           </execution>
         </executions>
       </plugin>

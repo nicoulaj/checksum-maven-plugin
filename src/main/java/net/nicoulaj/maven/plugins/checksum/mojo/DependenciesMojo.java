@@ -101,6 +101,27 @@ public class DependenciesMojo extends AbstractMojo
     protected String summaryFileName;
 
     /**
+     * The dependency scopes to include.
+     *
+     * <p>Allowed values are compile, test, runtime, provided and system.<br/>All scopes are included by default.</p>
+     *
+     * <p> Use the following syntax:
+     * <pre>&lt;scopes&gt;
+     *   &lt;scope&gt;compile&lt;scope&gt;
+     *   &lt;scope&gt;runtime&lt;scope&gt;
+     * &lt;/scopes&gt;</pre>
+     * </p>
+     *
+     * @parameter
+     * @since 1.0
+     */
+    protected List<String> scopes = Arrays.asList( Artifact.SCOPE_COMPILE,
+                                                   Artifact.SCOPE_TEST,
+                                                   Artifact.SCOPE_RUNTIME,
+                                                   Artifact.SCOPE_PROVIDED,
+                                                   Artifact.SCOPE_SYSTEM );
+
+    /**
      * {@inheritDoc}
      */
     public void execute() throws MojoExecutionException, MojoFailureException
@@ -139,11 +160,12 @@ public class DependenciesMojo extends AbstractMojo
     {
         List<File> files = new LinkedList<File>();
 
-        // TODO Allow to filter by type and scope.
-
         for ( Artifact artifact : ( Set<Artifact> ) project.getDependencyArtifacts() )
         {
-            files.add( artifact.getFile() );
+            if ( scopes.contains( artifact.getScope() ) )
+            {
+                files.add( artifact.getFile() );
+            }
         }
 
         return files;
