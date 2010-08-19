@@ -99,6 +99,7 @@
     <debug>false</debug>
     <encoding>UTF-8</encoding>
     <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+    <invoker.settings-file>${project.basedir}/src/test-integration/settings.xml</invoker.settings-file>
 
     <!-- Reporting plugins versions -->
     <maven-plugin-plugin.version>2.6</maven-plugin-plugin.version>
@@ -295,7 +296,7 @@
           <localRepositoryPath>${project.build.directory}/integration-tests/local-repository</localRepositoryPath>
           <showErrors>${debug}</showErrors>
           <debug>${debug}</debug>
-          <settingsFile>${project.basedir}/src/test-integration/settings.xml</settingsFile>
+          <settingsFile>${invoker.settings-file}</settingsFile>
           <projectsDirectory>${project.basedir}/src/test-integration/projects</projectsDirectory>
           <pomIncludes>
             <pomInclude>**/pom.xml</pomInclude>
@@ -342,6 +343,21 @@
       <id>debug</id>
       <properties>
         <debug>true</debug>
+      </properties>
+    </profile>
+
+    <!-- Do not use a custom settings file for maven-invoker-plugin
+    behind a proxy. See MINVOKER-97. -->
+    <profile>
+      <id>behind-proxy</id>
+      <activation>
+        <property>
+          <name>http.proxySet</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <properties>
+        <invoker.settings-file></invoker.settings-file>
       </properties>
     </profile>
 
