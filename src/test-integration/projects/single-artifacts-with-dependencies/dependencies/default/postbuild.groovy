@@ -28,14 +28,18 @@ try
   // Assert the file has been created.
   helper.assertFileIsNotEmpty("target/dependencies-checksums.csv")
 
-  // Check there is a line for each dependency and algorithm.
+  // Check there is an occurence of each algorithm.
   for ( String algorithm in Constants.DEFAULT_EXECUTION_ALGORITHMS )
   {
-    helper.assertFileContains("target/dependencies-checksums.csv", "maven-plugin-api-2.2.0.jar," + algorithm)
-    helper.assertFileContains("target/dependencies-checksums.csv", "maven-project-2.2.0.jar," + algorithm)
-    helper.assertFileContains("target/dependencies-checksums.csv", "plexus-utils-1.1.jar," + algorithm)
-    helper.assertFileContains("target/dependencies-checksums.csv", "junit-4.8.1.jar," + algorithm)
+    helper.assertFileContains("target/dependencies-checksums.csv", algorithm)
   }
+
+  // Check there is a line for each dependency.
+  helper.assertFileContains("target/dependencies-checksums.csv", "maven-plugin-api-2.2.0.jar")
+  helper.assertFileContains("target/dependencies-checksums.csv", "maven-project-2.2.0.jar")
+  helper.assertFileContains("target/dependencies-checksums.csv", "plexus-utils-1.1.jar")
+  helper.assertFileContains("target/dependencies-checksums.csv", "junit-4.8.1.jar")
+
 }
 catch (Exception e)
 {

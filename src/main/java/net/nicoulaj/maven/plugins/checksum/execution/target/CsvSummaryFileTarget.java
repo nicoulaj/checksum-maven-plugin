@@ -19,17 +19,44 @@ import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * An {@link ExecutionTarget} that writes digests to a CSV file.
- *
- * FIXME This should output a CSV doc with one column per algorithm.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
 public class CsvSummaryFileTarget implements ExecutionTarget
 {
+    /**
+     * The line separator character.
+     */
+    public static final String LINE_SEPARATOR = System.getProperty( "line.separator" );
+
+    /**
+     * The CSV column separator character.
+     */
+    public static final String CSV_COLUMN_SEPARATOR = ",";
+
+    /**
+     * The CSV comment marker character.
+     */
+    public static final String CSV_COMMENT_MARKER = "#";
+
+    /**
+     * The association file => (algorithm,hashcode).
+     */
+    protected Map<File, Map<String, String>> filesHashcodes;
+
+    /**
+     * The set of algorithms encountered.
+     */
+    protected SortedSet<String> algorithms;
+
     /**
      * The target file where the summary is written.
      */
@@ -48,39 +75,68 @@ public class CsvSummaryFileTarget implements ExecutionTarget
     /**
      * {@inheritDoc}
      */
-    public void init() throws ExecutionTargetInitializationException
+    public void init()
     {
-        // Write the file header
-        try
-        {
-            FileUtils.fileWrite( summaryFile.getPath(), "# File, Algorithm, Digest" );
-        }
-        catch ( IOException e )
-        {
-            throw new ExecutionTargetInitializationException( "Could not write to " + summaryFile.getPath() );
-        }
+        filesHashcodes = new HashMap<File, Map<String, String>>();
+        algorithms = new TreeSet<String>();
     }
 
     /**
      * {@inheritDoc}
      */
-    public void write( String digest, File file, String algorithm ) throws ExecutionTargetWriteException
+    public void write( String digest, File file, String algorithm )
     {
-        try
+        // Initialize an entry for the file if needed.
+        if ( !filesHashcodes.containsKey( file ) )
         {
-            FileUtils.fileAppend( summaryFile.getPath(), "\n" + file.getName() + "," + algorithm + "," + digest );
+            filesHashcodes.put( file, new HashMap<String, String>() );
         }
-        catch ( IOException e )
-        {
-            throw new ExecutionTargetWriteException( e.getMessage() );
-        }
+
+        // Store the algorithm => hashcode mapping for this file.
+        Map<String, String> fileHashcodes = filesHashcodes.get( file );
+        fileHashcodes.put( algorithm, digest );
+
+        // Store the algorithm.
+        algorithms.add( algorithm );
     }
 
     /**
      * {@inheritDoc}
      */
-    public void close()
+    public void close() throws ExecutionTargetCloseException
     {
-        // Nothing to do
+        StringBuilder sb = new StringBuilder();
+
+        // Write the CSV file header.
+        sb.append( CSV_COMMENT_MARKER ).append( "File" );
+        for ( String algorithm : algorithms )
+        {
+            sb.append( CSV_COLUMN_SEPARATOR ).append( algorithm );
+        }
+
+        // Write a line for each file.
+        for ( File file : filesHashcodes.keySet() )
+        {
+            sb.append( LINE_SEPARATOR ).append( file.getName() );
+            Map<String, String> fileHashcodes = filesHashcodes.get( file );
+            for ( String algorithm : algorithms )
+            {
+                sb.append( CSV_COLUMN_SEPARATOR );
+                if ( fileHashcodes.containsKey( algorithm ) )
+                {
+                    sb.append( fileHashcodes.get( algorithm ) );
+                }
+            }
+        }
+
+        // Write the result to the summary file.
+        try
+        {
+            FileUtils.fileWrite( summaryFile.getPath(), sb.toString() );
+        }
+        catch ( IOException e )
+        {
+            throw new ExecutionTargetCloseException( e.getMessage() );
+        }
     }
 }
