@@ -175,8 +175,8 @@ public class DependenciesMojo extends AbstractMojo
 
         for ( Artifact artifact : ( Set<Artifact> ) project.getDependencyArtifacts() )
         {
-            if ( ( scopes == null || scopes != null && scopes.contains( artifact.getScope() ) )
-                 && ( types == null || types != null && types.contains( artifact.getType() ) ) )
+            if ( ( scopes == null || scopes.contains( artifact.getScope() ) )
+                 && ( types == null || types.contains( artifact.getType() ) ) )
             {
                 files.add( artifact.getFile() );
             }
