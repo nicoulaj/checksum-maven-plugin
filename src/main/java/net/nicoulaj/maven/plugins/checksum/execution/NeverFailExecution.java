@@ -83,6 +83,7 @@ public class NeverFailExecution extends AbstractExecution
                 // If this was the last target, cancel the execution.
                 if ( getTargets().isEmpty() )
                 {
+                    logger.warn( "No output target for computed hashcodes, execution canceled." );
                     return;
                 }
             }
