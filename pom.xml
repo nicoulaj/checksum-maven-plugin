@@ -20,7 +20,7 @@
   <!-- Project coordinates -->
   <groupId>net.ju-n.maven.plugins</groupId>
   <artifactId>maven-checksum-plugin</artifactId>
-  <version>1.0-alpha-3-SNAPSHOT</version>
+  <version>1.0-alpha-3</version>
   <packaging>maven-plugin</packaging>
 
   <!-- Project info -->
@@ -357,7 +357,7 @@
         </property>
       </activation>
       <properties>
-        <invoker.settings-file/>
+        <invoker.settings-file />
       </properties>
     </profile>
 
