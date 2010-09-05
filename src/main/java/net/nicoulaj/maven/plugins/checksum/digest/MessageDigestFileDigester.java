@@ -33,11 +33,6 @@ import java.security.NoSuchAlgorithmException;
 public class MessageDigestFileDigester extends AbstractFileDigester
 {
     /**
-     * The size of the buffer used to stream the files contents to {@link #messageDigest}.
-     */
-    protected static final int STREAMING_BUFFER_SIZE = 32768;
-
-    /**
      * The {@link java.security.MessageDigest} instance.
      */
     protected final MessageDigest messageDigest;

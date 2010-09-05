@@ -26,6 +26,11 @@ import java.io.File;
 public interface FileDigester
 {
     /**
+     * The size of the buffer used to stream the files contents while calculating their hashcode.
+     */
+    int STREAMING_BUFFER_SIZE = 32768;
+
+    /**
      * Get the algorithm used to compute checksum digests.
      *
      * @return the algorithm.

@@ -59,7 +59,7 @@ public class CRC32FileDigester extends AbstractFileDigester
             throw new DigesterException( "Unable not read " + file.getPath() + ": " + e.getMessage() );
         }
 
-        byte[] buf = new byte[128];
+        byte[] buf = new byte[STREAMING_BUFFER_SIZE];
         try
         {
             while ( cis.read( buf ) >= 0 )
