@@ -29,6 +29,7 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
+import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.util.Arrays;
@@ -100,21 +101,21 @@ public class ArtifactsMojo extends AbstractMojo
     protected boolean quiet;
 
     /**
-     * Indicates whether the build will store checksums to a single summary file.
+     * Indicates whether the build will store checksums to a single CSV summary file.
      *
      * @parameter default-value="false"
      * @since 1.0
      */
-    protected boolean summaryFile;
+    protected boolean csvSummary;
 
     /**
      * The name of the summary file created if the option is activated.
      *
      * @parameter default-value="artifacts-checksums.csv"
-     * @see #summaryFile
+     * @see #csvSummary
      * @since 1.0
      */
-    protected String summaryFileName;
+    protected String csvSummaryFile;
 
     /**
      * {@inheritDoc}
@@ -133,10 +134,11 @@ public class ArtifactsMojo extends AbstractMojo
         {
             execution.addTarget( new OneHashPerFileTarget() );
         }
-        if ( summaryFile )
+        if ( csvSummary )
         {
-            execution.addTarget( new CsvSummaryFileTarget( project.getBuild().getDirectory() +
-                                                           File.separator + summaryFileName ) );
+            execution.addTarget( new CsvSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
+                                                                                                   .getDirectory() ),
+                                                                                  csvSummaryFile ) ) );
         }
 
         // Run the execution.

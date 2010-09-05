@@ -65,11 +65,11 @@ public class CsvSummaryFileTarget implements ExecutionTarget
     /**
      * Build a new instance of {@link CsvSummaryFileTarget}.
      *
-     * @param summaryFile the file to which to summary should be written.
+     * @param summaryFile the file to which the summary should be written.
      */
-    public CsvSummaryFileTarget( String summaryFile )
+    public CsvSummaryFileTarget( File summaryFile )
     {
-        this.summaryFile = new File( summaryFile );
+        this.summaryFile = summaryFile;
     }
 
     /**

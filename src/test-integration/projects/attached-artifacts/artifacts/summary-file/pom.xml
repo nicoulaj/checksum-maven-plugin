@@ -37,7 +37,7 @@
             </goals>
             <configuration>
               <individualFiles>false</individualFiles>
-              <summaryFile>true</summaryFile>
+              <csvSummary>true</csvSummary>
             </configuration>
           </execution>
         </executions>

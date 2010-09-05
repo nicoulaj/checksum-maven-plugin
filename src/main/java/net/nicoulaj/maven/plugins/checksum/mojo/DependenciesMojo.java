@@ -28,6 +28,7 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
+import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.util.Arrays;
@@ -93,12 +94,21 @@ public class DependenciesMojo extends AbstractMojo
     protected boolean quiet;
 
     /**
-     * The name of the summary file created.
+     * Indicates whether the build will store checksums to a single CSV summary file.
      *
-     * @parameter default-value="dependencies-checksums.csv"
+     * @parameter default-value="true"
      * @since 1.0
      */
-    protected String summaryFileName;
+    protected boolean csvSummary;
+
+    /**
+     * The name of the summary file created if the option is activated.
+     *
+     * @parameter default-value="dependencies-checksums.csv"
+     * @see #csvSummary
+     * @since 1.0
+     */
+    protected String csvSummaryFile;
 
     /**
      * The dependency scopes to include.
@@ -147,8 +157,9 @@ public class DependenciesMojo extends AbstractMojo
         {
             execution.addTarget( new MavenLogTarget( getLog() ) );
         }
-        execution.addTarget( new CsvSummaryFileTarget( project.getBuild().getDirectory()
-                                                       + File.separator + summaryFileName ) );
+        execution.addTarget( new CsvSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
+                                                                                               .getDirectory() ),
+                                                                              csvSummaryFile ) ) );
 
         // Run the execution.
         try

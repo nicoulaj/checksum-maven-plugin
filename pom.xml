@@ -357,7 +357,7 @@
         </property>
       </activation>
       <properties>
-        <invoker.settings-file />
+        <invoker.settings-file/>
       </properties>
     </profile>
 

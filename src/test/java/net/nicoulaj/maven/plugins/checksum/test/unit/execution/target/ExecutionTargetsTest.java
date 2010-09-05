@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -52,7 +53,7 @@ public class ExecutionTargetsTest
     {
         Object[][] data = new Object[][]{{new MavenLogTarget( null )},
                                          {new OneHashPerFileTarget()},
-                                         {new CsvSummaryFileTarget( "" )}};
+                                         {new CsvSummaryFileTarget( new File( "" ) )}};
         return Arrays.asList( data );
     }
 
