@@ -28,11 +28,12 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 /**
- * Tests for the {@link net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget}
- * {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget}.
- * 
+ * Tests for the {@link net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget} {@link
+ * net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget}.
+ *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  */
 public class OneHashPerFileTargetTest
@@ -56,21 +57,24 @@ public class OneHashPerFileTargetTest
     public void testOneHashPerFileTargetWrite()
     throws ExecutionTargetWriteException, IOException, NoSuchAlgorithmException
     {
-        // Prepare the test
-        String testAlgorithm = "MD5";
-        String testFile = Utils.SAMPLE_FILES_PATH + File.separator + "simple-text-file";
-        String hashcodeFile = testFile + DigesterFactory.getInstance()
-                                                        .getFileDigester( testAlgorithm )
-                                                        .getFileExtension();
+        List<File> testFiles = FileUtils.getFiles( new File( Utils.SAMPLE_FILES_PATH ), null, null );
+        for ( File testFile : testFiles )
+        {
+            // Prepare the test
+            String testAlgorithm = "MD5";
+            String hashcodeFile = testFile.getPath() + DigesterFactory.getInstance()
+                                                                      .getFileDigester( testAlgorithm )
+                                                                      .getFileExtension();
 
-        // Call write()
-        target.write( "hash-file-content", new File( testFile ), testAlgorithm );
+            // Call write()
+            target.write( "hash-file-content", testFile, testAlgorithm );
 
-        // Assert the file has been created with the right content
-        Assert.assertTrue( new File( hashcodeFile ).exists() );
-        Assert.assertEquals( FileUtils.fileRead( new File( hashcodeFile ) ), "hash-file-content" );
+            // Assert the file has been created with the right content
+            Assert.assertTrue( new File( hashcodeFile ).exists() );
+            Assert.assertEquals( FileUtils.fileRead( new File( hashcodeFile ) ), "hash-file-content" );
 
-        // Delete the file created
-        FileUtils.fileDelete( hashcodeFile );
+            // Delete the file created
+            FileUtils.fileDelete( hashcodeFile );
+        }
     }
 }
