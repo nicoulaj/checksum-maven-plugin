@@ -93,6 +93,13 @@ public class FilesMojo extends AbstractMojo
     protected boolean failOnError;
 
     /**
+     * Encoding to use for generated files.
+     *
+     * @parameter expression="${encoding}" default-value="${project.build.sourceEncoding}"
+     */
+    protected String encoding = Constants.DEFAULT_ENCODING;
+
+    /**
      * Indicates whether the build will store checksums in separate files (one file per algorithm per artifact).
      *
      * @parameter default-value="true"
@@ -157,19 +164,21 @@ public class FilesMojo extends AbstractMojo
         }
         if ( individualFiles )
         {
-            execution.addTarget( new OneHashPerFileTarget() );
+            execution.addTarget( new OneHashPerFileTarget( encoding ) );
         }
         if ( csvSummary )
         {
             execution.addTarget( new CsvSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
                                                                                                    .getDirectory() ),
-                                                                                  csvSummaryFile ) ) );
+                                                                                  csvSummaryFile ),
+                                                           encoding ) );
         }
         if ( xmlSummary )
         {
             execution.addTarget( new XmlSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
                                                                                                    .getDirectory() ),
-                                                                                  xmlSummaryFile ) ) );
+                                                                                  xmlSummaryFile ),
+                                                           encoding ) );
         }
 
         // Run the execution.

@@ -32,6 +32,21 @@ import java.security.NoSuchAlgorithmException;
 public class OneHashPerFileTarget implements ExecutionTarget
 {
     /**
+     * Encoding to use for generated files.
+     */
+    protected String encoding;
+
+    /**
+     * Build a new instance of {@link OneHashPerFileTarget}.
+     *
+     * @param encoding the encoding to use for generated files.
+     */
+    public OneHashPerFileTarget( String encoding )
+    {
+        this.encoding = encoding;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public void init()

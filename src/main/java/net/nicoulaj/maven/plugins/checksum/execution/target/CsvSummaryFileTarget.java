@@ -48,6 +48,11 @@ public class CsvSummaryFileTarget implements ExecutionTarget
     public static final String CSV_COMMENT_MARKER = "#";
 
     /**
+     * Encoding to use for generated files.
+     */
+    protected String encoding;
+
+    /**
      * The association file => (algorithm,hashcode).
      */
     protected Map<File, Map<String, String>> filesHashcodes;
@@ -66,10 +71,12 @@ public class CsvSummaryFileTarget implements ExecutionTarget
      * Build a new instance of {@link CsvSummaryFileTarget}.
      *
      * @param summaryFile the file to which the summary should be written.
+     * @param encoding    the encoding to use for generated files.
      */
-    public CsvSummaryFileTarget( File summaryFile )
+    public CsvSummaryFileTarget( File summaryFile, String encoding )
     {
         this.summaryFile = summaryFile;
+        this.encoding = encoding;
     }
 
     /**
@@ -132,7 +139,7 @@ public class CsvSummaryFileTarget implements ExecutionTarget
         // Write the result to the summary file.
         try
         {
-            FileUtils.fileWrite( summaryFile.getPath(), sb.toString() );
+            FileUtils.fileWrite( summaryFile.getPath(), encoding, sb.toString() );
         }
         catch ( IOException e )
         {

@@ -46,4 +46,9 @@ public class Constants
      * The algorithms used by default for a mojo execution.
      */
     public static final String[] DEFAULT_EXECUTION_ALGORITHMS = {"MD5", "SHA-1"};
+
+    /**
+     * The file encoding used by default.
+     */
+    public static final String DEFAULT_ENCODING = "UTF-8";
 }

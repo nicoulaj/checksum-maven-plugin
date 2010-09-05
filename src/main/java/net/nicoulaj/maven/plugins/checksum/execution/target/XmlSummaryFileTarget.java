@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,11 @@ public class XmlSummaryFileTarget implements ExecutionTarget
     public static final int XML_INDENTATION_SIZE = 2;
 
     /**
+     * Encoding to use for generated files.
+     */
+    protected String encoding;
+
+    /**
      * The association file => (algorithm,hashcode).
      */
     protected Map<File, Map<String, String>> filesHashcodes;
@@ -54,10 +60,12 @@ public class XmlSummaryFileTarget implements ExecutionTarget
      * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget}.
      *
      * @param summaryFile the file to which the summary should be written.
+     * @param encoding the encoding to use for generated files.
      */
-    public XmlSummaryFileTarget( File summaryFile )
+    public XmlSummaryFileTarget( File summaryFile, String encoding )
     {
         this.summaryFile = summaryFile;
+        this.encoding = encoding;
     }
 
     /**
@@ -93,9 +101,13 @@ public class XmlSummaryFileTarget implements ExecutionTarget
         Writer outputStream;
         try
         {
-            outputStream = new OutputStreamWriter( new FileOutputStream( summaryFile ) );
+            outputStream = new OutputStreamWriter( new FileOutputStream( summaryFile ), encoding );
         }
         catch ( FileNotFoundException e )
+        {
+            throw new ExecutionTargetCloseException( e.getMessage() );
+        }
+        catch ( UnsupportedEncodingException e )
         {
             throw new ExecutionTargetCloseException( e.getMessage() );
         }

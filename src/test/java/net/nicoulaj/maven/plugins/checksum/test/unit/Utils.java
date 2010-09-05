@@ -39,4 +39,9 @@ public class Utils
      * Path of the sample files hashcodes directory.
      */
     public static final String SAMPLE_FILES_HASHCODES_PATH = RESOURCES_PATH + File.separator + "hashcodes";
+
+    /**
+     * The file encoding used by default for tests.
+     */
+    public static final String DEFAULT_TESTS_ENCODING = "UTF-8";
 }

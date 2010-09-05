@@ -87,6 +87,13 @@ public class DependenciesMojo extends AbstractMojo
     protected boolean failOnError;
 
     /**
+     * Encoding to use for generated files.
+     *
+     * @parameter expression="${encoding}" default-value="${project.build.sourceEncoding}"
+     */
+    protected String encoding = Constants.DEFAULT_ENCODING;
+
+    /**
      * Indicates whether the build will print checksums in the build log.
      *
      * @parameter default-value="false"
@@ -179,13 +186,15 @@ public class DependenciesMojo extends AbstractMojo
         {
             execution.addTarget( new CsvSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
                                                                                                    .getDirectory() ),
-                                                                                  csvSummaryFile ) ) );
+                                                                                  csvSummaryFile ),
+                                                           encoding ) );
         }
         if ( xmlSummary )
         {
             execution.addTarget( new XmlSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
                                                                                                    .getDirectory() ),
-                                                                                  xmlSummaryFile ) ) );
+                                                                                  xmlSummaryFile ),
+                                                           encoding ) );
         }
 
         // Run the execution.

@@ -40,7 +40,7 @@ public class OneHashPerFileTargetTest
      * The instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget} used for the
      * test.
      */
-    ExecutionTarget target = new OneHashPerFileTarget();
+    ExecutionTarget target = new OneHashPerFileTarget( Utils.DEFAULT_TESTS_ENCODING );
 
     /**
      * TODO add Javadoc comment.
