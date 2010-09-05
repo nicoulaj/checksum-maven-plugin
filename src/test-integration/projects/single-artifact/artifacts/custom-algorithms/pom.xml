@@ -54,6 +54,7 @@
             <algorithm>RIPEMD320</algorithm>
             <algorithm>GOST3411</algorithm>
             <algorithm>Tiger</algorithm>
+            <algorithm>Whirlpool</algorithm>
           </algorithms>
         </configuration>
       </plugin>

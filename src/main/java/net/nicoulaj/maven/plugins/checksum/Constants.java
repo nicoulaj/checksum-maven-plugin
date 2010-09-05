@@ -40,7 +40,8 @@ public class Constants
                                                          "RIPEMD256",
                                                          "RIPEMD320",
                                                          "GOST3411",
-                                                         "Tiger"};
+                                                         "Tiger",
+                                                         "Whirlpool"};
 
     /**
      * The algorithms used by default for a mojo execution.
