@@ -23,6 +23,7 @@ import net.nicoulaj.maven.plugins.checksum.execution.NeverFailExecution;
 import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
+import net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -125,6 +126,23 @@ public class FilesMojo extends AbstractMojo
     protected String csvSummaryFile;
 
     /**
+     * Indicates whether the build will store checksums to a single XML summary file.
+     *
+     * @parameter default-value="false"
+     * @since 1.0
+     */
+    protected boolean xmlSummary;
+
+    /**
+     * The name of the summary file created if the option is activated.
+     *
+     * @parameter default-value="files-checksums.xml"
+     * @see #xmlSummary
+     * @since 1.0
+     */
+    protected String xmlSummaryFile;
+
+    /**
      * {@inheritDoc}
      */
     public void execute() throws MojoExecutionException, MojoFailureException
@@ -146,6 +164,12 @@ public class FilesMojo extends AbstractMojo
             execution.addTarget( new CsvSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
                                                                                                    .getDirectory() ),
                                                                                   csvSummaryFile ) ) );
+        }
+        if ( xmlSummary )
+        {
+            execution.addTarget( new XmlSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
+                                                                                                   .getDirectory() ),
+                                                                                  xmlSummaryFile ) ) );
         }
 
         // Run the execution.

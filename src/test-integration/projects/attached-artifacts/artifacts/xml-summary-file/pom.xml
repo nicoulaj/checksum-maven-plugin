@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>net.ju-n.maven.plugins.checksum.test.projects</groupId>
-  <artifactId>attached-artifacts.artifacts.summary-file</artifactId>
+  <artifactId>attached-artifacts.artifacts.xml-summary-file</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -37,7 +37,7 @@
             </goals>
             <configuration>
               <individualFiles>false</individualFiles>
-              <csvSummary>true</csvSummary>
+              <xmlSummary>true</xmlSummary>
             </configuration>
           </execution>
         </executions>

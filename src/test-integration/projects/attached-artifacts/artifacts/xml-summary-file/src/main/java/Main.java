@@ -14,22 +14,18 @@
  * limitations under the License.
  */
 
-import net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelper
-
-try
+/**
+ * Just an "hello world" class.
+ */
+class Main
 {
-  // Instantiate a helper.
-  PostBuildScriptHelper helper = new PostBuildScriptHelper(basedir, localRepositoryPath, context)
-
-  // Fail if no traces of maven-checksum-plugin invocation.
-  helper.assertBuildLogContains("maven-checksum-plugin");
-
-  // Check files have been created and are not empty.
-  helper.assertFileIsNotEmpty("target/artifacts-checksums.csv")
-
-}
-catch (Exception e)
-{
-  System.err.println(e.getMessage())
-  return false;
+    /**
+     * Print "Hello world".
+     *
+     * @param args arguments
+     */
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
 }
