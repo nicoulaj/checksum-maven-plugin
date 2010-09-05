@@ -24,6 +24,8 @@ maven-checksum-plugin
 
   Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.
 
+  A common use case of this plugin is to generate a file containing checksums with the project delivery.
+
 * Goals Overview
 
   General information about the goals.
@@ -31,36 +33,35 @@ maven-checksum-plugin
   * {{{./artifacts-mojo.html}checksum:artifacts}} calculate the checksums of the project artifacts.
 
   * {{{./dependencies-mojo.html}checksum:dependencies}} calculate the checksums of the project dependencies.
-  
+
   * {{{./files-mojo.html}checksum:files}} calculate the checksums of the given files.
 
   * {{{./file-mojo.html}checksum:file}} calculate the checksum of the given file (for command line use).
 
-~~* Usage
-~~
-~~  General instructions on how to use the Plugin Name can be found on the {{{usage.html}usage page}}. Some more
-~~  specific use cases are described in the examples given below. Last but not least, users occasionally contribute
-~~  additional examples, tips or errata to the
-~~  {{{http://docs.codehaus.org/display/MAVENUSER/Plugin+Name}plugin's wiki page}}.
-~~
-~~  In case you still have questions regarding the plugin's usage, please have a look at the {{{faq.html}FAQ}} and feel
-~~  free to contact the {{{mail-lists.html}user mailing list}}. The posts to the mailing list are archived and could
-~~  already contain the answer to your question as part of an older thread. Hence, it is also worth browsing/searching
-~~  the {{{mail-lists.html}mail archive}}.
-~~
-~~  If you feel like the plugin is missing a feature or has a defect, you can fill a feature request or bug report in our
-~~  {{{issue-tracking.html}issue tracker}}. When creating a new issue, please provide a comprehensive description of your
-~~  concern. Especially for fixing bugs it is crucial that the developers can reproduce your problem. For this reason,
-~~  entire debug logs, POMs or most preferably little demo projects attached to the issue are very much appreciated.
-~~  Of course, patches are welcome, too. Contributors can check out the project from our
-~~  {{{source-repository.html}source repository}} and will find supplementary information in the
-~~  {{{http://maven.apache.org/guides/development/guide-helping.html}guide to helping with Maven}}.
-~~
-~~* Examples
-~~
-~~  To provide you with better understanding of some usages of the Plugin Name,
-~~  you can take a look into the following examples:
-~~
-~~  * {{{examples/example-one.html}Example Description One}}
-~~
-~~  * {{{examples/example-two.html}Example Description Two}}
+* Usage
+
+  General instructions on how to use the checksum plugin can be found on the {{{./usage.html}usage page}}.
+
+  If you feel like the plugin is missing a feature or has a defect, you can fill a feature request or bug report in the
+  {{{./issue-tracking.html}issue tracker}}. When creating a new issue, please provide a comprehensive description of your
+  concern. Especially for fixing bugs it is crucial that the developers can reproduce your problem. For this reason,
+  entire debug logs, POMs or most preferably little demo projects attached to the issue are very much appreciated.
+
+  Of course, patches are welcome, too. Contributors can check out the project from the
+  {{{./source-repository.html}source repository}} and will find supplementary information in the
+  {{{http://maven.apache.org/guides/development/guide-helping.html}guide to helping with Maven}}.
+
+* Examples
+
+  To provide you with better understanding of some usages of maven-checksum-plugin,
+  you can take a look into the following examples:
+
+  * {{{./examples/generating-project-artifacts-checksums.html}Generating project artifacts checksums}}
+
+  * {{{./examples/generating-checksum-summary-files.html}Generating project checksum summary files}}
+
+  * {{{./examples/generating-project-dependencies-checksums.html}Generating project dependencies checksums}}
+
+  * {{{./examples/invoking-from-the-command-line.html}Invoking from the command line}}
+
+  * {{{./examples/using-custom-checksum-algorithms.html}Using custom checksum algorithms}}

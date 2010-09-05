@@ -43,23 +43,20 @@
     <menu name="Overview">
       <item name="Introduction" href="index.html"/>
       <item name="Goals" href="plugin-info.html"/>
-      <!--<item name="Usage" href="usage.html"/>-->
-      <!--<item name="FAQ" href="faq.html"/>-->
+      <item name="Usage" href="usage.html"/>
     </menu>
-    <!--<menu name="Examples">
-      <item name="Creating Content" href="/examples/creating-content.html"/>
-      <item name="Configuring the Site Descriptor" href="/examples/sitedescriptor.html"/>
-      <item name="Configuring Reports" href="/examples/configuring-reports.html"/>
-      <item name="Configuring Site Run" href="/examples/siterun.html"/>
-      <item name="Changing the Template File" href="/examples/templatefile.html"/>
-      <item name="Creating Skins" href="/examples/creatingskins.html"/>
-      <item name="Excluding Document Formats" href="/examples/moduleexcludes.html"/>
-      <item name="Deploying to sourceforge.net" href="/examples/site-deploy-to-sourceforge.net.html"/>
-    </menu>-->
+    <menu name="Examples">
+      <item name="Generating project artifacts checksums" href="/examples/generating-project-artifacts-checksums.html"/>
+      <item name="Generating project checksum summary files" href="/examples/generating-checksum-summary-files.html"/>
+      <item name="Generating project dependencies checksums" href="/examples/generating-project-dependencies-checksums.html"/>
+      <item name="Invoking from the command line" href="/examples/invoking-from-the-command-line.html"/>
+      <item name="Using custom checksum algorithms" href="/examples/using-custom-checksum-algorithms.html"/>
+    </menu>
     <menu ref="reports"/>
     <menu name="Links">
       <item name="Project home" href="http://www.github.com/nicoulaj/maven-checksum-plugin"/>
     </menu>
 
   </body>
+
 </project>
