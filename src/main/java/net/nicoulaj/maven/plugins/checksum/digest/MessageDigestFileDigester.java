@@ -100,6 +100,7 @@ public class MessageDigestFileDigester extends AbstractFileDigester
             catch ( IOException e )
             {
                 // Do nothing, we already did what we had to do.
+                return "";
             }
         }
     }
