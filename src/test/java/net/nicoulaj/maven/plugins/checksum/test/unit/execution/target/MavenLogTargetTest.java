@@ -25,7 +25,8 @@ import org.junit.Test;
 import java.io.File;
 
 /**
- * TODO add Javadoc comment.
+ * Tests for the {@link net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget}
+ * {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  */
@@ -37,7 +38,7 @@ public class MavenLogTargetTest
     ExecutionTarget target = new MavenLogTarget( new SystemStreamLog() );
 
     /**
-     * TODO add Javadoc comment.
+     * Assert wrting to the target does not throw exceptions.
      *
      * @throws ExecutionTargetWriteException should never happen.
      * @see net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget#write(String, java.io.File, String)

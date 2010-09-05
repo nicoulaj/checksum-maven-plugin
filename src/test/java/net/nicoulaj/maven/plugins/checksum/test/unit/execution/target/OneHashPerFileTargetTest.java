@@ -30,8 +30,9 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * TODO add Javadoc comment.
- *
+ * Tests for the {@link net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget}
+ * {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget}.
+ * 
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  */
 public class OneHashPerFileTargetTest
@@ -43,7 +44,7 @@ public class OneHashPerFileTargetTest
     ExecutionTarget target = new OneHashPerFileTarget( Utils.DEFAULT_TESTS_ENCODING );
 
     /**
-     * TODO add Javadoc comment.
+     * Assert the target writes the right content to the right file.
      *
      * @throws ExecutionTargetWriteException should never happen.
      * @throws IOException                   should never happen.

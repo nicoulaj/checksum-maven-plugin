@@ -70,6 +70,8 @@ public class MessageDigestFileDigester extends AbstractFileDigester
             throw new DigesterException( "Unable not read " + file.getPath() + ": " + e.getMessage() );
         }
 
+        String result;
+
         try
         {
             // Recover from a previous execution if needed.
@@ -84,7 +86,7 @@ public class MessageDigestFileDigester extends AbstractFileDigester
                 size = fis.read( buffer, 0, STREAMING_BUFFER_SIZE );
             }
 
-            return new String( Hex.encode( messageDigest.digest() ) );
+            result = new String( Hex.encode( messageDigest.digest() ) );
         }
         catch ( IOException e )
         {
@@ -99,9 +101,10 @@ public class MessageDigestFileDigester extends AbstractFileDigester
             }
             catch ( IOException e )
             {
-                // Do nothing, we already did what we had to do.
-                return "";
+                // Don't take any chance, return an empty string if something went wrong.
+                result = "";
             }
         }
+        return result;
     }
 }

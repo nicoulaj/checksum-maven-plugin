@@ -73,6 +73,7 @@ public class PostBuildScriptHelper
     /**
      * Get the contents of the file.
      *
+     * @param path the path to the file relative to {@link #baseDirectory}.
      * @return the file content.
      * @throws Exception if the build log could not be open.
      */
@@ -145,6 +146,7 @@ public class PostBuildScriptHelper
     /**
      * Assert the file contains the given search.
      *
+     * @param path   the path to the file relative to {@link #baseDirectory}.
      * @param search the expression to search in the build log.
      * @throws Exception if conditions are not fulfilled.
      */
@@ -170,6 +172,7 @@ public class PostBuildScriptHelper
     /**
      * Assert the file does not contain the given search.
      *
+     * @param path   the path to the file relative to {@link #baseDirectory}.
      * @param search the expression to search in the build log.
      * @throws Exception if conditions are not fulfilled.
      */

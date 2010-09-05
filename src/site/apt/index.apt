@@ -34,6 +34,8 @@ maven-checksum-plugin
   
   * {{{./files-mojo.html}checksum:files}} calculate the checksums of the given files.
 
+  * {{{./file-mojo.html}checksum:file}} calculate the checksum of the given file (for command line use).
+
 ~~* Usage
 ~~
 ~~  General instructions on how to use the Plugin Name can be found on the {{{usage.html}usage page}}. Some more

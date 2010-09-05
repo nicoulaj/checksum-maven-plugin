@@ -60,7 +60,7 @@ public class XmlSummaryFileTarget implements ExecutionTarget
      * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget}.
      *
      * @param summaryFile the file to which the summary should be written.
-     * @param encoding the encoding to use for generated files.
+     * @param encoding    the encoding to use for generated files.
      */
     public XmlSummaryFileTarget( File summaryFile, String encoding )
     {
@@ -113,7 +113,8 @@ public class XmlSummaryFileTarget implements ExecutionTarget
         }
 
         // Output hashcodes formatted in XML.        
-        PrettyPrintXMLWriter xmlWriter = new PrettyPrintXMLWriter( outputStream, StringUtils.repeat( " ", XML_INDENTATION_SIZE ) );
+        PrettyPrintXMLWriter xmlWriter = new PrettyPrintXMLWriter( outputStream,
+                                                                   StringUtils.repeat( " ", XML_INDENTATION_SIZE ) );
         xmlWriter.startElement( "files" );
         for ( File file : filesHashcodes.keySet() )
         {
