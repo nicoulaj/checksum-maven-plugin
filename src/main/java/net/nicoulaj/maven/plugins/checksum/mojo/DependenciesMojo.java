@@ -22,6 +22,7 @@ import net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution;
 import net.nicoulaj.maven.plugins.checksum.execution.NeverFailExecution;
 import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
+import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget;
 
 import org.apache.maven.artifact.Artifact;
@@ -30,6 +31,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.FileUtils;
+import org.codehaus.plexus.util.StringUtils;
 
 import java.io.File;
 import java.util.Arrays;
@@ -92,6 +94,22 @@ public class DependenciesMojo extends AbstractMojo
      * @parameter expression="${encoding}" default-value="${project.build.sourceEncoding}"
      */
     protected String encoding = Constants.DEFAULT_ENCODING;
+
+    /**
+     * Indicates whether the build will store checksums in separate files (one file per algorithm per artifact).
+     *
+     * @parameter default-value="false"
+     * @since 1.0
+     */
+    protected boolean individualFiles;
+
+    /**
+     * The directory where output files will be stored. Leave unset to have each file next to the source file.
+     *
+     * @parameter default-value="${project.build.directory}"
+     * @since 1.0
+     */
+    protected String individualFilesOutputDirectory;
 
     /**
      * Indicates whether the build will print checksums in the build log.
@@ -182,6 +200,16 @@ public class DependenciesMojo extends AbstractMojo
         {
             execution.addTarget( new MavenLogTarget( getLog() ) );
         }
+        if ( individualFiles )
+        {
+            File outputDirectory = null;
+            if ( StringUtils.isNotEmpty( individualFilesOutputDirectory ) )
+            {
+                outputDirectory = FileUtils.resolveFile( new File( project.getBuild().getDirectory() ),
+                                                         individualFilesOutputDirectory );
+            }
+            execution.addTarget( new OneHashPerFileTarget( encoding, outputDirectory ) );
+        }
         if ( csvSummary )
         {
             execution.addTarget( new CsvSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
@@ -216,7 +244,8 @@ public class DependenciesMojo extends AbstractMojo
      *
      * @return the list of files that should be processed.
      */
-    protected List<File> getFilesToProcess()
+    protected List<File> getFilesToProcess
+    ()
     {
         List<File> files = new LinkedList<File>();
 
