@@ -37,21 +37,49 @@ public class OneHashPerFileTarget implements ExecutionTarget
     protected String encoding;
 
     /**
+     * The files output directory.
+     */
+    protected File outputDirectory;
+
+    /**
+     * Build a new instance of {@link OneHashPerFileTarget}.
+     *
+     * @param encoding        the encoding to use for generated files.
+     * @param outputDirectory the files output directory.
+     */
+    public OneHashPerFileTarget( String encoding, File outputDirectory )
+    {
+        this.encoding = encoding;
+        this.outputDirectory = outputDirectory;
+    }
+
+    /**
      * Build a new instance of {@link OneHashPerFileTarget}.
      *
      * @param encoding the encoding to use for generated files.
      */
     public OneHashPerFileTarget( String encoding )
     {
-        this.encoding = encoding;
+        this( encoding, null );
     }
 
     /**
      * {@inheritDoc}
      */
-    public void init()
+    public void init() throws ExecutionTargetInitializationException
     {
-        // Nothing to do
+        // Make sure the output directory exists or can be created.
+        if ( outputDirectory != null )
+        {
+            if ( outputDirectory.exists() && !outputDirectory.isDirectory() )
+            {
+                throw new ExecutionTargetInitializationException( "'" + outputDirectory.getPath() + "' already exists and is not a directory." );
+            }
+            else
+            {
+                outputDirectory.mkdirs();
+            }
+        }
     }
 
     /**
@@ -61,10 +89,11 @@ public class OneHashPerFileTarget implements ExecutionTarget
     {
         try
         {
-            FileUtils.fileWrite( file.getPath() + DigesterFactory.getInstance()
-                                                                 .getFileDigester( algorithm )
-                                                                 .getFileExtension(),
-                                 digest );
+            File outputFileDirectory = ( outputDirectory != null ) ? outputDirectory : file.getParentFile();
+            String outputFileName = file.getName() + DigesterFactory.getInstance()
+                                                                    .getFileDigester( algorithm )
+                                                                    .getFileExtension();
+            FileUtils.fileWrite( outputFileDirectory.getPath() + File.separator + outputFileName, digest );
         }
         catch ( IOException e )
         {
