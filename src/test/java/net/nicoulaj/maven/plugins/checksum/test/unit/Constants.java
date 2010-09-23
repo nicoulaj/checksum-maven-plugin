@@ -18,12 +18,12 @@ package net.nicoulaj.maven.plugins.checksum.test.unit;
 import java.io.File;
 
 /**
- * Utilities used by unit test classes.
+ * Constants used by unit test classes.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
-public class Utils
+public class Constants
 {
     /**
      * Path of the test resources directory.
@@ -39,9 +39,4 @@ public class Utils
      * Path of the sample files hashcodes directory.
      */
     public static final String SAMPLE_FILES_HASHCODES_PATH = RESOURCES_PATH + File.separator + "hashcodes";
-
-    /**
-     * The file encoding used by default for tests.
-     */
-    public static final String DEFAULT_TESTS_ENCODING = "UTF-8";
 }

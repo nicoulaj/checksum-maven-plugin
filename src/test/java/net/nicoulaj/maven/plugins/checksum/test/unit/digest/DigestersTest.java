@@ -15,11 +15,10 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test.unit.digest;
 
-import net.nicoulaj.maven.plugins.checksum.Constants;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterException;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
-import net.nicoulaj.maven.plugins.checksum.test.unit.Utils;
+import net.nicoulaj.maven.plugins.checksum.test.unit.Constants;
 
 import org.codehaus.plexus.util.FileUtils;
 import org.junit.Assert;
@@ -66,7 +65,7 @@ public class DigestersTest
     public static Collection<Object[]> getTestParameters()
     {
         List<Object[]> data = new ArrayList<Object[]>();
-        for ( String algorithm : Constants.SUPPORTED_ALGORITHMS )
+        for ( String algorithm : net.nicoulaj.maven.plugins.checksum.Constants.SUPPORTED_ALGORITHMS )
         {
             data.add( new String[]{algorithm} );
         }
@@ -116,11 +115,11 @@ public class DigestersTest
     @Test
     public void testCalculate() throws DigesterException, IOException
     {
-        List<File> testFiles = FileUtils.getFiles( new File( Utils.SAMPLE_FILES_PATH ), null, null );
+        List<File> testFiles = FileUtils.getFiles( new File( Constants.SAMPLE_FILES_PATH ), null, null );
         for ( File testFile : testFiles )
         {
             String calculatedHash = digester.calculate( testFile );
-            String correctHash = FileUtils.fileRead( Utils.SAMPLE_FILES_HASHCODES_PATH + File.separator
+            String correctHash = FileUtils.fileRead( Constants.SAMPLE_FILES_HASHCODES_PATH + File.separator
                                                      + testFile.getName() + digester.getFileExtension() );
             Assert.assertEquals( "The calculated " + digester.getAlgorithm() + " hashcode for "
                                  + testFile.getName() + " is incorrect.", correctHash, calculatedHash );

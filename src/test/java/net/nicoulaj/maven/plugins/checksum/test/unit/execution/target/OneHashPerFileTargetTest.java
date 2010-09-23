@@ -19,7 +19,7 @@ import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
-import net.nicoulaj.maven.plugins.checksum.test.unit.Utils;
+import net.nicoulaj.maven.plugins.checksum.test.unit.Constants;
 
 import org.codehaus.plexus.util.FileUtils;
 import org.junit.Assert;
@@ -42,7 +42,7 @@ public class OneHashPerFileTargetTest
      * The instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget} used for the
      * test.
      */
-    ExecutionTarget target = new OneHashPerFileTarget( Utils.DEFAULT_TESTS_ENCODING );
+    ExecutionTarget target = new OneHashPerFileTarget( net.nicoulaj.maven.plugins.checksum.Constants.DEFAULT_ENCODING );
 
     /**
      * Assert the target writes the right content to the right file.
@@ -57,7 +57,7 @@ public class OneHashPerFileTargetTest
     public void testOneHashPerFileTargetWrite()
     throws ExecutionTargetWriteException, IOException, NoSuchAlgorithmException
     {
-        List<File> testFiles = FileUtils.getFiles( new File( Utils.SAMPLE_FILES_PATH ), null, null );
+        List<File> testFiles = FileUtils.getFiles( new File( Constants.SAMPLE_FILES_PATH ), null, null );
         for ( File testFile : testFiles )
         {
             // Prepare the test

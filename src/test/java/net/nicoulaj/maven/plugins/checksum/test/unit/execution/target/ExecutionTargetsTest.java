@@ -15,11 +15,11 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test.unit.execution.target;
 
+import net.nicoulaj.maven.plugins.checksum.Constants;
 import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
-import net.nicoulaj.maven.plugins.checksum.test.unit.Utils;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,8 +53,8 @@ public class ExecutionTargetsTest
     public static Collection<Object[]> getTestParameters()
     {
         Object[][] data = new Object[][]{{new MavenLogTarget( null )},
-                                         {new OneHashPerFileTarget( Utils.DEFAULT_TESTS_ENCODING )},
-                                         {new CsvSummaryFileTarget( new File( "" ), Utils.DEFAULT_TESTS_ENCODING )}};
+                                         {new OneHashPerFileTarget( Constants.DEFAULT_ENCODING )},
+                                         {new CsvSummaryFileTarget( new File( "" ), Constants.DEFAULT_ENCODING )}};
         return Arrays.asList( data );
     }
 
