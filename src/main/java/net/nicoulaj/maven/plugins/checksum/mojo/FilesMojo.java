@@ -30,6 +30,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.FileUtils;
+import org.codehaus.plexus.util.StringUtils;
 
 import java.io.File;
 import java.util.Arrays;
@@ -108,6 +109,14 @@ public class FilesMojo extends AbstractMojo
     protected boolean individualFiles;
 
     /**
+     * The directory where output files will be stored. Leave unset to have each file next to the source file.
+     *
+     * @parameter
+     * @since 1.0
+     */
+    protected String individualFilesOutputDirectory;
+
+    /**
      * Indicates whether the build will print checksums in the build log.
      *
      * @parameter default-value="false"
@@ -164,7 +173,13 @@ public class FilesMojo extends AbstractMojo
         }
         if ( individualFiles )
         {
-            execution.addTarget( new OneHashPerFileTarget( encoding ) );
+            File outputDirectory = null;
+            if ( StringUtils.isNotEmpty( individualFilesOutputDirectory ) )
+            {
+                outputDirectory = FileUtils.resolveFile( new File( project.getBuild().getDirectory() ),
+                                                         individualFilesOutputDirectory );
+            }
+            execution.addTarget( new OneHashPerFileTarget( encoding, outputDirectory ) );
         }
         if ( csvSummary )
         {
