@@ -244,8 +244,7 @@ public class DependenciesMojo extends AbstractMojo
      *
      * @return the list of files that should be processed.
      */
-    protected List<File> getFilesToProcess
-    ()
+    protected List<File> getFilesToProcess()
     {
         List<File> files = new LinkedList<File>();
 
