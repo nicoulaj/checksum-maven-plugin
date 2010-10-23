@@ -73,7 +73,8 @@ public class OneHashPerFileTarget implements ExecutionTarget
         {
             if ( outputDirectory.exists() && !outputDirectory.isDirectory() )
             {
-                throw new ExecutionTargetInitializationException( "'" + outputDirectory.getPath() + "' already exists and is not a directory." );
+                throw new ExecutionTargetInitializationException( "'" + outputDirectory.getPath()
+                                                                  + "' already exists and is not a directory." );
             }
             else
             {
