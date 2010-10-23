@@ -60,7 +60,7 @@ public class DigesterFactory
      *
      * @return the only instance of {@link net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory}.
      */
-    public static DigesterFactory getInstance()
+    public static synchronized DigesterFactory getInstance()
     {
         if ( instance == null )
         {
@@ -77,7 +77,7 @@ public class DigesterFactory
      * @throws NoSuchAlgorithmException if the checksum algorithm is not supported or invalid.
      * @see FileDigester
      */
-    public FileDigester getFileDigester( String algorithm ) throws NoSuchAlgorithmException
+    public synchronized FileDigester getFileDigester( String algorithm ) throws NoSuchAlgorithmException
     {
         FileDigester digester = digesters.get( algorithm );
 

@@ -46,6 +46,7 @@ import java.util.List;
  * @phase verify
  * @requiresProject true
  * @inheritByDefault false
+ * @threadSafe
  * @since 1.0
  */
 public class ArtifactsMojo extends AbstractMojo

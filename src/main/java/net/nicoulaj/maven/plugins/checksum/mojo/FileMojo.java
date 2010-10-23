@@ -39,6 +39,7 @@ import java.util.Arrays;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @goal file
+ * @threadSafe
  * @since 1.0
  */
 public class FileMojo extends AbstractMojo

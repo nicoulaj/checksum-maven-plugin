@@ -48,6 +48,7 @@ import java.util.Set;
  * @requiresProject true
  * @inheritByDefault false
  * @requiresDependencyResolution runtime
+ * @threadSafe
  * @since 1.0
  */
 public class DependenciesMojo extends AbstractMojo

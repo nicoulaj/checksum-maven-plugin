@@ -44,6 +44,7 @@ import java.util.List;
  * @goal files
  * @phase verify
  * @inheritByDefault false
+ * @threadSafe
  * @since 1.0
  */
 public class FilesMojo extends AbstractMojo
