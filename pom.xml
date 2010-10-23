@@ -14,7 +14,8 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Project coordinates -->
@@ -366,7 +367,7 @@
         </property>
       </activation>
       <properties>
-        <invoker.settings-file />
+        <invoker.settings-file/>
       </properties>
     </profile>
 
@@ -448,6 +449,29 @@
         <maven-site-plugin.version>3.0-beta-1</maven-site-plugin.version>
         <maven-project-info-reports-plugin.version>2.2</maven-project-info-reports-plugin.version>
       </properties>
+    </profile>
+
+    <!-- Check for plugins and dependencies updates -->
+    <profile>
+      <id>check-updates</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <version>1.2</version>
+            <executions>
+              <execution>
+                <phase>validate</phase>
+                <goals>
+                  <goal>display-dependency-updates</goal>
+                  <goal>display-plugin-updates</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
 
   </profiles>
