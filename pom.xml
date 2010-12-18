@@ -28,7 +28,7 @@
   <description>
     <![CDATA[Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.]]>
   </description>
-  <url>http://maven.ju-n.net/maven-checksum-plugin</url>
+  <url>http://projects.ju-n.net/maven-checksum-plugin</url>
 
   <!-- License -->
   <licenses>
