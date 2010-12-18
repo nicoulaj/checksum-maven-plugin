@@ -3,15 +3,6 @@ maven-checksum-plugin
 
 **Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.**
 
-## Documentation
-The Maven generated documentation site is available [here](http://maven.ju-n.net/maven-checksum-plugin).
-
-## Bug reports / features requests
-Please report any bug or feature request in the [issues section](http://github.com/nicoulaj/maven-checksum-plugin/issues).
-
-## Contributions
-Any contribution is welcome, feel free to fork this project and send me a pull request.
-
-## License
-This project is released under the terms of the [Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).
-See COPYING for details.
+ * [Documentation, usage guide and reports](http://maven.ju-n.net/maven-checksum-plugin)
+ * [Bugs/feature requests](http://github.com/nicoulaj/maven-checksum-plugin/issues)
+ * [Continuous integration](http://hudson.fazend.com:8081/hudson/job/mavenchecksumplugin) (kindly provided by [FaZend](http://www.fazend.com))

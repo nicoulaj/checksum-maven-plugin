@@ -88,6 +88,12 @@
     </site>
   </distributionManagement>
 
+  <!-- Continuous integration -->
+  <ciManagement>
+    <system>FaZend (Hudson)</system>
+    <url>http://hudson.fazend.com:8081/hudson/job/mavenchecksumplugin</url>
+  </ciManagement>
+
   <!-- Properties -->
   <properties>
 
