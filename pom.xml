@@ -28,7 +28,8 @@
   <description>
     <![CDATA[Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.]]>
   </description>
-  <url>http://projects.ju-n.net/maven-checksum-plugin</url>
+  <url>http://nicoulaj.github.com/maven-checksum-plugin</url>
+  <inceptionYear>2010</inceptionYear>
 
   <!-- License -->
   <licenses>
@@ -82,9 +83,8 @@
       <uniqueVersion>false</uniqueVersion>
     </snapshotRepository>
     <site>
-      <id>ju-n.net</id>
-      <name>maven-checksum-plugin site on ju-n.net</name>
-      <url>ftp://ftp.ju-n.net/maven/maven-checksum-plugin</url>
+      <id>github</id>
+      <url>gitsite:git@github.com/nicoulaj/maven-checksum-plugin.git</url>
     </site>
   </distributionManagement>
 
@@ -342,9 +342,19 @@
     <!-- Extensions -->
     <extensions>
       <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-ftp</artifactId>
-        <version>1.0-beta-6</version>
+        <groupId>org.apache.maven.scm</groupId>
+        <artifactId>maven-scm-provider-gitexe</artifactId>
+        <version>1.4</version>
+      </extension>
+      <extension>
+        <groupId>org.apache.maven.scm</groupId>
+        <artifactId>maven-scm-manager-plexus</artifactId>
+        <version>1.4</version>
+      </extension>
+      <extension>
+        <groupId>org.kathrynhuxtable.maven.wagon</groupId>
+        <artifactId>wagon-gitsite</artifactId>
+        <version>0.2</version>
       </extension>
     </extensions>
 

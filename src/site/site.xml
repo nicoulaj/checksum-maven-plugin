@@ -53,9 +53,6 @@
       <item name="Using custom checksum algorithms" href="/examples/using-custom-checksum-algorithms.html"/>
     </menu>
     <menu ref="reports"/>
-    <menu name="Links">
-      <item name="Project home" href="http://www.github.com/nicoulaj/maven-checksum-plugin"/>
-    </menu>
 
   </body>
 
