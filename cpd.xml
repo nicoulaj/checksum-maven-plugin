@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd-cpd>
+<duplication lines="57" tokens="251">
+<file line="158" path="/home/nicoulaj/projects/maven-checksum-plugin/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/ArtifactsMojo.java"/>
+<file line="194" path="/home/nicoulaj/projects/maven-checksum-plugin/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/DependenciesMojo.java"/>
+<codefragment>
+<![CDATA[
+    public void execute() throws MojoExecutionException, MojoFailureException
+    {
+        // Prepare an execution.
+        Execution execution = ( failOnError ) ? new FailOnErrorExecution() : new NeverFailExecution( getLog() );
+        execution.setAlgorithms( algorithms );
+        execution.setFiles( getFilesToProcess() );
+        if ( !quiet )
+        {
+            execution.addTarget( new MavenLogTarget( getLog() ) );
+        }
+        if ( individualFiles )
+        {
+            File outputDirectory = null;
+            if ( StringUtils.isNotEmpty( individualFilesOutputDirectory ) )
+            {
+                outputDirectory = FileUtils.resolveFile( new File( project.getBuild().getDirectory() ),
+                                                         individualFilesOutputDirectory );
+            }
+            execution.addTarget( new OneHashPerFileTarget( encoding, outputDirectory ) );
+        }
+        if ( csvSummary )
+        {
+            execution.addTarget( new CsvSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
+                                                                                                   .getDirectory() ),
+                                                                                  csvSummaryFile ),
+                                                           encoding ) );
+        }
+        if ( xmlSummary )
+        {
+            execution.addTarget( new XmlSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
+                                                                                                   .getDirectory() ),
+                                                                                  xmlSummaryFile ),
+                                                           encoding ) );
+        }
+
+        // Run the execution.
+        try
+        {
+            execution.run();
+        }
+        catch ( ExecutionException e )
+        {
+            getLog().error( e.getMessage() );
+            throw new MojoFailureException( e.getMessage() );
+        }
+    }
+
+    /**
+     * Build the list of files from which digests should be generated.
+     *
+     * <p>The list is composed of the project dependencies.</p>
+     *
+     * @return the list of files that should be processed.
+     */
+    protected List<File> getFilesToProcess()
+    {
+        List<File> files = new LinkedList<File>();
+]]>
+</codefragment>
+</duplication>
+<duplication lines="41" tokens="187">
+<file line="163" path="/home/nicoulaj/projects/maven-checksum-plugin/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/ArtifactsMojo.java"/>
+<file line="170" path="/home/nicoulaj/projects/maven-checksum-plugin/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/FilesMojo.java"/>
+<codefragment>
+<![CDATA[
+        execution.setFiles( files );
+        if ( !quiet )
+        {
+            execution.addTarget( new MavenLogTarget( getLog() ) );
+        }
+        if ( individualFiles )
+        {
+            File outputDirectory = null;
+            if ( StringUtils.isNotEmpty( individualFilesOutputDirectory ) )
+            {
+                outputDirectory = FileUtils.resolveFile( new File( project.getBuild().getDirectory() ),
+                                                         individualFilesOutputDirectory );
+            }
+            execution.addTarget( new OneHashPerFileTarget( encoding, outputDirectory ) );
+        }
+        if ( csvSummary )
+        {
+            execution.addTarget( new CsvSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
+                                                                                                   .getDirectory() ),
+                                                                                  csvSummaryFile ),
+                                                           encoding ) );
+        }
+        if ( xmlSummary )
+        {
+            execution.addTarget( new XmlSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
+                                                                                                   .getDirectory() ),
+                                                                                  xmlSummaryFile ),
+                                                           encoding ) );
+        }
+
+        // Run the execution.
+        try
+        {
+            execution.run();
+        }
+        catch ( ExecutionException e )
+        {
+            getLog().error( e.getMessage() );
+            throw new MojoFailureException( e.getMessage() );
+        }
+    }
+]]>
+</codefragment>
+</duplication>
+</pmd-cpd>
