@@ -14,16 +14,21 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- Project coordinates -->
+  <parent>
+    <groupId>net.ju-n</groupId>
+    <artifactId>net-ju-n-parent</artifactId>
+    <version>1.0.2</version>
+  </parent>
+
   <groupId>net.ju-n.maven.plugins</groupId>
   <artifactId>maven-checksum-plugin</artifactId>
   <version>1.1-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
-  <!-- Project info -->
   <name>maven-checksum-plugin</name>
   <description>
     <![CDATA[Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.]]>
@@ -31,7 +36,6 @@
   <url>http://nicoulaj.github.com/maven-checksum-plugin</url>
   <inceptionYear>2010</inceptionYear>
 
-  <!-- License -->
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -44,31 +48,17 @@
     </license>
   </licenses>
 
-  <!-- Team -->
-  <developers>
-    <developer>
-      <id>nicoulaj</id>
-      <name>Julien Nicoulaud</name>
-      <email>julien.nicoulaud@gmail.com</email>
-      <timezone>+1</timezone>
-      <url>http://www.github.com/nicoulaj</url>
-    </developer>
-  </developers>
-
-  <!-- Version control system -->
   <scm>
     <url>http://github.com/nicoulaj/maven-checksum-plugin</url>
     <connection>scm:git:git@github.com:nicoulaj/maven-checksum-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:nicoulaj/maven-checksum-plugin.git</developerConnection>
   </scm>
 
-  <!-- Issues management -->
   <issueManagement>
     <system>Github</system>
     <url>${project.scm.url}/issues</url>
   </issueManagement>
 
-  <!-- Distribution management -->
   <distributionManagement>
     <downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
     <repository>
@@ -88,38 +78,19 @@
     </site>
   </distributionManagement>
 
-  <!-- Continuous integration -->
   <ciManagement>
     <system>FaZend (Hudson)</system>
     <url>http://hudson.fazend.com:8081/hudson/job/mavenchecksumplugin</url>
   </ciManagement>
 
-  <!-- Properties -->
   <properties>
 
     <!-- Target versions -->
     <maven.target-version>2.2.0</maven.target-version>
-    <java.target-version>5</java.target-version>
 
     <!-- Build settings -->
     <debug>false</debug>
-    <encoding>UTF-8</encoding>
-    <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
     <invoker.settings-file>${project.basedir}/src/test-integration/settings.xml</invoker.settings-file>
-
-    <!-- Reporting plugins versions -->
-    <maven-plugin-plugin.version>2.6</maven-plugin-plugin.version>
-    <maven-site-plugin.version>2.1.1</maven-site-plugin.version>
-    <maven-project-info-reports-plugin.version>2.1</maven-project-info-reports-plugin.version>
-    <maven-javadoc-plugin.version>2.7</maven-javadoc-plugin.version>
-    <maven-jxr-plugin.version>2.2</maven-jxr-plugin.version>
-    <maven-surefire-report-plugin.version>2.6</maven-surefire-report-plugin.version>
-    <maven-invoker-plugin.version>1.5</maven-invoker-plugin.version>
-    <maven-pmd-plugin.version>2.5</maven-pmd-plugin.version>
-    <maven-checkstyle-plugin.version>2.6</maven-checkstyle-plugin.version>
-    <maven-changelog-plugin.version>2.2</maven-changelog-plugin.version>
-    <cobertura-maven-plugin.version>2.4</cobertura-maven-plugin.version>
-    <taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
 
   </properties>
 
@@ -138,19 +109,13 @@
       </dependency>
       <dependency>
         <groupId>org.bouncycastle</groupId>
-        <artifactId>bcprov-jdk1${java.target-version}</artifactId>
+        <artifactId>bcprov-jdk15</artifactId>
         <version>1.45</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-utils</artifactId>
         <version>2.0.5</version>
-      </dependency>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.8.2</version>
-        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -180,122 +145,9 @@
     </dependency>
   </dependencies>
 
-  <!-- Build prerequisites -->
-  <prerequisites>
-    <maven>2.2.1</maven>
-  </prerequisites>
-
-  <!-- Build -->
   <build>
 
-    <!-- Plugins management -->
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.3.2</version>
-          <configuration>
-            <source>1.${java.target-version}</source>
-            <target>1.${java.target-version}</target>
-            <optimize>true</optimize>
-            <showWarnings>true</showWarnings>
-            <showDeprecation>true</showDeprecation>
-          </configuration>
-        </plugin>
-        <plugin>
-          <artifactId>maven-invoker-plugin</artifactId>
-          <version>1.5</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-gpg-plugin</artifactId>
-          <version>1.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.5</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>2.1.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <version>1.0-beta-1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>${maven-site-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-plugin-plugin</artifactId>
-          <version>${maven-plugin-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>${maven-project-info-reports-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>${maven-javadoc-plugin.version}</version>
-          <configuration>
-            <encoding>${encoding}</encoding>
-            <links>
-              <link>http://download-llnw.oracle.com/javase/1.5.0/docs/api</link>
-              <link>http://maven.apache.org/ref/${maven.target-version}/apidocs</link>
-              <link>http://plexus.codehaus.org/plexus-components/plexus-digest/apidocs</link>
-              <link>http://plexus.codehaus.org/plexus-utils/apidocs</link>
-              <link>http://junit.sourceforge.net/javadoc</link>
-            </links>
-            <tagletArtifacts>
-              <tagletArtifact>
-                <groupId>org.apache.maven.plugin-tools</groupId>
-                <artifactId>maven-plugin-tools-javadoc</artifactId>
-                <version>2.6</version>
-              </tagletArtifact>
-            </tagletArtifacts>
-          </configuration>
-        </plugin>
-        <plugin>
-          <artifactId>maven-jxr-plugin</artifactId>
-          <version>${maven-jxr-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-report-plugin</artifactId>
-          <version>${maven-surefire-report-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-pmd-plugin</artifactId>
-          <version>${maven-pmd-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>${maven-checkstyle-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-changelog-plugin</artifactId>
-          <version>${maven-changelog-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>taglist-maven-plugin</artifactId>
-          <version>${taglist-maven-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>cobertura-maven-plugin</artifactId>
-          <version>${cobertura-maven-plugin.version}</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-
-    <!-- Default build -->
     <plugins>
-
-      <!-- Run integration tests -->
       <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
         <executions>
@@ -327,7 +179,6 @@
       </plugin>
       <plugin>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>${maven-plugin-plugin.version}</version>
         <executions>
           <execution>
             <id>generated-helpmojo</id>
@@ -337,9 +188,38 @@
           </execution>
         </executions>
       </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.5</source>
+            <target>1.5</target>
+            <optimize>true</optimize>
+            <showWarnings>true</showWarnings>
+            <showDeprecation>true</showDeprecation>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <configuration>
+            <encoding>${encoding}</encoding>
+            <links>
+              <link>http://download-llnw.oracle.com/javase/1.5.0/docs/api</link>
+              <link>http://maven.apache.org/ref/${maven.target-version}/apidocs</link>
+              <link>http://plexus.codehaus.org/plexus-components/plexus-digest/apidocs</link>
+              <link>http://plexus.codehaus.org/plexus-utils/apidocs</link>
+              <link>http://junit.sourceforge.net/javadoc</link>
+            </links>
+            <tagletArtifacts>
+              <tagletArtifact>
+                <groupId>org.apache.maven.plugin-tools</groupId>
+                <artifactId>maven-plugin-tools-javadoc</artifactId>
+                <version>2.6</version>
+              </tagletArtifact>
+            </tagletArtifacts>
+          </configuration>
+        </plugin>
     </plugins>
 
-    <!-- Extensions -->
     <extensions>
       <extension>
         <groupId>org.apache.maven.scm</groupId>
@@ -360,7 +240,6 @@
 
   </build>
 
-  <!-- Profiles -->
   <profiles>
 
     <!-- Increase verbosity -->
@@ -371,8 +250,7 @@
       </properties>
     </profile>
 
-    <!-- Do not use a custom settings file for maven-invoker-plugin
-    behind a proxy. See MINVOKER-97. -->
+    <!-- Do not use a custom settings file for maven-invoker-plugin behind a proxy. See MINVOKER-97. -->
     <profile>
       <id>behind-proxy</id>
       <activation>
@@ -382,7 +260,7 @@
         </property>
       </activation>
       <properties>
-        <invoker.settings-file />
+        <invoker.settings-file/>
       </properties>
     </profile>
 
@@ -397,96 +275,6 @@
       <properties>
         <invoker.skip>true</invoker.skip>
       </properties>
-    </profile>
-
-    <!-- Release profile -->
-    <profile>
-      <id>release</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-                <configuration>
-                  <useAgent>true</useAgent>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-source-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <!-- Adapt some plugins versions when building on Maven 3 -->
-    <profile>
-      <id>maven-3-build</id>
-      <activation>
-        <file>
-          <exists>${basedir}</exists>
-          <!-- Trick... this property is only available on Maven 3. -->
-        </file>
-      </activation>
-      <properties>
-        <maven-site-plugin.version>3.0-beta-3</maven-site-plugin.version>
-        <maven-project-info-reports-plugin.version>2.2</maven-project-info-reports-plugin.version>
-      </properties>
-    </profile>
-
-    <!-- Check for plugins and dependencies updates -->
-    <profile>
-      <id>check-updates</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>versions-maven-plugin</artifactId>
-            <version>1.2</version>
-            <executions>
-              <execution>
-                <phase>validate</phase>
-                <goals>
-                  <goal>display-dependency-updates</goal>
-                  <goal>display-plugin-updates</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
 
   </profiles>
@@ -554,7 +342,7 @@
         <artifactId>maven-pmd-plugin</artifactId>
         <version>${maven-pmd-plugin.version}</version>
         <configuration>
-          <targetJdk>1.${java.target-version}</targetJdk>
+          <targetJdk>1.5</targetJdk>
         </configuration>
       </plugin>
       <plugin>
