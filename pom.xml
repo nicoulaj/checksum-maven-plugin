@@ -212,17 +212,17 @@
       <extension>
         <groupId>org.apache.maven.scm</groupId>
         <artifactId>maven-scm-provider-gitexe</artifactId>
-        <version>1.4</version>
+        <version>${maven-scm-provider-gitexe.version}</version>
       </extension>
       <extension>
         <groupId>org.apache.maven.scm</groupId>
         <artifactId>maven-scm-manager-plexus</artifactId>
-        <version>1.4</version>
+        <version>${maven-scm-manager-plexus.version}</version>
       </extension>
       <extension>
         <groupId>org.kathrynhuxtable.maven.wagon</groupId>
         <artifactId>wagon-gitsite</artifactId>
-        <version>0.3.1</version>
+        <version>${wagon-gitsite.version}</version>
       </extension>
     </extensions>
 
