@@ -60,18 +60,6 @@
   </issueManagement>
 
   <distributionManagement>
-    <downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
-    <repository>
-      <id>sonatype-oss-staging</id>
-      <name>Sonatype OSS staging repository</name>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-    </repository>
-    <snapshotRepository>
-      <id>sonatype-oss-snapshots</id>
-      <name>Sonatype OSS snapshots repository</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <uniqueVersion>false</uniqueVersion>
-    </snapshotRepository>
     <site>
       <id>github</id>
       <url>gitsite:git@github.com/nicoulaj/maven-checksum-plugin.git</url>
