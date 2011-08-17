@@ -21,7 +21,7 @@
   <parent>
     <groupId>net.ju-n</groupId>
     <artifactId>net-ju-n-parent</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
   </parent>
 
   <groupId>net.ju-n.maven.plugins</groupId>
