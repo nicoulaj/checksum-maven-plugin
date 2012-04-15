@@ -56,7 +56,7 @@ public class CRC32FileDigester extends AbstractFileDigester
         }
         catch ( FileNotFoundException e )
         {
-            throw new DigesterException( "Unable not read " + file.getPath() + ": " + e.getMessage() );
+            throw new DigesterException( "Unable to read " + file.getPath() + ": " + e.getMessage() );
         }
 
         byte[] buf = new byte[STREAMING_BUFFER_SIZE];
