@@ -9,7 +9,7 @@
 <div id="overview"><a href="../../../../../../../apidocs/net/nicoulaj/maven/plugins/checksum/digest/CRC32FileDigester.html">View Javadoc</a></div><pre>
 
 <a class="jxr_linenumber" name="1" href="#1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="2" href="#2">2</a>   <em class="jxr_comment"> * Copyright 2010 Julien Nicoulaud &lt;julien.nicoulaud@gmail.com&gt;</em>
+<a class="jxr_linenumber" name="2" href="#2">2</a>   <em class="jxr_comment"> * Copyright 2010-2012 Julien Nicoulaud &lt;julien.nicoulaud@gmail.com&gt;</em>
 <a class="jxr_linenumber" name="3" href="#3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="4" href="#4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="5" href="#5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -39,7 +39,7 @@
 <a class="jxr_linenumber" name="29" href="#29">29</a>  <em class="jxr_javadoccomment"> * @see FileDigester</em>
 <a class="jxr_linenumber" name="30" href="#30">30</a>  <em class="jxr_javadoccomment"> * @since 1.0</em>
 <a class="jxr_linenumber" name="31" href="#31">31</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="32" href="#32">32</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> CRC32FileDigester <strong class="jxr_keyword">extends</strong> <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/digest/AbstractFileDigester.html">AbstractFileDigester</a>
+<a class="jxr_linenumber" name="32" href="#32">32</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/digest/CRC32FileDigester.html">CRC32FileDigester</a> <strong class="jxr_keyword">extends</strong> <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/digest/AbstractFileDigester.html">AbstractFileDigester</a>
 <a class="jxr_linenumber" name="33" href="#33">33</a>  {
 <a class="jxr_linenumber" name="34" href="#34">34</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="35" href="#35">35</a>  <em class="jxr_javadoccomment">     * The identifier of the algorithm supported by this implementation.</em>
@@ -49,7 +49,7 @@
 <a class="jxr_linenumber" name="39" href="#39">39</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="40" href="#40">40</a>  <em class="jxr_javadoccomment">     * Build a new instance of {@link CRC32FileDigester}.</em>
 <a class="jxr_linenumber" name="41" href="#41">41</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="42" href="#42">42</a>      <strong class="jxr_keyword">public</strong> CRC32FileDigester()
+<a class="jxr_linenumber" name="42" href="#42">42</a>      <strong class="jxr_keyword">public</strong> <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/digest/CRC32FileDigester.html">CRC32FileDigester</a>()
 <a class="jxr_linenumber" name="43" href="#43">43</a>      {
 <a class="jxr_linenumber" name="44" href="#44">44</a>          <strong class="jxr_keyword">super</strong>( ALGORITHM );
 <a class="jxr_linenumber" name="45" href="#45">45</a>      }
@@ -66,7 +66,7 @@
 <a class="jxr_linenumber" name="56" href="#56">56</a>          }
 <a class="jxr_linenumber" name="57" href="#57">57</a>          <strong class="jxr_keyword">catch</strong> ( FileNotFoundException e )
 <a class="jxr_linenumber" name="58" href="#58">58</a>          {
-<a class="jxr_linenumber" name="59" href="#59">59</a>              <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/digest/DigesterException.html">DigesterException</a>( <span class="jxr_string">"Unable not read "</span> + file.getPath() + <span class="jxr_string">": "</span> + e.getMessage() );
+<a class="jxr_linenumber" name="59" href="#59">59</a>              <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/digest/DigesterException.html">DigesterException</a>( <span class="jxr_string">"Unable to read "</span> + file.getPath() + <span class="jxr_string">": "</span> + e.getMessage() );
 <a class="jxr_linenumber" name="60" href="#60">60</a>          }
 <a class="jxr_linenumber" name="61" href="#61">61</a>  
 <a class="jxr_linenumber" name="62" href="#62">62</a>          byte[] buf = <strong class="jxr_keyword">new</strong> byte[STREAMING_BUFFER_SIZE];

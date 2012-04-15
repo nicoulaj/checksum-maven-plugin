@@ -2,20 +2,20 @@
 
 <rss version="0.91">
   <channel>
-    <title>maven-checksum-plugin - Checkstyle report</title>
-    <link>http://nicoulaj.github.com/maven-checksum-plugin</link>
-    <description>maven-checksum-plugin - Checkstyle report</description>
+    <title>checksum-maven-plugin - Checkstyle report</title>
+    <link>http://nicoulaj.github.com/checksum-maven-plugin</link>
+    <description>checksum-maven-plugin - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2010 - 2011</copyright>
+    <copyright>&#169;2010 - 2012</copyright>
     <item>
       <title>File: 44,
-             Errors: 6,
+             Errors: 4,
              Warnings: 0,
              Infos: 0
       </title>
-            <link>http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html</link>
+            <link>http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html</link>
       <description>
-        <p>Click <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -29,21 +29,7 @@
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.mojo.ArtifactsMojo.java">net/nicoulaj/maven/plugins/checksum/mojo/ArtifactsMojo.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.digest.ChecksumFactoryDigestersTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/digest/ChecksumFactoryDigestersTest.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.mojo.ArtifactsMojo.java">net/nicoulaj/maven/plugins/checksum/mojo/ArtifactsMojo.java</a>
                 </td>
                 <td>
                   0
@@ -57,7 +43,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.Execution.java">net/nicoulaj/maven/plugins/checksum/execution/Execution.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.digest.ChecksumFactoryDigestersTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/digest/ChecksumFactoryDigestersTest.java</a>
                 </td>
                 <td>
                   0
@@ -71,7 +57,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.package-info.java">net/nicoulaj/maven/plugins/checksum/execution/target/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.Execution.java">net/nicoulaj/maven/plugins/checksum/execution/Execution.java</a>
                 </td>
                 <td>
                   0
@@ -85,7 +71,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.Constants.java">net/nicoulaj/maven/plugins/checksum/Constants.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.package-info.java">net/nicoulaj/maven/plugins/checksum/execution/target/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -99,7 +85,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.package-info.java">net/nicoulaj/maven/plugins/checksum/test/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.Constants.java">net/nicoulaj/maven/plugins/checksum/Constants.java</a>
                 </td>
                 <td>
                   0
@@ -113,21 +99,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.mojo.FilesMojo.java">net/nicoulaj/maven/plugins/checksum/mojo/FilesMojo.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution.java">net/nicoulaj/maven/plugins/checksum/execution/FailOnErrorExecution.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.package-info.java">net/nicoulaj/maven/plugins/checksum/test/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -141,7 +113,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.digest.package-info.java">net/nicoulaj/maven/plugins/checksum/test/unit/digest/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution.java">net/nicoulaj/maven/plugins/checksum/execution/FailOnErrorExecution.java</a>
                 </td>
                 <td>
                   0
@@ -155,7 +127,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.FileDigester.java">net/nicoulaj/maven/plugins/checksum/digest/FileDigester.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.mojo.FilesMojo.java">net/nicoulaj/maven/plugins/checksum/mojo/FilesMojo.java</a>
                 </td>
                 <td>
                   0
@@ -169,49 +141,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.mojo.FileMojo.java">net/nicoulaj/maven/plugins/checksum/mojo/FileMojo.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.digest.ChecksumFactoryTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/digest/ChecksumFactoryTest.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.mojo.DependenciesMojo.java">net/nicoulaj/maven/plugins/checksum/mojo/DependenciesMojo.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelper.java">net/nicoulaj/maven/plugins/checksum/test/integration/PostBuildScriptHelper.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.digest.package-info.java">net/nicoulaj/maven/plugins/checksum/test/unit/digest/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -225,7 +155,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.CRC32FileDigester.java">net/nicoulaj/maven/plugins/checksum/digest/CRC32FileDigester.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.FileDigester.java">net/nicoulaj/maven/plugins/checksum/digest/FileDigester.java</a>
                 </td>
                 <td>
                   0
@@ -239,7 +169,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.AbstractExecution.java">net/nicoulaj/maven/plugins/checksum/execution/AbstractExecution.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.mojo.FileMojo.java">net/nicoulaj/maven/plugins/checksum/mojo/FileMojo.java</a>
                 </td>
                 <td>
                   0
@@ -253,7 +183,21 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.mojo.package-info.java">net/nicoulaj/maven/plugins/checksum/mojo/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.digest.ChecksumFactoryTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/digest/ChecksumFactoryTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.mojo.DependenciesMojo.java">net/nicoulaj/maven/plugins/checksum/mojo/DependenciesMojo.java</a>
                 </td>
                 <td>
                   0
@@ -267,7 +211,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.integration.package-info.java">net/nicoulaj/maven/plugins/checksum/test/integration/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelper.java">net/nicoulaj/maven/plugins/checksum/test/integration/PostBuildScriptHelper.java</a>
                 </td>
                 <td>
                   0
@@ -281,7 +225,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException.java">net/nicoulaj/maven/plugins/checksum/execution/target/ExecutionTargetWriteException.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.AbstractExecution.java">net/nicoulaj/maven/plugins/checksum/execution/AbstractExecution.java</a>
                 </td>
                 <td>
                   0
@@ -295,7 +239,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.AbstractFileDigester.java">net/nicoulaj/maven/plugins/checksum/digest/AbstractFileDigester.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.CRC32FileDigester.java">net/nicoulaj/maven/plugins/checksum/digest/CRC32FileDigester.java</a>
                 </td>
                 <td>
                   0
@@ -309,7 +253,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget.java">net/nicoulaj/maven/plugins/checksum/execution/target/CsvSummaryFileTarget.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.mojo.package-info.java">net/nicoulaj/maven/plugins/checksum/mojo/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -323,7 +267,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget.java">net/nicoulaj/maven/plugins/checksum/execution/target/OneHashPerFileTarget.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.integration.package-info.java">net/nicoulaj/maven/plugins/checksum/test/integration/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -337,7 +281,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.package-info.java">net/nicoulaj/maven/plugins/checksum/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException.java">net/nicoulaj/maven/plugins/checksum/execution/target/ExecutionTargetWriteException.java</a>
                 </td>
                 <td>
                   0
@@ -351,7 +295,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget.java">net/nicoulaj/maven/plugins/checksum/execution/target/ExecutionTarget.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.AbstractFileDigester.java">net/nicoulaj/maven/plugins/checksum/digest/AbstractFileDigester.java</a>
                 </td>
                 <td>
                   0
@@ -365,7 +309,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetCloseException.java">net/nicoulaj/maven/plugins/checksum/execution/target/ExecutionTargetCloseException.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget.java">net/nicoulaj/maven/plugins/checksum/execution/target/CsvSummaryFileTarget.java</a>
                 </td>
                 <td>
                   0
@@ -379,7 +323,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.execution.target.package-info.java">net/nicoulaj/maven/plugins/checksum/test/unit/execution/target/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget.java">net/nicoulaj/maven/plugins/checksum/execution/target/OneHashPerFileTarget.java</a>
                 </td>
                 <td>
                   0
@@ -393,7 +337,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.execution.target.OneHashPerFileTargetTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/execution/target/OneHashPerFileTargetTest.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.package-info.java">net/nicoulaj/maven/plugins/checksum/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -407,7 +351,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget.java">net/nicoulaj/maven/plugins/checksum/execution/target/XmlSummaryFileTarget.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget.java">net/nicoulaj/maven/plugins/checksum/execution/target/ExecutionTarget.java</a>
                 </td>
                 <td>
                   0
@@ -421,7 +365,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.package-info.java">net/nicoulaj/maven/plugins/checksum/digest/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetCloseException.java">net/nicoulaj/maven/plugins/checksum/execution/target/ExecutionTargetCloseException.java</a>
                 </td>
                 <td>
                   0
@@ -435,7 +379,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.package-info.java">net/nicoulaj/maven/plugins/checksum/execution/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.execution.target.package-info.java">net/nicoulaj/maven/plugins/checksum/test/unit/execution/target/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -449,7 +393,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget.java">net/nicoulaj/maven/plugins/checksum/execution/target/MavenLogTarget.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.execution.target.OneHashPerFileTargetTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/execution/target/OneHashPerFileTargetTest.java</a>
                 </td>
                 <td>
                   0
@@ -463,7 +407,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.ExecutionException.java">net/nicoulaj/maven/plugins/checksum/execution/ExecutionException.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget.java">net/nicoulaj/maven/plugins/checksum/execution/target/XmlSummaryFileTarget.java</a>
                 </td>
                 <td>
                   0
@@ -477,7 +421,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.DigesterException.java">net/nicoulaj/maven/plugins/checksum/digest/DigesterException.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.package-info.java">net/nicoulaj/maven/plugins/checksum/digest/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -491,7 +435,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.package-info.java">net/nicoulaj/maven/plugins/checksum/test/unit/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.package-info.java">net/nicoulaj/maven/plugins/checksum/execution/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -505,7 +449,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.MessageDigestFileDigester.java">net/nicoulaj/maven/plugins/checksum/digest/MessageDigestFileDigester.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget.java">net/nicoulaj/maven/plugins/checksum/execution/target/MavenLogTarget.java</a>
                 </td>
                 <td>
                   0
@@ -519,7 +463,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetInitializationException.java">net/nicoulaj/maven/plugins/checksum/execution/target/ExecutionTargetInitializationException.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.ExecutionException.java">net/nicoulaj/maven/plugins/checksum/execution/ExecutionException.java</a>
                 </td>
                 <td>
                   0
@@ -533,7 +477,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory.java">net/nicoulaj/maven/plugins/checksum/digest/DigesterFactory.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.DigesterException.java">net/nicoulaj/maven/plugins/checksum/digest/DigesterException.java</a>
                 </td>
                 <td>
                   0
@@ -547,7 +491,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.execution.target.ExecutionTargetsTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/execution/target/ExecutionTargetsTest.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.package-info.java">net/nicoulaj/maven/plugins/checksum/test/unit/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -561,21 +505,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.digest.DigestersTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/digest/DigestersTest.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.NeverFailExecution.java">net/nicoulaj/maven/plugins/checksum/execution/NeverFailExecution.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.MessageDigestFileDigester.java">net/nicoulaj/maven/plugins/checksum/digest/MessageDigestFileDigester.java</a>
                 </td>
                 <td>
                   0
@@ -589,7 +519,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.execution.package-info.java">net/nicoulaj/maven/plugins/checksum/test/unit/execution/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetInitializationException.java">net/nicoulaj/maven/plugins/checksum/execution/target/ExecutionTargetInitializationException.java</a>
                 </td>
                 <td>
                   0
@@ -603,7 +533,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.mojo.package-info.java">net/nicoulaj/maven/plugins/checksum/test/unit/mojo/package-info.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory.java">net/nicoulaj/maven/plugins/checksum/digest/DigesterFactory.java</a>
                 </td>
                 <td>
                   0
@@ -617,7 +547,21 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.Constants.java">net/nicoulaj/maven/plugins/checksum/test/unit/Constants.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.digest.DigestersTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/digest/DigestersTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.execution.target.ExecutionTargetsTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/execution/target/ExecutionTargetsTest.java</a>
                 </td>
                 <td>
                   0
@@ -631,7 +575,63 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/maven-checksum-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.execution.target.MavenLogTargetTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/execution/target/MavenLogTargetTest.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.NeverFailExecution.java">net/nicoulaj/maven/plugins/checksum/execution/NeverFailExecution.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.execution.package-info.java">net/nicoulaj/maven/plugins/checksum/test/unit/execution/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.mojo.package-info.java">net/nicoulaj/maven/plugins/checksum/test/unit/mojo/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.Constants.java">net/nicoulaj/maven/plugins/checksum/test/unit/Constants.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.test.unit.execution.target.MavenLogTargetTest.java">net/nicoulaj/maven/plugins/checksum/test/unit/execution/target/MavenLogTargetTest.java</a>
                 </td>
                 <td>
                   0

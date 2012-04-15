@@ -38,13 +38,13 @@
 <tr>  <td class="numLine">&nbsp;10</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">/**</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;11</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Display help information on maven-checksum-plugin.&lt;br/&gt; Call &lt;pre&gt;  mvn checksum:help -Ddetail=true -Dgoal=&amp;lt;goal-name&amp;gt;&lt;/pre&gt; to display parameter details.</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Display help information on checksum-maven-plugin.&lt;br/&gt; Call &lt;pre&gt;  mvn checksum:help -Ddetail=true -Dgoal=&amp;lt;goal-name&amp;gt;&lt;/pre&gt; to display parameter details.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;12</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;13</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * @version generated on Wed Aug 17 19:12:20 CEST 2011</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * @version generated on Sun Apr 15 13:53:06 CEST 2012</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;14</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author org.apache.maven.tools.plugin.generator.PluginHelpGenerator (version 2.8)</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author org.apache.maven.tools.plugin.generator.PluginHelpGenerator (version 2.9)</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;15</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * @goal help</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;16</td>  <td class="nbHits">&nbsp;</td>
@@ -143,11 +143,11 @@
 <tr>  <td class="numLineCover">&nbsp;66</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;67</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        append( sb, <span class="string">"net.ju-n.maven.plugins:maven-checksum-plugin:1.1-SNAPSHOT"</span>, 0 );</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        append( sb, <span class="string">"net.ju-n.maven.plugins:checksum-maven-plugin:1.0.1"</span>, 0 );</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;69</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        append( sb, <span class="string">""</span>, 0 );</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;70</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;71</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        append( sb, <span class="string">"maven-checksum-plugin"</span>, 0 );</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;71</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        append( sb, <span class="string">"checksum-maven-plugin"</span>, 0 );</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;72</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        append( sb, <span class="string">"Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files."</span>, 1 );</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;73</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        append( sb, <span class="string">""</span>, 0 );</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;74</td>  <td class="nbHits">&nbsp;</td>
@@ -311,7 +311,7 @@
 <tr>  <td class="numLine">&nbsp;196</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        {</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;197</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            append( sb, <span class="string">"checksum:file"</span>, 0 );</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;198</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            append( sb, <span class="string">"Compute specified file checksum digest for all supported checksum algorithms.\nThis goal is a facility for invoking maven-checksum-plugin through the command line.\n\nHere is an example of use:\n\nmvn\u00a0checksum:file\u00a0-Dfile=some-file.zip\n\n\n"</span>, 1 );</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;198</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            append( sb, <span class="string">"Compute specified file checksum digest for all supported checksum algorithms.\nThis goal is a facility for invoking checksum-maven-plugin through the command line.\n\nHere is an example of use:\n\nmvn\u00a0checksum:file\u00a0-Dfile=some-file.zip\n\n\n"</span>, 1 );</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;199</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            append( sb, <span class="string">""</span>, 0 );</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;200</td>  <td class="nbHitsUncovered"><a title="Line 200: Conditional coverage 0 % (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 200: Conditional coverage 0 % (0/2).">            <span class="keyword">if</span> ( detail )</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;201</td>  <td class="nbHits">&nbsp;</td>
@@ -409,7 +409,7 @@
 <tr>  <td class="numLine">&nbsp;272</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        {</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;273</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            append( sb, <span class="string">"checksum:help"</span>, 0 );</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;274</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            append( sb, <span class="string">"Display help information on maven-checksum-plugin.\nCall\n\u00a0\u00a0mvn\u00a0checksum:help\u00a0-Ddetail=true\u00a0-Dgoal=&lt;goal-name&gt;\nto display parameter details."</span>, 1 );</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;274</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            append( sb, <span class="string">"Display help information on checksum-maven-plugin.\nCall\n\u00a0\u00a0mvn\u00a0checksum:help\u00a0-Ddetail=true\u00a0-Dgoal=&lt;goal-name&gt;\nto display parameter details."</span>, 1 );</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;275</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            append( sb, <span class="string">""</span>, 0 );</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;276</td>  <td class="nbHitsUncovered"><a title="Line 276: Conditional coverage 0 % (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 276: Conditional coverage 0 % (0/2).">            <span class="keyword">if</span> ( detail )</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;277</td>  <td class="nbHits">&nbsp;</td>
@@ -684,6 +684,6 @@
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9.4.1 on 17/08/11 19:21.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9.4.1 on 15/04/12 13:53.</div>
 </body>
 </html>

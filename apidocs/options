@@ -1,21 +1,21 @@
 -classpath
-'/home/nicoulaj/projects/maven-checksum-plugin/target/classes:/home/nicoulaj/.m2/repository/org/apache/maven/maven-profile/2.2.0/maven-profile-2.2.0.jar:/home/nicoulaj/.m2/repository/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-repository-metadata/2.2.0/maven-repository-metadata-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-artifact-manager/2.2.0/maven-artifact-manager-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-plugin-registry/2.2.0/maven-plugin-registry-2.2.0.jar:/home/nicoulaj/.m2/repository/org/bouncycastle/bcprov-jdk15/1.45/bcprov-jdk15-1.45.jar:/home/nicoulaj/.m2/repository/org/codehaus/plexus/plexus-interpolation/1.11/plexus-interpolation-1.11.jar:/home/nicoulaj/.m2/repository/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-project/2.2.0/maven-project-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-settings/2.2.0/maven-settings-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-plugin-api/2.2.0/maven-plugin-api-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-artifact/2.2.0/maven-artifact-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/wagon/wagon-provider-api/1.0-beta-6/wagon-provider-api-1.0-beta-6.jar:/home/nicoulaj/.m2/repository/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar:/home/nicoulaj/.m2/repository/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-model/2.2.0/maven-model-2.2.0.jar'
+'/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/target/classes:/home/nicoulaj/.m2/repository/org/apache/maven/maven-profile/2.2.0/maven-profile-2.2.0.jar:/home/nicoulaj/.m2/repository/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-repository-metadata/2.2.0/maven-repository-metadata-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-artifact-manager/2.2.0/maven-artifact-manager-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-plugin-registry/2.2.0/maven-plugin-registry-2.2.0.jar:/home/nicoulaj/.m2/repository/org/bouncycastle/bcprov-jdk15/1.45/bcprov-jdk15-1.45.jar:/home/nicoulaj/.m2/repository/org/codehaus/plexus/plexus-interpolation/1.11/plexus-interpolation-1.11.jar:/home/nicoulaj/.m2/repository/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-project/2.2.0/maven-project-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-settings/2.2.0/maven-settings-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-plugin-api/2.2.0/maven-plugin-api-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-artifact/2.2.0/maven-artifact-2.2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/wagon/wagon-provider-api/1.0-beta-6/wagon-provider-api-1.0-beta-6.jar:/home/nicoulaj/.m2/repository/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar:/home/nicoulaj/.m2/repository/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-model/2.2.0/maven-model-2.2.0.jar'
 -encoding
 'UTF-8'
 -protected
 -sourcepath
-'/home/nicoulaj/projects/maven-checksum-plugin/src/main/java:/home/nicoulaj/projects/maven-checksum-plugin/target/generated-sources/plugin'
+'/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/src/main/java:/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/target/generated-sources/plugin'
 -author
 -bottom
-'Copyright &#169; 2010-2011. All Rights Reserved.'
+'Copyright &#169; 2010-2012. All Rights Reserved.'
 -charset
 'UTF-8'
 -d
-'/home/nicoulaj/projects/maven-checksum-plugin/target/site/apidocs'
+'/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/target/site/apidocs'
 -docencoding
 'UTF-8'
 -doctitle
-'maven-checksum-plugin 1.1-SNAPSHOT API'
+'checksum-maven-plugin 1.0.1 API'
 -link
 'http://download-llnw.oracle.com/javase/1.5.0/docs/api'
 -link
@@ -27,7 +27,7 @@
 -link
 'http://junit.sourceforge.net/javadoc'
 -linkoffline
-'http://download.oracle.com/javase/1.5.0/docs/api' '/home/nicoulaj/projects/maven-checksum-plugin/target/javadoc-bundle-options'
+'http://download.oracle.com/javase/1.5.0/docs/api' '/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/target/javadoc-bundle-options'
 -taglet
 'org.apache.maven.tools.plugin.javadoc.MojoAggregatorTypeTaglet'
 -taglet
@@ -67,8 +67,8 @@
 -taglet
 'org.apache.maven.tools.plugin.javadoc.MojoThreadSafeTypeTaglet'
 -tagletpath
-'/home/nicoulaj/.m2/repository/org/apache/maven/plugin-tools/maven-plugin-tools-javadoc/2.6/maven-plugin-tools-javadoc-2.6.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-profile/2.0/maven-profile-2.0.jar:/home/nicoulaj/.m2/repository/jtidy/jtidy/4aug2000r7-dev/jtidy-4aug2000r7-dev.jar:/home/nicoulaj/.m2/repository/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-repository-metadata/2.0/maven-repository-metadata-2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-plugin-descriptor/2.0.6/maven-plugin-descriptor-2.0.6.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-artifact-manager/2.0/maven-artifact-manager-2.0.jar:/usr/lib/jvm/java-6-sun-1.6.0.26/jre/../lib/tools.jar:/home/nicoulaj/.m2/repository/org/apache/maven/reporting/maven-reporting-api/2.0.6/maven-reporting-api-2.0.6.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-project/2.0/maven-project-2.0.jar:/home/nicoulaj/.m2/repository/junit/junit/3.8.2/junit-3.8.2.jar:/home/nicoulaj/.m2/repository/com/thoughtworks/qdox/qdox/1.11/qdox-1.11.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-artifact/2.0/maven-artifact-2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/wagon/wagon-provider-api/1.0-alpha-5/wagon-provider-api-1.0-alpha-5.jar:/home/nicoulaj/.m2/repository/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar:/home/nicoulaj/.m2/repository/org/apache/maven/plugin-tools/maven-plugin-tools-java/2.6/maven-plugin-tools-java-2.6.jar:/home/nicoulaj/.m2/repository/org/apache/maven/plugin-tools/maven-plugin-tools-api/2.6/maven-plugin-tools-api-2.6.jar:/home/nicoulaj/.m2/repository/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.jar:/home/nicoulaj/.m2/repository/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-model/2.0/maven-model-2.0.jar'
+'/home/nicoulaj/.m2/repository/org/apache/maven/plugin-tools/maven-plugin-tools-javadoc/2.6/maven-plugin-tools-javadoc-2.6.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-profile/2.0/maven-profile-2.0.jar:/home/nicoulaj/.m2/repository/jtidy/jtidy/4aug2000r7-dev/jtidy-4aug2000r7-dev.jar:/home/nicoulaj/.m2/repository/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-repository-metadata/2.0/maven-repository-metadata-2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-plugin-descriptor/2.0.6/maven-plugin-descriptor-2.0.6.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-artifact-manager/2.0/maven-artifact-manager-2.0.jar:/opt/java/jre/../lib/tools.jar:/home/nicoulaj/.m2/repository/org/apache/maven/reporting/maven-reporting-api/2.0.6/maven-reporting-api-2.0.6.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-project/2.0/maven-project-2.0.jar:/home/nicoulaj/.m2/repository/junit/junit/3.8.2/junit-3.8.2.jar:/home/nicoulaj/.m2/repository/com/thoughtworks/qdox/qdox/1.11/qdox-1.11.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-artifact/2.0/maven-artifact-2.0.jar:/home/nicoulaj/.m2/repository/org/apache/maven/wagon/wagon-provider-api/1.0-alpha-5/wagon-provider-api-1.0-alpha-5.jar:/home/nicoulaj/.m2/repository/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar:/home/nicoulaj/.m2/repository/org/apache/maven/plugin-tools/maven-plugin-tools-java/2.6/maven-plugin-tools-java-2.6.jar:/home/nicoulaj/.m2/repository/org/apache/maven/plugin-tools/maven-plugin-tools-api/2.6/maven-plugin-tools-api-2.6.jar:/home/nicoulaj/.m2/repository/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.jar:/home/nicoulaj/.m2/repository/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.jar:/home/nicoulaj/.m2/repository/org/apache/maven/maven-model/2.0/maven-model-2.0.jar'
 -use
 -version
 -windowtitle
-'maven-checksum-plugin 1.1-SNAPSHOT API'
+'checksum-maven-plugin 1.0.1 API'

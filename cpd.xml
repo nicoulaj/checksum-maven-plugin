@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pmd-cpd>
 <duplication lines="57" tokens="251">
-<file line="158" path="/home/nicoulaj/projects/maven-checksum-plugin/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/ArtifactsMojo.java"/>
-<file line="194" path="/home/nicoulaj/projects/maven-checksum-plugin/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/DependenciesMojo.java"/>
+<file line="158" path="/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/ArtifactsMojo.java"/>
+<file line="194" path="/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/DependenciesMojo.java"/>
 <codefragment>
 <![CDATA[
     public void execute() throws MojoExecutionException, MojoFailureException
@@ -66,8 +66,8 @@
 </codefragment>
 </duplication>
 <duplication lines="41" tokens="187">
-<file line="163" path="/home/nicoulaj/projects/maven-checksum-plugin/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/ArtifactsMojo.java"/>
-<file line="170" path="/home/nicoulaj/projects/maven-checksum-plugin/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/FilesMojo.java"/>
+<file line="163" path="/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/ArtifactsMojo.java"/>
+<file line="170" path="/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/src/main/java/net/nicoulaj/maven/plugins/checksum/mojo/FilesMojo.java"/>
 <codefragment>
 <![CDATA[
         execution.setFiles( files );
@@ -111,6 +111,34 @@
             throw new MojoFailureException( e.getMessage() );
         }
     }
+]]>
+</codefragment>
+</duplication>
+<duplication lines="20" tokens="111">
+<file line="109" path="/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/target/generated-sources/plugin/net/nicoulaj/maven/plugins/checksum/mojo/HelpMojo.java"/>
+<file line="246" path="/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/target/generated-sources/plugin/net/nicoulaj/maven/plugins/checksum/mojo/HelpMojo.java"/>
+<codefragment>
+<![CDATA[
+                append( sb, "Required: Yes", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "individualFiles (Default: true)", 2 );
+                append( sb, "Indicates whether the build will store checksums in separate files (one file per algorithm per artifact).", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "individualFilesOutputDirectory", 2 );
+                append( sb, "The directory where output files will be stored. Leave unset to have each file next to the source file.", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "quiet (Default: false)", 2 );
+                append( sb, "Indicates whether the build will print checksums in the build log.", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "xmlSummary (Default: false)", 2 );
+                append( sb, "Indicates whether the build will store checksums to a single XML summary file.", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "xmlSummaryFile (Default: files-checksums.xml)", 2 );
 ]]>
 </codefragment>
 </duplication>

@@ -18,10 +18,10 @@
 <a class="jxr_linenumber" name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> org.apache.maven.plugin.MojoExecutionException;
 <a class="jxr_linenumber" name="9" href="#9">9</a>   
 <a class="jxr_linenumber" name="10" href="#10">10</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="11" href="#11">11</a>  <em class="jxr_javadoccomment"> * Display help information on maven-checksum-plugin.&lt;br/&gt; Call &lt;pre&gt;  mvn checksum:help -Ddetail=true -Dgoal=&amp;lt;goal-name&amp;gt;&lt;/pre&gt; to display parameter details.</em>
+<a class="jxr_linenumber" name="11" href="#11">11</a>  <em class="jxr_javadoccomment"> * Display help information on checksum-maven-plugin.&lt;br/&gt; Call &lt;pre&gt;  mvn checksum:help -Ddetail=true -Dgoal=&amp;lt;goal-name&amp;gt;&lt;/pre&gt; to display parameter details.</em>
 <a class="jxr_linenumber" name="12" href="#12">12</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="13" href="#13">13</a>  <em class="jxr_javadoccomment"> * @version generated on Wed Aug 17 19:12:20 CEST 2011</em>
-<a class="jxr_linenumber" name="14" href="#14">14</a>  <em class="jxr_javadoccomment"> * @author org.apache.maven.tools.plugin.generator.PluginHelpGenerator (version 2.8)</em>
+<a class="jxr_linenumber" name="13" href="#13">13</a>  <em class="jxr_javadoccomment"> * @version generated on Sun Apr 15 13:53:06 CEST 2012</em>
+<a class="jxr_linenumber" name="14" href="#14">14</a>  <em class="jxr_javadoccomment"> * @author org.apache.maven.tools.plugin.generator.PluginHelpGenerator (version 2.9)</em>
 <a class="jxr_linenumber" name="15" href="#15">15</a>  <em class="jxr_javadoccomment"> * @goal help</em>
 <a class="jxr_linenumber" name="16" href="#16">16</a>  <em class="jxr_javadoccomment"> * @requiresProject false</em>
 <a class="jxr_linenumber" name="17" href="#17">17</a>  <em class="jxr_javadoccomment"> * @threadSafe</em>
@@ -75,10 +75,10 @@
 <a class="jxr_linenumber" name="65" href="#65">65</a>  
 <a class="jxr_linenumber" name="66" href="#66">66</a>          StringBuffer sb = <strong class="jxr_keyword">new</strong> StringBuffer();
 <a class="jxr_linenumber" name="67" href="#67">67</a>  
-<a class="jxr_linenumber" name="68" href="#68">68</a>          append( sb, <span class="jxr_string">"net.ju-n.maven.plugins:maven-checksum-plugin:1.1-SNAPSHOT"</span>, 0 );
+<a class="jxr_linenumber" name="68" href="#68">68</a>          append( sb, <span class="jxr_string">"net.ju-n.maven.plugins:checksum-maven-plugin:1.0.1"</span>, 0 );
 <a class="jxr_linenumber" name="69" href="#69">69</a>          append( sb, <span class="jxr_string">""</span>, 0 );
 <a class="jxr_linenumber" name="70" href="#70">70</a>  
-<a class="jxr_linenumber" name="71" href="#71">71</a>          append( sb, <span class="jxr_string">"maven-checksum-plugin"</span>, 0 );
+<a class="jxr_linenumber" name="71" href="#71">71</a>          append( sb, <span class="jxr_string">"checksum-maven-plugin"</span>, 0 );
 <a class="jxr_linenumber" name="72" href="#72">72</a>          append( sb, <span class="jxr_string">"Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files."</span>, 1 );
 <a class="jxr_linenumber" name="73" href="#73">73</a>          append( sb, <span class="jxr_string">""</span>, 0 );
 <a class="jxr_linenumber" name="74" href="#74">74</a>  
@@ -205,7 +205,7 @@
 <a class="jxr_linenumber" name="195" href="#195">195</a>         <strong class="jxr_keyword">if</strong> ( goal == <strong class="jxr_keyword">null</strong> || goal.length() &lt;= 0 || <span class="jxr_string">"file"</span>.equals( goal ) )
 <a class="jxr_linenumber" name="196" href="#196">196</a>         {
 <a class="jxr_linenumber" name="197" href="#197">197</a>             append( sb, <span class="jxr_string">"checksum:file"</span>, 0 );
-<a class="jxr_linenumber" name="198" href="#198">198</a>             append( sb, <span class="jxr_string">"Compute specified file checksum digest for all supported checksum algorithms.\nThis goal is a facility for invoking maven-checksum-plugin through the command line.\n\nHere is an example of use:\n\nmvn\u00a0checksum:file\u00a0-Dfile=some-file.zip\n\n\n"</span>, 1 );
+<a class="jxr_linenumber" name="198" href="#198">198</a>             append( sb, <span class="jxr_string">"Compute specified file checksum digest for all supported checksum algorithms.\nThis goal is a facility for invoking checksum-maven-plugin through the command line.\n\nHere is an example of use:\n\nmvn\u00a0checksum:file\u00a0-Dfile=some-file.zip\n\n\n"</span>, 1 );
 <a class="jxr_linenumber" name="199" href="#199">199</a>             append( sb, <span class="jxr_string">""</span>, 0 );
 <a class="jxr_linenumber" name="200" href="#200">200</a>             <strong class="jxr_keyword">if</strong> ( detail )
 <a class="jxr_linenumber" name="201" href="#201">201</a>             {
@@ -281,7 +281,7 @@
 <a class="jxr_linenumber" name="271" href="#271">271</a>         <strong class="jxr_keyword">if</strong> ( goal == <strong class="jxr_keyword">null</strong> || goal.length() &lt;= 0 || <span class="jxr_string">"help"</span>.equals( goal ) )
 <a class="jxr_linenumber" name="272" href="#272">272</a>         {
 <a class="jxr_linenumber" name="273" href="#273">273</a>             append( sb, <span class="jxr_string">"checksum:help"</span>, 0 );
-<a class="jxr_linenumber" name="274" href="#274">274</a>             append( sb, <span class="jxr_string">"Display help information on maven-checksum-plugin.\nCall\n\u00a0\u00a0mvn\u00a0checksum:help\u00a0-Ddetail=true\u00a0-Dgoal=&lt;goal-name&gt;\nto display parameter details."</span>, 1 );
+<a class="jxr_linenumber" name="274" href="#274">274</a>             append( sb, <span class="jxr_string">"Display help information on checksum-maven-plugin.\nCall\n\u00a0\u00a0mvn\u00a0checksum:help\u00a0-Ddetail=true\u00a0-Dgoal=&lt;goal-name&gt;\nto display parameter details."</span>, 1 );
 <a class="jxr_linenumber" name="275" href="#275">275</a>             append( sb, <span class="jxr_string">""</span>, 0 );
 <a class="jxr_linenumber" name="276" href="#276">276</a>             <strong class="jxr_keyword">if</strong> ( detail )
 <a class="jxr_linenumber" name="277" href="#277">277</a>             {
