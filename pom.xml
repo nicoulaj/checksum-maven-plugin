@@ -56,7 +56,7 @@
 
   <issueManagement>
     <system>Github</system>
-    <url>${project.scm.url}/issues</url>
+    <url>http://github.com/nicoulaj/checksum-maven-plugin/issues</url>
   </issueManagement>
 
   <distributionManagement>
@@ -73,7 +73,7 @@
 
     <!-- Build settings -->
     <debug>false</debug>
-    <invoker.settings-file>${project.basedir}/src/test-integration/settings.xml</invoker.settings-file>
+    <invoker.settings-file>${project.basedir}/src/it/settings.xml</invoker.settings-file>
 
   </properties>
 
@@ -143,16 +143,16 @@
           </execution>
         </executions>
         <configuration>
-          <localRepositoryPath>${project.build.directory}/integration-tests/local-repository</localRepositoryPath>
+          <localRepositoryPath>${project.build.directory}/it/local-repository</localRepositoryPath>
           <showErrors>${debug}</showErrors>
           <debug>${debug}</debug>
           <settingsFile>${invoker.settings-file}</settingsFile>
-          <projectsDirectory>${project.basedir}/src/test-integration/projects</projectsDirectory>
+          <projectsDirectory>${project.basedir}/src/it/projects</projectsDirectory>
           <pomIncludes>
             <pomInclude>**/pom.xml</pomInclude>
           </pomIncludes>
-          <cloneProjectsTo>${project.build.directory}/integration-tests/projects</cloneProjectsTo>
-          <reportsDirectory>${project.build.directory}/integration-tests/reports</reportsDirectory>
+          <cloneProjectsTo>${project.build.directory}/it/projects</cloneProjectsTo>
+          <reportsDirectory>${project.build.directory}/it/reports</reportsDirectory>
           <addTestClassPath>true</addTestClassPath>
           <goals>
             <goal>clean</goal>
@@ -318,7 +318,7 @@
         <artifactId>maven-invoker-plugin</artifactId>
         <version>${maven-invoker-plugin.version}</version>
         <configuration>
-          <reportsDirectory>${project.build.directory}/integration-tests/reports</reportsDirectory>
+          <reportsDirectory>${project.build.directory}/it/reports</reportsDirectory>
         </configuration>
       </plugin>
       <plugin>
