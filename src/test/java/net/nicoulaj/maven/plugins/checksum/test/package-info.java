@@ -15,7 +15,7 @@
  */
 
 /**
- * Tests for maven-checksum-plugin.
+ * Tests for checksum-maven-plugin.
  *
  * @since 1.0
  */

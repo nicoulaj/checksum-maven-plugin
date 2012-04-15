@@ -20,7 +20,7 @@
  2010-07-18
  ------
 
-maven-checksum-plugin
+checksum-maven-plugin
 
   Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.
 
@@ -53,7 +53,7 @@ maven-checksum-plugin
 
 * Examples
 
-  To provide you with better understanding of some usages of maven-checksum-plugin,
+  To provide you with better understanding of some usages of checksum-maven-plugin,
   you can take a look into the following examples:
 
   * {{{./examples/generating-project-artifacts-checksums.html}Generating project artifacts checksums}}

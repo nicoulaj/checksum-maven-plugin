@@ -16,7 +16,7 @@
 package net.nicoulaj.maven.plugins.checksum;
 
 /**
- * Constants used by maven-checksum-plugin.
+ * Constants used by checksum-maven-plugin.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
@@ -24,7 +24,7 @@ package net.nicoulaj.maven.plugins.checksum;
 public class Constants
 {
     /**
-     * The CRC/checksum digest algorithms supported by maven-checksum-plugin.
+     * The CRC/checksum digest algorithms supported by checksum-maven-plugin.
      */
     public static final String[] SUPPORTED_ALGORITHMS = {"CRC32",
                                                          "MD2",

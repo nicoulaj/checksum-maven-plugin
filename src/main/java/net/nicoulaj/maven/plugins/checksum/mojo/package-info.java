@@ -15,7 +15,7 @@
  */
 
 /**
- * Implementations of {@link org.apache.maven.plugin.Mojo} for maven-checksum-plugin.
+ * Implementations of {@link org.apache.maven.plugin.Mojo} for checksum-maven-plugin.
  *
  * @since 1.0
  */

@@ -28,7 +28,7 @@
     <plugins>
       <plugin>
         <groupId>net.ju-n.maven.plugins</groupId>
-        <artifactId>maven-checksum-plugin</artifactId>
+        <artifactId>checksum-maven-plugin</artifactId>
         <version>@project.version@</version>
         <executions>
           <execution>

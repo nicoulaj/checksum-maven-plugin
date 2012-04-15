@@ -15,7 +15,7 @@
  */
 
 /**
- * Integration tests for maven-checksum-plugin.
+ * Integration tests for checksum-maven-plugin.
  *
  * <p>See {@code src/main/test-integration}.</p>
  *

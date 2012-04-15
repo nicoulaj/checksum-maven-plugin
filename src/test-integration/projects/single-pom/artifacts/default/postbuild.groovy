@@ -21,8 +21,8 @@ try
   // Instantiate a helper.
   PostBuildScriptHelper helper = new PostBuildScriptHelper(basedir, localRepositoryPath, context)
 
-  // Fail if no traces of maven-checksum-plugin invocation.
-  helper.assertBuildLogContains("maven-checksum-plugin");
+  // Fail if no traces of checksum-maven-plugin invocation.
+  helper.assertBuildLogContains("checksum-maven-plugin");
 
   // Look for the right log message.
   helper.assertBuildLogContains("[ERROR] No file to process.");

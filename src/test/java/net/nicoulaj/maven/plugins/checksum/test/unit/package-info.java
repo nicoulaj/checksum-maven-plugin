@@ -15,7 +15,7 @@
  */
 
 /**
- * Unit tests for maven-checksum-plugin.
+ * Unit tests for checksum-maven-plugin.
  *
  * @since 1.0
  */
