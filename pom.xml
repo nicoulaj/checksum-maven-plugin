@@ -58,6 +58,11 @@
     <url>http://github.com/nicoulaj/checksum-maven-plugin/issues</url>
   </issueManagement>
 
+  <ciManagement>
+    <system>Travis-CI</system>
+    <url>http://travis-ci.org/nicoulaj/checksum-maven-plugin</url>
+  </ciManagement>
+
   <distributionManagement>
     <site>
       <id>github</id>
