@@ -1,0 +1,15 @@
+# Travis-CI configuration (http://travis-ci.org/#!/nicoulaj/checksum-maven-plugin)
+
+language: java
+
+script: mvn clean install
+
+branches:
+  only:
+    - master
+
+notifications:
+  email:
+    - julien.nicoulaud@gmail.com
+  irc:
+    - "irc.freenode.org#checksum-maven-plugin"
