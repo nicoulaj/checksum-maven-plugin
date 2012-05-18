@@ -59,8 +59,8 @@
   </issueManagement>
 
   <ciManagement>
-    <system>Travis-CI</system>
-    <url>http://travis-ci.org/nicoulaj/checksum-maven-plugin</url>
+    <system>Cloudbees BuildHive</system>
+    <url>https://buildhive.cloudbees.com/job/nicoulaj/job/checksum-maven-plugin/</url>
   </ciManagement>
 
   <distributionManagement>
