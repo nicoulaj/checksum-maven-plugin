@@ -20,7 +20,6 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
 import net.nicoulaj.maven.plugins.checksum.test.unit.Constants;
-
 import org.codehaus.plexus.util.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -55,16 +54,15 @@ public class OneHashPerFileTargetTest
      */
     @Test
     public void testOneHashPerFileTargetWrite()
-    throws ExecutionTargetWriteException, IOException, NoSuchAlgorithmException
+        throws ExecutionTargetWriteException, IOException, NoSuchAlgorithmException
     {
         List<File> testFiles = FileUtils.getFiles( new File( Constants.SAMPLE_FILES_PATH ), null, null );
         for ( File testFile : testFiles )
         {
             // Prepare the test
             String testAlgorithm = "MD5";
-            String hashcodeFile = testFile.getPath() + DigesterFactory.getInstance()
-                                                                      .getFileDigester( testAlgorithm )
-                                                                      .getFileExtension();
+            String hashcodeFile =
+                testFile.getPath() + DigesterFactory.getInstance().getFileDigester( testAlgorithm ).getFileExtension();
 
             // Call write()
             target.write( "hash-file-content", testFile, testAlgorithm );

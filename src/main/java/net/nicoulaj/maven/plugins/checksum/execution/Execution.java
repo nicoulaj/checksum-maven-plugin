@@ -122,12 +122,14 @@ public interface Execution
      *
      * @throws ExecutionException if some parameters are not initialized or invalid.
      */
-    void checkParameters() throws ExecutionException;
+    void checkParameters()
+        throws ExecutionException;
 
     /**
      * Run the execution using for the files, algorithms and targets set.
      *
      * @throws ExecutionException if an error happens while running the execution.
      */
-    void run() throws ExecutionException;
+    void run()
+        throws ExecutionException;
 }

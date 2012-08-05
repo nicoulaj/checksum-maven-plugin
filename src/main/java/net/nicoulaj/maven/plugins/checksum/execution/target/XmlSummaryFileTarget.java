@@ -34,7 +34,8 @@ import java.util.Map;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
-public class XmlSummaryFileTarget implements ExecutionTarget
+public class XmlSummaryFileTarget
+    implements ExecutionTarget
 {
     /**
      * The number of spaces used to indent the output file.
@@ -95,7 +96,8 @@ public class XmlSummaryFileTarget implements ExecutionTarget
     /**
      * {@inheritDoc}
      */
-    public void close() throws ExecutionTargetCloseException
+    public void close()
+        throws ExecutionTargetCloseException
     {
         // Open the target file.
         Writer outputStream;
@@ -113,8 +115,8 @@ public class XmlSummaryFileTarget implements ExecutionTarget
         }
 
         // Output hashcodes formatted in XML.        
-        PrettyPrintXMLWriter xmlWriter = new PrettyPrintXMLWriter( outputStream,
-                                                                   StringUtils.repeat( " ", XML_INDENTATION_SIZE ) );
+        PrettyPrintXMLWriter xmlWriter =
+            new PrettyPrintXMLWriter( outputStream, StringUtils.repeat( " ", XML_INDENTATION_SIZE ) );
         xmlWriter.startElement( "files" );
         for ( File file : filesHashcodes.keySet() )
         {

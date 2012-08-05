@@ -34,12 +34,14 @@ import java.security.NoSuchAlgorithmException;
  * @see net.nicoulaj.maven.plugins.checksum.execution.NeverFailExecution
  * @since 1.0
  */
-public class FailOnErrorExecution extends AbstractExecution
+public class FailOnErrorExecution
+    extends AbstractExecution
 {
     /**
      * {@inheritDoc}
      */
-    public void run() throws ExecutionException
+    public void run()
+        throws ExecutionException
     {
         // Check parameters are initialized.
         checkParameters();
@@ -87,8 +89,8 @@ public class FailOnErrorExecution extends AbstractExecution
                 }
                 catch ( DigesterException e )
                 {
-                    throw new ExecutionException( "Unable to calculate " + algorithm + " hash for " + file.getName()
-                                                  + ": " + e.getMessage() );
+                    throw new ExecutionException(
+                        "Unable to calculate " + algorithm + " hash for " + file.getName() + ": " + e.getMessage() );
                 }
             }
         }

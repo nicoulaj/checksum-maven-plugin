@@ -24,7 +24,6 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget;
-
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -47,7 +46,8 @@ import java.util.List;
  * @threadSafe
  * @since 1.0
  */
-public class FilesMojo extends AbstractMojo
+public class FilesMojo
+    extends AbstractMojo
 {
     /**
      * The Maven project.
@@ -61,10 +61,10 @@ public class FilesMojo extends AbstractMojo
 
     /**
      * The list of checksum algorithms used.
-     *
+     * <p/>
      * <p>Default value is MD5 and SHA-1.<br/>Allowed values are CRC32, MD2, MD4, MD5, SHA-1, SHA-224, SHA-256, SHA-384,
      * SHA-512, RIPEMD128, RIPEMD160, RIPEMD256, RIPEMD320, GOST3411 and Tiger.</p>
-     *
+     * <p/>
      * <p> Use the following syntax:
      * <pre>&lt;algorithms&gt;
      *   &lt;algorithm&gt;MD5&lt;algorithm&gt;
@@ -162,7 +162,8 @@ public class FilesMojo extends AbstractMojo
     /**
      * {@inheritDoc}
      */
-    public void execute() throws MojoExecutionException, MojoFailureException
+    public void execute()
+        throws MojoExecutionException, MojoFailureException
     {
         // Prepare an execution.
         Execution execution = ( failOnError ) ? new FailOnErrorExecution() : new NeverFailExecution( getLog() );
@@ -184,17 +185,13 @@ public class FilesMojo extends AbstractMojo
         }
         if ( csvSummary )
         {
-            execution.addTarget( new CsvSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
-                                                                                                   .getDirectory() ),
-                                                                                  csvSummaryFile ),
-                                                           encoding ) );
+            execution.addTarget( new CsvSummaryFileTarget(
+                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), csvSummaryFile ), encoding ) );
         }
         if ( xmlSummary )
         {
-            execution.addTarget( new XmlSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
-                                                                                                   .getDirectory() ),
-                                                                                  xmlSummaryFile ),
-                                                           encoding ) );
+            execution.addTarget( new XmlSummaryFileTarget(
+                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), xmlSummaryFile ), encoding ) );
         }
 
         // Run the execution.

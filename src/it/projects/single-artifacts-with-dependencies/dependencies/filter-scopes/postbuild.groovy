@@ -19,25 +19,25 @@ import net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelpe
 try
 {
   // Instantiate a helper.
-  PostBuildScriptHelper helper = new PostBuildScriptHelper(basedir, localRepositoryPath, context)
+  PostBuildScriptHelper helper = new PostBuildScriptHelper( basedir, localRepositoryPath, context )
 
   // Fail if no traces of checksum-maven-plugin invocation.
-  helper.assertBuildLogContains("checksum-maven-plugin");
+  helper.assertBuildLogContains( "checksum-maven-plugin" );
 
   // Assert the file has been created.
-  helper.assertFileIsNotEmpty("target/dependencies-checksums.csv")
+  helper.assertFileIsNotEmpty( "target/dependencies-checksums.csv" )
 
   // Check there is a line for each dependency that matches the included scope(s).
-  helper.assertFileContains("target/dependencies-checksums.csv", "maven-plugin-api")
-  helper.assertFileContains("target/dependencies-checksums.csv", "plexus-utils")
+  helper.assertFileContains( "target/dependencies-checksums.csv", "maven-plugin-api" )
+  helper.assertFileContains( "target/dependencies-checksums.csv", "plexus-utils" )
 
   // Check the other ones are excluded.
-  helper.assertFileDoesNotContain("target/dependencies-checksums.csv", "maven-project")
-  helper.assertFileDoesNotContain("target/dependencies-checksums.csv", "junit")
+  helper.assertFileDoesNotContain( "target/dependencies-checksums.csv", "maven-project" )
+  helper.assertFileDoesNotContain( "target/dependencies-checksums.csv", "junit" )
 
 }
-catch (Exception e)
+catch ( Exception e )
 {
-  System.err.println(e.getMessage())
+  System.err.println( e.getMessage() )
   return false;
 }

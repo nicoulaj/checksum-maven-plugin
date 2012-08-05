@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-import net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelper
 import net.nicoulaj.maven.plugins.checksum.Constants
+import net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelper
 
 try
 {
   // Instantiate a helper.
-  PostBuildScriptHelper helper = new PostBuildScriptHelper(basedir, localRepositoryPath, context)
+  PostBuildScriptHelper helper = new PostBuildScriptHelper( basedir, localRepositoryPath, context )
 
   // Fail if no traces of checksum-maven-plugin invocation.
-  helper.assertBuildLogContains("checksum-maven-plugin");
+  helper.assertBuildLogContains( "checksum-maven-plugin" );
 
   // Check a line has been printed in the log for each algorithm.
-  for ( String algorithm: Constants.SUPPORTED_ALGORITHMS )
+  for ( String algorithm : Constants.SUPPORTED_ALGORITHMS )
   {
-    helper.assertBuildLogContains("[INFO] invoker.properties - " + algorithm + " : ");
+    helper.assertBuildLogContains( "[INFO] invoker.properties - " + algorithm + " : " );
   }
 
 }
-catch (Exception e)
+catch ( Exception e )
 {
-  System.err.println(e.getMessage())
+  System.err.println( e.getMessage() )
   return false;
 }

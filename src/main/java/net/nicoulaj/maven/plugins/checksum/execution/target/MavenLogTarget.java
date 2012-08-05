@@ -26,7 +26,8 @@ import java.io.File;
  * @see org.apache.maven.plugin.logging.Log
  * @since 1.0
  */
-public class MavenLogTarget implements ExecutionTarget
+public class MavenLogTarget
+    implements ExecutionTarget
 {
     /**
      * The Maven {@link org.apache.maven.plugin.logging.Log}.

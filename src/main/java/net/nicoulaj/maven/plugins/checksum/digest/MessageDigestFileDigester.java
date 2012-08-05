@@ -30,7 +30,8 @@ import java.security.NoSuchAlgorithmException;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
-public class MessageDigestFileDigester extends AbstractFileDigester
+public class MessageDigestFileDigester
+    extends AbstractFileDigester
 {
     /**
      * The {@link java.security.MessageDigest} instance.
@@ -43,7 +44,8 @@ public class MessageDigestFileDigester extends AbstractFileDigester
      * @param algorithm the algorithm used to compute checksum digests.
      * @throws NoSuchAlgorithmException in case the given is not supported.
      */
-    protected MessageDigestFileDigester( String algorithm ) throws NoSuchAlgorithmException
+    protected MessageDigestFileDigester( String algorithm )
+        throws NoSuchAlgorithmException
     {
         super( algorithm );
         messageDigest = MessageDigest.getInstance( algorithm );
@@ -52,7 +54,8 @@ public class MessageDigestFileDigester extends AbstractFileDigester
     /**
      * {@inheritDoc}
      */
-    public String calculate( File file ) throws DigesterException
+    public String calculate( File file )
+        throws DigesterException
     {
         // Try to open the file.
         FileInputStream fis;
@@ -85,8 +88,9 @@ public class MessageDigestFileDigester extends AbstractFileDigester
         }
         catch ( IOException e )
         {
-            throw new DigesterException( "Unable to calculate the " + getAlgorithm() + " hashcode for "
-                                         + file.getPath() + ": " + e.getMessage() );
+            throw new DigesterException(
+                "Unable to calculate the " + getAlgorithm() + " hashcode for " + file.getPath() + ": "
+                    + e.getMessage() );
         }
         finally
         {

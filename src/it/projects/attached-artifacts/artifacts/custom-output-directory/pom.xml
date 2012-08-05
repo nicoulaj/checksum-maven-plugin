@@ -38,7 +38,8 @@
           </execution>
         </executions>
         <configuration>
-          <individualFilesOutputDirectory>${project.build.directory}/artifacts-checksums</individualFilesOutputDirectory>
+          <individualFilesOutputDirectory>${project.build.directory}/artifacts-checksums
+          </individualFilesOutputDirectory>
         </configuration>
       </plugin>
       <plugin>

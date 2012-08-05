@@ -24,7 +24,6 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget;
-
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -51,7 +50,8 @@ import java.util.Set;
  * @threadSafe
  * @since 1.0
  */
-public class DependenciesMojo extends AbstractMojo
+public class DependenciesMojo
+    extends AbstractMojo
 {
     /**
      * The Maven project.
@@ -65,10 +65,10 @@ public class DependenciesMojo extends AbstractMojo
 
     /**
      * The list of checksum algorithms used.
-     *
+     * <p/>
      * <p>Default value is MD5 and SHA-1.<br/>Allowed values are CRC32, MD2, MD4, MD5, SHA-1, SHA-224, SHA-256, SHA-384,
      * SHA-512, RIPEMD128, RIPEMD160, RIPEMD256, RIPEMD320, GOST3411 and Tiger.</p>
-     *
+     * <p/>
      * <p> Use the following syntax:
      * <pre>&lt;algorithms&gt;
      *   &lt;algorithm&gt;MD5&lt;algorithm&gt;
@@ -156,9 +156,9 @@ public class DependenciesMojo extends AbstractMojo
 
     /**
      * The dependency scopes to include.
-     *
+     * <p/>
      * <p>Allowed values are compile, test, runtime, provided and system.<br/>All scopes are included by default.</p>
-     *
+     * <p/>
      * <p> Use the following syntax:
      * <pre>&lt;scopes&gt;
      *   &lt;scope&gt;compile&lt;scope&gt;
@@ -173,9 +173,9 @@ public class DependenciesMojo extends AbstractMojo
 
     /**
      * The dependency types to include.
-     *
+     * <p/>
      * <p>All types are included by default.</p>
-     *
+     * <p/>
      * <p> Use the following syntax:
      * <pre>&lt;types&gt;
      *   &lt;type&gt;jar&lt;type&gt;
@@ -191,7 +191,8 @@ public class DependenciesMojo extends AbstractMojo
     /**
      * {@inheritDoc}
      */
-    public void execute() throws MojoExecutionException, MojoFailureException
+    public void execute()
+        throws MojoExecutionException, MojoFailureException
     {
         // Prepare an execution.
         Execution execution = ( failOnError ) ? new FailOnErrorExecution() : new NeverFailExecution( getLog() );
@@ -213,17 +214,13 @@ public class DependenciesMojo extends AbstractMojo
         }
         if ( csvSummary )
         {
-            execution.addTarget( new CsvSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
-                                                                                                   .getDirectory() ),
-                                                                                  csvSummaryFile ),
-                                                           encoding ) );
+            execution.addTarget( new CsvSummaryFileTarget(
+                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), csvSummaryFile ), encoding ) );
         }
         if ( xmlSummary )
         {
-            execution.addTarget( new XmlSummaryFileTarget( FileUtils.resolveFile( new File( project.getBuild()
-                                                                                                   .getDirectory() ),
-                                                                                  xmlSummaryFile ),
-                                                           encoding ) );
+            execution.addTarget( new XmlSummaryFileTarget(
+                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), xmlSummaryFile ), encoding ) );
         }
 
         // Run the execution.
@@ -240,7 +237,7 @@ public class DependenciesMojo extends AbstractMojo
 
     /**
      * Build the list of files from which digests should be generated.
-     *
+     * <p/>
      * <p>The list is composed of the project dependencies.</p>
      *
      * @return the list of files that should be processed.
@@ -249,10 +246,10 @@ public class DependenciesMojo extends AbstractMojo
     {
         List<File> files = new LinkedList<File>();
 
-        for ( Artifact artifact : ( Set<Artifact> ) project.getDependencyArtifacts() )
+        for ( Artifact artifact : (Set<Artifact>) project.getDependencyArtifacts() )
         {
-            if ( ( scopes == null || scopes.contains( artifact.getScope() ) )
-                 && ( types == null || types.contains( artifact.getType() ) ) )
+            if ( ( scopes == null || scopes.contains( artifact.getScope() ) ) && ( types == null || types.contains(
+                artifact.getType() ) ) )
             {
                 files.add( artifact.getFile() );
             }

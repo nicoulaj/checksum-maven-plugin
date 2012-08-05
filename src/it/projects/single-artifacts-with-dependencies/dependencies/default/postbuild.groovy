@@ -14,35 +14,35 @@
  * limitations under the License.
  */
 
-import net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelper
 import net.nicoulaj.maven.plugins.checksum.Constants
+import net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelper
 
 try
 {
   // Instantiate a helper.
-  PostBuildScriptHelper helper = new PostBuildScriptHelper(basedir, localRepositoryPath, context)
+  PostBuildScriptHelper helper = new PostBuildScriptHelper( basedir, localRepositoryPath, context )
 
   // Fail if no traces of checksum-maven-plugin invocation.
-  helper.assertBuildLogContains("checksum-maven-plugin");
+  helper.assertBuildLogContains( "checksum-maven-plugin" );
 
   // Assert the file has been created.
-  helper.assertFileIsNotEmpty("target/dependencies-checksums.csv")
+  helper.assertFileIsNotEmpty( "target/dependencies-checksums.csv" )
 
   // Check there is an occurence of each algorithm.
   for ( String algorithm in Constants.DEFAULT_EXECUTION_ALGORITHMS )
   {
-    helper.assertFileContains("target/dependencies-checksums.csv", algorithm)
+    helper.assertFileContains( "target/dependencies-checksums.csv", algorithm )
   }
 
   // Check there is a line for each dependency.
-  helper.assertFileContains("target/dependencies-checksums.csv", "maven-plugin-api-2.2.0.jar")
-  helper.assertFileContains("target/dependencies-checksums.csv", "maven-project-2.2.0.jar")
-  helper.assertFileContains("target/dependencies-checksums.csv", "plexus-utils-1.1.jar")
-  helper.assertFileContains("target/dependencies-checksums.csv", "junit-4.8.1.jar")
+  helper.assertFileContains( "target/dependencies-checksums.csv", "maven-plugin-api-2.2.0.jar" )
+  helper.assertFileContains( "target/dependencies-checksums.csv", "maven-project-2.2.0.jar" )
+  helper.assertFileContains( "target/dependencies-checksums.csv", "plexus-utils-1.1.jar" )
+  helper.assertFileContains( "target/dependencies-checksums.csv", "junit-4.8.1.jar" )
 
 }
-catch (Exception e)
+catch ( Exception e )
 {
-  System.err.println(e.getMessage())
+  System.err.println( e.getMessage() )
   return false;
 }

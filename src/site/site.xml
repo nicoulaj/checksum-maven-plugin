@@ -67,7 +67,8 @@
     <menu name="Examples">
       <item name="Generating project artifacts checksums" href="/examples/generating-project-artifacts-checksums.html"/>
       <item name="Generating project checksum summary files" href="/examples/generating-checksum-summary-files.html"/>
-      <item name="Generating project dependencies checksums" href="/examples/generating-project-dependencies-checksums.html"/>
+      <item name="Generating project dependencies checksums"
+            href="/examples/generating-project-dependencies-checksums.html"/>
       <item name="Invoking from the command line" href="/examples/invoking-from-the-command-line.html"/>
       <item name="Using custom checksum algorithms" href="/examples/using-custom-checksum-algorithms.html"/>
     </menu>

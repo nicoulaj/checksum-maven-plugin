@@ -16,7 +16,6 @@
 package net.nicoulaj.maven.plugins.checksum.test.unit.digest;
 
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -46,7 +45,8 @@ public class ChecksumFactoryTest
      *          should never happen.
      */
     @Test
-    public void testNoSuchAlgorithmExceptionThrownOnInvalidAlgorithm() throws NoSuchAlgorithmException
+    public void testNoSuchAlgorithmExceptionThrownOnInvalidAlgorithm()
+        throws NoSuchAlgorithmException
     {
         exception.expect( NoSuchAlgorithmException.class );
         DigesterFactory.getInstance().getFileDigester( "SHA-666" );

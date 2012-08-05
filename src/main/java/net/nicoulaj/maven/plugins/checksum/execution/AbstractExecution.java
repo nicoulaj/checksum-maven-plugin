@@ -28,7 +28,8 @@ import java.util.List;
  * @see net.nicoulaj.maven.plugins.checksum.execution.Execution
  * @since 1.0
  */
-public abstract class AbstractExecution implements Execution
+public abstract class AbstractExecution
+    implements Execution
 {
     /**
      * The list of files used for the execution.
@@ -165,7 +166,8 @@ public abstract class AbstractExecution implements Execution
     /**
      * {@inheritDoc}
      */
-    public void checkParameters() throws ExecutionException
+    public void checkParameters()
+        throws ExecutionException
     {
         if ( files == null || files.isEmpty() )
         {

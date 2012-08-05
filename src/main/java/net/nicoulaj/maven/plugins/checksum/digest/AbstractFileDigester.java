@@ -21,7 +21,8 @@ package net.nicoulaj.maven.plugins.checksum.digest;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
-public abstract class AbstractFileDigester implements FileDigester
+public abstract class AbstractFileDigester
+    implements FileDigester
 {
     /**
      * The algorithm used to compute checksum digests.

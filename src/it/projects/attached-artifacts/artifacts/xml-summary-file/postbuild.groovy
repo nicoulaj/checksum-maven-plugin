@@ -14,39 +14,39 @@
  * limitations under the License.
  */
 
-import net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelper
 import net.nicoulaj.maven.plugins.checksum.Constants
+import net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelper
 
 try
 {
   // Instantiate a helper.
-  PostBuildScriptHelper helper = new PostBuildScriptHelper(basedir, localRepositoryPath, context)
+  PostBuildScriptHelper helper = new PostBuildScriptHelper( basedir, localRepositoryPath, context )
 
   // Fail if no traces of checksum-maven-plugin invocation.
-  helper.assertBuildLogContains("checksum-maven-plugin");
+  helper.assertBuildLogContains( "checksum-maven-plugin" );
 
   // Check files have been created and are not empty.
   String summaryFile = "target/artifacts-checksums.xml";
-  helper.assertFileIsNotEmpty(summaryFile)
+  helper.assertFileIsNotEmpty( summaryFile )
 
   // Check there are traces of each algorithm.
-  for ( String algorithm: Constants.DEFAULT_EXECUTION_ALGORITHMS )
+  for ( String algorithm : Constants.DEFAULT_EXECUTION_ALGORITHMS )
   {
-    helper.assertFileContains(summaryFile, algorithm);
+    helper.assertFileContains( summaryFile, algorithm );
   }
 
   // Check there are traces of each file.
-  helper.assertFileContains(summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT.jar")
-  helper.assertFileContains(summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-bin.tar.bz2")
-  helper.assertFileContains(summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-bin.tar.gz")
-  helper.assertFileContains(summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-bin.zip")
-  helper.assertFileContains(summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-src.tar.bz2")
-  helper.assertFileContains(summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-src.tar.gz")
-  helper.assertFileContains(summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-src.zip")
+  helper.assertFileContains( summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT.jar" )
+  helper.assertFileContains( summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-bin.tar.bz2" )
+  helper.assertFileContains( summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-bin.tar.gz" )
+  helper.assertFileContains( summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-bin.zip" )
+  helper.assertFileContains( summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-src.tar.bz2" )
+  helper.assertFileContains( summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-src.tar.gz" )
+  helper.assertFileContains( summaryFile, "attached-artifacts.artifacts.xml-summary-file-1.0-SNAPSHOT-src.zip" )
 
 }
-catch (Exception e)
+catch ( Exception e )
 {
-  System.err.println(e.getMessage())
+  System.err.println( e.getMessage() )
   return false;
 }

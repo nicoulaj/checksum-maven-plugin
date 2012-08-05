@@ -20,7 +20,6 @@ import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
-
 import org.apache.maven.plugin.logging.Log;
 
 import java.io.File;
@@ -34,7 +33,8 @@ import java.security.NoSuchAlgorithmException;
  * @see net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution
  * @since 1.0
  */
-public class NeverFailExecution extends AbstractExecution
+public class NeverFailExecution
+    extends AbstractExecution
 {
     /**
      * The {@link org.apache.maven.plugin.logging.Log} used instead of throwing exceptions on error.
@@ -119,8 +119,8 @@ public class NeverFailExecution extends AbstractExecution
                 }
                 catch ( DigesterException e )
                 {
-                    logger.warn( "Unable to calculate " + algorithm + " hash for " + file.getName() + ": "
-                                 + e.getMessage() );
+                    logger.warn(
+                        "Unable to calculate " + algorithm + " hash for " + file.getName() + ": " + e.getMessage() );
                 }
             }
         }

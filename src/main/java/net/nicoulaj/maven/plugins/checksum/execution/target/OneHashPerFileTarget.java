@@ -16,7 +16,6 @@
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
-
 import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
@@ -29,7 +28,8 @@ import java.security.NoSuchAlgorithmException;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
-public class OneHashPerFileTarget implements ExecutionTarget
+public class OneHashPerFileTarget
+    implements ExecutionTarget
 {
     /**
      * Encoding to use for generated files.
@@ -66,15 +66,16 @@ public class OneHashPerFileTarget implements ExecutionTarget
     /**
      * {@inheritDoc}
      */
-    public void init() throws ExecutionTargetInitializationException
+    public void init()
+        throws ExecutionTargetInitializationException
     {
         // Make sure the output directory exists or can be created.
         if ( outputDirectory != null )
         {
             if ( outputDirectory.exists() && !outputDirectory.isDirectory() )
             {
-                throw new ExecutionTargetInitializationException( "'" + outputDirectory.getPath()
-                                                                  + "' already exists and is not a directory." );
+                throw new ExecutionTargetInitializationException(
+                    "'" + outputDirectory.getPath() + "' already exists and is not a directory." );
             }
             else
             {
@@ -86,14 +87,14 @@ public class OneHashPerFileTarget implements ExecutionTarget
     /**
      * {@inheritDoc}
      */
-    public void write( String digest, File file, String algorithm ) throws ExecutionTargetWriteException
+    public void write( String digest, File file, String algorithm )
+        throws ExecutionTargetWriteException
     {
         try
         {
             File outputFileDirectory = ( outputDirectory != null ) ? outputDirectory : file.getParentFile();
-            String outputFileName = file.getName() + DigesterFactory.getInstance()
-                                                                    .getFileDigester( algorithm )
-                                                                    .getFileExtension();
+            String outputFileName =
+                file.getName() + DigesterFactory.getInstance().getFileDigester( algorithm ).getFileExtension();
             FileUtils.fileWrite( outputFileDirectory.getPath() + File.separator + outputFileName, digest );
         }
         catch ( IOException e )

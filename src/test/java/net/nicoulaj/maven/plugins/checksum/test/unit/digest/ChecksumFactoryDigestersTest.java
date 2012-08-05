@@ -18,7 +18,6 @@ package net.nicoulaj.maven.plugins.checksum.test.unit.digest;
 import net.nicoulaj.maven.plugins.checksum.Constants;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,7 +54,7 @@ public class ChecksumFactoryDigestersTest
         List<Object[]> data = new ArrayList<Object[]>();
         for ( String algorithm : Constants.SUPPORTED_ALGORITHMS )
         {
-            data.add( new String[]{algorithm} );
+            data.add( new String[]{ algorithm } );
         }
         return data;
     }
@@ -76,7 +75,8 @@ public class ChecksumFactoryDigestersTest
      * @throws NoSuchAlgorithmException should never happen.
      */
     @Test
-    public void testDigesterIsNotNull() throws NoSuchAlgorithmException
+    public void testDigesterIsNotNull()
+        throws NoSuchAlgorithmException
     {
         FileDigester digester = DigesterFactory.getInstance().getFileDigester( algorithm );
         Assert.assertNotNull( "The returned digester for  '" + algorithm + "' algorithm is null.", digester );
@@ -88,12 +88,12 @@ public class ChecksumFactoryDigestersTest
      * @throws NoSuchAlgorithmException should never happen.
      */
     @Test
-    public void testDigesterIsSingleton() throws NoSuchAlgorithmException
+    public void testDigesterIsSingleton()
+        throws NoSuchAlgorithmException
     {
         FileDigester digester1 = DigesterFactory.getInstance().getFileDigester( algorithm );
         FileDigester digester2 = DigesterFactory.getInstance().getFileDigester( algorithm );
-        Assert.assertEquals( "The returned digester for  '" + algorithm + "' algorithm is not a singleton.",
-                             digester1,
+        Assert.assertEquals( "The returned digester for  '" + algorithm + "' algorithm is not a singleton.", digester1,
                              digester2 );
     }
 
@@ -103,11 +103,11 @@ public class ChecksumFactoryDigestersTest
      * @throws NoSuchAlgorithmException should never happen.
      */
     @Test
-    public void testDigesterIsRightOne() throws NoSuchAlgorithmException
+    public void testDigesterIsRightOne()
+        throws NoSuchAlgorithmException
     {
         FileDigester digester = DigesterFactory.getInstance().getFileDigester( algorithm );
         Assert.assertEquals( "The returned digester for  '" + algorithm + "' algorithm is not the right one.",
-                             digester.getAlgorithm(),
-                             algorithm );
+                             digester.getAlgorithm(), algorithm );
     }
 }

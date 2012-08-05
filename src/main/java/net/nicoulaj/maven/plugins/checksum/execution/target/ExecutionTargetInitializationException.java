@@ -22,7 +22,8 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
  * @see ExecutionTarget#init()
  * @since 1.0
  */
-public class ExecutionTargetInitializationException extends Exception
+public class ExecutionTargetInitializationException
+    extends Exception
 {
     /**
      * Build a new instance of {@link ExecutionTargetInitializationException}.

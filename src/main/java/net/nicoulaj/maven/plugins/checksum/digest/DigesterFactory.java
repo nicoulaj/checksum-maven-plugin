@@ -16,7 +16,6 @@
 package net.nicoulaj.maven.plugins.checksum.digest;
 
 import net.nicoulaj.maven.plugins.checksum.Constants;
-
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import java.security.NoSuchAlgorithmException;
@@ -26,7 +25,7 @@ import java.util.Map;
 
 /**
  * Singleton class used to get instances of {@link FileDigester}.
- *
+ * <p/>
  * <p>Each {@link FileDigester} object is a singleton itself.</p>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
@@ -43,8 +42,8 @@ public class DigesterFactory
     /**
      * The map (algorithm, digester).
      */
-    protected Map<String, FileDigester> digesters = new HashMap<String, FileDigester>
-                                                    ( Constants.SUPPORTED_ALGORITHMS.length );
+    protected Map<String, FileDigester> digesters =
+        new HashMap<String, FileDigester>( Constants.SUPPORTED_ALGORITHMS.length );
 
     /**
      * Build a new {@link net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory}.
@@ -77,7 +76,8 @@ public class DigesterFactory
      * @throws NoSuchAlgorithmException if the checksum algorithm is not supported or invalid.
      * @see FileDigester
      */
-    public synchronized FileDigester getFileDigester( String algorithm ) throws NoSuchAlgorithmException
+    public synchronized FileDigester getFileDigester( String algorithm )
+        throws NoSuchAlgorithmException
     {
         FileDigester digester = digesters.get( algorithm );
 

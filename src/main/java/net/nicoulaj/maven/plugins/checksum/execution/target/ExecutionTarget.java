@@ -27,13 +27,14 @@ public interface ExecutionTarget
 {
     /**
      * Initialize the target.
-     *
+     * <p/>
      * <p>Should be called before first call to {@link #write(String, java.io.File, String)}.</p>
      *
      * @throws ExecutionTargetInitializationException
      *          if an error occured while initializing the target.
      */
-    void init() throws ExecutionTargetInitializationException;
+    void init()
+        throws ExecutionTargetInitializationException;
 
     /**
      * Write the hashcode calculated for the given file and algorithm to the target.
@@ -43,14 +44,16 @@ public interface ExecutionTarget
      * @param algorithm the algorithm used to calculate the digest.
      * @throws ExecutionTargetWriteException if an error occured while writing to the target.
      */
-    void write( String digest, File file, String algorithm ) throws ExecutionTargetWriteException;
+    void write( String digest, File file, String algorithm )
+        throws ExecutionTargetWriteException;
 
     /**
      * Close the target.
-     *
+     * <p/>
      * <p>Should be called after last call to {@link #write(String, java.io.File, String)}.</p>
      *
      * @throws ExecutionTargetCloseException if an error occured while closing the target.
      */
-    void close() throws ExecutionTargetCloseException;
+    void close()
+        throws ExecutionTargetCloseException;
 }

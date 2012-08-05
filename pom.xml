@@ -14,7 +14,8 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -177,36 +178,36 @@
           </execution>
         </executions>
       </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <source>1.5</source>
-            <target>1.5</target>
-            <optimize>true</optimize>
-            <showWarnings>true</showWarnings>
-            <showDeprecation>true</showDeprecation>
-          </configuration>
-        </plugin>
-        <plugin>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <configuration>
-            <encoding>${encoding}</encoding>
-            <links>
-              <link>http://download-llnw.oracle.com/javase/1.5.0/docs/api</link>
-              <link>http://maven.apache.org/ref/${maven.target-version}/apidocs</link>
-              <link>http://plexus.codehaus.org/plexus-components/plexus-digest/apidocs</link>
-              <link>http://plexus.codehaus.org/plexus-utils/apidocs</link>
-              <link>http://junit.sourceforge.net/javadoc</link>
-            </links>
-            <tagletArtifacts>
-              <tagletArtifact>
-                <groupId>org.apache.maven.plugin-tools</groupId>
-                <artifactId>maven-plugin-tools-javadoc</artifactId>
-                <version>2.6</version>
-              </tagletArtifact>
-            </tagletArtifacts>
-          </configuration>
-        </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+          <optimize>true</optimize>
+          <showWarnings>true</showWarnings>
+          <showDeprecation>true</showDeprecation>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <encoding>${encoding}</encoding>
+          <links>
+            <link>http://download-llnw.oracle.com/javase/1.5.0/docs/api</link>
+            <link>http://maven.apache.org/ref/${maven.target-version}/apidocs</link>
+            <link>http://plexus.codehaus.org/plexus-components/plexus-digest/apidocs</link>
+            <link>http://plexus.codehaus.org/plexus-utils/apidocs</link>
+            <link>http://junit.sourceforge.net/javadoc</link>
+          </links>
+          <tagletArtifacts>
+            <tagletArtifact>
+              <groupId>org.apache.maven.plugin-tools</groupId>
+              <artifactId>maven-plugin-tools-javadoc</artifactId>
+              <version>2.6</version>
+            </tagletArtifact>
+          </tagletArtifacts>
+        </configuration>
+      </plugin>
     </plugins>
 
     <extensions>
@@ -249,7 +250,7 @@
         </property>
       </activation>
       <properties>
-        <invoker.settings-file />
+        <invoker.settings-file/>
       </properties>
     </profile>
 

@@ -19,18 +19,18 @@ import net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelpe
 try
 {
   // Instantiate a helper.
-  PostBuildScriptHelper helper = new PostBuildScriptHelper(basedir, localRepositoryPath, context)
+  PostBuildScriptHelper helper = new PostBuildScriptHelper( basedir, localRepositoryPath, context )
 
   // Fail if no traces of checksum-maven-plugin invocation.
-  helper.assertBuildLogContains("checksum-maven-plugin");
+  helper.assertBuildLogContains( "checksum-maven-plugin" );
 
   // Check files have been created and are not empty.
-  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.default-1.0-SNAPSHOT.jar.md5")
-  helper.assertFileIsNotEmpty("target/single-artifact.artifacts.default-1.0-SNAPSHOT.jar.sha1")
+  helper.assertFileIsNotEmpty( "target/single-artifact.artifacts.default-1.0-SNAPSHOT.jar.md5" )
+  helper.assertFileIsNotEmpty( "target/single-artifact.artifacts.default-1.0-SNAPSHOT.jar.sha1" )
 
 }
-catch (Exception e)
+catch ( Exception e )
 {
-  System.err.println(e.getMessage())
+  System.err.println( e.getMessage() )
   return false;
 }

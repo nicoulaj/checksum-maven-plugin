@@ -20,7 +20,6 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -52,9 +51,9 @@ public class ExecutionTargetsTest
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters()
     {
-        Object[][] data = new Object[][]{{new MavenLogTarget( null )},
-                                         {new OneHashPerFileTarget( Constants.DEFAULT_ENCODING )},
-                                         {new CsvSummaryFileTarget( new File( "" ), Constants.DEFAULT_ENCODING )}};
+        Object[][] data =
+            new Object[][]{ { new MavenLogTarget( null ) }, { new OneHashPerFileTarget( Constants.DEFAULT_ENCODING ) },
+                { new CsvSummaryFileTarget( new File( "" ), Constants.DEFAULT_ENCODING ) } };
         return Arrays.asList( data );
     }
 

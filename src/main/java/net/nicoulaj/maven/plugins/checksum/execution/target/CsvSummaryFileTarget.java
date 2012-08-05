@@ -30,7 +30,8 @@ import java.util.TreeSet;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
-public class CsvSummaryFileTarget implements ExecutionTarget
+public class CsvSummaryFileTarget
+    implements ExecutionTarget
 {
     /**
      * The line separator character.
@@ -110,7 +111,8 @@ public class CsvSummaryFileTarget implements ExecutionTarget
     /**
      * {@inheritDoc}
      */
-    public void close() throws ExecutionTargetCloseException
+    public void close()
+        throws ExecutionTargetCloseException
     {
         StringBuilder sb = new StringBuilder();
 

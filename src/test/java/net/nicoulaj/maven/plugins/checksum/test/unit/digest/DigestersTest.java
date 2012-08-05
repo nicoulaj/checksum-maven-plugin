@@ -19,7 +19,6 @@ import net.nicoulaj.maven.plugins.checksum.digest.DigesterException;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
 import net.nicoulaj.maven.plugins.checksum.test.unit.Constants;
-
 import org.codehaus.plexus.util.FileUtils;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -67,7 +66,7 @@ public class DigestersTest
         List<Object[]> data = new ArrayList<Object[]>();
         for ( String algorithm : net.nicoulaj.maven.plugins.checksum.Constants.SUPPORTED_ALGORITHMS )
         {
-            data.add( new String[]{algorithm} );
+            data.add( new String[]{ algorithm } );
         }
         return data;
     }
@@ -78,7 +77,8 @@ public class DigestersTest
      * @param algorithm the target checksum algorithm to run the test for.
      * @throws NoSuchAlgorithmException should never happen.
      */
-    public DigestersTest( String algorithm ) throws NoSuchAlgorithmException
+    public DigestersTest( String algorithm )
+        throws NoSuchAlgorithmException
     {
         this.digester = DigesterFactory.getInstance().getFileDigester( algorithm );
     }
@@ -113,16 +113,19 @@ public class DigestersTest
      * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester#calculate(java.io.File)
      */
     @Test
-    public void testCalculate() throws DigesterException, IOException
+    public void testCalculate()
+        throws DigesterException, IOException
     {
         List<File> testFiles = FileUtils.getFiles( new File( Constants.SAMPLE_FILES_PATH ), null, null );
         for ( File testFile : testFiles )
         {
             String calculatedHash = digester.calculate( testFile );
-            String correctHash = FileUtils.fileRead( Constants.SAMPLE_FILES_HASHCODES_PATH + File.separator
-                                                     + testFile.getName() + digester.getFileExtension() );
-            Assert.assertEquals( "The calculated " + digester.getAlgorithm() + " hashcode for "
-                                 + testFile.getName() + " is incorrect.", correctHash, calculatedHash );
+            String correctHash = FileUtils.fileRead(
+                Constants.SAMPLE_FILES_HASHCODES_PATH + File.separator + testFile.getName()
+                    + digester.getFileExtension() );
+            Assert.assertEquals(
+                "The calculated " + digester.getAlgorithm() + " hashcode for " + testFile.getName() + " is incorrect.",
+                correctHash, calculatedHash );
         }
     }
 
@@ -133,7 +136,8 @@ public class DigestersTest
      * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester#calculate(java.io.File)
      */
     @Test
-    public void testCalculateExceptionThrownOnFileNotFound() throws DigesterException
+    public void testCalculateExceptionThrownOnFileNotFound()
+        throws DigesterException
     {
         exception.expect( DigesterException.class );
         digester.calculate( new File( "some/path/that/does/not/exist" ) );

@@ -22,7 +22,8 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
  * @see ExecutionTarget#close()
  * @since 1.0
  */
-public class ExecutionTargetCloseException extends Exception
+public class ExecutionTargetCloseException
+    extends Exception
 {
     /**
      * Build a new instance of {@link ExecutionTargetCloseException}.

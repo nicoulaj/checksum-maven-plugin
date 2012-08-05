@@ -19,30 +19,30 @@ import net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelpe
 try
 {
   // Instantiate a helper.
-  PostBuildScriptHelper helper = new PostBuildScriptHelper(basedir, localRepositoryPath, context)
+  PostBuildScriptHelper helper = new PostBuildScriptHelper( basedir, localRepositoryPath, context )
 
   // Fail if no traces of checksum-maven-plugin invocation.
-  helper.assertBuildLogContains("checksum-maven-plugin");
+  helper.assertBuildLogContains( "checksum-maven-plugin" );
 
   // Check files have been created and are not empty.
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT.jar.md5")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT.jar.sha1")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.tar.bz2.md5")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.tar.bz2.sha1")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.tar.gz.md5")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.tar.gz.sha1")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.zip.md5")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.zip.sha1")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.tar.bz2.md5")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.tar.bz2.sha1")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.tar.gz.md5")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.tar.gz.sha1")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.zip.md5")
-  helper.assertFileIsNotEmpty("target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.zip.sha1")
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT.jar.md5" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT.jar.sha1" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.tar.bz2.md5" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.tar.bz2.sha1" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.tar.gz.md5" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.tar.gz.sha1" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.zip.md5" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-bin.zip.sha1" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.tar.bz2.md5" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.tar.bz2.sha1" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.tar.gz.md5" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.tar.gz.sha1" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.zip.md5" )
+  helper.assertFileIsNotEmpty( "target/artifacts-checksums/attached-artifacts.artifacts.custom-output-directory-1.0-SNAPSHOT-src.zip.sha1" )
 
 }
-catch (Exception e)
+catch ( Exception e )
 {
-  System.err.println(e.getMessage())
+  System.err.println( e.getMessage() )
   return false;
 }

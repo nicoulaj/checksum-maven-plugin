@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * Utility object used by post-build hook scripts.
- *
+ * <p/>
  * <p>See {@code src/main/test-integration/projects/.../postbuild.groovy} scripts.</p>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
@@ -77,7 +77,8 @@ public class PostBuildScriptHelper
      * @return the file content.
      * @throws Exception if the build log could not be open.
      */
-    public String getFileContent( String path ) throws Exception
+    public String getFileContent( String path )
+        throws Exception
     {
         return FileUtils.fileRead( new File( baseDirectory, path ) );
     }
@@ -88,7 +89,8 @@ public class PostBuildScriptHelper
      * @return the project build log content.
      * @throws Exception if the build log could not be open.
      */
-    public String getBuildLog() throws Exception
+    public String getBuildLog()
+        throws Exception
     {
         return getFileContent( BUILD_LOG_FILE );
     }
@@ -99,7 +101,8 @@ public class PostBuildScriptHelper
      * @param path the path to the file relative to {@link #baseDirectory}.
      * @throws Exception if conditions are not fulfilled.
      */
-    public void assertFileExists( String path ) throws Exception
+    public void assertFileExists( String path )
+        throws Exception
     {
         if ( !new File( baseDirectory, path ).isFile() )
         {
@@ -113,7 +116,8 @@ public class PostBuildScriptHelper
      * @param path the path to the file relative to {@link #baseDirectory}.
      * @throws Exception if conditions are not fulfilled.
      */
-    public void assertFileDoesNotExist( String path ) throws Exception
+    public void assertFileDoesNotExist( String path )
+        throws Exception
     {
         if ( new File( baseDirectory, path ).isFile() )
         {
@@ -127,7 +131,8 @@ public class PostBuildScriptHelper
      * @param path the path to the file relative to {@link #baseDirectory}.
      * @throws Exception if conditions are not fulfilled.
      */
-    public void assertFileIsNotEmpty( String path ) throws Exception
+    public void assertFileIsNotEmpty( String path )
+        throws Exception
     {
         File file = new File( baseDirectory, path );
         if ( !file.isFile() )
@@ -150,7 +155,8 @@ public class PostBuildScriptHelper
      * @param search the expression to search in the build log.
      * @throws Exception if conditions are not fulfilled.
      */
-    public void assertFileContains( String path, String search ) throws Exception
+    public void assertFileContains( String path, String search )
+        throws Exception
     {
         if ( !FileUtils.fileRead( new File( baseDirectory, path ) ).contains( search ) )
         {
@@ -164,7 +170,8 @@ public class PostBuildScriptHelper
      * @param search the expression to search in the build log.
      * @throws Exception if conditions are not fulfilled.
      */
-    public void assertBuildLogContains( String search ) throws Exception
+    public void assertBuildLogContains( String search )
+        throws Exception
     {
         assertFileContains( BUILD_LOG_FILE, search );
     }
@@ -176,7 +183,8 @@ public class PostBuildScriptHelper
      * @param search the expression to search in the build log.
      * @throws Exception if conditions are not fulfilled.
      */
-    public void assertFileDoesNotContain( String path, String search ) throws Exception
+    public void assertFileDoesNotContain( String path, String search )
+        throws Exception
     {
         if ( FileUtils.fileRead( new File( baseDirectory, path ) ).contains( search ) )
         {
@@ -190,7 +198,8 @@ public class PostBuildScriptHelper
      * @param search the expression to search in the build log.
      * @throws Exception if conditions are not fulfilled.
      */
-    public void assertBuildLogDoesNotContain( String search ) throws Exception
+    public void assertBuildLogDoesNotContain( String search )
+        throws Exception
     {
         assertFileDoesNotContain( BUILD_LOG_FILE, search );
     }

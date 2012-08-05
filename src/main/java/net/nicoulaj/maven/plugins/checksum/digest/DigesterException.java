@@ -21,7 +21,8 @@ package net.nicoulaj.maven.plugins.checksum.digest;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
-public class DigesterException extends Exception
+public class DigesterException
+    extends Exception
 {
     /**
      * Build a new instance of {@link DigesterException}.

@@ -22,7 +22,8 @@ package net.nicoulaj.maven.plugins.checksum.execution;
  * @see Execution#run()
  * @since 1.0
  */
-public class ExecutionException extends Exception
+public class ExecutionException
+    extends Exception
 {
     /**
      * Build a new instance of {@link ExecutionException}.

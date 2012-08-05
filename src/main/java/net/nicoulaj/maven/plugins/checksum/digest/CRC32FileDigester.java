@@ -29,7 +29,8 @@ import java.util.zip.CheckedInputStream;
  * @see FileDigester
  * @since 1.0
  */
-public class CRC32FileDigester extends AbstractFileDigester
+public class CRC32FileDigester
+    extends AbstractFileDigester
 {
     /**
      * The identifier of the algorithm supported by this implementation.
@@ -47,7 +48,8 @@ public class CRC32FileDigester extends AbstractFileDigester
     /**
      * {@inheritDoc}
      */
-    public String calculate( File file ) throws DigesterException
+    public String calculate( File file )
+        throws DigesterException
     {
         CheckedInputStream cis;
         try
@@ -69,8 +71,9 @@ public class CRC32FileDigester extends AbstractFileDigester
         }
         catch ( IOException e )
         {
-            throw new DigesterException( "Unable to calculate the " + getAlgorithm() + " hashcode for "
-                                         + file.getPath() + ": " + e.getMessage() );
+            throw new DigesterException(
+                "Unable to calculate the " + getAlgorithm() + " hashcode for " + file.getPath() + ": "
+                    + e.getMessage() );
         }
 
         return Long.toString( cis.getChecksum().getValue() );
