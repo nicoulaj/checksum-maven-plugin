@@ -20,7 +20,7 @@
   <parent>
     <groupId>net.ju-n</groupId>
     <artifactId>net-ju-n-parent</artifactId>
-    <version>1.0.17</version>
+    <version>1.0.19</version>
   </parent>
 
   <groupId>net.ju-n.maven.plugins</groupId>
@@ -72,8 +72,10 @@
 
   <properties>
 
-    <!-- Target versions -->
+    <!-- Versions -->
     <maven.target-version>2.2.0</maven.target-version>
+    <bouncycastle.version>1.45</bouncycastle.version>
+    <plexus-utils.version>3.0.2</plexus-utils.version>
 
     <!-- Build settings -->
     <debug>false</debug>
@@ -97,12 +99,12 @@
       <dependency>
         <groupId>org.bouncycastle</groupId>
         <artifactId>bcprov-jdk15</artifactId>
-        <version>1.45</version>
+        <version>${bouncycastle.version}</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-utils</artifactId>
-        <version>2.0.5</version>
+        <version>${plexus-utils.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
