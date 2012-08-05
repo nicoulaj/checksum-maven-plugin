@@ -27,6 +27,9 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.StringUtils;
@@ -40,23 +43,28 @@ import java.util.List;
  * Compute specified files checksum digests and store them in individual files and/or a summary file.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @goal files
- * @phase verify
- * @inheritByDefault false
- * @threadSafe
  * @since 1.0
  */
+@Mojo(
+    name = FilesMojo.NAME,
+    defaultPhase = LifecyclePhase.VERIFY,
+    requiresProject = true,
+    inheritByDefault = false,
+    threadSafe = true )
 public class FilesMojo
     extends AbstractMojo
 {
     /**
+     * The mojo name.
+     */
+    public static final String NAME = "files";
+
+    /**
      * The Maven project.
      *
-     * @parameter expression="${project}"
-     * @required
-     * @readonly
      * @since 1.0
      */
+    @Parameter( property = "project", required = true, readonly = true )
     protected MavenProject project;
 
     /**
@@ -72,91 +80,91 @@ public class FilesMojo
      * &lt;/algorithms&gt;</pre>
      * </p>
      *
-     * @parameter
      * @since 1.0
      */
+    @Parameter
     protected List<String> algorithms = Arrays.asList( Constants.DEFAULT_EXECUTION_ALGORITHMS );
 
     /**
      * The list of files to process.
      *
-     * @parameter
-     * @required
      * @since 1.0
      */
+    @Parameter( required = true )
     protected List<File> files = new LinkedList<File>();
 
     /**
      * Indicates whether the build will fail if there are errors.
      *
-     * @parameter default-value="true"
      * @since 1.0
      */
+    @Parameter( defaultValue = "true" )
     protected boolean failOnError;
 
     /**
      * Encoding to use for generated files.
      *
-     * @parameter expression="${encoding}" default-value="${project.build.sourceEncoding}"
+     * @since 1.0
      */
+    @Parameter( property = "encoding", defaultValue = "${project.build.sourceEncoding}" )
     protected String encoding = Constants.DEFAULT_ENCODING;
 
     /**
      * Indicates whether the build will store checksums in separate files (one file per algorithm per artifact).
      *
-     * @parameter default-value="true"
      * @since 1.0
      */
+    @Parameter( defaultValue = "true" )
     protected boolean individualFiles;
 
     /**
      * The directory where output files will be stored. Leave unset to have each file next to the source file.
      *
-     * @parameter
      * @since 1.0
      */
+    @Parameter
     protected String individualFilesOutputDirectory;
 
     /**
      * Indicates whether the build will print checksums in the build log.
      *
-     * @parameter default-value="false"
      * @since 1.0
      */
+    @Parameter( defaultValue = "false" )
     protected boolean quiet;
 
     /**
      * Indicates whether the build will store checksums to a single CSV summary file.
      *
-     * @parameter default-value="true"
      * @since 1.0
      */
+    @Parameter( defaultValue = "true" )
     protected boolean csvSummary;
 
     /**
      * The name of the summary file created if the option is activated.
      *
-     * @parameter default-value="files-checksums.csv"
      * @see #csvSummary
      * @since 1.0
      */
+    @Parameter( defaultValue = "files-checksums.csv" )
     protected String csvSummaryFile;
 
     /**
      * Indicates whether the build will store checksums to a single XML summary file.
      *
-     * @parameter default-value="false"
      * @since 1.0
      */
+    @Parameter( defaultValue = "false" )
     protected boolean xmlSummary;
 
     /**
      * The name of the summary file created if the option is activated.
      *
-     * @parameter default-value="files-checksums.xml"
      * @see #xmlSummary
      * @since 1.0
      */
+    @Parameter( defaultValue = "files-checksums.xml" )
     protected String xmlSummaryFile;
 
     /**

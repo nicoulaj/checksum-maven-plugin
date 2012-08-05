@@ -23,6 +23,8 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
 import java.util.Arrays;
@@ -37,20 +39,25 @@ import java.util.Arrays;
  * </pre></p>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @goal file
- * @threadSafe
  * @since 1.0
  */
+@Mojo(
+    name = FileMojo.NAME,
+    threadSafe = true )
 public class FileMojo
     extends AbstractMojo
 {
     /**
+     * The mojo name.
+     */
+    public static final String NAME = "file";
+
+    /**
      * The file to process.
      *
-     * @parameter expression="${file}"
-     * @required
      * @since 1.0
      */
+    @Parameter( property = "file", required = true )
     protected String file;
 
     /**
