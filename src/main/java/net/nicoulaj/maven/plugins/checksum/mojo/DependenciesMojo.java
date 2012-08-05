@@ -94,7 +94,7 @@ public class DependenciesMojo
      *
      * @since 1.0
      */
-    @Parameter(defaultValue = "true")
+    @Parameter( defaultValue = "true" )
     protected boolean failOnError;
 
     /**
@@ -110,7 +110,7 @@ public class DependenciesMojo
      *
      * @since 1.0
      */
-    @Parameter(defaultValue = "false")
+    @Parameter( defaultValue = "false" )
     protected boolean individualFiles;
 
     /**
@@ -118,7 +118,7 @@ public class DependenciesMojo
      *
      * @since 1.0
      */
-    @Parameter(defaultValue = "${project.build.directory}")
+    @Parameter( defaultValue = "${project.build.directory}" )
     protected String individualFilesOutputDirectory;
 
     /**
@@ -126,7 +126,7 @@ public class DependenciesMojo
      *
      * @since 1.0
      */
-    @Parameter(defaultValue = "false")
+    @Parameter( defaultValue = "false" )
     protected boolean quiet;
 
     /**
@@ -134,7 +134,7 @@ public class DependenciesMojo
      *
      * @since 1.0
      */
-    @Parameter(defaultValue = "true")
+    @Parameter( defaultValue = "true" )
     protected boolean csvSummary;
 
     /**
@@ -143,7 +143,7 @@ public class DependenciesMojo
      * @see #csvSummary
      * @since 1.0
      */
-    @Parameter(defaultValue = "dependencies-checksums.csv")
+    @Parameter( defaultValue = "dependencies-checksums.csv" )
     protected String csvSummaryFile;
 
     /**
@@ -151,7 +151,7 @@ public class DependenciesMojo
      *
      * @since 1.0
      */
-    @Parameter(defaultValue = "false")
+    @Parameter( defaultValue = "false" )
     protected boolean xmlSummary;
 
     /**
@@ -160,7 +160,7 @@ public class DependenciesMojo
      * @see #xmlSummary
      * @since 1.0
      */
-    @Parameter(defaultValue = "dependencies-checksums.xml")
+    @Parameter( defaultValue = "dependencies-checksums.xml" )
     protected String xmlSummaryFile;
 
     /**
