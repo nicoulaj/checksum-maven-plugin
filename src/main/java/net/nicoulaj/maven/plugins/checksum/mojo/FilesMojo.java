@@ -24,6 +24,7 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget;
+import org.apache.maven.model.FileSet;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -31,12 +32,13 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
+import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.StringUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -58,6 +60,13 @@ public class FilesMojo
      * The mojo name.
      */
     public static final String NAME = "files";
+
+    /**
+     * The default file inclusion pattern.
+     *
+     * @see #getFilesToProcess()
+     */
+    protected static final String[] DEFAULT_INCLUDES = { "**/**" };
 
     /**
      * The Maven project.
@@ -87,11 +96,25 @@ public class FilesMojo
 
     /**
      * The list of files to process.
+     * <p/>
+     * <p> Use the following syntax:
+     * <pre>&lt;fileSets&gt;
+     *   &lt;fileSet&gt;
+     *     &lt;directory&gt;...&lt;/directory&gt;
+     *     &lt;includes&gt;
+     *       &lt;include&gt;...&lt;/include&gt;
+     *     &lt;/includes&gt;
+     *     &lt;excludes&gt;
+     *       &lt;exclude&gt;...&lt;/exclude&gt;
+     *     &lt;/excludes&gt;
+     *   &lt;/fileSet&gt;
+     * &lt;/fileSets&gt;</pre>
+     * </p>
      *
-     * @since 1.0
+     * @since 1.1
      */
     @Parameter( required = true )
-    protected List<File> files = new LinkedList<File>();
+    protected List<FileSet> fileSets;
 
     /**
      * Indicates whether the build will fail if there are errors.
@@ -147,7 +170,7 @@ public class FilesMojo
      * @see #csvSummary
      * @since 1.0
      */
-    @Parameter( defaultValue = "files-checksums.csv" )
+    @Parameter( defaultValue = "checksums.csv" )
     protected String csvSummaryFile;
 
     /**
@@ -164,7 +187,7 @@ public class FilesMojo
      * @see #xmlSummary
      * @since 1.0
      */
-    @Parameter( defaultValue = "files-checksums.xml" )
+    @Parameter( defaultValue = "checksums.xml" )
     protected String xmlSummaryFile;
 
     /**
@@ -176,7 +199,7 @@ public class FilesMojo
         // Prepare an execution.
         Execution execution = ( failOnError ) ? new FailOnErrorExecution() : new NeverFailExecution( getLog() );
         execution.setAlgorithms( algorithms );
-        execution.setFiles( files );
+        execution.setFiles( getFilesToProcess() );
         if ( !quiet )
         {
             execution.addTarget( new MavenLogTarget( getLog() ) );
@@ -212,5 +235,48 @@ public class FilesMojo
             getLog().error( e.getMessage() );
             throw new MojoFailureException( e.getMessage() );
         }
+    }
+
+    /**
+     * Build the list of files from which digests should be generated.
+     *
+     * @return the list of files that should be processed.
+     */
+    protected List<File> getFilesToProcess()
+    {
+        final List<File> filesToProcess = new ArrayList<File>();
+        for ( final FileSet fileSet : fileSets )
+        {
+            final DirectoryScanner scanner = new DirectoryScanner();
+            scanner.setBasedir( fileSet.getDirectory() );
+            String[] includes;
+            if ( fileSet.getIncludes() != null && !fileSet.getIncludes().isEmpty() )
+            {
+                final List<String> fileSetIncludes = fileSet.getIncludes();
+                includes = fileSetIncludes.toArray( new String[fileSetIncludes.size()] );
+            }
+            else
+            {
+                includes = DEFAULT_INCLUDES;
+            }
+            scanner.setIncludes( includes );
+
+            if ( fileSet.getExcludes() != null && !fileSet.getExcludes().isEmpty() )
+            {
+                final List<String> fileSetExcludes = fileSet.getExcludes();
+                scanner.setExcludes( fileSetExcludes.toArray( new String[fileSetExcludes.size()] ) );
+            }
+
+            scanner.addDefaultExcludes();
+
+            scanner.scan();
+
+            for ( String filePath : scanner.getIncludedFiles() )
+            {
+                filesToProcess.add( new File( fileSet.getDirectory(), filePath ) );
+            }
+        }
+
+        return filesToProcess;
     }
 }
