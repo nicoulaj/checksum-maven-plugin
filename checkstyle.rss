@@ -8,8 +8,8 @@
     <language>en-us</language>
     <copyright>&#169;2010 - 2012</copyright>
     <item>
-      <title>File: 44,
-             Errors: 4,
+      <title>File: 45,
+             Errors: 2,
              Warnings: 0,
              Infos: 0
       </title>
@@ -192,7 +192,7 @@
                   0
                 </td>
                 <td>
-                  2
+                  1
                 </td>
               </tr>
                           <tr>
@@ -352,6 +352,20 @@
                           <tr>
                 <td>
                   <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget.java">net/nicoulaj/maven/plugins/checksum/execution/target/ExecutionTarget.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.mojo.AbstractChecksumMojo.java">net/nicoulaj/maven/plugins/checksum/mojo/AbstractChecksumMojo.java</a>
                 </td>
                 <td>
                   0
@@ -556,7 +570,7 @@
                   0
                 </td>
                 <td>
-                  2
+                  1
                 </td>
               </tr>
                           <tr>

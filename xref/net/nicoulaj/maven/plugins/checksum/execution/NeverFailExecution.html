@@ -30,21 +30,21 @@
 <a class="jxr_linenumber" name="20" href="#20">20</a>  <strong class="jxr_keyword">import</strong> net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
 <a class="jxr_linenumber" name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 <a class="jxr_linenumber" name="22" href="#22">22</a>  <strong class="jxr_keyword">import</strong> net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
-<a class="jxr_linenumber" name="23" href="#23">23</a>  
-<a class="jxr_linenumber" name="24" href="#24">24</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.plugin.logging.Log;
-<a class="jxr_linenumber" name="25" href="#25">25</a>  
-<a class="jxr_linenumber" name="26" href="#26">26</a>  <strong class="jxr_keyword">import</strong> java.io.File;
-<a class="jxr_linenumber" name="27" href="#27">27</a>  <strong class="jxr_keyword">import</strong> java.security.NoSuchAlgorithmException;
-<a class="jxr_linenumber" name="28" href="#28">28</a>  
-<a class="jxr_linenumber" name="29" href="#29">29</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="30" href="#30">30</a>  <em class="jxr_javadoccomment"> * An implementation of {@link net.nicoulaj.maven.plugins.checksum.execution.Execution} that tries to finish as much as</em>
-<a class="jxr_linenumber" name="31" href="#31">31</a>  <em class="jxr_javadoccomment"> * possible even if it encounters errors.</em>
-<a class="jxr_linenumber" name="32" href="#32">32</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="33" href="#33">33</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="mailto:julien.nicoulaud@gmail.com" target="alexandria_uri">mailto:julien.nicoulaud@gmail.com</a>"&gt;Julien Nicoulaud&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="34" href="#34">34</a>  <em class="jxr_javadoccomment"> * @see net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution</em>
-<a class="jxr_linenumber" name="35" href="#35">35</a>  <em class="jxr_javadoccomment"> * @since 1.0</em>
-<a class="jxr_linenumber" name="36" href="#36">36</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="37" href="#37">37</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/execution/NeverFailExecution.html">NeverFailExecution</a> <strong class="jxr_keyword">extends</strong> <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/execution/AbstractExecution.html">AbstractExecution</a>
+<a class="jxr_linenumber" name="23" href="#23">23</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.plugin.logging.Log;
+<a class="jxr_linenumber" name="24" href="#24">24</a>  
+<a class="jxr_linenumber" name="25" href="#25">25</a>  <strong class="jxr_keyword">import</strong> java.io.File;
+<a class="jxr_linenumber" name="26" href="#26">26</a>  <strong class="jxr_keyword">import</strong> java.security.NoSuchAlgorithmException;
+<a class="jxr_linenumber" name="27" href="#27">27</a>  
+<a class="jxr_linenumber" name="28" href="#28">28</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="29" href="#29">29</a>  <em class="jxr_javadoccomment"> * An implementation of {@link net.nicoulaj.maven.plugins.checksum.execution.Execution} that tries to finish as much as</em>
+<a class="jxr_linenumber" name="30" href="#30">30</a>  <em class="jxr_javadoccomment"> * possible even if it encounters errors.</em>
+<a class="jxr_linenumber" name="31" href="#31">31</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="32" href="#32">32</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="mailto:julien.nicoulaud@gmail.com" target="alexandria_uri">mailto:julien.nicoulaud@gmail.com</a>"&gt;Julien Nicoulaud&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="33" href="#33">33</a>  <em class="jxr_javadoccomment"> * @see net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution</em>
+<a class="jxr_linenumber" name="34" href="#34">34</a>  <em class="jxr_javadoccomment"> * @since 1.0</em>
+<a class="jxr_linenumber" name="35" href="#35">35</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="36" href="#36">36</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/execution/NeverFailExecution.html">NeverFailExecution</a>
+<a class="jxr_linenumber" name="37" href="#37">37</a>      <strong class="jxr_keyword">extends</strong> <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/execution/AbstractExecution.html">AbstractExecution</a>
 <a class="jxr_linenumber" name="38" href="#38">38</a>  {
 <a class="jxr_linenumber" name="39" href="#39">39</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="40" href="#40">40</a>  <em class="jxr_javadoccomment">     * The {@link org.apache.maven.plugin.logging.Log} used instead of throwing exceptions on error.</em>
@@ -129,8 +129,8 @@
 <a class="jxr_linenumber" name="119" href="#119">119</a>                 }
 <a class="jxr_linenumber" name="120" href="#120">120</a>                 <strong class="jxr_keyword">catch</strong> ( DigesterException e )
 <a class="jxr_linenumber" name="121" href="#121">121</a>                 {
-<a class="jxr_linenumber" name="122" href="#122">122</a>                     logger.warn( <span class="jxr_string">"Unable to calculate "</span> + algorithm + <span class="jxr_string">" hash for "</span> + file.getName() + <span class="jxr_string">": "</span>
-<a class="jxr_linenumber" name="123" href="#123">123</a>                                  + e.getMessage() );
+<a class="jxr_linenumber" name="122" href="#122">122</a>                     logger.warn(
+<a class="jxr_linenumber" name="123" href="#123">123</a>                         <span class="jxr_string">"Unable to calculate "</span> + algorithm + <span class="jxr_string">" hash for "</span> + file.getName() + <span class="jxr_string">": "</span> + e.getMessage() );
 <a class="jxr_linenumber" name="124" href="#124">124</a>                 }
 <a class="jxr_linenumber" name="125" href="#125">125</a>             }
 <a class="jxr_linenumber" name="126" href="#126">126</a>         }

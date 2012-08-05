@@ -1,3 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2012-04-15T13:53:28.935">
+<pmd version="4.3" timestamp="2012-08-05T19:33:18.319">
+<file name="/home/nicoulaj/projects/checksum-maven-plugin/target/checkout/target/generated-sources/plugin/HelpMojo.java">
+<violation beginline="13" endline="13" begincolumn="1" endcolumn="26" rule="UnusedImports" ruleset="Import Statement Rules" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'java.util.Iterator'
+</violation>
+</file>
 </pmd>
