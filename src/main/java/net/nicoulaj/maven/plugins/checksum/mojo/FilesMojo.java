@@ -15,30 +15,14 @@
  */
 package net.nicoulaj.maven.plugins.checksum.mojo;
 
-import net.nicoulaj.maven.plugins.checksum.Constants;
-import net.nicoulaj.maven.plugins.checksum.execution.Execution;
-import net.nicoulaj.maven.plugins.checksum.execution.ExecutionException;
-import net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution;
-import net.nicoulaj.maven.plugins.checksum.execution.NeverFailExecution;
-import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
-import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
-import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
-import net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget;
 import org.apache.maven.model.FileSet;
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
-import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.DirectoryScanner;
-import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.StringUtils;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -54,7 +38,7 @@ import java.util.List;
     inheritByDefault = false,
     threadSafe = true )
 public class FilesMojo
-    extends AbstractMojo
+    extends AbstractChecksumMojo
 {
     /**
      * The mojo name.
@@ -67,32 +51,6 @@ public class FilesMojo
      * @see #getFilesToProcess()
      */
     protected static final String[] DEFAULT_INCLUDES = { "**/**" };
-
-    /**
-     * The Maven project.
-     *
-     * @since 1.0
-     */
-    @Parameter( property = "project", required = true, readonly = true )
-    protected MavenProject project;
-
-    /**
-     * The list of checksum algorithms used.
-     * <p/>
-     * <p>Default value is MD5 and SHA-1.<br/>Allowed values are CRC32, MD2, MD4, MD5, SHA-1, SHA-224, SHA-256, SHA-384,
-     * SHA-512, RIPEMD128, RIPEMD160, RIPEMD256, RIPEMD320, GOST3411 and Tiger.</p>
-     * <p/>
-     * <p> Use the following syntax:
-     * <pre>&lt;algorithms&gt;
-     *   &lt;algorithm&gt;MD5&lt;algorithm&gt;
-     *   &lt;algorithm&gt;SHA-1&lt;algorithm&gt;
-     * &lt;/algorithms&gt;</pre>
-     * </p>
-     *
-     * @since 1.0
-     */
-    @Parameter
-    protected List<String> algorithms = Arrays.asList( Constants.DEFAULT_EXECUTION_ALGORITHMS );
 
     /**
      * The list of files to process.
@@ -117,22 +75,6 @@ public class FilesMojo
     protected List<FileSet> fileSets;
 
     /**
-     * Indicates whether the build will fail if there are errors.
-     *
-     * @since 1.0
-     */
-    @Parameter( defaultValue = "true" )
-    protected boolean failOnError;
-
-    /**
-     * Encoding to use for generated files.
-     *
-     * @since 1.0
-     */
-    @Parameter( property = "encoding", defaultValue = "${project.build.sourceEncoding}" )
-    protected String encoding = Constants.DEFAULT_ENCODING;
-
-    /**
      * Indicates whether the build will store checksums in separate files (one file per algorithm per artifact).
      *
      * @since 1.0
@@ -147,14 +89,6 @@ public class FilesMojo
      */
     @Parameter
     protected String individualFilesOutputDirectory;
-
-    /**
-     * Indicates whether the build will print checksums in the build log.
-     *
-     * @since 1.0
-     */
-    @Parameter( defaultValue = "false" )
-    protected boolean quiet;
 
     /**
      * Indicates whether the build will store checksums to a single CSV summary file.
@@ -189,53 +123,6 @@ public class FilesMojo
      */
     @Parameter( defaultValue = "checksums.xml" )
     protected String xmlSummaryFile;
-
-    /**
-     * {@inheritDoc}
-     */
-    public void execute()
-        throws MojoExecutionException, MojoFailureException
-    {
-        // Prepare an execution.
-        Execution execution = ( failOnError ) ? new FailOnErrorExecution() : new NeverFailExecution( getLog() );
-        execution.setAlgorithms( algorithms );
-        execution.setFiles( getFilesToProcess() );
-        if ( !quiet )
-        {
-            execution.addTarget( new MavenLogTarget( getLog() ) );
-        }
-        if ( individualFiles )
-        {
-            File outputDirectory = null;
-            if ( StringUtils.isNotEmpty( individualFilesOutputDirectory ) )
-            {
-                outputDirectory = FileUtils.resolveFile( new File( project.getBuild().getDirectory() ),
-                                                         individualFilesOutputDirectory );
-            }
-            execution.addTarget( new OneHashPerFileTarget( encoding, outputDirectory ) );
-        }
-        if ( csvSummary )
-        {
-            execution.addTarget( new CsvSummaryFileTarget(
-                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), csvSummaryFile ), encoding ) );
-        }
-        if ( xmlSummary )
-        {
-            execution.addTarget( new XmlSummaryFileTarget(
-                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), xmlSummaryFile ), encoding ) );
-        }
-
-        // Run the execution.
-        try
-        {
-            execution.run();
-        }
-        catch ( ExecutionException e )
-        {
-            getLog().error( e.getMessage() );
-            throw new MojoFailureException( e.getMessage() );
-        }
-    }
 
     /**
      * Build the list of files from which digests should be generated.
@@ -278,5 +165,53 @@ public class FilesMojo
         }
 
         return filesToProcess;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected boolean isIndividualFiles()
+    {
+        return individualFiles;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected String getIndividualFilesOutputDirectory()
+    {
+        return individualFilesOutputDirectory;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected boolean isCsvSummary()
+    {
+        return csvSummary;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected String getCsvSummaryFile()
+    {
+        return csvSummaryFile;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected boolean isXmlSummary()
+    {
+        return xmlSummary;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected String getXmlSummaryFile()
+    {
+        return xmlSummaryFile;
     }
 }
