@@ -138,6 +138,9 @@ public class CsvSummaryFileTarget
             }
         }
 
+        // Make sure the parent directory exists.
+        FileUtils.mkdir( summaryFile.getParent() );
+
         // Write the result to the summary file.
         try
         {

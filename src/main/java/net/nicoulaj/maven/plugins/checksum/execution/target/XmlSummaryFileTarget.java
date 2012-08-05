@@ -15,6 +15,7 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
+import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.StringUtils;
 import org.codehaus.plexus.util.xml.PrettyPrintXMLWriter;
 
@@ -99,6 +100,9 @@ public class XmlSummaryFileTarget
     public void close()
         throws ExecutionTargetCloseException
     {
+        // Make sure the parent directory exists.
+        FileUtils.mkdir( summaryFile.getParent() );
+
         // Open the target file.
         Writer outputStream;
         try
