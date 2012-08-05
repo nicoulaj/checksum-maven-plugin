@@ -139,12 +139,9 @@ public class PostBuildScriptHelper
         {
             throw new Exception( "The file " + path + " is missing or not a file." );
         }
-        else
+        else if ( FileUtils.fileRead( file ).length() == 0 )
         {
-            if ( FileUtils.fileRead( file ).length() == 0 )
-            {
-                throw new Exception( "The file " + path + " is empty." );
-            }
+            throw new Exception( "The file " + path + " is empty." );
         }
     }
 
