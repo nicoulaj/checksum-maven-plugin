@@ -6,7 +6,7 @@
     <link>http://nicoulaj.github.com/checksum-maven-plugin</link>
     <description>checksum-maven-plugin - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2010 - 2012</copyright>
+    <copyright>&#169;2010 - 2013</copyright>
     <item>
       <title>File: 45,
              Errors: 2,
@@ -281,7 +281,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException.java">net/nicoulaj/maven/plugins/checksum/execution/target/ExecutionTargetWriteException.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.AbstractFileDigester.java">net/nicoulaj/maven/plugins/checksum/digest/AbstractFileDigester.java</a>
                 </td>
                 <td>
                   0
@@ -295,7 +295,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.digest.AbstractFileDigester.java">net/nicoulaj/maven/plugins/checksum/digest/AbstractFileDigester.java</a>
+                  <a href="http://nicoulaj.github.com/checksum-maven-plugin/checkstyle.html#net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException.java">net/nicoulaj/maven/plugins/checksum/execution/target/ExecutionTargetWriteException.java</a>
                 </td>
                 <td>
                   0
