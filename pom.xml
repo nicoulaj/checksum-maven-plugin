@@ -20,7 +20,7 @@
   <parent>
     <groupId>net.ju-n</groupId>
     <artifactId>net-ju-n-parent</artifactId>
-    <version>1.0.19</version>
+    <version>23</version>
   </parent>
 
   <groupId>net.ju-n.maven.plugins</groupId>
@@ -74,8 +74,9 @@
   <properties>
 
     <!-- Versions -->
+    <java.level>1.6</java.level>
     <maven.target-version>2.2.0</maven.target-version>
-    <bouncycastle.version>1.45</bouncycastle.version>
+    <bouncycastle.version>1.47</bouncycastle.version>
     <plexus-utils.version>3.0.2</plexus-utils.version>
 
     <!-- Build settings -->
@@ -84,7 +85,6 @@
 
   </properties>
 
-  <!-- Dependencies management -->
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -110,7 +110,7 @@
       </dependency>
       <dependency>
         <groupId>org.bouncycastle</groupId>
-        <artifactId>bcprov-jdk15</artifactId>
+        <artifactId>bcprov-jdk15on</artifactId>
         <version>${bouncycastle.version}</version>
       </dependency>
       <dependency>
@@ -121,7 +121,6 @@
     </dependencies>
   </dependencyManagement>
 
-  <!-- Dependencies -->
   <dependencies>
     <dependency>
       <groupId>org.apache.maven</groupId>
@@ -141,7 +140,7 @@
     </dependency>
     <dependency>
       <groupId>org.bouncycastle</groupId>
-      <artifactId>bcprov-jdk15</artifactId>
+      <artifactId>bcprov-jdk15on</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -153,6 +152,24 @@
   <build>
 
     <plugins>
+      <plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-java-version</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>(1.5,1.7)</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
         <executions>
@@ -205,8 +222,8 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
+          <source>${java.level}</source>
+          <target>${java.level}</target>
           <optimize>true</optimize>
           <showWarnings>true</showWarnings>
           <showDeprecation>true</showDeprecation>
@@ -217,7 +234,6 @@
         <configuration>
           <encoding>${encoding}</encoding>
           <links>
-            <link>http://download-llnw.oracle.com/javase/1.5.0/docs/api</link>
             <link>http://maven.apache.org/ref/${maven.target-version}/apidocs</link>
             <link>http://plexus.codehaus.org/plexus-components/plexus-digest/apidocs</link>
             <link>http://plexus.codehaus.org/plexus-utils/apidocs</link>
@@ -232,25 +248,22 @@
           </tagletArtifacts>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-site-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-module-markdown</artifactId>
+            <version>${doxia-module-markdown.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>wagon-gitsite</artifactId>
+            <version>${wagon-gitsite.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
     </plugins>
-
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-provider-gitexe</artifactId>
-        <version>${maven-scm-provider-gitexe.version}</version>
-      </extension>
-      <extension>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-manager-plexus</artifactId>
-        <version>${maven-scm-manager-plexus.version}</version>
-      </extension>
-      <extension>
-        <groupId>org.kathrynhuxtable.maven.wagon</groupId>
-        <artifactId>wagon-gitsite</artifactId>
-        <version>${wagon-gitsite.version}</version>
-      </extension>
-    </extensions>
 
   </build>
 
@@ -274,7 +287,7 @@
         </property>
       </activation>
       <properties>
-        <invoker.settings-file />
+        <invoker.settings-file/>
       </properties>
     </profile>
 
@@ -356,7 +369,7 @@
         <artifactId>maven-pmd-plugin</artifactId>
         <version>${maven-pmd-plugin.version}</version>
         <configuration>
-          <targetJdk>1.5</targetJdk>
+          <targetJdk>${java.level}</targetJdk>
         </configuration>
       </plugin>
       <plugin>
