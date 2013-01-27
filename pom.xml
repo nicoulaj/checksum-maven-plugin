@@ -25,7 +25,7 @@
 
   <groupId>net.ju-n.maven.plugins</groupId>
   <artifactId>checksum-maven-plugin</artifactId>
-  <version>1.2-SNAPSHOT</version>
+  <version>1.2</version>
   <packaging>maven-plugin</packaging>
 
   <name>checksum-maven-plugin</name>
@@ -51,7 +51,7 @@
     <url>http://github.com/nicoulaj/checksum-maven-plugin</url>
     <connection>scm:git:git@github.com:nicoulaj/checksum-maven-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:nicoulaj/checksum-maven-plugin.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>1.2</tag>
   </scm>
 
   <issueManagement>
@@ -287,7 +287,7 @@
         </property>
       </activation>
       <properties>
-        <invoker.settings-file/>
+        <invoker.settings-file />
       </properties>
     </profile>
 
