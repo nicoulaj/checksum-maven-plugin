@@ -18,6 +18,8 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import org.codehaus.plexus.util.FileUtils;
 
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -87,14 +89,14 @@ public class OneHashPerFileTarget
     /**
      * {@inheritDoc}
      */
-    public void write( String digest, File file, String algorithm )
+    public void write( String digest, ChecksumFile file, String algorithm )
         throws ExecutionTargetWriteException
     {
         try
         {
-            File outputFileDirectory = ( outputDirectory != null ) ? outputDirectory : file.getParentFile();
+            File outputFileDirectory = ( outputDirectory != null ) ? outputDirectory : file.getFile().getParentFile();
             String outputFileName =
-                file.getName() + DigesterFactory.getInstance().getFileDigester( algorithm ).getFileExtension();
+                file.getFile().getName() + DigesterFactory.getInstance().getFileDigester( algorithm ).getFileExtension();
             FileUtils.fileWrite( outputFileDirectory.getPath() + File.separator + outputFileName, digest );
         }
         catch ( IOException e )
@@ -110,7 +112,7 @@ public class OneHashPerFileTarget
     /**
      * {@inheritDoc}
      */
-    public void close()
+    public void close(String subPath)
     {
         // Nothing to do
     }

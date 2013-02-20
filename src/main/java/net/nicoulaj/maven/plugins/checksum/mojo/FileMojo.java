@@ -69,7 +69,7 @@ public class FileMojo
         // Prepare an execution.
         Execution execution = new FailOnErrorExecution();
         execution.setAlgorithms( Arrays.asList( Constants.SUPPORTED_ALGORITHMS ) );
-        execution.addFile( new File( file ) );
+        execution.addFile( new ChecksumFile( "", new File( file ) ) );
         execution.addTarget( new MavenLogTarget( getLog() ) );
 
         // Run the execution.

@@ -16,8 +16,8 @@
 package net.nicoulaj.maven.plugins.checksum.execution;
 
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -34,28 +34,46 @@ public interface Execution
      *
      * @return the files configured for this execution.
      */
-    List<File> getFiles();
+    List<ChecksumFile> getFiles();
 
     /**
      * Set the list of files to be processed by the execution.
      *
      * @param files the value to set.
      */
-    void setFiles( List<File> files );
+    void setFiles( List<ChecksumFile> files );
+	
+    /**
+     * Get the part of relative path that will be removed.
+     * 
+     * @return the part of relative path that will be removed.
+     * 
+     * @since 1.4
+     */
+	String getSubPath();
+	
+	/**
+     * Set the part of relative path that will be removed.
+     *
+     * @param part of relative path that will be removed.
+     * 
+     * @since 1.4
+     */
+	void setSubPath( String subPath );
 
     /**
      * Add a file to the list of files to be processed by the execution.
      *
      * @param file the file to add.
      */
-    void addFile( File file );
+    void addFile( ChecksumFile file );
 
     /**
      * Remove a file from the list of files to be processed by the execution.
      *
      * @param file the file to remove.
      */
-    void removeFile( File file );
+    void removeFile( ChecksumFile file );
 
     /**
      * Get the list of checksum algorithms to be used by the execution.

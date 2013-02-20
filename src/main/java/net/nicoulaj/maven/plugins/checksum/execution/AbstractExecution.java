@@ -17,7 +17,8 @@ package net.nicoulaj.maven.plugins.checksum.execution;
 
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 
-import java.io.File;
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,8 +35,13 @@ public abstract class AbstractExecution
     /**
      * The list of files used for the execution.
      */
-    protected List<File> files;
+    protected List<ChecksumFile> files;
 
+    /**
+     * Part of relative path to exclude from file path
+     */
+	protected String subPath;
+	
     /**
      * The list of algorithms used for execution.
      */
@@ -49,7 +55,7 @@ public abstract class AbstractExecution
     /**
      * {@inheritDoc}
      */
-    public List<File> getFiles()
+    public List<ChecksumFile> getFiles()
     {
         return files;
     }
@@ -57,19 +63,35 @@ public abstract class AbstractExecution
     /**
      * {@inheritDoc}
      */
-    public void setFiles( List<File> files )
+    public void setFiles( List<ChecksumFile> files )
     {
         this.files = files;
     }
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getSubPath()
+	{
+		return subPath;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setSubPath( String subPath )
+	{
+		this.subPath = subPath;
+	}
 
     /**
      * {@inheritDoc}
      */
-    public void addFile( File file )
+    public void addFile( ChecksumFile file )
     {
         if ( files == null )
         {
-            files = new LinkedList<File>();
+            files = new LinkedList<ChecksumFile>();
         }
         files.add( file );
     }
@@ -77,7 +99,7 @@ public abstract class AbstractExecution
     /**
      * {@inheritDoc}
      */
-    public void removeFile( File file )
+    public void removeFile( ChecksumFile file )
     {
         if ( files != null )
         {

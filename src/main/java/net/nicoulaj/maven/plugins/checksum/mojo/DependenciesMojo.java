@@ -138,16 +138,16 @@ public class DependenciesMojo
      *
      * @return the list of files that should be processed.
      */
-    protected List<File> getFilesToProcess()
+    protected List<ChecksumFile> getFilesToProcess()
     {
-        List<File> files = new LinkedList<File>();
+        List<ChecksumFile> files = new LinkedList<ChecksumFile>();
 
         for ( Artifact artifact : (Set<Artifact>) project.getDependencyArtifacts() )
         {
             if ( ( scopes == null || scopes.contains( artifact.getScope() ) ) && ( types == null || types.contains(
                 artifact.getType() ) ) )
             {
-                files.add( artifact.getFile() );
+                files.add( new ChecksumFile( "", artifact.getFile() ) );
             }
         }
 

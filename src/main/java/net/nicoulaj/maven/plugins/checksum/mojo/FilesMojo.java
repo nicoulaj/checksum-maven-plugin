@@ -129,13 +129,15 @@ public class FilesMojo
      *
      * @return the list of files that should be processed.
      */
-    protected List<File> getFilesToProcess()
+    protected List<ChecksumFile> getFilesToProcess()
     {
-        final List<File> filesToProcess = new ArrayList<File>();
+        final List<ChecksumFile> filesToProcess = new ArrayList<ChecksumFile>();
         for ( final FileSet fileSet : fileSets )
         {
             final DirectoryScanner scanner = new DirectoryScanner();
-            scanner.setBasedir( fileSet.getDirectory() );
+            final String fileSetDirectory = (new File( fileSet.getDirectory() ) ).getPath();
+            
+            scanner.setBasedir( fileSetDirectory );
             String[] includes;
             if ( fileSet.getIncludes() != null && !fileSet.getIncludes().isEmpty() )
             {
@@ -160,7 +162,7 @@ public class FilesMojo
 
             for ( String filePath : scanner.getIncludedFiles() )
             {
-                filesToProcess.add( new File( fileSet.getDirectory(), filePath ) );
+                filesToProcess.add( new ChecksumFile( (new File( fileSetDirectory ) ).getPath(), new File( fileSetDirectory, filePath ) ) );
             }
         }
 

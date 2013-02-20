@@ -103,14 +103,14 @@ public class ArtifactsMojo
      * @return the list of files that should be processed.
      * @see #hasValidFile(org.apache.maven.artifact.Artifact)
      */
-    protected List<File> getFilesToProcess()
+    protected List<ChecksumFile> getFilesToProcess()
     {
-        List<File> files = new LinkedList<File>();
+        List<ChecksumFile> files = new LinkedList<ChecksumFile>();
 
         // Add project main artifact.
         if ( hasValidFile( project.getArtifact() ) )
         {
-            files.add( project.getArtifact().getFile() );
+            files.add( new ChecksumFile( "", project.getArtifact().getFile() ) );
         }
 
         // Add projects attached.
@@ -120,7 +120,7 @@ public class ArtifactsMojo
             {
                 if ( hasValidFile( artifact ) )
                 {
-                    files.add( artifact.getFile() );
+                    files.add( new ChecksumFile( "", artifact.getFile() ) );
                 }
             }
         }

@@ -23,7 +23,8 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetClose
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetInitializationException;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
 
-import java.io.File;
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+
 import java.security.NoSuchAlgorithmException;
 
 /**
@@ -60,7 +61,7 @@ public class FailOnErrorExecution
         }
 
         // Process files.
-        for ( File file : files )
+        for ( ChecksumFile file : files )
         {
             for ( String algorithm : getAlgorithms() )
             {
@@ -68,7 +69,7 @@ public class FailOnErrorExecution
                 {
                     // Calculate the hash for the file/algo
                     FileDigester digester = DigesterFactory.getInstance().getFileDigester( algorithm );
-                    String hash = digester.calculate( file );
+                    String hash = digester.calculate( file.getFile() );
 
                     // Write it to each target defined
                     for ( ExecutionTarget target : getTargets() )
@@ -90,7 +91,7 @@ public class FailOnErrorExecution
                 catch ( DigesterException e )
                 {
                     throw new ExecutionException(
-                        "Unable to calculate " + algorithm + " hash for " + file.getName() + ": " + e.getMessage() );
+                        "Unable to calculate " + algorithm + " hash for " + file.getFile().getName() + ": " + e.getMessage() );
                 }
             }
         }
@@ -100,7 +101,7 @@ public class FailOnErrorExecution
         {
             try
             {
-                target.close();
+                target.close( subPath );
             }
             catch ( ExecutionTargetCloseException e )
             {

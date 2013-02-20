@@ -24,6 +24,8 @@ import org.codehaus.plexus.util.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -65,7 +67,7 @@ public class OneHashPerFileTargetTest
                 testFile.getPath() + DigesterFactory.getInstance().getFileDigester( testAlgorithm ).getFileExtension();
 
             // Call write()
-            target.write( "hash-file-content", testFile, testAlgorithm );
+            target.write( "hash-file-content", new ChecksumFile( "", testFile ), testAlgorithm );
 
             // Assert the file has been created with the right content
             Assert.assertTrue( new File( hashcodeFile ).exists() );

@@ -15,7 +15,7 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
-import java.io.File;
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
 
 /**
  * An {@link ExecutionTarget} is an output target for calculated digests.
@@ -44,7 +44,7 @@ public interface ExecutionTarget
      * @param algorithm the algorithm used to calculate the digest.
      * @throws ExecutionTargetWriteException if an error occured while writing to the target.
      */
-    void write( String digest, File file, String algorithm )
+    void write( String digest, ChecksumFile file, String algorithm )
         throws ExecutionTargetWriteException;
 
     /**
@@ -54,6 +54,6 @@ public interface ExecutionTarget
      *
      * @throws ExecutionTargetCloseException if an error occured while closing the target.
      */
-    void close()
+    void close(String subPath)
         throws ExecutionTargetCloseException;
 }
