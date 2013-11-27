@@ -27,7 +27,7 @@ public class Constants
      * The CRC/checksum digest algorithms supported by checksum-maven-plugin.
      */
     public static final String[] SUPPORTED_ALGORITHMS =
-        { "CRC32", "MD2", "MD4", "MD5", "SHA-1", "SHA-224", "SHA-256", "SHA-384", "SHA-512", "RIPEMD128", "RIPEMD160",
+        { "Cksum", "CRC32", "MD2", "MD4", "MD5", "SHA-1", "SHA-224", "SHA-256", "SHA-384", "SHA-512", "RIPEMD128", "RIPEMD160",
             "RIPEMD256", "RIPEMD320", "GOST3411", "Tiger", "Whirlpool" };
 
     /**

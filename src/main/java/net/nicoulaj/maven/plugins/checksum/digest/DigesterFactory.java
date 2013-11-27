@@ -88,6 +88,11 @@ public class DigesterFactory
             {
                 digester = new CRC32FileDigester();
             }
+            
+            else if ( CksumFileDigester.ALGORITHM.equals( algorithm ) )
+            {
+                digester = new CksumFileDigester();
+            }
 
             // Default case: try to use Java Security providers.
             else
