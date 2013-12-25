@@ -23,6 +23,7 @@ algorithms. Here is how to configure to use all the algorithms supported:
              </executions>
              <configuration>
                <algorithms>
+                 <algorithm>Cksum</algorithm>
                  <algorithm>CRC32</algorithm>
                  <algorithm>MD2</algorithm>
                  <algorithm>MD4</algorithm>
