@@ -15,14 +15,15 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
-import org.codehaus.plexus.util.FileUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
+import org.codehaus.plexus.util.FileUtils;
 
 /**
  * An {@link ExecutionTarget} that writes digests to a CSV file.
@@ -69,15 +70,23 @@ public class CsvSummaryFileTarget
     protected File summaryFile;
 
     /**
-     * Build a new instance of {@link CsvSummaryFileTarget}.
+     * List of listeners which are notified every time a CSV file is created.
      *
+     * @since 1.3
+     */
+    protected final Iterable<? extends ArtifactListener> artifactListeners;
+
+    /**
+     * Build a new instance of {@link CsvSummaryFileTarget}.
      * @param summaryFile the file to which the summary should be written.
      * @param encoding    the encoding to use for generated files.
+     * @param artifactListeners
      */
-    public CsvSummaryFileTarget( File summaryFile, String encoding )
+    public CsvSummaryFileTarget(File summaryFile, String encoding, Iterable<? extends ArtifactListener> artifactListeners)
     {
         this.summaryFile = summaryFile;
         this.encoding = encoding;
+        this.artifactListeners = artifactListeners;
     }
 
     /**
@@ -145,6 +154,9 @@ public class CsvSummaryFileTarget
         try
         {
             FileUtils.fileWrite( summaryFile.getPath(), encoding, sb.toString() );
+            for (ArtifactListener artifactListener : artifactListeners) {
+                artifactListener.artifactCreated(summaryFile, "csv");
+            }
         }
         catch ( IOException e )
         {

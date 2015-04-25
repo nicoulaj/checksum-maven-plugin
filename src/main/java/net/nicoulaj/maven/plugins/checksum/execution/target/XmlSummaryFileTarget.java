@@ -15,10 +15,6 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
-import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.StringUtils;
-import org.codehaus.plexus.util.xml.PrettyPrintXMLWriter;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -28,6 +24,11 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
+
+import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
+import org.codehaus.plexus.util.FileUtils;
+import org.codehaus.plexus.util.StringUtils;
+import org.codehaus.plexus.util.xml.PrettyPrintXMLWriter;
 
 /**
  * An {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} that writes digests to an XML file.
@@ -59,15 +60,23 @@ public class XmlSummaryFileTarget
     protected File summaryFile;
 
     /**
-     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget}.
+     * List of listeners which are notified every time a CSV file is created.
      *
-     * @param summaryFile the file to which the summary should be written.
-     * @param encoding    the encoding to use for generated files.
+     * @since 1.3
      */
-    public XmlSummaryFileTarget( File summaryFile, String encoding )
+    protected final Iterable<? extends ArtifactListener> artifactListeners;
+
+    /**
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget}.
+     *  @param summaryFile the file to which the summary should be written.
+     * @param encoding    the encoding to use for generated files.
+     * @param artifactListeners
+     */
+    public XmlSummaryFileTarget(File summaryFile, String encoding, Iterable<? extends ArtifactListener> artifactListeners)
     {
         this.summaryFile = summaryFile;
         this.encoding = encoding;
+        this.artifactListeners = artifactListeners;
     }
 
     /**
@@ -142,6 +151,9 @@ public class XmlSummaryFileTarget
         try
         {
             outputStream.close();
+            for (ArtifactListener artifactListener : artifactListeners) {
+                artifactListener.artifactCreated(summaryFile, "xml");
+            }
         }
         catch ( IOException e )
         {

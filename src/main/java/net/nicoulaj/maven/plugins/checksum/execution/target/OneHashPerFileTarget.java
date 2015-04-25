@@ -15,12 +15,13 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
-import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
-import org.codehaus.plexus.util.FileUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+
+import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
+import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
+import org.codehaus.plexus.util.FileUtils;
 
 /**
  * An {@link ExecutionTarget} that writes digests to separate files.
@@ -42,25 +43,34 @@ public class OneHashPerFileTarget
     protected File outputDirectory;
 
     /**
-     * Build a new instance of {@link OneHashPerFileTarget}.
+     * List of listeners which are notified every time a CSV file is created.
      *
-     * @param encoding        the encoding to use for generated files.
-     * @param outputDirectory the files output directory.
+     * @since 1.3
      */
-    public OneHashPerFileTarget( String encoding, File outputDirectory )
+    protected final Iterable<? extends ArtifactListener> artifactListeners;
+
+    /**
+     * Build a new instance of {@link OneHashPerFileTarget}.
+     *  @param encoding        the encoding to use for generated files.
+     * @param outputDirectory the files output directory.
+     * @param artifactListeners
+     */
+    public OneHashPerFileTarget(String encoding, File outputDirectory, Iterable<? extends ArtifactListener> artifactListeners)
     {
         this.encoding = encoding;
         this.outputDirectory = outputDirectory;
+        this.artifactListeners = artifactListeners;
     }
 
     /**
      * Build a new instance of {@link OneHashPerFileTarget}.
      *
      * @param encoding the encoding to use for generated files.
+     * @param artifactListeners
      */
-    public OneHashPerFileTarget( String encoding )
+    public OneHashPerFileTarget(String encoding, Iterable<? extends ArtifactListener> artifactListeners)
     {
-        this( encoding, null );
+        this( encoding, null, artifactListeners);
     }
 
     /**
@@ -93,9 +103,14 @@ public class OneHashPerFileTarget
         try
         {
             File outputFileDirectory = ( outputDirectory != null ) ? outputDirectory : file.getParentFile();
-            String outputFileName =
-                file.getName() + DigesterFactory.getInstance().getFileDigester( algorithm ).getFileExtension();
-            FileUtils.fileWrite( outputFileDirectory.getPath() + File.separator + outputFileName, digest );
+            String fileExtension = DigesterFactory.getInstance().getFileDigester(algorithm).getFileExtension();
+            File outputFile = new File(outputFileDirectory.getPath(), file.getName() + fileExtension);
+
+            FileUtils.fileWrite(outputFile, digest );
+
+            for (ArtifactListener artifactListener : artifactListeners) {
+                artifactListener.artifactCreated(outputFile, fileExtension);
+            }
         }
         catch ( IOException e )
         {
