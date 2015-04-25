@@ -43,7 +43,7 @@ public class OneHashPerFileTarget
     protected File outputDirectory;
 
     /**
-     * List of listeners which are notified every time a CSV file is created.
+     * List of listeners which are notified every time a checksum file is created.
      *
      * @since 1.3
      */

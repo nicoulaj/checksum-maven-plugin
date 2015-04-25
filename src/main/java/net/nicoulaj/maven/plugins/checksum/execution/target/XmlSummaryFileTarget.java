@@ -60,7 +60,7 @@ public class XmlSummaryFileTarget
     protected File summaryFile;
 
     /**
-     * List of listeners which are notified every time a CSV file is created.
+     * List of listeners which are notified every time a XML file is created.
      *
      * @since 1.3
      */
