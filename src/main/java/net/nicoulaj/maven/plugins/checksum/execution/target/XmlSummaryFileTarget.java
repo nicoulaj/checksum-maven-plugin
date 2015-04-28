@@ -59,6 +59,11 @@ public class XmlSummaryFileTarget
     protected File summaryFile;
 
     /**
+     * The root path to be removed from summary files.
+     */
+    protected String summaryRoot;
+
+    /**
      * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget}.
      *
      * @param summaryFile the file to which the summary should be written.
@@ -68,6 +73,20 @@ public class XmlSummaryFileTarget
     {
         this.summaryFile = summaryFile;
         this.encoding = encoding;
+    }
+
+    /**
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget}.
+     *
+     * @param summaryFile the file to which the summary should be written.
+     * @param encoding    the encoding to use for generated files.
+     * @param summaryRoot the root path to remove from filepaths prior to writing to the summary file.
+     */
+    public XmlSummaryFileTarget( File summaryFile, String encoding, String summaryRoot )
+    {
+        this.summaryFile = summaryFile;
+        this.encoding = encoding;
+        this.summaryRoot = summaryRoot;
     }
 
     /**
@@ -125,7 +144,7 @@ public class XmlSummaryFileTarget
         for ( File file : filesHashcodes.keySet() )
         {
             xmlWriter.startElement( "file" );
-            xmlWriter.addAttribute( "name", file.getName() );
+            xmlWriter.addAttribute( "name", stripSummaryRoot(file) );
             Map<String, String> fileHashcodes = filesHashcodes.get( file );
             for ( String algorithm : fileHashcodes.keySet() )
             {
@@ -147,5 +166,12 @@ public class XmlSummaryFileTarget
         {
             throw new ExecutionTargetCloseException( e.getMessage() );
         }
+    }
+
+    private String stripSummaryRoot(File file) {
+        if (summaryRoot != null && file.getPath().startsWith(summaryRoot)) {
+            return file.getPath().substring(summaryRoot.length());
+        }
+        return file.getPath();
     }
 }

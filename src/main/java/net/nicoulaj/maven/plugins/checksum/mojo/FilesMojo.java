@@ -91,6 +91,22 @@ public class FilesMojo
     protected String individualFilesOutputDirectory;
 
     /**
+     * Indicates whether the build will store checksums to per-directory summary files.
+     *
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "false" )
+    protected boolean directoryFiles;
+
+    /**
+     * The root of the path to be stored in the summary file(s).
+     *
+     * @since 1.3
+     */
+    @Parameter
+    protected String summaryRoot;
+
+    /**
      * Indicates whether the build will store checksums to a single CSV summary file.
      *
      * @since 1.0
@@ -181,6 +197,20 @@ public class FilesMojo
     protected String getIndividualFilesOutputDirectory()
     {
         return individualFilesOutputDirectory;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected boolean isDirectoryFiles() {
+        return directoryFiles;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected String getSummaryRoot() {
+        return summaryRoot;
     }
 
     /**

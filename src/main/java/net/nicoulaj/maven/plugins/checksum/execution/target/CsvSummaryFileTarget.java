@@ -69,6 +69,11 @@ public class CsvSummaryFileTarget
     protected File summaryFile;
 
     /**
+     * The root path to be removed from summary files.
+     */
+    protected String summaryRoot;
+
+    /**
      * Build a new instance of {@link CsvSummaryFileTarget}.
      *
      * @param summaryFile the file to which the summary should be written.
@@ -78,6 +83,20 @@ public class CsvSummaryFileTarget
     {
         this.summaryFile = summaryFile;
         this.encoding = encoding;
+    }
+
+    /**
+     * Build a new instance of {@link CsvSummaryFileTarget}.
+     *
+     * @param summaryFile the file to which the summary should be written.
+     * @param encoding    the encoding to use for generated files.
+     * @param summaryRoot the root path to remove from filepaths prior to writing to the summary file.
+     */
+    public CsvSummaryFileTarget( File summaryFile, String encoding, String summaryRoot )
+    {
+        this.summaryFile = summaryFile;
+        this.encoding = encoding;
+        this.summaryRoot = summaryRoot;
     }
 
     /**
@@ -126,7 +145,7 @@ public class CsvSummaryFileTarget
         // Write a line for each file.
         for ( File file : filesHashcodes.keySet() )
         {
-            sb.append( LINE_SEPARATOR ).append( file.getName() );
+            sb.append( LINE_SEPARATOR ).append( stripSummaryRoot(file) );
             Map<String, String> fileHashcodes = filesHashcodes.get( file );
             for ( String algorithm : algorithms )
             {
@@ -150,5 +169,12 @@ public class CsvSummaryFileTarget
         {
             throw new ExecutionTargetCloseException( e.getMessage() );
         }
+    }
+
+    private String stripSummaryRoot(File file) {
+        if (summaryRoot != null && file.getPath().startsWith(summaryRoot)) {
+            return file.getPath().substring(summaryRoot.length());
+        }
+        return file.getPath();
     }
 }

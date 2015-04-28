@@ -21,6 +21,7 @@ import net.nicoulaj.maven.plugins.checksum.execution.ExecutionException;
 import net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution;
 import net.nicoulaj.maven.plugins.checksum.execution.NeverFailExecution;
 import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
+import net.nicoulaj.maven.plugins.checksum.execution.target.DirectorySummaryFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget;
@@ -120,17 +121,21 @@ abstract class AbstractChecksumMojo
             }
             execution.addTarget( new OneHashPerFileTarget( encoding, outputDirectory ) );
         }
+        if ( isDirectoryFiles() )
+        {
+            execution.addTarget(new DirectorySummaryFileTarget(encoding, getCsvSummaryFile()));
+        }
         if ( isCsvSummary() )
         {
             execution.addTarget( new CsvSummaryFileTarget(
                 FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getCsvSummaryFile() ),
-                encoding ) );
+                encoding, getSummaryRoot() ) );
         }
         if ( isXmlSummary() )
         {
             execution.addTarget( new XmlSummaryFileTarget(
                 FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getXmlSummaryFile() ),
-                encoding ) );
+                encoding, getSummaryRoot() ) );
         }
 
         // Run the execution.
@@ -155,6 +160,10 @@ abstract class AbstractChecksumMojo
     protected abstract boolean isIndividualFiles();
 
     protected abstract String getIndividualFilesOutputDirectory();
+
+    protected abstract boolean isDirectoryFiles();
+
+    protected abstract String getSummaryRoot();
 
     protected abstract boolean isCsvSummary();
 
