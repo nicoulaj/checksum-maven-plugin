@@ -19,6 +19,8 @@ import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedSet;
@@ -85,7 +87,7 @@ public class ShasumSummaryFileTarget
     {
         filesHashcodes = new HashMap<File, Map<String, String>>();
         algorithms = new TreeSet<String>();
-    }
+   }
 
     /**
      * {@inheritDoc}
@@ -116,12 +118,25 @@ public class ShasumSummaryFileTarget
     {
         StringBuilder sb = new StringBuilder();
 
-        assert algorithms.size() == 1 : "Must use only one type of hash";
+        if (algorithms.size() != 1)
+            throw new ExecutionTargetCloseException("Must use only one type of hash");
+
+        // shasum entires are traditionally written in sorted order (per globing argument)
+        @SuppressWarnings("unchecked")
+        Map.Entry<File, Map<String, String>>[] entries = filesHashcodes.entrySet().toArray((Map.Entry<File, Map<String, String>>[]) new Map.Entry[0] );
+        Arrays.sort(entries, new Comparator<Map.Entry<File, Map<String, String>>>() {
+
+            @Override
+            public int compare(Map.Entry<File, Map<String, String>> o1, Map.Entry<File, Map<String, String>> o2) {
+                return o1.getKey().getName().compareTo(o2.getKey().getName());
+            }
+        });
 
         // Write a line for each file.
-        for ( File file : filesHashcodes.keySet() )
+        for ( Map.Entry<File, Map<String, String>> entry : entries )
         {
-            Map<String, String> fileHashcodes = filesHashcodes.get( file );
+            File file = entry.getKey();
+            Map<String, String> fileHashcodes = entry.getValue();
             for ( String algorithm : algorithms )
             {
                 if ( fileHashcodes.containsKey( algorithm ) )
@@ -133,8 +148,6 @@ public class ShasumSummaryFileTarget
                     .append( file.getName())
                     .append( LINE_SEPARATOR );
         }
-
-
 
         // Make sure the parent directory exists.
         FileUtils.mkdir( summaryFile.getParent() );
