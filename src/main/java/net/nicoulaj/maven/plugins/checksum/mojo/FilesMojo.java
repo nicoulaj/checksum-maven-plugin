@@ -26,7 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Compute specified files checksum digests and store them in individual files and/or a summary file.
+ * Compute specified files checksum digests and store them in individual files
+ * and/or a summary file.
+ *
+ * The files are not filtered.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
@@ -125,6 +128,23 @@ public class FilesMojo
     protected String xmlSummaryFile;
 
     /**
+     * Indicates whether the build will store checksums to a single shasum summary file.
+     *
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "false" )
+    protected boolean shasumSummary;
+
+    /**
+     * The name of the summary file created if the option is activated.
+     *
+     * @see #shasumSummary
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "artifacts-checksums.sha1" )
+    protected String shasumSummaryFile;
+
+    /**
      * Build the list of files from which digests should be generated.
      *
      * @return the list of files that should be processed.
@@ -158,11 +178,11 @@ public class FilesMojo
 
             scanner.scan();
 
-            for ( String filePath : scanner.getIncludedFiles() )
-            {
+                for ( String filePath : scanner.getIncludedFiles() )
+                {
                 filesToProcess.add( new File( fileSet.getDirectory(), filePath ) );
             }
-        }
+            }
 
         return filesToProcess;
     }
@@ -213,5 +233,21 @@ public class FilesMojo
     protected String getXmlSummaryFile()
     {
         return xmlSummaryFile;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected boolean isShasumSummary()
+    {
+        return shasumSummary;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected String getShasumSummaryFile()
+    {
+        return shasumSummaryFile;
     }
 }

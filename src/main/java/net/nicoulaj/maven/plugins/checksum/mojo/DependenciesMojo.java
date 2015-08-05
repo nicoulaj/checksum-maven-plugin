@@ -98,6 +98,23 @@ public class DependenciesMojo
     protected String xmlSummaryFile;
 
     /**
+     * Indicates whether the build will store checksums to a single shasum summary file.
+     *
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "false" )
+    protected boolean shasumSummary;
+
+    /**
+     * The name of the summary file created if the option is activated.
+     *
+     * @see #shasumSummary
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "artifacts-checksums.sha1" )
+    protected String shasumSummaryFile;
+
+    /**
      * The dependency scopes to include.
      * <p/>
      * <p>Allowed values are compile, test, runtime, provided and system.<br/>All scopes are included by default.</p>
@@ -200,5 +217,23 @@ public class DependenciesMojo
     protected String getXmlSummaryFile()
     {
         return xmlSummaryFile;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected boolean isShasumSummary()
+    {
+        return shasumSummary;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected String getShasumSummaryFile()
+    {
+        return shasumSummaryFile;
     }
 }
