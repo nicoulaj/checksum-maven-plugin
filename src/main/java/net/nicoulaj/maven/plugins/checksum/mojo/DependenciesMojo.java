@@ -111,7 +111,7 @@ public class DependenciesMojo
      * @see #shasumSummary
      * @since 1.3
      */
-    @Parameter( defaultValue = "dependencies-checksums.sha1" )
+    @Parameter( defaultValue = "dependencies-checksums.sha" )
     protected String shasumSummaryFile;
 
     /**

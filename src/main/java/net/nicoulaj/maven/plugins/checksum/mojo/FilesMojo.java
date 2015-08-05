@@ -141,7 +141,7 @@ public class FilesMojo
      * @see #shasumSummary
      * @since 1.3
      */
-    @Parameter( defaultValue = "artifacts-checksums.sha1" )
+    @Parameter( defaultValue = "checksums.sha" )
     protected String shasumSummaryFile;
 
     /**
