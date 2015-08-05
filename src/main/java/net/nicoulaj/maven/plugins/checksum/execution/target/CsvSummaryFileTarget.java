@@ -83,6 +83,7 @@ public class CsvSummaryFileTarget
     /**
      * {@inheritDoc}
      */
+    @Override
     public void init()
     {
         filesHashcodes = new HashMap<File, Map<String, String>>();
@@ -111,6 +112,7 @@ public class CsvSummaryFileTarget
     /**
      * {@inheritDoc}
      */
+    @Override
     public void close()
         throws ExecutionTargetCloseException
     {
@@ -137,6 +139,8 @@ public class CsvSummaryFileTarget
                 }
             }
         }
+
+        sb.append( LINE_SEPARATOR );
 
         // Make sure the parent directory exists.
         FileUtils.mkdir( summaryFile.getParent() );
