@@ -111,7 +111,7 @@ public class DependenciesMojo
      * @see #shasumSummary
      * @since 1.3
      */
-    @Parameter( defaultValue = "artifacts-checksums.sha1" )
+    @Parameter( defaultValue = "dependencies-checksums.sha1" )
     protected String shasumSummaryFile;
 
     /**
@@ -149,6 +149,14 @@ public class DependenciesMojo
     protected List<String> types;
 
     /**
+     * Transitive dependencies or only direct dependencies.
+     *
+     * @since 1.0
+     */
+    @Parameter( defaultValue = "false" )
+    protected boolean transitive;
+
+    /**
      * Build the list of files from which digests should be generated.
      * <p/>
      * <p>The list is composed of the project dependencies.</p>
@@ -158,8 +166,9 @@ public class DependenciesMojo
     protected List<File> getFilesToProcess()
     {
         List<File> files = new LinkedList<File>();
-
-        for ( Artifact artifact : (Set<Artifact>) project.getDependencyArtifacts() )
+        @SuppressWarnings("unchecked")
+        Set<Artifact> artifacts = (Set<Artifact>) (transitive ?  project.getArtifacts() : project.getDependencyArtifacts());
+        for ( Artifact artifact : artifacts )
         {
             if ( ( scopes == null || scopes.contains( artifact.getScope() ) ) && ( types == null || types.contains(
                 artifact.getType() ) ) )
