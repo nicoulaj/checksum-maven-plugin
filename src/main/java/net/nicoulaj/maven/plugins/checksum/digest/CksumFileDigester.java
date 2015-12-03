@@ -61,7 +61,7 @@ public class CksumFileDigester
 		    	value = value << 8 ^ CRC_TAB[(value >> 24 ^ (int)(length & 0xFF)) & 0xFF];
 		    	length >>= 8;
 		    }
-		    return Long.toString((value ^ 0xFFFFFFFF) & 0xFFFFFFFF);
+		    return Long.toString((value ^ 0xFFFFFFFFL) & 0xFFFFFFFFL);
 		} 
 		catch ( IOException e )
 		{
