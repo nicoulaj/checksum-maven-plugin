@@ -9,7 +9,8 @@ import org.junit.Test;
 import java.io.File;
 
 /**
- * Created by tsumaraa on 03/12/2015.
+ * Special testcase for cksum {@link CksumFileDigester} of the empty file
+ *
  */
 public class CksumFileDigesterTest  {
 
