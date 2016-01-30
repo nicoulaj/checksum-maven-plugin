@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Portions copyright 2015 ForgeRock AS
  */
 package net.nicoulaj.maven.plugins.checksum.mojo;
 
@@ -60,6 +62,22 @@ public class ArtifactsMojo
      */
     @Parameter
     protected String individualFilesOutputDirectory;
+
+    /**
+     * Indicates whether the build will store checksums to per-directory summary files.
+     *
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "false" )
+    protected boolean directoryFiles;
+
+    /**
+     * The root of the path to be stored in the summary file(s).
+     *
+     * @since 1.3
+     */
+    @Parameter
+    protected String summaryRoot;
 
     /**
      * Indicates whether the build will store checksums to a single CSV summary file.
@@ -164,6 +182,20 @@ public class ArtifactsMojo
     protected String getIndividualFilesOutputDirectory()
     {
         return individualFilesOutputDirectory;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected boolean isDirectoryFiles() {
+        return directoryFiles;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected String getSummaryRoot() {
+        return summaryRoot;
     }
 
     /**
