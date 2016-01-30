@@ -15,26 +15,30 @@
  */
 package net.nicoulaj.maven.plugins.checksum.mojo;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugins.annotations.Component;
+import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
+import org.apache.maven.project.MavenProjectHelper;
+import org.codehaus.plexus.util.FileUtils;
+import org.codehaus.plexus.util.StringUtils;
+
 import net.nicoulaj.maven.plugins.checksum.Constants;
 import net.nicoulaj.maven.plugins.checksum.execution.Execution;
 import net.nicoulaj.maven.plugins.checksum.execution.ExecutionException;
 import net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution;
 import net.nicoulaj.maven.plugins.checksum.execution.NeverFailExecution;
+import net.nicoulaj.maven.plugins.checksum.execution.target.AttachChecksumTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget;
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugins.annotations.Parameter;
-import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.StringUtils;
-
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Base class for {@code checksum-maven-plugin} mojos.
@@ -42,125 +46,148 @@ import java.util.List;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.1
  */
-abstract class AbstractChecksumMojo
-    extends AbstractMojo
+abstract class AbstractChecksumMojo extends AbstractMojo
 {
 
-    /**
-     * The Maven project.
-     *
-     * @since 1.0
-     */
-    @Parameter( property = "project", required = true, readonly = true )
-    protected MavenProject project;
+   /**
+    * The Maven project.
+    *
+    * @since 1.0
+    */
+   @Parameter(property = "project", required = true, readonly = true)
+   protected MavenProject project;
 
-    /**
-     * The list of checksum algorithms used.
-     * <p/>
-     * <p>Default value is MD5 and SHA-1.<br/>Allowed values are CRC32, MD2, MD4, MD5, SHA-1, SHA-224, SHA-256, SHA-384,
-     * SHA-512, RIPEMD128, RIPEMD160, RIPEMD256, RIPEMD320, GOST3411 and Tiger.</p>
-     * <p/>
-     * <p> Use the following syntax:
-     * <pre>&lt;algorithms&gt;
-     *   &lt;algorithm&gt;MD5&lt;algorithm&gt;
-     *   &lt;algorithm&gt;SHA-1&lt;algorithm&gt;
-     * &lt;/algorithms&gt;</pre>
-     * </p>
-     *
-     * @since 1.0
-     */
-    @Parameter
-    protected List<String> algorithms = Arrays.asList( Constants.DEFAULT_EXECUTION_ALGORITHMS );
+   /**
+    * The list of checksum algorithms used.
+    * <p/>
+    * <p>
+    * Default value is MD5 and SHA-1.<br/>
+    * Allowed values are CRC32, MD2, MD4, MD5, SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, RIPEMD128, RIPEMD160,
+    * RIPEMD256, RIPEMD320, GOST3411 and Tiger.
+    * </p>
+    * <p/>
+    * <p>
+    * Use the following syntax:
+    * 
+    * <pre>
+    * &lt;algorithms&gt;
+    *   &lt;algorithm&gt;MD5&lt;/algorithm&gt;
+    *   &lt;algorithm&gt;SHA-1&lt;/algorithm&gt;
+    * &lt;/algorithms&gt;
+    * </pre>
+    * </p>
+    *
+    * @since 1.0
+    */
+   @Parameter
+   protected List<String> algorithms = Arrays.asList(Constants.DEFAULT_EXECUTION_ALGORITHMS);
 
-    /**
-     * Indicates whether the build will fail if there are errors.
-     *
-     * @since 1.0
-     */
-    @Parameter( defaultValue = "true" )
-    protected boolean failOnError;
+   /**
+    * Indicates whether the build will fail if there are errors.
+    *
+    * @since 1.0
+    */
+   @Parameter(defaultValue = "true")
+   protected boolean failOnError;
 
-    /**
-     * Encoding to use for generated files.
-     *
-     * @since 1.0
-     */
-    @Parameter( property = "encoding", defaultValue = "${project.build.sourceEncoding}" )
-    protected String encoding = Constants.DEFAULT_ENCODING;
+   /**
+    * Encoding to use for generated files.
+    *
+    * @since 1.0
+    */
+   @Parameter(property = "encoding", defaultValue = "${project.build.sourceEncoding}")
+   protected String encoding = Constants.DEFAULT_ENCODING;
 
-    /**
-     * Indicates whether the build will print checksums in the build log.
-     *
-     * @since 1.0
-     */
-    @Parameter( defaultValue = "false" )
-    protected boolean quiet;
+   /**
+    * Indicates whether the build will print checksums in the build log.
+    *
+    * @since 1.0
+    */
+   @Parameter(defaultValue = "false")
+   protected boolean quiet;
 
-    /**
-     * {@inheritDoc}
-     */
-    public void execute()
-        throws MojoExecutionException, MojoFailureException
-    {
-        // Prepare an execution.
-        Execution execution = ( failOnError ) ? new FailOnErrorExecution() : new NeverFailExecution( getLog() );
-        execution.setAlgorithms( algorithms );
-        execution.setFiles( getFilesToProcess() );
-        if ( !quiet )
-        {
-            execution.addTarget( new MavenLogTarget( getLog() ) );
-        }
-        if ( isIndividualFiles() )
-        {
-            File outputDirectory = null;
-            if ( StringUtils.isNotEmpty( getIndividualFilesOutputDirectory() ) )
-            {
-                outputDirectory = FileUtils.resolveFile( new File( project.getBuild().getDirectory() ),
-                                                         getIndividualFilesOutputDirectory() );
-            }
-            execution.addTarget( new OneHashPerFileTarget( encoding, outputDirectory ) );
-        }
-        if ( isCsvSummary() )
-        {
-            execution.addTarget( new CsvSummaryFileTarget(
-                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getCsvSummaryFile() ),
-                encoding ) );
-        }
-        if ( isXmlSummary() )
-        {
-            execution.addTarget( new XmlSummaryFileTarget(
-                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getXmlSummaryFile() ),
-                encoding ) );
-        }
+   /**
+    * Indicates whether the build will attach the checksums to the project build
+    * 
+    * @since 1.3
+    */
+   @Parameter(defaultValue = "false")
+   protected boolean attachChecksums;
 
-        // Run the execution.
-        try
-        {
-            execution.run();
-        }
-        catch ( ExecutionException e )
-        {
-            getLog().error( e.getMessage() );
-            throw new MojoFailureException( e.getMessage() );
-        }
-    }
+   @Component
+   protected MavenProjectHelper projectHelper;
 
-    /**
-     * Build the list of files from which digests should be generated.
-     *
-     * @return the list of files that should be processed.
-     */
-    protected abstract List<File> getFilesToProcess();
+   /**
+    * {@inheritDoc}
+    */
+   @Override
+   public void execute()
+            throws MojoExecutionException, MojoFailureException
+   {
+      // Prepare an execution.
+      Execution execution = (failOnError) ? new FailOnErrorExecution() : new NeverFailExecution(getLog());
+      execution.setAlgorithms(algorithms);
+      execution.setFiles(getFilesToProcess());
+      if (!quiet)
+      {
+         execution.addTarget(new MavenLogTarget(getLog()));
+      }
+      if (isIndividualFiles())
+      {
+         File outputDirectory = null;
+         if (StringUtils.isNotEmpty(getIndividualFilesOutputDirectory()))
+         {
+            outputDirectory = FileUtils.resolveFile(new File(project.getBuild().getDirectory()),
+                     getIndividualFilesOutputDirectory());
+         }
+         execution.addTarget(new OneHashPerFileTarget(encoding, outputDirectory));
+      }
+      if (attachChecksums)
+      {
+         execution.addTarget(
+                  new AttachChecksumTarget(new File(project.getBuild().getDirectory()), project, projectHelper));
+      }
+      if (isCsvSummary())
+      {
+         execution.addTarget(new CsvSummaryFileTarget(
+                  FileUtils.resolveFile(new File(project.getBuild().getDirectory()), getCsvSummaryFile()),
+                  encoding));
+      }
+      if (isXmlSummary())
+      {
+         execution.addTarget(new XmlSummaryFileTarget(
+                  FileUtils.resolveFile(new File(project.getBuild().getDirectory()), getXmlSummaryFile()),
+                  encoding));
+      }
 
-    protected abstract boolean isIndividualFiles();
+      // Run the execution.
+      try
+      {
+         execution.run();
+      }
+      catch (ExecutionException e)
+      {
+         getLog().error(e.getMessage());
+         throw new MojoFailureException(e.getMessage());
+      }
+   }
 
-    protected abstract String getIndividualFilesOutputDirectory();
+   /**
+    * Build the list of files from which digests should be generated.
+    *
+    * @return the list of files that should be processed.
+    */
+   protected abstract List<File> getFilesToProcess();
 
-    protected abstract boolean isCsvSummary();
+   protected abstract boolean isIndividualFiles();
 
-    protected abstract String getCsvSummaryFile();
+   protected abstract String getIndividualFilesOutputDirectory();
 
-    protected abstract boolean isXmlSummary();
+   protected abstract boolean isCsvSummary();
 
-    protected abstract String getXmlSummaryFile();
+   protected abstract String getCsvSummaryFile();
+
+   protected abstract boolean isXmlSummary();
+
+   protected abstract String getXmlSummaryFile();
 }
