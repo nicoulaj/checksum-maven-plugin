@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2012 Julien Nicoulaud <julien.nicoulaud@gmail.com>
+ * Copyright 2010-2016 Julien Nicoulaud <julien.nicoulaud@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,14 @@
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
 
+import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
+import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-
-import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
-import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
-import org.codehaus.plexus.util.FileUtils;
 
 /**
  * An {@link ExecutionTarget} that writes digests to separate files.

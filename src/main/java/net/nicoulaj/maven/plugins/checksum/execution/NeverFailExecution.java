@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2012 Julien Nicoulaud <julien.nicoulaud@gmail.com>
+ * Copyright 2010-2016 Julien Nicoulaud <julien.nicoulaud@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,8 @@ import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
-import org.apache.maven.plugin.logging.Log;
-
 import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+import org.apache.maven.plugin.logging.Log;
 
 import java.security.NoSuchAlgorithmException;
 

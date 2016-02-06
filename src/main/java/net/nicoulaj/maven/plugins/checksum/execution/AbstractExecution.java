@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2012 Julien Nicoulaud <julien.nicoulaud@gmail.com>
+ * Copyright 2010-2016 Julien Nicoulaud <julien.nicoulaud@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 package net.nicoulaj.maven.plugins.checksum.execution;
 
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
-
 import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
 
 import java.util.LinkedList;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2012 Julien Nicoulaud <julien.nicoulaud@gmail.com>
+ * Copyright 2010-2016 Julien Nicoulaud <julien.nicoulaud@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,6 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test.unit.execution.target;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-
 import net.nicoulaj.maven.plugins.checksum.Constants;
 import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
 import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
@@ -29,6 +24,11 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Tests for {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} implementations.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2012 Julien Nicoulaud <julien.nicoulaud@gmail.com>
+ * Copyright 2010-2016 Julien Nicoulaud <julien.nicoulaud@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,11 @@ package net.nicoulaj.maven.plugins.checksum.test.unit.execution.target;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
 import org.apache.maven.plugin.logging.SystemStreamLog;
 import org.junit.Test;
 
 import java.io.File;
-import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
 
 /**
  * Tests for the {@link net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget}

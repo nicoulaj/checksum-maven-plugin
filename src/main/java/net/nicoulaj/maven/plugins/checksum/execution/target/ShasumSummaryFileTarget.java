@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2012 Julien Nicoulaud <julien.nicoulaud@gmail.com>
+ * Copyright 2010-2016 Julien Nicoulaud <julien.nicoulaud@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,18 +15,13 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
+import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
 import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
-import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
-import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+import java.util.*;
 
 /**
  * An {@link ExecutionTarget} that writes digests to a {@code shasum} file

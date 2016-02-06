@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2012 Julien Nicoulaud <julien.nicoulaud@gmail.com>
+ * Copyright 2010-2016 Julien Nicoulaud <julien.nicoulaud@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,6 @@
  */
 package net.nicoulaj.maven.plugins.checksum.mojo;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import net.nicoulaj.maven.plugins.checksum.Constants;
 import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactAttacher;
 import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
@@ -27,11 +22,7 @@ import net.nicoulaj.maven.plugins.checksum.execution.Execution;
 import net.nicoulaj.maven.plugins.checksum.execution.ExecutionException;
 import net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution;
 import net.nicoulaj.maven.plugins.checksum.execution.NeverFailExecution;
-import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
-import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
-import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
-import net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget;
-import net.nicoulaj.maven.plugins.checksum.execution.target.ShasumSummaryFileTarget;
+import net.nicoulaj.maven.plugins.checksum.execution.target.*;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -41,6 +32,11 @@ import org.apache.maven.project.MavenProject;
 import org.apache.maven.project.MavenProjectHelper;
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.StringUtils;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Base class for {@code checksum-maven-plugin} mojos.
