@@ -20,7 +20,6 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -120,14 +119,15 @@ public class ArtifactsMojo
      * @return the list of files that should be processed.
      * @see #hasValidFile(org.apache.maven.artifact.Artifact)
      */
-    protected List<File> getFilesToProcess()
+    @Override
+    protected List<ChecksumFile> getFilesToProcess()
     {
-        List<File> files = new LinkedList<File>();
+        List<ChecksumFile> files = new LinkedList<ChecksumFile>();
 
         // Add project main artifact.
         if ( hasValidFile( project.getArtifact() ) )
         {
-            files.add( project.getArtifact().getFile() );
+            files.add( new ChecksumFile( "", project.getArtifact().getFile() ) );
         }
 
         // Add projects attached.
@@ -137,7 +137,7 @@ public class ArtifactsMojo
             {
                 if ( hasValidFile( artifact ) )
                 {
-                    files.add( artifact.getFile() );
+                    files.add( new ChecksumFile( "", artifact.getFile() ) );
                 }
             }
         }
@@ -145,7 +145,7 @@ public class ArtifactsMojo
     }
 
     /**
-     * Decide wether the artifact file should be processed.
+     * Decide whether the artifact file should be processed.
      * <p/>
      * <p>Excludes the project POM file and any file outside the build directory, because this could lead to writing
      * files on the user local repository for example.</p>
@@ -170,6 +170,7 @@ public class ArtifactsMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected boolean isIndividualFiles()
     {
         return individualFiles;
@@ -178,6 +179,7 @@ public class ArtifactsMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getIndividualFilesOutputDirectory()
     {
         return individualFilesOutputDirectory;
@@ -186,6 +188,7 @@ public class ArtifactsMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected boolean isCsvSummary()
     {
         return csvSummary;
@@ -202,6 +205,7 @@ public class ArtifactsMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected boolean isXmlSummary()
     {
         return xmlSummary;
@@ -210,6 +214,7 @@ public class ArtifactsMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getXmlSummaryFile()
     {
         return xmlSummaryFile;
@@ -218,6 +223,7 @@ public class ArtifactsMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected boolean isShasumSummary()
     {
         return shasumSummary;
@@ -226,6 +232,7 @@ public class ArtifactsMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getShasumSummaryFile()
     {
         return shasumSummaryFile;

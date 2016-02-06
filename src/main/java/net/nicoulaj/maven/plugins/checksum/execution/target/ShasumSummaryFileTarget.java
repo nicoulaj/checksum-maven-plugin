@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
 
 /**
  * An {@link ExecutionTarget} that writes digests to a {@code shasum} file
@@ -57,7 +59,7 @@ public class ShasumSummaryFileTarget
     /**
      * The association file => (algorithm,hashcode).
      */
-    protected Map<File, Map<String, String>> filesHashcodes;
+    protected Map<ChecksumFile, Map<String, String>> filesHashcodes;
 
     /**
      * The set of algorithms encountered.
@@ -70,13 +72,21 @@ public class ShasumSummaryFileTarget
     protected File summaryFile;
 
     /**
-     * Build a new instance of {@link CsvSummaryFileTarget}.
+     * List of listeners which are notified every time a sum file is created.
+     *
+     * @since 1.3
+     */
+    protected final Iterable<? extends ArtifactListener> artifactListeners;
+
+    /**
+     * Build a new instance of {@link ShasumSummaryFileTarget}.
      *
      * @param summaryFile the file to which the summary should be written.
      */
-    public ShasumSummaryFileTarget( File summaryFile )
+    public ShasumSummaryFileTarget( File summaryFile, Iterable<? extends ArtifactListener> artifactListeners )
     {
         this.summaryFile = summaryFile;
+        this.artifactListeners = artifactListeners;
     }
 
     /**
@@ -85,7 +95,7 @@ public class ShasumSummaryFileTarget
     @Override
     public void init()
     {
-        filesHashcodes = new HashMap<File, Map<String, String>>();
+        filesHashcodes = new HashMap<ChecksumFile, Map<String, String>>();
         algorithms = new TreeSet<String>();
    }
 
@@ -93,7 +103,7 @@ public class ShasumSummaryFileTarget
      * {@inheritDoc}
      */
     @Override
-    public void write( String digest, File file, String algorithm )
+    public void write( String digest, ChecksumFile file, String algorithm )
     {
         // Initialize an entry for the file if needed.
         if ( !filesHashcodes.containsKey( file ) )
@@ -113,7 +123,7 @@ public class ShasumSummaryFileTarget
      * {@inheritDoc}
      */
     @Override
-    public void close()
+    public void close(final String subPath)
         throws ExecutionTargetCloseException
     {
         StringBuilder sb = new StringBuilder();
@@ -123,19 +133,20 @@ public class ShasumSummaryFileTarget
 
         // shasum entires are traditionally written in sorted order (per globing argument)
         @SuppressWarnings("unchecked")
-        Map.Entry<File, Map<String, String>>[] entries = filesHashcodes.entrySet().toArray((Map.Entry<File, Map<String, String>>[]) new Map.Entry[0] );
-        Arrays.sort(entries, new Comparator<Map.Entry<File, Map<String, String>>>() {
-
+        Map.Entry<ChecksumFile, Map<String, String>>[] entries = filesHashcodes.entrySet().toArray((Map.Entry<ChecksumFile, Map<String, String>>[]) new Map.Entry[0] );
+        Arrays.sort(entries, new Comparator<Map.Entry<ChecksumFile, Map<String, String>>>() {
             @Override
-            public int compare(Map.Entry<File, Map<String, String>> o1, Map.Entry<File, Map<String, String>> o2) {
-                return o1.getKey().getName().compareTo(o2.getKey().getName());
+            public int compare(Map.Entry<ChecksumFile, Map<String, String>> o1, Map.Entry<ChecksumFile, Map<String, String>> o2) {
+                ChecksumFile f1 = o1.getKey();
+                ChecksumFile f2 = o2.getKey();
+                return f1.getRelativePath(f1, subPath).compareTo(f2.getRelativePath(f2, subPath));
             }
         });
 
         // Write a line for each file.
-        for ( Map.Entry<File, Map<String, String>> entry : entries )
+        for ( Map.Entry<ChecksumFile, Map<String, String>> entry : entries )
         {
-            File file = entry.getKey();
+            ChecksumFile file = entry.getKey();
             Map<String, String> fileHashcodes = entry.getValue();
             for ( String algorithm : algorithms )
             {
@@ -145,7 +156,7 @@ public class ShasumSummaryFileTarget
                 }
             }
             sb.append(SHASUM_FIELD_SEPARATOR)
-                    .append( file.getName())
+                    .append( file.getRelativePath(entry.getKey(), subPath))
                     .append( LINE_SEPARATOR );
         }
 
@@ -156,7 +167,10 @@ public class ShasumSummaryFileTarget
         try
         {
             FileUtils.fileWrite( summaryFile.getPath(), "US-ASCII", sb.toString() );
-        }
+             for (ArtifactListener artifactListener : artifactListeners) {
+                artifactListener.artifactCreated(summaryFile, "sum");
+            }
+       }
         catch ( IOException e )
         {
             throw new ExecutionTargetCloseException( e.getMessage() );

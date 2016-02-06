@@ -21,7 +21,6 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 
-import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -163,17 +162,19 @@ public class DependenciesMojo
      *
      * @return the list of files that should be processed.
      */
-    protected List<File> getFilesToProcess()
+    @Override
+    protected List<ChecksumFile> getFilesToProcess()
     {
-        List<File> files = new LinkedList<File>();
+        List<ChecksumFile> files = new LinkedList<ChecksumFile>();
+
         @SuppressWarnings("unchecked")
-        Set<Artifact> artifacts = (Set<Artifact>) (transitive ?  project.getArtifacts() : project.getDependencyArtifacts());
+        Set<Artifact> artifacts = transitive ?  project.getArtifacts() : project.getDependencyArtifacts();
         for ( Artifact artifact : artifacts )
         {
             if ( ( scopes == null || scopes.contains( artifact.getScope() ) ) && ( types == null || types.contains(
                 artifact.getType() ) ) )
             {
-                files.add( artifact.getFile() );
+                files.add( new ChecksumFile( "", artifact.getFile() ) );
             }
         }
 
@@ -183,6 +184,7 @@ public class DependenciesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected boolean isIndividualFiles()
     {
         return individualFiles;
@@ -191,6 +193,7 @@ public class DependenciesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getIndividualFilesOutputDirectory()
     {
         return individualFilesOutputDirectory;
@@ -199,6 +202,7 @@ public class DependenciesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected boolean isCsvSummary()
     {
         return csvSummary;
@@ -207,6 +211,7 @@ public class DependenciesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getCsvSummaryFile()
     {
         return csvSummaryFile;
@@ -215,6 +220,7 @@ public class DependenciesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected boolean isXmlSummary()
     {
         return xmlSummary;
@@ -223,6 +229,7 @@ public class DependenciesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getXmlSummaryFile()
     {
         return xmlSummaryFile;

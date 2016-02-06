@@ -15,6 +15,9 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
+
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -57,7 +60,7 @@ public class CsvSummaryFileTarget
     /**
      * The association file => (algorithm,hashcode).
      */
-    protected Map<File, Map<String, String>> filesHashcodes;
+    protected Map<ChecksumFile, Map<String, String>> filesHashcodes;
 
     /**
      * The set of algorithms encountered.
@@ -95,14 +98,14 @@ public class CsvSummaryFileTarget
     @Override
     public void init()
     {
-        filesHashcodes = new HashMap<File, Map<String, String>>();
+        filesHashcodes = new HashMap<ChecksumFile, Map<String, String>>();
         algorithms = new TreeSet<String>();
     }
 
     /**
      * {@inheritDoc}
      */
-    public void write( String digest, File file, String algorithm )
+    public void write( String digest, ChecksumFile file, String algorithm )
     {
         // Initialize an entry for the file if needed.
         if ( !filesHashcodes.containsKey( file ) )
@@ -121,8 +124,7 @@ public class CsvSummaryFileTarget
     /**
      * {@inheritDoc}
      */
-    @Override
-    public void close()
+    public void close( String subPath )
         throws ExecutionTargetCloseException
     {
         StringBuilder sb = new StringBuilder();
@@ -135,9 +137,9 @@ public class CsvSummaryFileTarget
         }
 
         // Write a line for each file.
-        for ( File file : filesHashcodes.keySet() )
+        for ( ChecksumFile file : filesHashcodes.keySet() )
         {
-            sb.append( LINE_SEPARATOR ).append( file.getName() );
+            sb.append( LINE_SEPARATOR ).append( file.getRelativePath(file, subPath) );
             Map<String, String> fileHashcodes = filesHashcodes.get( file );
             for ( String algorithm : algorithms )
             {

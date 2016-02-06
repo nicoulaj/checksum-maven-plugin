@@ -1,7 +1,6 @@
 package net.nicoulaj.maven.plugins.checksum.test.unit.digest;
 
 
-import junit.framework.TestCase;
 import net.nicoulaj.maven.plugins.checksum.digest.CksumFileDigester;
 import org.junit.Assert;
 import org.junit.Test;

@@ -22,7 +22,8 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
 import org.apache.maven.plugin.logging.Log;
 
-import java.io.File;
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+
 import java.security.NoSuchAlgorithmException;
 
 /**
@@ -90,7 +91,7 @@ public class NeverFailExecution
         }
 
         // Process files
-        for ( File file : files )
+        for ( ChecksumFile file : files )
         {
             for ( String algorithm : getAlgorithms() )
             {
@@ -98,7 +99,7 @@ public class NeverFailExecution
                 {
                     // Calculate the hash for the file/algo
                     FileDigester digester = DigesterFactory.getInstance().getFileDigester( algorithm );
-                    String hash = digester.calculate( file );
+                    String hash = digester.calculate( file.getFile() );
 
                     // Write it to each target defined
                     for ( ExecutionTarget target : getTargets() )
@@ -120,7 +121,7 @@ public class NeverFailExecution
                 catch ( DigesterException e )
                 {
                     logger.warn(
-                        "Unable to calculate " + algorithm + " hash for " + file.getName() + ": " + e.getMessage() );
+                        "Unable to calculate " + algorithm + " hash for " + file.getFile().getName() + ": " + e.getMessage() );
                 }
             }
         }
@@ -130,7 +131,7 @@ public class NeverFailExecution
         {
             try
             {
-                target.close();
+                target.close( subPath );
             }
             catch ( Exception e )
             {
