@@ -24,6 +24,7 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget;
+import net.nicoulaj.maven.plugins.checksum.execution.target.ShasumSummaryFileTarget;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -132,6 +133,11 @@ abstract class AbstractChecksumMojo
                 FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getXmlSummaryFile() ),
                 encoding ) );
         }
+        if ( isShasumSummary() )
+        {
+            execution.addTarget( new ShasumSummaryFileTarget(
+                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getShasumSummaryFile() )) );
+        }
 
         // Run the execution.
         try
@@ -163,4 +169,9 @@ abstract class AbstractChecksumMojo
     protected abstract boolean isXmlSummary();
 
     protected abstract String getXmlSummaryFile();
+
+    protected abstract boolean isShasumSummary();
+
+    protected abstract String getShasumSummaryFile();
+
 }

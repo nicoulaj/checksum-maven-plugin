@@ -19,39 +19,40 @@ import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * An {@link ExecutionTarget} that writes digests to a CSV file.
+ * An {@link ExecutionTarget} that writes digests to a {@code shasum} file
+ * compatible with "{@code shasum -b -a <algo> <files> > sha.sum}". For
+ * compatibility with {@code shasum} only SHA-1, SHA-224, SHA-256, SHA-384,
+ * SHA-512, SHA-512224 and SHA-512256 are supported. Only one algorithm may be
+ * used at a time.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @since 1.0
+ * @author Mike Duigou
+ * @since 1.3
  */
-public class CsvSummaryFileTarget
+public class ShasumSummaryFileTarget
     implements ExecutionTarget
 {
     /**
      * The line separator character.
      */
     public static final String LINE_SEPARATOR = System.getProperty( "line.separator" );
+    /**
+     * The shasum field separator (and file type binary identifier)
+     */
+    public static final String SHASUM_FIELD_SEPARATOR = " *";
 
     /**
-     * The CSV column separator character.
+     * The shasum binary character.
      */
-    public static final String CSV_COLUMN_SEPARATOR = ",";
-
-    /**
-     * The CSV comment marker character.
-     */
-    public static final String CSV_COMMENT_MARKER = "#";
-
-    /**
-     * Encoding to use for generated files.
-     */
-    protected String encoding;
+    public static final String SHASUM_BINARY_FILE = "*";
 
     /**
      * The association file => (algorithm,hashcode).
@@ -72,12 +73,10 @@ public class CsvSummaryFileTarget
      * Build a new instance of {@link CsvSummaryFileTarget}.
      *
      * @param summaryFile the file to which the summary should be written.
-     * @param encoding    the encoding to use for generated files.
      */
-    public CsvSummaryFileTarget( File summaryFile, String encoding )
+    public ShasumSummaryFileTarget( File summaryFile )
     {
         this.summaryFile = summaryFile;
-        this.encoding = encoding;
     }
 
     /**
@@ -88,11 +87,12 @@ public class CsvSummaryFileTarget
     {
         filesHashcodes = new HashMap<File, Map<String, String>>();
         algorithms = new TreeSet<String>();
-    }
+   }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public void write( String digest, File file, String algorithm )
     {
         // Initialize an entry for the file if needed.
@@ -118,29 +118,36 @@ public class CsvSummaryFileTarget
     {
         StringBuilder sb = new StringBuilder();
 
-        // Write the CSV file header.
-        sb.append( CSV_COMMENT_MARKER ).append( "File" );
-        for ( String algorithm : algorithms )
-        {
-            sb.append( CSV_COLUMN_SEPARATOR ).append( algorithm );
-        }
+        if (algorithms.size() != 1)
+            throw new ExecutionTargetCloseException("Must use only one type of hash");
+
+        // shasum entires are traditionally written in sorted order (per globing argument)
+        @SuppressWarnings("unchecked")
+        Map.Entry<File, Map<String, String>>[] entries = filesHashcodes.entrySet().toArray((Map.Entry<File, Map<String, String>>[]) new Map.Entry[0] );
+        Arrays.sort(entries, new Comparator<Map.Entry<File, Map<String, String>>>() {
+
+            @Override
+            public int compare(Map.Entry<File, Map<String, String>> o1, Map.Entry<File, Map<String, String>> o2) {
+                return o1.getKey().getName().compareTo(o2.getKey().getName());
+            }
+        });
 
         // Write a line for each file.
-        for ( File file : filesHashcodes.keySet() )
+        for ( Map.Entry<File, Map<String, String>> entry : entries )
         {
-            sb.append( LINE_SEPARATOR ).append( file.getName() );
-            Map<String, String> fileHashcodes = filesHashcodes.get( file );
+            File file = entry.getKey();
+            Map<String, String> fileHashcodes = entry.getValue();
             for ( String algorithm : algorithms )
             {
-                sb.append( CSV_COLUMN_SEPARATOR );
                 if ( fileHashcodes.containsKey( algorithm ) )
                 {
                     sb.append( fileHashcodes.get( algorithm ) );
                 }
             }
+            sb.append(SHASUM_FIELD_SEPARATOR)
+                    .append( file.getName())
+                    .append( LINE_SEPARATOR );
         }
-
-        sb.append( LINE_SEPARATOR );
 
         // Make sure the parent directory exists.
         FileUtils.mkdir( summaryFile.getParent() );
@@ -148,7 +155,7 @@ public class CsvSummaryFileTarget
         // Write the result to the summary file.
         try
         {
-            FileUtils.fileWrite( summaryFile.getPath(), encoding, sb.toString() );
+            FileUtils.fileWrite( summaryFile.getPath(), "US-ASCII", sb.toString() );
         }
         catch ( IOException e )
         {

@@ -98,6 +98,23 @@ public class DependenciesMojo
     protected String xmlSummaryFile;
 
     /**
+     * Indicates whether the build will store checksums to a single shasum summary file.
+     *
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "false" )
+    protected boolean shasumSummary;
+
+    /**
+     * The name of the summary file created if the option is activated.
+     *
+     * @see #shasumSummary
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "dependencies-checksums.sha" )
+    protected String shasumSummaryFile;
+
+    /**
      * The dependency scopes to include.
      * <p/>
      * <p>Allowed values are compile, test, runtime, provided and system.<br/>All scopes are included by default.</p>
@@ -132,6 +149,14 @@ public class DependenciesMojo
     protected List<String> types;
 
     /**
+     * Transitive dependencies or only direct dependencies.
+     *
+     * @since 1.0
+     */
+    @Parameter( defaultValue = "false" )
+    protected boolean transitive;
+
+    /**
      * Build the list of files from which digests should be generated.
      * <p/>
      * <p>The list is composed of the project dependencies.</p>
@@ -141,8 +166,9 @@ public class DependenciesMojo
     protected List<File> getFilesToProcess()
     {
         List<File> files = new LinkedList<File>();
-
-        for ( Artifact artifact : (Set<Artifact>) project.getDependencyArtifacts() )
+        @SuppressWarnings("unchecked")
+        Set<Artifact> artifacts = (Set<Artifact>) (transitive ?  project.getArtifacts() : project.getDependencyArtifacts());
+        for ( Artifact artifact : artifacts )
         {
             if ( ( scopes == null || scopes.contains( artifact.getScope() ) ) && ( types == null || types.contains(
                 artifact.getType() ) ) )
@@ -200,5 +226,23 @@ public class DependenciesMojo
     protected String getXmlSummaryFile()
     {
         return xmlSummaryFile;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected boolean isShasumSummary()
+    {
+        return shasumSummary;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected String getShasumSummaryFile()
+    {
+        return shasumSummaryFile;
     }
 }

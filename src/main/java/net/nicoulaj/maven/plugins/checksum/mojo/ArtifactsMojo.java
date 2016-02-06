@@ -96,6 +96,23 @@ public class ArtifactsMojo
     protected String xmlSummaryFile;
 
     /**
+     * Indicates whether the build will store checksums to a single shasum summary file.
+     *
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "false" )
+    protected boolean shasumSummary;
+
+    /**
+     * The name of the summary file created if the option is activated.
+     *
+     * @see #shasumSummary
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "artifacts-checksums.sha" )
+    protected String shasumSummaryFile;
+
+    /**
      * Build the list of files from which digests should be generated.
      * <p/>
      * <p>The list is composed of the project main and attached artifacts.</p>
@@ -196,5 +213,21 @@ public class ArtifactsMojo
     protected String getXmlSummaryFile()
     {
         return xmlSummaryFile;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected boolean isShasumSummary()
+    {
+        return shasumSummary;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected String getShasumSummaryFile()
+    {
+        return shasumSummaryFile;
     }
 }
