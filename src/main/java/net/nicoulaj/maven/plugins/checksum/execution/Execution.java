@@ -55,7 +55,7 @@ public interface Execution
     /**
      * Set the part of relative path that will be removed.
      *
-     * @param part of relative path that will be removed.
+     * @param subPath of relative path that will be removed.
      *
      * @since 1.3
      */
