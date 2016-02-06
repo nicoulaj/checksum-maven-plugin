@@ -15,7 +15,14 @@
  */
 package net.nicoulaj.maven.plugins.checksum.mojo;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import net.nicoulaj.maven.plugins.checksum.Constants;
+import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactAttacher;
+import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
 import net.nicoulaj.maven.plugins.checksum.execution.Execution;
 import net.nicoulaj.maven.plugins.checksum.execution.ExecutionException;
 import net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution;
@@ -28,14 +35,12 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.ShasumSummaryFileTar
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.project.MavenProjectHelper;
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.StringUtils;
-
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Base class for {@code checksum-maven-plugin} mojos.
@@ -54,6 +59,16 @@ abstract class AbstractChecksumMojo
      */
     @Parameter( property = "project", required = true, readonly = true )
     protected MavenProject project;
+
+    /**
+     * The Maven Project Helper.
+     *
+     * Used to attach checksums as build artifacts.
+     *
+     * @since 1.3
+     */
+    @Component
+    protected MavenProjectHelper projectHelper;
 
     /**
      * The list of checksum algorithms used.
@@ -90,6 +105,14 @@ abstract class AbstractChecksumMojo
     protected String encoding = Constants.DEFAULT_ENCODING;
 
     /**
+     * Should the checksums be attached as build artifacts.
+     *
+     * @since 1.3
+     */
+    @Parameter( property = "attachChecksums", defaultValue = "false")
+    protected boolean attachChecksums;
+
+    /**
      * Indicates whether the build will print checksums in the build log.
      *
      * @since 1.0
@@ -119,19 +142,19 @@ abstract class AbstractChecksumMojo
                 outputDirectory = FileUtils.resolveFile( new File( project.getBuild().getDirectory() ),
                                                          getIndividualFilesOutputDirectory() );
             }
-            execution.addTarget( new OneHashPerFileTarget( encoding, outputDirectory ) );
+            execution.addTarget( new OneHashPerFileTarget( encoding, outputDirectory, createArtifactListeners()) );
         }
         if ( isCsvSummary() )
         {
             execution.addTarget( new CsvSummaryFileTarget(
                 FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getCsvSummaryFile() ),
-                encoding ) );
+                encoding, createArtifactListeners()) );
         }
         if ( isXmlSummary() )
         {
             execution.addTarget( new XmlSummaryFileTarget(
                 FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getXmlSummaryFile() ),
-                encoding ) );
+                encoding, createArtifactListeners()) );
         }
         if ( isShasumSummary() )
         {
@@ -149,6 +172,13 @@ abstract class AbstractChecksumMojo
             getLog().error( e.getMessage() );
             throw new MojoFailureException( e.getMessage() );
         }
+    }
+
+    private Iterable<? extends ArtifactListener> createArtifactListeners() {
+        if (!attachChecksums) {
+            return Collections.emptyList();
+        }
+        return Collections.singletonList(new ArtifactAttacher(project, projectHelper));
     }
 
     /**

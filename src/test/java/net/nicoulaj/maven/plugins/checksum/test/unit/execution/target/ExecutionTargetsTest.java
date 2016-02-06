@@ -15,7 +15,13 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test.unit.execution.target;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 import net.nicoulaj.maven.plugins.checksum.Constants;
+import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
 import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
@@ -23,10 +29,6 @@ import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import java.io.File;
-import java.util.Arrays;
-import java.util.Collection;
 
 /**
  * Tests for {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} implementations.
@@ -51,9 +53,10 @@ public class ExecutionTargetsTest
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters()
     {
+        Iterable<? extends ArtifactListener> artifactListeners = Collections.emptyList();
         Object[][] data =
-            new Object[][]{ { new MavenLogTarget( null ) }, { new OneHashPerFileTarget( Constants.DEFAULT_ENCODING ) },
-                { new CsvSummaryFileTarget( new File( "" ), Constants.DEFAULT_ENCODING ) } };
+            new Object[][]{ { new MavenLogTarget( null ) }, { new OneHashPerFileTarget( Constants.DEFAULT_ENCODING, artifactListeners) },
+                { new CsvSummaryFileTarget( new File( "" ), Constants.DEFAULT_ENCODING, artifactListeners) } };
         return Arrays.asList( data );
     }
 

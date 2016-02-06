@@ -15,6 +15,13 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test.unit.execution.target;
 
+import java.io.File;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Collections;
+import java.util.List;
+
+import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
@@ -23,11 +30,6 @@ import net.nicoulaj.maven.plugins.checksum.test.unit.Constants;
 import org.codehaus.plexus.util.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.File;
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 /**
  * Tests for the {@link net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget} {@link
@@ -41,7 +43,7 @@ public class OneHashPerFileTargetTest
      * The instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget} used for the
      * test.
      */
-    ExecutionTarget target = new OneHashPerFileTarget( net.nicoulaj.maven.plugins.checksum.Constants.DEFAULT_ENCODING );
+    ExecutionTarget target = new OneHashPerFileTarget( net.nicoulaj.maven.plugins.checksum.Constants.DEFAULT_ENCODING, Collections.<ArtifactListener>emptyList());
 
     /**
      * Assert the target writes the right content to the right file.
