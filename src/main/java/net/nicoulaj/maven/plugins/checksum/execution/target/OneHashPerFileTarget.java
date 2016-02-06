@@ -15,6 +15,9 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
+
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -97,17 +100,17 @@ public class OneHashPerFileTarget
     /**
      * {@inheritDoc}
      */
-    public void write( String digest, File file, String algorithm )
+    public void write( String digest, ChecksumFile file, String algorithm )
         throws ExecutionTargetWriteException
     {
         try
         {
-            File outputFileDirectory = ( outputDirectory != null ) ? outputDirectory : file.getParentFile();
+            File outputFileDirectory = ( outputDirectory != null ) ? outputDirectory : file.getFile().getParentFile();
             String fileExtension = DigesterFactory.getInstance().getFileDigester(algorithm).getFileExtension();
-            File outputFile = new File(outputFileDirectory.getPath(), file.getName() + fileExtension);
-
-            FileUtils.fileWrite(outputFile, digest );
-
+            String outputFileName = file.getFile().getName() + fileExtension;
+            File outputFile = new File(outputFileDirectory.getPath(), outputFileName);
+            FileUtils.fileWrite( outputFile, digest );
+           
             for (ArtifactListener artifactListener : artifactListeners) {
                 artifactListener.artifactCreated(outputFile, fileExtension);
             }
@@ -125,7 +128,7 @@ public class OneHashPerFileTarget
     /**
      * {@inheritDoc}
      */
-    public void close()
+    public void close(String subPath)
     {
         // Nothing to do
     }

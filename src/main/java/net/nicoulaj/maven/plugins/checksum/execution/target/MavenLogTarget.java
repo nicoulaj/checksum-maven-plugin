@@ -17,7 +17,8 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
 
 import org.apache.maven.plugin.logging.Log;
 
-import java.io.File;
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+
 
 /**
  * An {@link ExecutionTarget} that writes digests to a Maven {@link org.apache.maven.plugin.logging.Log}.
@@ -55,15 +56,15 @@ public class MavenLogTarget
     /**
      * {@inheritDoc}
      */
-    public void write( String digest, File file, String algorithm )
+    public void write( String digest, ChecksumFile file, String algorithm )
     {
-        logger.info( file.getName() + " - " + algorithm + " : " + digest );
+        logger.info( file.getFile().getName() + " - " + algorithm + " : " + digest );
     }
 
     /**
      * {@inheritDoc}
      */
-    public void close()
+    public void close( String subPath)
     {
         // Nothing to do
     }

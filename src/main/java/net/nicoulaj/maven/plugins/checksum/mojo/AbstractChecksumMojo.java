@@ -121,8 +121,25 @@ abstract class AbstractChecksumMojo
     protected boolean quiet;
 
     /**
+     * Indicates whether the build will output relative path information as well.
+     *
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "false" )
+    protected boolean includeRelativePath;
+
+    /**
+     * Sub path to use as the root of the relative path when including relative path in xml/csv files
+     *
+     * @since 1.3
+     */
+    @Parameter( defaultValue = "" )
+    protected String relativeSubPath = "";
+
+    /**
      * {@inheritDoc}
      */
+    @Override
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
@@ -133,6 +150,12 @@ abstract class AbstractChecksumMojo
         if ( !quiet )
         {
             execution.addTarget( new MavenLogTarget( getLog() ) );
+        }
+        if ( includeRelativePath )
+        {
+                execution.setSubPath( relativeSubPath );
+        } else {
+                execution.setSubPath( null );
         }
         if ( isIndividualFiles() )
         {
@@ -159,7 +182,7 @@ abstract class AbstractChecksumMojo
         if ( isShasumSummary() )
         {
             execution.addTarget( new ShasumSummaryFileTarget(
-                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getShasumSummaryFile() )) );
+                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getShasumSummaryFile() ), createArtifactListeners()) );
         }
 
         // Run the execution.
@@ -186,7 +209,7 @@ abstract class AbstractChecksumMojo
      *
      * @return the list of files that should be processed.
      */
-    protected abstract List<File> getFilesToProcess();
+    protected abstract List<ChecksumFile> getFilesToProcess();
 
     protected abstract boolean isIndividualFiles();
 

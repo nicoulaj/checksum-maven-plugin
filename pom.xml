@@ -29,8 +29,7 @@
   <packaging>maven-plugin</packaging>
 
   <name>checksum-maven-plugin</name>
-  <description>
-    <![CDATA[Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.]]>
+  <description>Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.
   </description>
   <url>http://nicoulaj.github.com/checksum-maven-plugin</url>
   <inceptionYear>2010</inceptionYear>
@@ -182,6 +181,10 @@
           </execution>
         </executions>
         <configuration>
+          <extraArtifacts>
+            <extraArtifact>org.apache.maven.plugins:maven-assembly-plugin:2.2-beta-5:jar</extraArtifact>
+            <extraArtifact>junit:junit:4.12:jar</extraArtifact>
+          </extraArtifacts>
           <localRepositoryPath>${project.build.directory}/it/local-repository</localRepositoryPath>
           <showErrors>${debug}</showErrors>
           <debug>${debug}</debug>

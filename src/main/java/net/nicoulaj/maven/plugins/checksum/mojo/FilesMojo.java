@@ -149,13 +149,16 @@ public class FilesMojo
      *
      * @return the list of files that should be processed.
      */
-    protected List<File> getFilesToProcess()
+    @Override
+    protected List<ChecksumFile> getFilesToProcess()
     {
-        final List<File> filesToProcess = new ArrayList<File>();
+        final List<ChecksumFile> filesToProcess = new ArrayList<ChecksumFile>();
         for ( final FileSet fileSet : fileSets )
         {
             final DirectoryScanner scanner = new DirectoryScanner();
-            scanner.setBasedir( fileSet.getDirectory() );
+            final String fileSetDirectory = (new File( fileSet.getDirectory() ) ).getPath();
+
+            scanner.setBasedir( fileSetDirectory );
             String[] includes;
             if ( fileSet.getIncludes() != null && !fileSet.getIncludes().isEmpty() )
             {
@@ -178,9 +181,9 @@ public class FilesMojo
 
             scanner.scan();
 
-                for ( String filePath : scanner.getIncludedFiles() )
-                {
-                filesToProcess.add( new File( fileSet.getDirectory(), filePath ) );
+            for ( String filePath : scanner.getIncludedFiles() )
+            {
+                filesToProcess.add( new ChecksumFile( (new File( fileSetDirectory ) ).getPath(), new File( fileSetDirectory, filePath ) ) );
             }
             }
 
@@ -190,6 +193,7 @@ public class FilesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected boolean isIndividualFiles()
     {
         return individualFiles;
@@ -198,6 +202,7 @@ public class FilesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getIndividualFilesOutputDirectory()
     {
         return individualFilesOutputDirectory;
@@ -206,6 +211,7 @@ public class FilesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected boolean isCsvSummary()
     {
         return csvSummary;
@@ -214,6 +220,7 @@ public class FilesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getCsvSummaryFile()
     {
         return csvSummaryFile;
@@ -222,6 +229,7 @@ public class FilesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected boolean isXmlSummary()
     {
         return xmlSummary;
@@ -230,6 +238,7 @@ public class FilesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getXmlSummaryFile()
     {
         return xmlSummaryFile;
@@ -238,6 +247,7 @@ public class FilesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected boolean isShasumSummary()
     {
         return shasumSummary;
@@ -246,6 +256,7 @@ public class FilesMojo
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getShasumSummaryFile()
     {
         return shasumSummaryFile;

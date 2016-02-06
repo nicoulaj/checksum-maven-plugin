@@ -15,6 +15,9 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
+
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -52,7 +55,7 @@ public class XmlSummaryFileTarget
     /**
      * The association file => (algorithm,hashcode).
      */
-    protected Map<File, Map<String, String>> filesHashcodes;
+    protected Map<ChecksumFile, Map<String, String>> filesHashcodes;
 
     /**
      * The target file where the summary is written.
@@ -84,13 +87,13 @@ public class XmlSummaryFileTarget
      */
     public void init()
     {
-        filesHashcodes = new HashMap<File, Map<String, String>>();
+        filesHashcodes = new HashMap<ChecksumFile, Map<String, String>>();
     }
 
     /**
      * {@inheritDoc}
      */
-    public void write( String digest, File file, String algorithm )
+    public void write( String digest, ChecksumFile file, String algorithm )
     {
         // Initialize an entry for the file if needed.
         if ( !filesHashcodes.containsKey( file ) )
@@ -106,14 +109,14 @@ public class XmlSummaryFileTarget
     /**
      * {@inheritDoc}
      */
-    public void close()
+    public void close(String subPath)
         throws ExecutionTargetCloseException
     {
         // Make sure the parent directory exists.
         FileUtils.mkdir( summaryFile.getParent() );
 
         // Open the target file.
-        Writer outputStream;
+        Writer outputStream = null;
         try
         {
             outputStream = new OutputStreamWriter( new FileOutputStream( summaryFile ), encoding );
@@ -131,10 +134,10 @@ public class XmlSummaryFileTarget
         PrettyPrintXMLWriter xmlWriter =
             new PrettyPrintXMLWriter( outputStream, StringUtils.repeat( " ", XML_INDENTATION_SIZE ) );
         xmlWriter.startElement( "files" );
-        for ( File file : filesHashcodes.keySet() )
+        for ( ChecksumFile file : filesHashcodes.keySet() )
         {
             xmlWriter.startElement( "file" );
-            xmlWriter.addAttribute( "name", file.getName() );
+			xmlWriter.addAttribute( "name", file.getRelativePath(file, subPath) );
             Map<String, String> fileHashcodes = filesHashcodes.get( file );
             for ( String algorithm : fileHashcodes.keySet() )
             {

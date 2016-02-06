@@ -26,6 +26,7 @@ import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget;
 import net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException;
 import net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget;
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
 import net.nicoulaj.maven.plugins.checksum.test.unit.Constants;
 import org.codehaus.plexus.util.FileUtils;
 import org.junit.Assert;
@@ -67,7 +68,7 @@ public class OneHashPerFileTargetTest
                 testFile.getPath() + DigesterFactory.getInstance().getFileDigester( testAlgorithm ).getFileExtension();
 
             // Call write()
-            target.write( "hash-file-content", testFile, testAlgorithm );
+            target.write( "hash-file-content", new ChecksumFile( "", testFile ), testAlgorithm );
 
             // Assert the file has been created with the right content
             Assert.assertTrue( new File( hashcodeFile ).exists() );

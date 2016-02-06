@@ -22,6 +22,7 @@ import org.apache.maven.plugin.logging.SystemStreamLog;
 import org.junit.Test;
 
 import java.io.File;
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
 
 /**
  * Tests for the {@link net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget}
@@ -46,6 +47,6 @@ public class MavenLogTargetTest
     public void testMavenLogTargetWrite()
         throws ExecutionTargetWriteException
     {
-        target.write( "hash", new File( "target/test-classes/test-file" ), "MD5" );
+        target.write( "hash", new ChecksumFile( "", new File( "target/test-classes/test-file" ) ), "MD5" );
     }
 }
