@@ -50,6 +50,13 @@ public class OneHashPerFileTarget
      * @since 1.3
      */
     protected final Iterable<? extends ArtifactListener> artifactListeners;
+    
+    /**
+     * Append the filename to the hash file
+     * 
+     * @since 1.4
+     */
+    protected boolean appendFilename = false;
 
     /**
      * Build a new instance of {@link OneHashPerFileTarget}.
@@ -64,6 +71,20 @@ public class OneHashPerFileTarget
         this.artifactListeners = artifactListeners;
     }
 
+    /**
+     * Build a new instance of {@link OneHashPerFileTarget}.
+     *  @param encoding        the encoding to use for generated files.
+     * @param outputDirectory the files output directory.
+     * @param artifactListeners
+     */
+    public OneHashPerFileTarget(String encoding, File outputDirectory, Iterable<? extends ArtifactListener> artifactListeners, boolean appendFilename)
+    {
+        this.encoding = encoding;
+        this.outputDirectory = outputDirectory;
+        this.artifactListeners = artifactListeners;
+        this.appendFilename = appendFilename;
+    }
+    
     /**
      * Build a new instance of {@link OneHashPerFileTarget}.
      *
@@ -108,7 +129,12 @@ public class OneHashPerFileTarget
             String fileExtension = DigesterFactory.getInstance().getFileDigester(algorithm).getFileExtension();
             String outputFileName = file.getFile().getName() + fileExtension;
             File outputFile = new File(outputFileDirectory.getPath(), outputFileName);
-            FileUtils.fileWrite( outputFile, digest );
+            StringBuilder digestToPrint = new StringBuilder(digest);
+            if(appendFilename){
+                digestToPrint.append(" ");
+                digestToPrint.append(file.getFile().getName());
+            }
+            FileUtils.fileWrite( outputFile, digestToPrint.toString() );
            
             for (ArtifactListener artifactListener : artifactListeners) {
                 artifactListener.artifactCreated(outputFile, fileExtension);

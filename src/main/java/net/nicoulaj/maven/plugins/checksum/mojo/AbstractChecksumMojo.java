@@ -161,7 +161,7 @@ abstract class AbstractChecksumMojo
                 outputDirectory = FileUtils.resolveFile( new File( project.getBuild().getDirectory() ),
                                                          getIndividualFilesOutputDirectory() );
             }
-            execution.addTarget( new OneHashPerFileTarget( encoding, outputDirectory, createArtifactListeners()) );
+            execution.addTarget( new OneHashPerFileTarget( encoding, outputDirectory, createArtifactListeners(), isAppendFilename()) );
         }
         if ( isCsvSummary() )
         {
@@ -208,6 +208,10 @@ abstract class AbstractChecksumMojo
     protected abstract List<ChecksumFile> getFilesToProcess();
 
     protected abstract boolean isIndividualFiles();
+    
+    protected boolean isAppendFilename(){
+        return false;
+    }
 
     protected abstract String getIndividualFilesOutputDirectory();
 
