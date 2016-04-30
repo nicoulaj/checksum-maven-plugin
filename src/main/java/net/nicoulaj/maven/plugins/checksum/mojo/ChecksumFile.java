@@ -25,9 +25,9 @@ import java.io.File;
  */
 public class ChecksumFile
 {
-	protected String basePath;
+	protected final String basePath;
 
-	protected File file;
+	protected final File file;
 
 	public ChecksumFile(String basePath, File file)
 	{

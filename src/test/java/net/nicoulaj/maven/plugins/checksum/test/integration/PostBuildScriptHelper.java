@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * Utility object used by post-build hook scripts.
- * <p/>
+ * 
  * <p>See {@code src/main/test-integration/projects/.../postbuild.groovy} scripts.</p>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>

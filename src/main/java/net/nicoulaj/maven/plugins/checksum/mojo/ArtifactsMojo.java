@@ -123,7 +123,7 @@ public class ArtifactsMojo
 
     /**
      * Build the list of files from which digests should be generated.
-     * <p/>
+     * 
      * <p>The list is composed of the project main and attached artifacts.</p>
      *
      * @return the list of files that should be processed.
@@ -156,7 +156,7 @@ public class ArtifactsMojo
 
     /**
      * Decide whether the artifact file should be processed.
-     * <p/>
+     * 
      * <p>Excludes the project POM file and any file outside the build directory, because this could lead to writing
      * files on the user local repository for example.</p>
      *

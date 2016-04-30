@@ -22,6 +22,8 @@ import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedSet;
@@ -104,6 +106,7 @@ public class CsvSummaryFileTarget
     /**
      * {@inheritDoc}
      */
+    @Override
     public void write( String digest, ChecksumFile file, String algorithm )
     {
         // Initialize an entry for the file if needed.
@@ -123,7 +126,8 @@ public class CsvSummaryFileTarget
     /**
      * {@inheritDoc}
      */
-    public void close( String subPath )
+    @Override
+    public void close(final String subPath )
         throws ExecutionTargetCloseException
     {
         StringBuilder sb = new StringBuilder();
@@ -135,11 +139,24 @@ public class CsvSummaryFileTarget
             sb.append( CSV_COLUMN_SEPARATOR ).append( algorithm );
         }
 
+        // Write in sorted order (per globing argument)
+        @SuppressWarnings("unchecked")
+        Map.Entry<ChecksumFile, Map<String, String>>[] entries = filesHashcodes.entrySet().toArray((Map.Entry<ChecksumFile, Map<String, String>>[]) new Map.Entry[0] );
+        Arrays.sort(entries, new Comparator<Map.Entry<ChecksumFile, Map<String, String>>>() {
+            @Override
+            public int compare(Map.Entry<ChecksumFile, Map<String, String>> o1, Map.Entry<ChecksumFile, Map<String, String>> o2) {
+                ChecksumFile f1 = o1.getKey();
+                ChecksumFile f2 = o2.getKey();
+                return f1.getRelativePath(f1, subPath).compareTo(f2.getRelativePath(f2, subPath));
+            }
+        });
+
         // Write a line for each file.
-        for ( ChecksumFile file : filesHashcodes.keySet() )
+        for ( Map.Entry<ChecksumFile, Map<String, String>> entry : entries )
         {
+            ChecksumFile file = entry.getKey();
             sb.append( LINE_SEPARATOR ).append( file.getRelativePath(file, subPath) );
-            Map<String, String> fileHashcodes = filesHashcodes.get( file );
+            Map<String, String> fileHashcodes = entry.getValue();
             for ( String algorithm : algorithms )
             {
                 sb.append( CSV_COLUMN_SEPARATOR );

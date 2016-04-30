@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  * Singleton class used to get instances of {@link FileDigester}.
- * <p/>
+ * 
  * <p>Each {@link FileDigester} object is a singleton itself.</p>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>

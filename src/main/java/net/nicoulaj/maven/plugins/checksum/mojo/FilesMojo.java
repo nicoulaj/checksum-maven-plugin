@@ -57,7 +57,7 @@ public class FilesMojo
 
     /**
      * The list of files to process.
-     * <p/>
+     * 
      * <p> Use the following syntax:
      * <pre>&lt;fileSets&gt;
      *   &lt;fileSet&gt;
