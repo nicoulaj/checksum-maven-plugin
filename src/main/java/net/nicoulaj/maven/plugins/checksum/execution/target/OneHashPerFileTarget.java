@@ -131,7 +131,7 @@ public class OneHashPerFileTarget
             File outputFile = new File(outputFileDirectory.getPath(), outputFileName);
             StringBuilder digestToPrint = new StringBuilder(digest);
             if(appendFilename){
-                digestToPrint.append("\t");
+                digestToPrint.append("  ");
                 digestToPrint.append(file.getFile().getName());
             }
             FileUtils.fileWrite( outputFile, digestToPrint.toString() );
