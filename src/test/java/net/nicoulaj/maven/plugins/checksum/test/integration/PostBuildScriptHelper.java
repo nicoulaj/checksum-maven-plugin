@@ -134,7 +134,25 @@ public class PostBuildScriptHelper
     public void assertFileIsNotEmpty( String path )
         throws Exception
     {
-        File file = new File( baseDirectory, path );
+        assertFileIsNotEmptyRelativeTo( baseDirectory, path );
+    }
+
+    /**
+     * Assert the given file exists and is a non-empty file.
+     *
+     * @param path the path to the file relative to {@link #localRepositoryPath}.
+     * @throws Exception  if conditions are not fulfilled.
+     */
+    public void assertFileIsNotEmptyInLocalRepo( String path )
+        throws Exception
+    {
+        assertFileIsNotEmptyRelativeTo(localRepositoryPath, path);
+    }
+
+	private void assertFileIsNotEmptyRelativeTo( File directory, String path )
+        throws Exception
+    {
+        File file = new File( directory, path );
         if ( !file.isFile() )
         {
             throw new Exception( "The file " + path + " is missing or not a file." );
