@@ -20,9 +20,11 @@ env:
   - MAVEN=3.3.9
 
 before_install:
-  - mkdir /tmp/maven
-  - wget -qO- https://archive.apache.org/dist/maven/maven-3/${MAVEN}/binaries/apache-maven-${MAVEN}-bin.tar.gz | tar xz --strip 1 -C /tmp/maven
+  - export M2_HOME=$(mktemp -d)
+  - mkdir $M2_HOME
+  - wget -qO- https://archive.apache.org/dist/maven/maven-3/${MAVEN}/binaries/apache-maven-${MAVEN}-bin.tar.gz | tar xz --strip 1 -C $M2_HOME
+  - export PATH=$M2_HOME/bin:$PATH
 
 install: true
 
-script: /tmp/maven/bin/mvn -V clean install
+script: $M2_HOME/bin/mvn -V clean install
