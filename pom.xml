@@ -152,6 +152,25 @@
 
     <plugins>
       <plugin>
+      <artifactId>maven-enforcer-plugin</artifactId>
+      <executions>
+        <execution>
+          <id>enforce-maven-version</id>
+          <goals>
+            <goal>enforce</goal>
+          </goals>
+          <configuration>
+            <rules>
+              <requireMavenVersion>
+                <version>[3.0.4,)</version>
+                <message>Maven v3.0.4+ is required to build this project, please update.</message>
+              </requireMavenVersion>
+            </rules>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>animal-sniffer-maven-plugin</artifactId>
         <executions>
