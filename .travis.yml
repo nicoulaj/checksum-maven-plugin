@@ -25,4 +25,4 @@ before_install:
 
 install: true
 
-script: /tmp/maven/bin/mvn -V clean install site site:stage
+script: /tmp/maven/bin/mvn -V clean install
