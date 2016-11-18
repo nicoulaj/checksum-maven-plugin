@@ -41,7 +41,7 @@
 
     <!-- Google analytics tracking code -->
     <head>
-      <script type="text/javascript">
+      <![CDATA[<script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-2189278-12']);
         _gaq.push(['_trackPageview']);
@@ -55,7 +55,7 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(ga, s);
         })();
-      </script>
+      </script>]]>
     </head>
 
     <!-- Menus -->
