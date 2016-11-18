@@ -19,7 +19,7 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
  * Thrown when an error occurs while trying to close an {@link ExecutionTarget}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @see ExecutionTarget#close()
+ * @see ExecutionTarget#close(String)
  * @since 1.0
  */
 public class ExecutionTargetCloseException

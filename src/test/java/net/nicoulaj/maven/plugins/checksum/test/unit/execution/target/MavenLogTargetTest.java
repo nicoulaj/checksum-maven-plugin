@@ -41,7 +41,7 @@ public class MavenLogTargetTest
      * Assert wrting to the target does not throw exceptions.
      *
      * @throws ExecutionTargetWriteException should never happen.
-     * @see net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget#write(String, java.io.File, String)
+     * @see net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget#write(String, ChecksumFile, String)
      */
     @Test
     public void testMavenLogTargetWrite()

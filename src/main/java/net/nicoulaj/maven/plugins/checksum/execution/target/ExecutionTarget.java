@@ -28,7 +28,7 @@ public interface ExecutionTarget
     /**
      * Initialize the target.
      *
-     * <p>Should be called before first call to {@link #write(String, java.io.File, String)}.</p>
+     * <p>Should be called before first call to {@link #write(String, ChecksumFile, String)}.</p>
      *
      * @throws ExecutionTargetInitializationException
      *          if an error occured while initializing the target.
@@ -50,7 +50,7 @@ public interface ExecutionTarget
     /**
      * Close the target.
      *
-     * <p>Should be called after last call to {@link #write(String, java.io.File, String)}.</p>
+     * <p>Should be called after last call to {@link #write(String, ChecksumFile, String)}.</p>
      *
      * @param subPath
      * @throws ExecutionTargetCloseException if an error occured while closing the target.

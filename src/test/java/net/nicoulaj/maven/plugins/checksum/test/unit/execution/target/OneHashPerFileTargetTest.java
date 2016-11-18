@@ -52,8 +52,7 @@ public class OneHashPerFileTargetTest
      * @throws ExecutionTargetWriteException should never happen.
      * @throws IOException                   should never happen.
      * @throws NoSuchAlgorithmException      should never happen.
-     * @see net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget#write(String, java.io.File,
-     *      String)
+     * @see net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget#write(String, ChecksumFile, String)
      */
     @Test
     public void testOneHashPerFileTargetWrite()

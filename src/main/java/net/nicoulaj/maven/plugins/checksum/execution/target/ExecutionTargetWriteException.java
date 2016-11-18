@@ -15,11 +15,13 @@
  */
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
+import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
+
 /**
  * Thrown when an error occurs while trying to write to an {@link ExecutionTarget}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
- * @see ExecutionTarget#write(String, java.io.File, String)
+ * @see ExecutionTarget#write(String, ChecksumFile, String)
  * @since 1.0
  */
 public class ExecutionTargetWriteException
