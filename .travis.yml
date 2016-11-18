@@ -6,4 +6,19 @@ jdk:
   - oraclejdk7
   - oraclejdk8
 
-script: mvn clean install site site:stage
+env:
+  - MAVEN=3.0.4
+  - MAVEN=3.0.5
+  - MAVEN=3.1.0
+  - MAVEN=3.1.1
+  - MAVEN=3.2.1
+  - MAVEN=3.2.2
+  - MAVEN=3.2.3
+  - MAVEN=3.2.5
+  - MAVEN=3.3.1
+  - MAVEN=3.3.3
+  - MAVEN=3.3.9
+
+script: mkdir /tmp/maven
+        wget -qO- https://archive.apache.org/dist/maven/maven-3/${MAVEN}/binaries/apache-maven-${MAVEN}-bin.tar.gz | tar xz --strip 1 -C /tmp/maven
+        /tmp/maven/bin/mvn clean install
