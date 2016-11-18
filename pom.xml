@@ -74,7 +74,7 @@
 
     <!-- Versions -->
     <java.level>1.6</java.level>
-    <maven-model.version>3.3.9</maven-model.version>
+    <maven-model.version>2.2.1</maven-model.version>
     <maven-project.version>2.2.1</maven-project.version>
     <bouncycastle.version>1.55</bouncycastle.version>
     <plexus-utils.version>3.0.24</plexus-utils.version>
