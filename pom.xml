@@ -75,8 +75,8 @@
     <!-- Versions -->
     <java.level>1.6</java.level>
     <maven.target-version>2.2.0</maven.target-version>
-    <bouncycastle.version>1.47</bouncycastle.version>
-    <plexus-utils.version>3.0.2</plexus-utils.version>
+    <bouncycastle.version>1.55</bouncycastle.version>
+    <plexus-utils.version>3.0.24</plexus-utils.version>
 
     <!-- Build settings -->
     <debug>false</debug>
@@ -181,10 +181,6 @@
           </execution>
         </executions>
         <configuration>
-          <extraArtifacts>
-            <extraArtifact>org.apache.maven.plugins:maven-assembly-plugin:2.2-beta-5:jar</extraArtifact>
-            <extraArtifact>junit:junit:4.12:jar</extraArtifact>
-          </extraArtifacts>
           <localRepositoryPath>${project.build.directory}/it/local-repository</localRepositoryPath>
           <showErrors>${debug}</showErrors>
           <debug>${debug}</debug>
@@ -274,20 +270,6 @@
       </properties>
     </profile>
 
-    <!-- Do not use a custom settings file for maven-invoker-plugin behind a proxy. See MINVOKER-97. -->
-    <profile>
-      <id>behind-proxy</id>
-      <activation>
-        <property>
-          <name>http.proxySet</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <properties>
-        <invoker.settings-file />
-      </properties>
-    </profile>
-
     <!-- Skip tests -->
     <profile>
       <id>skip-tests</id>
@@ -330,7 +312,7 @@
             <tagletArtifact>
               <groupId>org.apache.maven.plugin-tools</groupId>
               <artifactId>maven-plugin-tools-javadoc</artifactId>
-              <version>2.6</version>
+              <version>${maven-plugin-tools-javadoc.version}</version>
             </tagletArtifact>
           </tagletArtifacts>
         </configuration>
