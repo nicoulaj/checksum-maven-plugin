@@ -19,8 +19,9 @@ env:
   - MAVEN=3.3.3
   - MAVEN=3.3.9
 
-before_install: mkdir /tmp/maven && \
-                wget -qO- https://archive.apache.org/dist/maven/maven-3/${MAVEN}/binaries/apache-maven-${MAVEN}-bin.tar.gz | tar xz --strip 1 -C /tmp/maven && \
-                export PATH=/tmp/maven/bin:$PATH
+before_install:
+  - mkdir /tmp/maven
+  - wget -qO- https://archive.apache.org/dist/maven/maven-3/${MAVEN}/binaries/apache-maven-${MAVEN}-bin.tar.gz | tar xz --strip 1 -C /tmp/maven
+  - export PATH=/tmp/maven/bin:$PATH
 
 script: mvn -V clean install site site:stage
