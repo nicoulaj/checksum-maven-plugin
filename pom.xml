@@ -76,6 +76,7 @@
     <java.level>1.6</java.level>
     <maven-model.version>2.2.1</maven-model.version>
     <maven-project.version>2.2.1</maven-project.version>
+    <maven-min-supported.version>3.0.4</maven-min-supported.version>
     <bouncycastle.version>1.55</bouncycastle.version>
     <plexus-utils.version>3.0.24</plexus-utils.version>
 
@@ -84,6 +85,10 @@
     <invoker.settings-file>${project.basedir}/src/it/settings.xml</invoker.settings-file>
 
   </properties>
+
+  <prerequisites>
+    <maven>${maven-min-supported.version}</maven>
+  </prerequisites>
 
   <dependencyManagement>
     <dependencies>
@@ -163,8 +168,8 @@
           <configuration>
             <rules>
               <requireMavenVersion>
-                <version>[3.0.4,)</version>
-                <message>Maven v3.0.4+ is required to build this project, please update.</message>
+                <version>[${maven-min-supported.version},)</version>
+                <message>Maven v${maven-min-supported.version}+ is required to build this project, please update.</message>
               </requireMavenVersion>
             </rules>
           </configuration>
