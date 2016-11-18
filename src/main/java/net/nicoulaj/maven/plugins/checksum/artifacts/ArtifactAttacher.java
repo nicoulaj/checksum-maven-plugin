@@ -16,6 +16,10 @@ public class ArtifactAttacher implements ArtifactListener {
 
     @Override
     public void artifactCreated(File artifact, String type) {
+        if (type.startsWith(".")) {
+            // Project helper expects a type without leading dot (e.g. turn ".md5" into "md5").
+            type = type.substring(1);
+        }
         projectHelper.attachArtifact(project, type, null, artifact);
     }
 }
