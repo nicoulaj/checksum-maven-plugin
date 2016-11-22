@@ -26,7 +26,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>net.ju-n.maven.plugins.checksum.test.projects</groupId>
+    <groupId>net.nicoulaj.maven.plugins.checksum.test.projects</groupId>
     <artifactId>multi-module.artifacts.no-fail-on-error</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>

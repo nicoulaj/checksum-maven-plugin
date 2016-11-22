@@ -30,7 +30,7 @@ try
   helper.assertBuildLogContains( "checksum-maven-plugin" );
 
   // Look for the right log message.
-  helper.assertBuildLogContains( "The parameters 'fileSets' for goal net.ju-n.maven.plugins:checksum-maven-plugin" );
+  helper.assertBuildLogContains( "The parameters 'fileSets' for goal net.nicoulaj.maven.plugins:checksum-maven-plugin" );
 
 }
 catch ( Exception e )

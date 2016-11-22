@@ -25,7 +25,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>net.ju-n.maven.plugins.checksum.test.projects</groupId>
+  <groupId>net.nicoulaj.maven.plugins.checksum.test.projects</groupId>
   <artifactId>command-line.file.default</artifactId>
   <version>1.0-SNAPSHOT</version>
 

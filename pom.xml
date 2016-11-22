@@ -22,12 +22,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>net.ju-n</groupId>
-    <artifactId>net-ju-n-parent</artifactId>
-    <version>40</version>
+    <groupId>net.nicoulaj</groupId>
+    <artifactId>parent</artifactId>
+    <version>44</version>
   </parent>
 
-  <groupId>net.ju-n.maven.plugins</groupId>
+  <groupId>net.nicoulaj.maven.plugins</groupId>
   <artifactId>checksum-maven-plugin</artifactId>
   <version>1.5-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
@@ -35,7 +35,7 @@
   <name>checksum-maven-plugin</name>
   <description>Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.
   </description>
-  <url>http://nicoulaj.github.com/checksum-maven-plugin</url>
+  <url>http://checksum-maven-plugin.nicoulaj.net</url>
   <inceptionYear>2010</inceptionYear>
 
   <licenses>

@@ -32,8 +32,8 @@ try
   // Check files have been created and are not empty.
   helper.assertFileIsNotEmpty( "target/single-artifact.artifacts.attach-checksums-1.0-SNAPSHOT.jar.md5" )
   helper.assertFileIsNotEmpty( "target/single-artifact.artifacts.attach-checksums-1.0-SNAPSHOT.jar.sha1" )
-  helper.assertFileIsNotEmptyInLocalRepo( "net/ju-n/maven/plugins/checksum/test/projects/single-artifact.artifacts.attach-checksums/1.0-SNAPSHOT/single-artifact.artifacts.attach-checksums-1.0-SNAPSHOT.md5" )
-  helper.assertFileIsNotEmptyInLocalRepo( "net/ju-n/maven/plugins/checksum/test/projects/single-artifact.artifacts.attach-checksums/1.0-SNAPSHOT/single-artifact.artifacts.attach-checksums-1.0-SNAPSHOT.sha1" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/single-artifact.artifacts.attach-checksums/1.0-SNAPSHOT/single-artifact.artifacts.attach-checksums-1.0-SNAPSHOT.md5" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/single-artifact.artifacts.attach-checksums/1.0-SNAPSHOT/single-artifact.artifacts.attach-checksums-1.0-SNAPSHOT.sha1" )
 
 }
 catch ( Exception e )
