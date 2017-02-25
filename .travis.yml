@@ -37,6 +37,9 @@ before_install:
 
 install: true
 
+before_script:
+  - export MAVEN_SKIP_RC=true
+
 script: $M2_HOME/bin/mvn -V clean install
 
 after_success:
