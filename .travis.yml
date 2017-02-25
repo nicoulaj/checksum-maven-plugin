@@ -33,14 +33,18 @@ cache:
     directories:
     - $HOME/.m2
 
-install:
-  - mvn -N io.takari:maven:wrapper -Dmaven=${MAVEN}
-  - ./mvnw --show-version --errors --batch-mode validate dependency:go-offline
+before_install:
+  - export M2_HOME=/tmp/maven-${MAVEN}
+  - mkdir $M2_HOME
+  - wget -qO- https://archive.apache.org/dist/maven/maven-3/${MAVEN}/binaries/apache-maven-${MAVEN}-bin.tar.gz | tar xz --strip 1 -C $M2_HOME
+  - export PATH=$M2_HOME/bin:$PATH
+
+install: true
 
 before_script:
   - export MAVEN_SKIP_RC=true
 
-script: ./mvnw --show-version clean verify
+script: $M2_HOME/bin/mvn --show-version clean verify
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
