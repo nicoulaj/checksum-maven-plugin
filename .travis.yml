@@ -1,4 +1,5 @@
 language: java
+sudo: false
 
 jdk:
   - openjdk6
@@ -37,3 +38,6 @@ before_install:
 install: true
 
 script: $M2_HOME/bin/mvn -V clean install
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
