@@ -23,7 +23,7 @@
   <parent>
     <groupId>net.nicoulaj</groupId>
     <artifactId>parent</artifactId>
-    <version>48</version>
+    <version>51</version>
   </parent>
 
   <groupId>net.nicoulaj.maven.plugins</groupId>
@@ -80,7 +80,7 @@
     <maven-model.version>2.2.1</maven-model.version>
     <maven-project.version>2.2.1</maven-project.version>
     <maven-min-supported.version>3.0.4</maven-min-supported.version>
-    <bouncycastle.version>1.55</bouncycastle.version>
+    <bouncycastle.version>1.57</bouncycastle.version>
     <plexus-utils.version>3.0.24</plexus-utils.version>
 
     <!-- Build settings -->
