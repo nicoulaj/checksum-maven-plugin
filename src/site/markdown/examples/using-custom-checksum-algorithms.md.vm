@@ -41,21 +41,53 @@ algorithms. Here is how to configure to use all the algorithms supported:
                <algorithms>
                  <algorithm>Cksum</algorithm>
                  <algorithm>CRC32</algorithm>
+                 <algorithm>BLAKE2B-160</algorithm>
+                 <algorithm>BLAKE2B-256</algorithm>
+                 <algorithm>BLAKE2B-384</algorithm>
+                 <algorithm>BLAKE2B-512</algorithm>
+                 <algorithm>GOST3411</algorithm>
+                 <algorithm>GOST3411-2012-256</algorithm>
+                 <algorithm>GOST3411-2012-512</algorithm>
+                 <algorithm>KECCAK-224</algorithm>
+                 <algorithm>KECCAK-256</algorithm>
+                 <algorithm>KECCAK-288</algorithm>
+                 <algorithm>KECCAK-384</algorithm>
+                 <algorithm>KECCAK-512</algorithm>
                  <algorithm>MD2</algorithm>
                  <algorithm>MD4</algorithm>
                  <algorithm>MD5</algorithm>
-                 <algorithm>SHA-1</algorithm>
-                 <algorithm>SHA-224</algorithm>
-                 <algorithm>SHA-256</algorithm>
-                 <algorithm>SHA-384</algorithm>
-                 <algorithm>SHA-512</algorithm>
                  <algorithm>RIPEMD128</algorithm>
                  <algorithm>RIPEMD160</algorithm>
                  <algorithm>RIPEMD256</algorithm>
                  <algorithm>RIPEMD320</algorithm>
-                 <algorithm>GOST3411</algorithm>
-                 <algorithm>Tiger</algorithm>
-                 <algorithm>Whirlpool</algorithm>
+                 <algorithm>SHA</algorithm>
+                 <algorithm>SHA-1</algorithm>
+                 <algorithm>SHA-224</algorithm>
+                 <algorithm>SHA-256</algorithm>
+                 <algorithm>SHA3-224</algorithm>
+                 <algorithm>SHA3-256</algorithm>
+                 <algorithm>SHA3-384</algorithm>
+                 <algorithm>SHA3-512</algorithm>
+                 <algorithm>SHA-384</algorithm>
+                 <algorithm>SHA-512</algorithm>
+                 <algorithm>SHA-512/224</algorithm>
+                 <algorithm>SHA-512/256</algorithm>
+                 <algorithm>SKEIN-1024-1024</algorithm>
+                 <algorithm>SKEIN-1024-384</algorithm>
+                 <algorithm>SKEIN-1024-512</algorithm>
+                 <algorithm>SKEIN-256-128</algorithm>
+                 <algorithm>SKEIN-256-160</algorithm>
+                 <algorithm>SKEIN-256-224</algorithm>
+                 <algorithm>SKEIN-256-256</algorithm>
+                 <algorithm>SKEIN-512-128</algorithm>
+                 <algorithm>SKEIN-512-160</algorithm>
+                 <algorithm>SKEIN-512-224</algorithm>
+                 <algorithm>SKEIN-512-256</algorithm>
+                 <algorithm>SKEIN-512-384</algorithm>
+                 <algorithm>SKEIN-512-512</algorithm>
+                 <algorithm>SM3</algorithm>
+                 <algorithm>TIGER</algorithm>
+                 <algorithm>WHIRLPOOL</algorithm>
                </algorithms>
              </configuration>
            </plugin>

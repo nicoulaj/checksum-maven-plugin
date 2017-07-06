@@ -53,6 +53,6 @@ public abstract class AbstractFileDigester
      */
     public String getFileExtension()
     {
-        return "." + algorithm.toLowerCase().replace( "-", "" );
+        return "." + algorithm.toLowerCase().replaceAll( "[\\W]", "" );
     }
 }

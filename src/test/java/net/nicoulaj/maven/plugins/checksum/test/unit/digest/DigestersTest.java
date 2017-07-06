@@ -46,6 +46,11 @@ import java.util.List;
 public class DigestersTest
 {
     /**
+     * Enable to generate all reference files.
+     */
+    private static final boolean GENERATE_REFS = false;
+
+    /**
      * The {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} tested.
      */
     private FileDigester digester;
@@ -120,10 +125,12 @@ public class DigestersTest
         List<File> testFiles = FileUtils.getFiles( new File( Constants.SAMPLE_FILES_PATH ), null, null );
         for ( File testFile : testFiles )
         {
+            String referenceFile = Constants.SAMPLE_FILES_HASHCODES_PATH + File.separator + testFile.getName()
+                + digester.getFileExtension();
             String calculatedHash = digester.calculate( testFile );
-            String correctHash = FileUtils.fileRead(
-                Constants.SAMPLE_FILES_HASHCODES_PATH + File.separator + testFile.getName()
-                    + digester.getFileExtension() );
+            if (GENERATE_REFS)
+                FileUtils.fileWrite(referenceFile, calculatedHash);
+            String correctHash = FileUtils.fileRead(referenceFile);
             Assert.assertEquals(
                 "The calculated " + digester.getAlgorithm() + " hashcode for " + testFile.getName() + " is incorrect.",
                 correctHash, calculatedHash );
