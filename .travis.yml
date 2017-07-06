@@ -19,6 +19,7 @@ env:
   - MAVEN=3.3.1
   - MAVEN=3.3.3
   - MAVEN=3.3.9
+  - MAVEN=3.5.0
 
 matrix:
   exclude:
@@ -28,6 +29,8 @@ matrix:
     env: MAVEN=3.3.3
   - jdk: openjdk6
     env: MAVEN=3.3.9
+  - jdk: openjdk6
+    env: MAVEN=3.5.0
 
 cache:
     directories:
