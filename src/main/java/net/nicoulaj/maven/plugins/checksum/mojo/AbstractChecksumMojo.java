@@ -69,14 +69,14 @@ abstract class AbstractChecksumMojo
 
     /**
      * The list of checksum algorithms used.
-     * 
+     *
      * <p>Default value is MD5 and SHA-1.<br/>Allowed values are CRC32, MD2, MD4, MD5, SHA-1, SHA-224, SHA-256, SHA-384,
      * SHA-512, RIPEMD128, RIPEMD160, RIPEMD256, RIPEMD320, GOST3411 and Tiger.</p>
-     * 
+     *
      * <p> Use the following syntax:
      * <pre>&lt;algorithms&gt;
-     *   &lt;algorithm&gt;MD5&lt;algorithm&gt;
-     *   &lt;algorithm&gt;SHA-1&lt;algorithm&gt;
+     *   &lt;algorithm&gt;MD5&lt;/algorithm&gt;
+     *   &lt;algorithm&gt;SHA-1&lt;/algorithm&gt;
      * &lt;/algorithms&gt;</pre>
      * </p>
      *
@@ -209,7 +209,7 @@ abstract class AbstractChecksumMojo
     protected abstract List<ChecksumFile> getFilesToProcess();
 
     protected abstract boolean isIndividualFiles();
-    
+
     protected boolean isAppendFilename(){
         return false;
     }
