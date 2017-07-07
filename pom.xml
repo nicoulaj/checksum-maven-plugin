@@ -17,7 +17,8 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -161,24 +162,24 @@
 
     <plugins>
       <plugin>
-      <artifactId>maven-enforcer-plugin</artifactId>
-      <executions>
-        <execution>
-          <id>enforce-maven-version</id>
-          <goals>
-            <goal>enforce</goal>
-          </goals>
-          <configuration>
-            <rules>
-              <requireMavenVersion>
-                <version>[${maven-min-supported.version},)</version>
-                <message>Maven v${maven-min-supported.version}+ is required to build this project, please update.</message>
-              </requireMavenVersion>
-            </rules>
-          </configuration>
-        </execution>
-      </executions>
-    </plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-maven-version</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>[${maven-min-supported.version},)</version>
+                  <message>Maven v${maven-min-supported.version}+ is required to build this project, please update.</message>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>animal-sniffer-maven-plugin</artifactId>
@@ -271,19 +272,13 @@
         <artifactId>jacoco-maven-plugin</artifactId>
         <executions>
           <execution>
-            <id>pre-unit-test</id>
+            <id>setup-coverage-unit-tests</id>
             <goals>
               <goal>prepare-agent</goal>
             </goals>
           </execution>
           <execution>
-            <id>post-unit-test</id>
-            <goals>
-              <goal>report</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>pre-integration-test</id>
+            <id>setup-coverage-integration-tests</id>
             <goals>
               <goal>prepare-agent-integration</goal>
             </goals>
@@ -292,10 +287,33 @@
             </configuration>
           </execution>
           <execution>
-            <id>post-integration-test</id>
+            <id>merge-coverage</id>
+            <phase>post-integration-test</phase>
             <goals>
-              <goal>report-integration</goal>
+              <goal>merge</goal>
             </goals>
+            <configuration>
+              <fileSets>
+                <fileSet>
+                  <directory>${project.build.directory}</directory>
+                  <includes>
+                    <include>jacoco*.exec</include>
+                  </includes>
+                </fileSet>
+              </fileSets>
+              <destFile>${project.build.directory}/jacoco-all.exec</destFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>report-coverage</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <dataFile>${project.build.directory}/jacoco-all.exec</dataFile>
+              <outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>
+            </configuration>
           </execution>
         </executions>
       </plugin>
