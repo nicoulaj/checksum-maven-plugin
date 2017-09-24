@@ -219,6 +219,7 @@
             <pomInclude>*/*/*/pom.xml</pomInclude>
           </pomIncludes>
           <cloneProjectsTo>${project.build.directory}/it/projects</cloneProjectsTo>
+          <cloneClean>true</cloneClean>
           <reportsDirectory>${project.build.directory}/it/reports</reportsDirectory>
           <addTestClassPath>true</addTestClassPath>
           <goals>

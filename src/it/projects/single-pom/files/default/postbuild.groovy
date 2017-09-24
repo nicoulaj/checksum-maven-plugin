@@ -21,6 +21,9 @@ try
   // Instantiate a helper.
   PostBuildScriptHelper helper = new PostBuildScriptHelper( basedir, localRepositoryPath, context )
 
+  // Fail if there are warnings
+  helper.assertBuildLogDoesNotContain('[WARNING]')
+
   // Fail if no traces of checksum-maven-plugin invocation.
   helper.assertBuildLogContains( "checksum-maven-plugin" );
 

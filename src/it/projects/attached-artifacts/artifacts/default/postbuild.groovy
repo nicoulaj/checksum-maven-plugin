@@ -21,18 +21,16 @@ try
   // Instantiate a helper.
   PostBuildScriptHelper helper = new PostBuildScriptHelper( basedir, localRepositoryPath, context )
 
+  // Fail if there are warnings
+  helper.assertBuildLogDoesNotContain('[WARNING]')
+  helper.assertBuildLogDoesNotContain('[ERROR]')
+
   // Fail if no traces of checksum-maven-plugin invocation.
   helper.assertBuildLogContains( "checksum-maven-plugin" );
 
   // Check files have been created and are not empty.
   helper.assertFileIsNotEmpty( "target/attached-artifacts.artifacts.default-1.0-SNAPSHOT.jar.md5" )
   helper.assertFileIsNotEmpty( "target/attached-artifacts.artifacts.default-1.0-SNAPSHOT.jar.sha1" )
-  helper.assertFileIsNotEmpty( "target/attached-artifacts.artifacts.default-1.0-SNAPSHOT-bin.tar.bz2.md5" )
-  helper.assertFileIsNotEmpty( "target/attached-artifacts.artifacts.default-1.0-SNAPSHOT-bin.tar.bz2.sha1" )
-  helper.assertFileIsNotEmpty( "target/attached-artifacts.artifacts.default-1.0-SNAPSHOT-bin.tar.gz.md5" )
-  helper.assertFileIsNotEmpty( "target/attached-artifacts.artifacts.default-1.0-SNAPSHOT-bin.tar.gz.sha1" )
-  helper.assertFileIsNotEmpty( "target/attached-artifacts.artifacts.default-1.0-SNAPSHOT-bin.zip.md5" )
-  helper.assertFileIsNotEmpty( "target/attached-artifacts.artifacts.default-1.0-SNAPSHOT-bin.zip.sha1" )
   helper.assertFileIsNotEmpty( "target/attached-artifacts.artifacts.default-1.0-SNAPSHOT-src.tar.bz2.md5" )
   helper.assertFileIsNotEmpty( "target/attached-artifacts.artifacts.default-1.0-SNAPSHOT-src.tar.bz2.sha1" )
   helper.assertFileIsNotEmpty( "target/attached-artifacts.artifacts.default-1.0-SNAPSHOT-src.tar.gz.md5" )

@@ -22,6 +22,10 @@ try
   // Instantiate a helper.
   PostBuildScriptHelper helper = new PostBuildScriptHelper( basedir, localRepositoryPath, context )
 
+  // Fail if there are warnings
+  helper.assertBuildLogDoesNotContain('[WARNING]')
+  helper.assertBuildLogDoesNotContain('[ERROR]')
+
   // Fail if no traces of checksum-maven-plugin invocation.
   helper.assertBuildLogContains( "checksum-maven-plugin" );
 
@@ -30,9 +34,6 @@ try
   helper.assertFileIsNotEmpty( summaryFile )
 
   // Check there are traces of each file.
-  helper.assertFileContains( summaryFile, " *attached-artifacts.artifacts.shasum-summary-file-1.0-SNAPSHOT-bin.tar.bz2" )
-  helper.assertFileContains( summaryFile, " *attached-artifacts.artifacts.shasum-summary-file-1.0-SNAPSHOT-bin.tar.gz" )
-  helper.assertFileContains( summaryFile, " *attached-artifacts.artifacts.shasum-summary-file-1.0-SNAPSHOT-bin.zip" )
   helper.assertFileContains( summaryFile, " *attached-artifacts.artifacts.shasum-summary-file-1.0-SNAPSHOT-src.tar.bz2" )
   helper.assertFileContains( summaryFile, " *attached-artifacts.artifacts.shasum-summary-file-1.0-SNAPSHOT-src.tar.gz" )
   helper.assertFileContains( summaryFile, " *attached-artifacts.artifacts.shasum-summary-file-1.0-SNAPSHOT-src.zip" )
