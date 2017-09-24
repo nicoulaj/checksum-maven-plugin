@@ -226,7 +226,7 @@
             <goal>clean</goal>
             <goal>install</goal>
           </goals>
-          <parallelThreads>8</parallelThreads>
+          <streamLogs>true</streamLogs>
         </configuration>
       </plugin>
       <plugin>
