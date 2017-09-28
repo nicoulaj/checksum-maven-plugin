@@ -58,7 +58,7 @@ public class FilesMojo
 
     /**
      * The list of files to process.
-     * 
+     *
      * <p> Use the following syntax:
      * <pre>&lt;fileSets&gt;
      *   &lt;fileSet&gt;
@@ -144,6 +144,13 @@ public class FilesMojo
      */
     @Parameter( defaultValue = "checksums.sha" )
     protected String shasumSummaryFile;
+
+    /**
+     * Constructor.
+     */
+    public FilesMojo() {
+        super(true, true, true);
+    }
 
     /**
      * Build the list of files from which digests should be generated.

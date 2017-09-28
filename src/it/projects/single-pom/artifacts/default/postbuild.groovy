@@ -26,10 +26,6 @@ try
 
   // Fail if no traces of checksum-maven-plugin invocation.
   helper.assertBuildLogContains( "checksum-maven-plugin" );
-
-  // Look for the right log message.
-  helper.assertBuildLogContains( "[ERROR] No file to process." );
-
 }
 catch ( Exception e )
 {

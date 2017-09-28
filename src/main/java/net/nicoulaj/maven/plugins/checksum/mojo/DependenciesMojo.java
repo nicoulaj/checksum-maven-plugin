@@ -116,9 +116,9 @@ public class DependenciesMojo
 
     /**
      * The dependency scopes to include.
-     * 
+     *
      * <p>Allowed values are compile, test, runtime, provided and system.<br/>All scopes are included by default.</p>
-     * 
+     *
      * <p> Use the following syntax:
      * <pre>&lt;scopes&gt;
      *   &lt;scope&gt;compile&lt;scope&gt;
@@ -133,9 +133,9 @@ public class DependenciesMojo
 
     /**
      * The dependency types to include.
-     * 
+     *
      * <p>All types are included by default.</p>
-     * 
+     *
      * <p> Use the following syntax:
      * <pre>&lt;types&gt;
      *   &lt;type&gt;jar&lt;type&gt;
@@ -157,8 +157,15 @@ public class DependenciesMojo
     protected boolean transitive;
 
     /**
+     * Constructor.
+     */
+    public DependenciesMojo() {
+        super(false, true, true);
+    }
+
+    /**
      * Build the list of files from which digests should be generated.
-     * 
+     *
      * <p>The list is composed of the project dependencies.</p>
      *
      * @return the list of files that should be processed.

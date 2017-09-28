@@ -27,8 +27,11 @@ try
   // Fail if no traces of checksum-maven-plugin invocation.
   helper.assertBuildLogContains( "checksum-maven-plugin" );
 
-  // Look for the right log message.
-  helper.assertBuildLogContains( "[ERROR] No file to process." );
+  // Check files have been created and are not empty.
+  helper.assertFileIsNotEmpty( "module1/target/multi-module.artifacts.default.module1-1.0-SNAPSHOT.jar.md5" )
+  helper.assertFileIsNotEmpty( "module1/target/multi-module.artifacts.default.module1-1.0-SNAPSHOT.jar.sha1" )
+  helper.assertFileIsNotEmpty( "module2/target/multi-module.artifacts.default.module2-1.0-SNAPSHOT.jar.md5" )
+  helper.assertFileIsNotEmpty( "module2/target/multi-module.artifacts.default.module2-1.0-SNAPSHOT.jar.sha1" )
 
 }
 catch ( Exception e )

@@ -50,6 +50,21 @@ abstract class AbstractChecksumMojo
 {
 
     /**
+     * Fail if no files no process.
+     */
+    private final boolean failIfNoFiles;
+
+    /**
+     * Fail if no files no process.
+     */
+    private final boolean failIfNoAlgorithms;
+
+    /**
+     * Fail if no files no process.
+     */
+    private final boolean failIfNoTargets;
+
+    /**
      * The Maven project.
      *
      * @since 1.0
@@ -138,6 +153,19 @@ abstract class AbstractChecksumMojo
     protected String relativeSubPath = "";
 
     /**
+     * Constructor.
+     *
+     * @param failIfNoFiles fail if no files to process
+     * @param failIfNoAlgorithms fail if no algorithms to process
+     * @param failIfNoTargets fail if no targets to process
+     */
+    AbstractChecksumMojo(boolean failIfNoFiles, boolean failIfNoAlgorithms, boolean failIfNoTargets) {
+        this.failIfNoFiles = failIfNoFiles;
+        this.failIfNoAlgorithms = failIfNoAlgorithms;
+        this.failIfNoTargets = failIfNoTargets;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -148,6 +176,9 @@ abstract class AbstractChecksumMojo
         Execution execution = ( failOnError ) ? new FailOnErrorExecution() : new NeverFailExecution( getLog() );
         execution.setAlgorithms( algorithms );
         execution.setFiles( getFilesToProcess() );
+        execution.setFailIfNoFiles(failIfNoFiles);
+        execution.setFailIfNoAlgorithms(failIfNoAlgorithms);
+        execution.setFailIfNoTargets(failIfNoTargets);
         if ( !quiet )
         {
             execution.addTarget( new MavenLogTarget( getLog() ) );

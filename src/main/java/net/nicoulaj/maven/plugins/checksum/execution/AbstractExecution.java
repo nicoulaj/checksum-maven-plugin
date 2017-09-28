@@ -53,10 +53,29 @@ public abstract class AbstractExecution
     protected List<ExecutionTarget> targets;
 
     /**
+     * Fail if no files no process.
+     */
+    protected boolean failIfNoFiles = true;
+
+    /**
+     * Fail if no files no process.
+     */
+    protected boolean failIfNoAlgorithms = true;
+
+    /**
+     * Fail if no files no process.
+     */
+    protected boolean failIfNoTargets = true;
+
+    /**
      * {@inheritDoc}
      */
     public List<ChecksumFile> getFiles()
     {
+        if ( files == null )
+        {
+            files = new LinkedList<ChecksumFile>();
+        }
         return files;
     }
 
@@ -89,11 +108,7 @@ public abstract class AbstractExecution
      */
     public void addFile( ChecksumFile file )
     {
-        if ( files == null )
-        {
-            files = new LinkedList<ChecksumFile>();
-        }
-        files.add( file );
+        getFiles().add( file );
     }
 
     /**
@@ -112,6 +127,10 @@ public abstract class AbstractExecution
      */
     public List<String> getAlgorithms()
     {
+        if ( algorithms == null )
+        {
+            algorithms = new LinkedList<String>();
+        }
         return algorithms;
     }
 
@@ -128,11 +147,7 @@ public abstract class AbstractExecution
      */
     public void addAlgorithm( String algorithm )
     {
-        if ( algorithms == null )
-        {
-            algorithms = new LinkedList<String>();
-        }
-        algorithms.add( algorithm );
+        getAlgorithms().add( algorithm );
     }
 
     /**
@@ -151,6 +166,10 @@ public abstract class AbstractExecution
      */
     public List<ExecutionTarget> getTargets()
     {
+        if ( targets == null )
+        {
+            targets = new LinkedList<ExecutionTarget>();
+        }
         return targets;
     }
 
@@ -159,11 +178,7 @@ public abstract class AbstractExecution
      */
     public void addTarget( ExecutionTarget target )
     {
-        if ( targets == null )
-        {
-            targets = new LinkedList<ExecutionTarget>();
-        }
-        targets.add( target );
+        getTargets().add( target );
     }
 
     /**
@@ -188,18 +203,66 @@ public abstract class AbstractExecution
     /**
      * {@inheritDoc}
      */
+    @Override
+    public boolean isFailIfNoFiles() {
+        return failIfNoFiles;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setFailIfNoFiles(boolean failIfNoFiles) {
+        this.failIfNoFiles = failIfNoFiles;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isFailIfNoAlgorithms() {
+        return failIfNoAlgorithms;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setFailIfNoAlgorithms(boolean failIfNoAlgorithms) {
+        this.failIfNoAlgorithms = failIfNoAlgorithms;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isFailIfNoTargets() {
+        return failIfNoTargets;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setFailIfNoTargets(boolean failIfNoTargets) {
+        this.failIfNoTargets = failIfNoTargets;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public void checkParameters()
         throws ExecutionException
     {
-        if ( files == null || files.isEmpty() )
+        if ( isFailIfNoFiles() && ( files == null || files.isEmpty() ) )
         {
             throw new ExecutionException( "No file to process." );
         }
-        if ( algorithms == null || algorithms.isEmpty() )
+        if ( isFailIfNoAlgorithms() && ( algorithms == null || algorithms.isEmpty() ) )
         {
             throw new ExecutionException( "No checksum algorithm defined." );
         }
-        if ( targets == null || targets.isEmpty() )
+        if ( isFailIfNoTargets() && ( targets == null || targets.isEmpty() ) )
         {
             throw new ExecutionException( "No output target defined." );
         }

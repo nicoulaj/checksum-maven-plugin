@@ -61,7 +61,7 @@ public class FailOnErrorExecution
         }
 
         // Process files.
-        for ( ChecksumFile file : files )
+        for ( ChecksumFile file : getFiles() )
         {
             for ( String algorithm : getAlgorithms() )
             {
