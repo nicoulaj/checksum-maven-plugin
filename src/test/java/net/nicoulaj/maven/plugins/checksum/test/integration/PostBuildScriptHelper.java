@@ -23,7 +23,7 @@ import java.util.Map;
 
 /**
  * Utility object used by post-build hook scripts.
- * 
+ *
  * <p>See {@code src/main/test-integration/projects/.../postbuild.groovy} scripts.</p>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
@@ -123,6 +123,29 @@ public class PostBuildScriptHelper
         if ( new File( baseDirectory, path ).isFile() )
         {
             throw new Exception( "The file " + path + " exists, but it should not." );
+        }
+    }
+
+    /**
+     * Assert the given file exists and is a file.
+     *
+     * @param directory the path to the file directory relative to {@link #baseDirectory}.
+     * @param pattern file name pattern.
+     * @throws Exception if conditions are not fulfilled.
+     */
+    public void assertFileExists( String directory, String pattern )
+        throws Exception
+    {
+        File dir = new File(baseDirectory, directory);
+
+        if ( !dir.isDirectory() )
+        {
+            throw new Exception( "The directory " + dir + " is missing." );
+        }
+
+        if ( FileUtils.getFiles(dir, pattern, "").isEmpty() )
+        {
+            throw new Exception( "No file matching pattern \"" + pattern + "\" was found in " + dir + "." );
         }
     }
 
