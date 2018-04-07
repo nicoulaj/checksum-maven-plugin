@@ -23,7 +23,7 @@
   <parent>
     <groupId>net.nicoulaj</groupId>
     <artifactId>parent</artifactId>
-    <version>52</version>
+    <version>53</version>
   </parent>
 
   <groupId>net.nicoulaj.maven.plugins</groupId>
