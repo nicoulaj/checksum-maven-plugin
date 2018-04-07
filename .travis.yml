@@ -19,6 +19,8 @@ env:
   - MAVEN=3.3.3
   - MAVEN=3.3.9
   - MAVEN=3.5.0
+  - MAVEN=3.5.2
+  - MAVEN=3.5.3
 
 cache:
     directories:
