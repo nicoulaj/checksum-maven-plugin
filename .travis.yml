@@ -52,3 +52,16 @@ script: $M2_HOME/bin/mvn --show-version clean verify
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+    on_start: never
+  irc:
+    channels:
+      - "chat.freenode.net#nicoulaj"
+    on_success: always
+    on_failure: always
+    on_start: never
+    use_notice: true
