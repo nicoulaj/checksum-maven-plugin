@@ -45,8 +45,14 @@ public class CksumFileDigester
 	}
 
 	@Override
-	public String calculate(File file) throws DigesterException
+	public String calculate(File file, String salt) throws DigesterException
 	{
+	    if(!(null == salt)){
+	        if(!salt.isEmpty()){
+                throw new DigesterException( "Adding a salt is currently not supported for algorithm Cksum!" );
+            }
+        }
+
 		int value = 0;
 		long length = 0L;
 		BufferedInputStream fis;

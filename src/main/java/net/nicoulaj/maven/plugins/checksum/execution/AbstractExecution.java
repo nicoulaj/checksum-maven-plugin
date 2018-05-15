@@ -67,6 +67,8 @@ public abstract class AbstractExecution
      */
     protected boolean failIfNoTargets = true;
 
+    protected String salt;
+
     /**
      * {@inheritDoc}
      */
@@ -246,6 +248,14 @@ public abstract class AbstractExecution
     @Override
     public void setFailIfNoTargets(boolean failIfNoTargets) {
         this.failIfNoTargets = failIfNoTargets;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     /**

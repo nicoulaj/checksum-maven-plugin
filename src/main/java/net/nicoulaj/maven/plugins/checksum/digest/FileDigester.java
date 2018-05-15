@@ -52,6 +52,6 @@ public interface FileDigester
      * @return the current checksum.
      * @throws DigesterException if there was a problem computing the hashcode.
      */
-    String calculate( File file )
+    String calculate( File file, String salt )
         throws DigesterException;
 }

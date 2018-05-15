@@ -99,7 +99,7 @@ public class NeverFailExecution
                 {
                     // Calculate the hash for the file/algo
                     FileDigester digester = DigesterFactory.getInstance().getFileDigester( algorithm );
-                    String hash = digester.calculate( file.getFile() );
+                    String hash = digester.calculate( file.getFile(), getSalt() );
 
                     // Write it to each target defined
                     for ( ExecutionTarget target : getTargets() )

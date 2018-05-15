@@ -55,7 +55,7 @@ public class MessageDigestFileDigester
     /**
      * {@inheritDoc}
      */
-    public String calculate( File file )
+    public String calculate( File file, String salt )
         throws DigesterException
     {
         // Try to open the file.
@@ -84,7 +84,12 @@ public class MessageDigestFileDigester
                 messageDigest.update( buffer, 0, size );
                 size = fis.read( buffer, 0, STREAMING_BUFFER_SIZE );
             }
-
+            // Add salt at the end of file
+            if(!(null == salt)){
+                if(!salt.isEmpty()){
+                    messageDigest.update(salt.getBytes());
+                }
+            }
             result = new String( Hex.encode( messageDigest.digest() ) );
         }
         catch ( IOException e )

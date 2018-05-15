@@ -16,12 +16,16 @@
  */
 package net.nicoulaj.maven.plugins.checksum.digest;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * Implementation of {@link FileDigester} for the CRC32 algorithm.
@@ -31,8 +35,8 @@ import java.util.zip.CheckedInputStream;
  * @since 1.0
  */
 public class CRC32FileDigester
-    extends AbstractFileDigester
-{
+    extends AbstractFileDigester {
+
     /**
      * The identifier of the algorithm supported by this implementation.
      */
@@ -41,42 +45,40 @@ public class CRC32FileDigester
     /**
      * Build a new instance of {@link CRC32FileDigester}.
      */
-    public CRC32FileDigester()
-    {
-        super( ALGORITHM );
+    public CRC32FileDigester() {
+        super(ALGORITHM);
     }
 
     /**
      * {@inheritDoc}
      */
-    public String calculate( File file )
-        throws DigesterException
-    {
+    public String calculate(File file, String salt)
+        throws DigesterException {
         CheckedInputStream cis;
-        try
-        {
-            cis = new CheckedInputStream( new FileInputStream( file ), new CRC32() );
-        }
-        catch ( FileNotFoundException e )
-        {
-            throw new DigesterException( "Unable to read " + file.getPath() + ": " + e.getMessage() );
+        try {
+            byte[] bytes = IOUtils.toByteArray(new FileInputStream(file));
+            if(!(null == salt)){
+                if(!salt.isEmpty()){
+                    bytes = ArrayUtils.addAll(bytes, salt.getBytes());
+                }
+            }
+            InputStream bais = new ByteArrayInputStream(bytes);
+            cis = new CheckedInputStream(bais, new CRC32());
+        } catch (IOException e) {
+            throw new DigesterException("Unable to read " + file.getPath() + ": " + e.getMessage());
         }
 
         byte[] buf = new byte[STREAMING_BUFFER_SIZE];
-        try
-        {
-            while ( cis.read( buf ) >= 0 )
-            {
+        try {
+            while (cis.read(buf) >= 0) {
                 continue;
             }
-        }
-        catch ( IOException e )
-        {
+        } catch (IOException e) {
             throw new DigesterException(
                 "Unable to calculate the " + getAlgorithm() + " hashcode for " + file.getPath() + ": "
-                    + e.getMessage() );
+                    + e.getMessage());
         }
 
-        return Long.toString( cis.getChecksum().getValue() );
+        return Long.toString(cis.getChecksum().getValue());
     }
 }
