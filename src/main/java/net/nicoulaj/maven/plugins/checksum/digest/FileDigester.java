@@ -17,6 +17,7 @@
 package net.nicoulaj.maven.plugins.checksum.digest;
 
 import java.io.File;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Class for computing checksums digests from files.
@@ -51,7 +52,8 @@ public interface FileDigester
      * @param file the file to compute the checksum for.
      * @return the current checksum.
      * @throws DigesterException if there was a problem computing the hashcode.
+     * @throws NoSuchAlgorithmException in case the given is not supported.
      */
     String calculate( File file )
-        throws DigesterException;
+        throws DigesterException, NoSuchAlgorithmException;
 }

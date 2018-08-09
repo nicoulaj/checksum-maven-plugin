@@ -120,7 +120,7 @@ public class DigestersTest
      */
     @Test
     public void testCalculate()
-        throws DigesterException, IOException
+        throws DigesterException, NoSuchAlgorithmException, IOException
     {
         List<File> testFiles = FileUtils.getFiles( new File( Constants.SAMPLE_FILES_PATH ), null, null );
         for ( File testFile : testFiles )
@@ -145,7 +145,7 @@ public class DigestersTest
      */
     @Test
     public void testCalculateExceptionThrownOnFileNotFound()
-        throws DigesterException
+        throws DigesterException, NoSuchAlgorithmException
     {
         exception.expect( DigesterException.class );
         digester.calculate( new File( "some/path/that/does/not/exist" ) );

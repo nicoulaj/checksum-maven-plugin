@@ -35,11 +35,6 @@ public class MessageDigestFileDigester
     extends AbstractFileDigester
 {
     /**
-     * The {@link java.security.MessageDigest} instance.
-     */
-    protected final MessageDigest messageDigest;
-
-    /**
      * Build a new instance of {@link MessageDigestFileDigester}.
      *
      * @param algorithm the algorithm used to compute checksum digests.
@@ -49,14 +44,14 @@ public class MessageDigestFileDigester
         throws NoSuchAlgorithmException
     {
         super( algorithm );
-        messageDigest = MessageDigest.getInstance( algorithm );
+        MessageDigest.getInstance( algorithm ); // just to check if algorithm is supported
     }
 
     /**
      * {@inheritDoc}
      */
     public String calculate( File file )
-        throws DigesterException
+        throws DigesterException, NoSuchAlgorithmException
     {
         // Try to open the file.
         FileInputStream fis;
@@ -73,8 +68,7 @@ public class MessageDigestFileDigester
 
         try
         {
-            // Recover from a previous execution if needed.
-            messageDigest.reset();
+            MessageDigest messageDigest = MessageDigest.getInstance( algorithm );
 
             // Stream the file contents to the MessageDigest.
             byte[] buffer = new byte[STREAMING_BUFFER_SIZE];
