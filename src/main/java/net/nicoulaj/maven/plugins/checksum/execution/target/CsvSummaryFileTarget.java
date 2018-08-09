@@ -59,7 +59,7 @@ public class CsvSummaryFileTarget
     protected String encoding;
 
     /**
-     * The association file => (algorithm,hashcode).
+     * The association file =&gt; (algorithm,hashcode).
      */
     protected Map<ChecksumFile, Map<String, String>> filesHashcodes;
 
@@ -84,7 +84,7 @@ public class CsvSummaryFileTarget
      * Build a new instance of {@link CsvSummaryFileTarget}.
      * @param summaryFile the file to which the summary should be written.
      * @param encoding    the encoding to use for generated files.
-     * @param artifactListeners
+     * @param artifactListeners listeners which are notified every time a CSV file is created
      */
     public CsvSummaryFileTarget(File summaryFile, String encoding, Iterable<? extends ArtifactListener> artifactListeners)
     {

@@ -37,7 +37,7 @@ import java.util.Arrays;
  * 
  * <p>Here is an example of use:<pre>
  * mvn checksum:file -Dfile=some-file.zip
- * </pre></p>
+ * </pre>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0

@@ -57,7 +57,7 @@ public interface ExecutionTarget
      *
      * <p>Should be called after last call to {@link #write(String, ChecksumFile, String)}.</p>
      *
-     * @param subPath
+     * @param subPath part of relative path to exclude from file path
      * @throws ExecutionTargetCloseException if an error occured while closing the target.
      */
     void close(String subPath)

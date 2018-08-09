@@ -57,7 +57,7 @@ public class ShasumSummaryFileTarget
     public static final String SHASUM_BINARY_FILE = "*";
 
     /**
-     * The association file => (algorithm,hashcode).
+     * The association file =&gt; (algorithm,hashcode).
      */
     protected Map<ChecksumFile, Map<String, String>> filesHashcodes;
 
@@ -82,6 +82,7 @@ public class ShasumSummaryFileTarget
      * Build a new instance of {@link ShasumSummaryFileTarget}.
      *
      * @param summaryFile the file to which the summary should be written.
+     * @param artifactListeners listeners which are notified every time a CSV file is created
      */
     public ShasumSummaryFileTarget( File summaryFile, Iterable<? extends ArtifactListener> artifactListeners )
     {

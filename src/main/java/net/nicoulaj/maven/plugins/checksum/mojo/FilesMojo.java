@@ -71,7 +71,6 @@ public class FilesMojo
      *     &lt;/excludes&gt;
      *   &lt;/fileSet&gt;
      * &lt;/fileSets&gt;</pre>
-     * </p>
      *
      * @since 1.1
      */

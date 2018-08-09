@@ -67,7 +67,7 @@ public class OneHashPerFileTarget
      * Build a new instance of {@link OneHashPerFileTarget}.
      *  @param encoding        the encoding to use for generated files.
      * @param outputDirectory the files output directory.
-     * @param artifactListeners
+     * @param artifactListeners listeners which are notified every time a CSV file is created
      */
     public OneHashPerFileTarget(String encoding, File outputDirectory, Iterable<? extends ArtifactListener> artifactListeners)
     {
@@ -80,7 +80,8 @@ public class OneHashPerFileTarget
      * Build a new instance of {@link OneHashPerFileTarget}.
      *  @param encoding        the encoding to use for generated files.
      * @param outputDirectory the files output directory.
-     * @param artifactListeners
+     * @param artifactListeners listeners which are notified every time a CSV file is created
+     * @param appendFilename add filename in generated file
      */
     public OneHashPerFileTarget(String encoding, File outputDirectory, Iterable<? extends ArtifactListener> artifactListeners, boolean appendFilename)
     {
@@ -94,7 +95,7 @@ public class OneHashPerFileTarget
      * Build a new instance of {@link OneHashPerFileTarget}.
      *
      * @param encoding the encoding to use for generated files.
-     * @param artifactListeners
+     * @param artifactListeners listeners which are notified every time a CSV file is created
      */
     public OneHashPerFileTarget(String encoding, Iterable<? extends ArtifactListener> artifactListeners)
     {

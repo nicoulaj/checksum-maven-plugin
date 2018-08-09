@@ -117,14 +117,13 @@ public class DependenciesMojo
     /**
      * The dependency scopes to include.
      *
-     * <p>Allowed values are compile, test, runtime, provided and system.<br/>All scopes are included by default.</p>
+     * <p>Allowed values are compile, test, runtime, provided and system.<br>All scopes are included by default.
      *
      * <p> Use the following syntax:
      * <pre>&lt;scopes&gt;
      *   &lt;scope&gt;compile&lt;scope&gt;
      *   &lt;scope&gt;runtime&lt;scope&gt;
      * &lt;/scopes&gt;</pre>
-     * </p>
      *
      * @since 1.0
      */
@@ -134,14 +133,13 @@ public class DependenciesMojo
     /**
      * The dependency types to include.
      *
-     * <p>All types are included by default.</p>
+     * <p>All types are included by default.
      *
      * <p> Use the following syntax:
      * <pre>&lt;types&gt;
      *   &lt;type&gt;jar&lt;type&gt;
      *   &lt;type&gt;zip&lt;type&gt;
      * &lt;/types&gt;</pre>
-     * </p>
      *
      * @since 1.0
      */

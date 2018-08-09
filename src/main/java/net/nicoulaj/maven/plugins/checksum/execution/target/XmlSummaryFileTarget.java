@@ -53,7 +53,7 @@ public class XmlSummaryFileTarget
     protected String encoding;
 
     /**
-     * The association file => (algorithm,hashcode).
+     * The association file =&gt; (algorithm,hashcode).
      */
     protected Map<ChecksumFile, Map<String, String>> filesHashcodes;
 
@@ -73,7 +73,7 @@ public class XmlSummaryFileTarget
      * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget}.
      *  @param summaryFile the file to which the summary should be written.
      * @param encoding    the encoding to use for generated files.
-     * @param artifactListeners
+     * @param artifactListeners listeners which are notified every time a CSV file is created
      */
     public XmlSummaryFileTarget(File summaryFile, String encoding, Iterable<? extends ArtifactListener> artifactListeners)
     {
