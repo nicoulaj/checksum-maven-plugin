@@ -26,6 +26,7 @@ env:
   - MAVEN=3.5.0
   - MAVEN=3.5.2
   - MAVEN=3.5.3
+  - MAVEN=3.5.4
 
 matrix:
   fast_finish: true
