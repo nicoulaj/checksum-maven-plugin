@@ -40,4 +40,9 @@ public class Constants
      * Path of the sample files hashcodes directory.
      */
     public static final String SAMPLE_FILES_HASHCODES_PATH = RESOURCES_PATH + File.separator + "hashcodes";
+
+    /**
+     * Path of the sample files for salt checking
+     */
+    public static final String SAMPLE_FILES_SALT_PATH = RESOURCES_PATH + File.separator + "salt";
 }

@@ -153,6 +153,12 @@ abstract class AbstractChecksumMojo
     protected String relativeSubPath = "";
 
     /**
+     * Salt to append at the end of files before checksums are created
+     */
+    @Parameter(property = "salt")
+    protected String salt = "";
+
+    /**
      * Constructor.
      *
      * @param failIfNoFiles fail if no files to process
@@ -179,6 +185,7 @@ abstract class AbstractChecksumMojo
         execution.setFailIfNoFiles(failIfNoFiles);
         execution.setFailIfNoAlgorithms(failIfNoAlgorithms);
         execution.setFailIfNoTargets(failIfNoTargets);
+        execution.setSalt(salt);
         if ( !quiet )
         {
             execution.addTarget( new MavenLogTarget( getLog() ) );

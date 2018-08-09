@@ -116,7 +116,7 @@ public class DigestersTest
      *
      * @throws DigesterException if there was a problem while calculating the checksum.
      * @throws IOException       if there was a problem reading the file containing the pre-calculated checksum.
-     * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester#calculate(java.io.File)
+     * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester#calculate(java.io.File, String)
      */
     @Test
     public void testCalculate()
@@ -127,7 +127,7 @@ public class DigestersTest
         {
             String referenceFile = Constants.SAMPLE_FILES_HASHCODES_PATH + File.separator + testFile.getName()
                 + digester.getFileExtension();
-            String calculatedHash = digester.calculate( testFile );
+            String calculatedHash = digester.calculate( testFile, "" );
             if (GENERATE_REFS)
                 FileUtils.fileWrite(referenceFile, calculatedHash);
             String correctHash = FileUtils.fileRead(referenceFile);
@@ -141,13 +141,29 @@ public class DigestersTest
      * Check an exception is thrown when attempting to calculate the checksum of a file that does not exist.
      *
      * @throws DigesterException should always happen.
-     * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester#calculate(java.io.File)
+     * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester#calculate(java.io.File, String)
      */
     @Test
     public void testCalculateExceptionThrownOnFileNotFound()
         throws DigesterException
     {
         exception.expect( DigesterException.class );
-        digester.calculate( new File( "some/path/that/does/not/exist" ) );
+        digester.calculate( new File( "some/path/that/does/not/exist" ), "" );
+    }
+
+    /**
+     * Tests the patched salt functionality
+     */
+    @Test
+    public void testWithSalt() throws IOException, NoSuchAlgorithmException, DigesterException {
+
+        File testFile = new File(Constants.SAMPLE_FILES_SALT_PATH + File.separator + "salt-target.txt");
+        String referenceHash = FileUtils.fileRead(Constants.SAMPLE_FILES_SALT_PATH + File.separator + "salt-target.txt.sha256");
+        DigesterFactory factory = DigesterFactory.getInstance();
+        FileDigester sha256 = factory.getFileDigester("sha256");
+        String calculatedHashWithSalt = sha256.calculate(testFile, "KITTYCAT");
+        String calculatedHashWithWrongSalt = sha256.calculate(testFile, "KITTYCATS");
+        Assert.assertEquals(calculatedHashWithSalt, referenceHash);
+        Assert.assertNotEquals(calculatedHashWithWrongSalt, referenceHash);
     }
 }

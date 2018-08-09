@@ -179,6 +179,18 @@ public interface Execution
     void setFailIfNoTargets(boolean failIfNoTargets);
 
     /**
+     * Gets the specified checksum salt
+     * @return the Salt set before
+     */
+    String getSalt();
+
+    /**
+     * Sets a Salt to append to files during checksum creation
+     * @param salt
+     */
+    void setSalt(String salt);
+
+    /**
      * Check that an execution can be run with the {@link #run()} method.
      *
      * @throws ExecutionException if some parameters are not initialized or invalid.

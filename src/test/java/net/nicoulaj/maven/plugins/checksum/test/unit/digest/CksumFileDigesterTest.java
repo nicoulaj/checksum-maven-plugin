@@ -34,7 +34,7 @@ public class CksumFileDigesterTest  {
         File empty_file = File.createTempFile("empty_file", null);
 
         CksumFileDigester cksumDigester=new CksumFileDigester();
-        String cksumEmpty = cksumDigester.calculate(empty_file);
+        String cksumEmpty = cksumDigester.calculate(empty_file, "");
 
         Assert.assertEquals("4294967295", cksumEmpty);
 
