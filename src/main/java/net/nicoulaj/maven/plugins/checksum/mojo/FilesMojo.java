@@ -146,6 +146,14 @@ public class FilesMojo
     protected String shasumSummaryFile;
 
     /**
+     * Fail if no file found to calculate checksum.
+     *
+     * @since 1.7
+     */
+    @Parameter( defaultValue = "true" )
+    protected boolean failIfNoFiles;
+
+    /**
      * Constructor.
      */
     public FilesMojo() {
@@ -268,5 +276,13 @@ public class FilesMojo
     protected String getShasumSummaryFile()
     {
         return shasumSummaryFile;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected boolean isFailIfNoFiles(){
+        return failIfNoFiles;
     }
 }

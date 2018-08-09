@@ -52,7 +52,7 @@ abstract class AbstractChecksumMojo
     /**
      * Fail if no files no process.
      */
-    private final boolean failIfNoFiles;
+    private boolean defaultFailIfNoFiles;
 
     /**
      * Fail if no files no process.
@@ -160,7 +160,7 @@ abstract class AbstractChecksumMojo
      * @param failIfNoTargets fail if no targets to process
      */
     AbstractChecksumMojo(boolean failIfNoFiles, boolean failIfNoAlgorithms, boolean failIfNoTargets) {
-        this.failIfNoFiles = failIfNoFiles;
+        this.defaultFailIfNoFiles = failIfNoFiles;
         this.failIfNoAlgorithms = failIfNoAlgorithms;
         this.failIfNoTargets = failIfNoTargets;
     }
@@ -176,7 +176,7 @@ abstract class AbstractChecksumMojo
         Execution execution = ( failOnError ) ? new FailOnErrorExecution() : new NeverFailExecution( getLog() );
         execution.setAlgorithms( algorithms );
         execution.setFiles( getFilesToProcess() );
-        execution.setFailIfNoFiles(failIfNoFiles);
+        execution.setFailIfNoFiles(isFailIfNoFiles());
         execution.setFailIfNoAlgorithms(failIfNoAlgorithms);
         execution.setFailIfNoTargets(failIfNoTargets);
         if ( !quiet )
@@ -263,4 +263,7 @@ abstract class AbstractChecksumMojo
 
     protected abstract String getShasumSummaryFile();
 
+    protected boolean isFailIfNoFiles(){
+        return defaultFailIfNoFiles;
+    }
 }
