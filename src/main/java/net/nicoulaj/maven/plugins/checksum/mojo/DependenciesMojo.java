@@ -37,7 +37,7 @@ import java.util.Set;
     defaultPhase = LifecyclePhase.VERIFY,
     requiresProject = true,
     inheritByDefault = false,
-    requiresDependencyResolution = ResolutionScope.RUNTIME,
+    requiresDependencyResolution = ResolutionScope.TEST,
     threadSafe = true )
 public class DependenciesMojo
     extends AbstractChecksumMojo
