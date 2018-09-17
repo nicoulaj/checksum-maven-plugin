@@ -1,0 +1,82 @@
+#*
+ * checksum-maven-plugin - http://checksum-maven-plugin.nicoulaj.net
+ * Copyright © 2010-2018 checksum-maven-plugin contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *#
+Check project dependencies checksums
+====================================
+
+This configuration will check the summary file checksum digest against the checksums of the project dependencies:
+
+    <project>
+      ...
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${project.artifactId}</artifactId>
+            <version>${project.version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <csvSummaryFile>dependencies-checksums.csv</csvSummaryFile>
+            </configuration>
+          </plugin>
+          ...
+        </plugins>
+      </build>
+      ...
+    </project>
+
+
+Filtering by scopes and types
+-----------------------------
+
+Dependencies can be filtered by scope and type:
+
+    <project>
+      ...
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${project.artifactId}</artifactId>
+            <version>${project.version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <scopes>
+                <scope>compile</scope>
+              </scopes>
+              <types>
+                <type>jar</type>
+              </types>
+			  <csvSummaryFile>dependencies-checksums.csv</csvSummaryFile>
+            </configuration>
+          </plugin>
+          ...
+        </plugins>
+      </build>
+      ...
+    </project>

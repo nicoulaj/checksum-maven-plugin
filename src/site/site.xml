@@ -74,6 +74,7 @@
             href="/examples/generating-project-dependencies-checksums.html"/>
       <item name="Invoking from the command line" href="/examples/invoking-from-the-command-line.html"/>
       <item name="Using custom checksum algorithms" href="/examples/using-custom-checksum-algorithms.html"/>
+	  <item name="Check project dependencies checksums" href="/examples/check-project-dependencies-checksums.html"/>
     </menu>
     <menu ref="reports"/>
 

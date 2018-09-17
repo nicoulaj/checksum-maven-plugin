@@ -16,6 +16,7 @@ General information about the goals.
 
 * [checksum:file](./file-mojo.html) calculate the checksum of the given file (for command line use).
 
+* [checksum:check](./check-mojo.html) check the checksums of the project dependencies.
 
 Usage
 -----
@@ -47,3 +48,5 @@ you can take a look into the following examples:
 * [Invoking from the command line](./examples/invoking-from-the-command-line.html)
 
 * [Using custom checksum algorithms](./examples/using-custom-checksum-algorithms.html)
+
+* [Check project dependencies checksums](./examples/check-project-dependencies-checksums.html)
