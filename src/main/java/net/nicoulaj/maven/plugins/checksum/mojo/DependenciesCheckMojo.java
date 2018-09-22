@@ -16,20 +16,11 @@
  */
 package net.nicoulaj.maven.plugins.checksum.mojo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import net.nicoulaj.maven.plugins.checksum.digest.DigesterException;
+import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
+import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
+import net.nicoulaj.maven.plugins.checksum.execution.ExecutionException;
+import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -42,11 +33,12 @@ import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.IOUtil;
 
-import net.nicoulaj.maven.plugins.checksum.digest.DigesterException;
-import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
-import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
-import net.nicoulaj.maven.plugins.checksum.execution.ExecutionException;
-import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
 
 
 /**
@@ -78,47 +70,39 @@ public class DependenciesCheckMojo extends AbstractMojo
 
   /**
    * The name of the summary file.
-   *
-   * @see #csvSummary
    */
   @Parameter(property = "csvSummaryFile", defaultValue = "dependencies-checksums.csv")
   protected String csvSummaryFile;
 
-  /**
-   * The dependency scopes to include.
-   * <p>
-   * Allowed values are compile, test, runtime, provided and system.<br/>
-   * All scopes are included by default.
-   * </p>
-   * <p>
-   * Use the following syntax:
-   *
-   * <pre>
-   * &lt;scopes&gt;
-   *   &lt;scope&gt;compile&lt;scope&gt;
-   *   &lt;scope&gt;runtime&lt;scope&gt;
-   * &lt;/scopes&gt;
-   * </pre>
-   * </p>
-   */
+    /**
+     * The dependency scopes to include.
+     *
+     * <p>Allowed values are compile, test, runtime, provided and system.<br>All scopes are included by default.
+     *
+     * <p> Use the following syntax:
+     * <pre>&lt;scopes&gt;
+     *   &lt;scope&gt;compile&lt;scope&gt;
+     *   &lt;scope&gt;runtime&lt;scope&gt;
+     * &lt;/scopes&gt;</pre>
+     *
+     * @since 1.0
+     */
   @Parameter
   protected List<String> scopes;
 
   /**
    * The dependency types to include.
-   * <p>
-   * All types are included by default.
-   * </p>
+   *
+   * <p>All types are included by default.
+   *
    * <p>
    * Use the following syntax:
-   *
    * <pre>
    * &lt;types&gt;
    *   &lt;type&gt;jar&lt;type&gt;
    *   &lt;type&gt;zip&lt;type&gt;
    * &lt;/types&gt;
    * </pre>
-   * </p>
    */
   @Parameter
   protected List<String> types;
