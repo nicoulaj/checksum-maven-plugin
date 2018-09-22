@@ -52,6 +52,6 @@ public class MavenLogTargetTest
     public void testMavenLogTargetWrite()
         throws ExecutionTargetWriteException
     {
-        target.write( "hash", new ChecksumFile( "", new File( "target/test-classes/test-file" ) ), "MD5" );
+        target.write( "hash", new ChecksumFile( "", new File( "target/test-classes/test-file" ), null, null ), "MD5" );
     }
 }

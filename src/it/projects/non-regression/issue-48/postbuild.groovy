@@ -34,9 +34,9 @@ try
   helper.assertFileIsNotEmpty( "target/issue-48-1.0-SNAPSHOT.jar.sha256" )
 
   // Check files have been installed.
-  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-48/1.0-SNAPSHOT/issue-48-1.0-SNAPSHOT.md5" )
-  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-48/1.0-SNAPSHOT/issue-48-1.0-SNAPSHOT.sha1" )
-  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-48/1.0-SNAPSHOT/issue-48-1.0-SNAPSHOT.sha256" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-48/1.0-SNAPSHOT/issue-48-1.0-SNAPSHOT.jar.md5" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-48/1.0-SNAPSHOT/issue-48-1.0-SNAPSHOT.jar.sha1" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-48/1.0-SNAPSHOT/issue-48-1.0-SNAPSHOT.jar.sha256" )
 
   // Check files have been deployed.
   helper.assertFileExists( "target/deploy-repository/net/nicoulaj/maven/plugins/checksum/test/projects/issue-48/1.0-SNAPSHOT", "issue-48-1.0-*.md5" )

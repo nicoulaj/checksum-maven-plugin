@@ -180,7 +180,7 @@ public class DependenciesMojo
             if ( ( scopes == null || scopes.contains( artifact.getScope() ) ) && ( types == null || types.contains(
                 artifact.getType() ) ) )
             {
-                files.add( new ChecksumFile( "", artifact.getFile() ) );
+                files.add( new ChecksumFile( "", artifact.getFile(), artifact.getType(), artifact.getClassifier() ) );
             }
         }
 

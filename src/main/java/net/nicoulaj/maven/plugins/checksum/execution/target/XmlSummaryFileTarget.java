@@ -168,7 +168,7 @@ public class XmlSummaryFileTarget
         {
             outputStream.close();
             for (ArtifactListener artifactListener : artifactListeners) {
-                artifactListener.artifactCreated(summaryFile, "xml");
+                artifactListener.artifactCreated(summaryFile, "xml", null,null);
             }
         }
         catch ( IOException e )

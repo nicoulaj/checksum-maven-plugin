@@ -169,7 +169,7 @@ public class ShasumSummaryFileTarget
         {
             FileUtils.fileWrite( summaryFile.getPath(), "US-ASCII", sb.toString() );
              for (ArtifactListener artifactListener : artifactListeners) {
-                artifactListener.artifactCreated(summaryFile, "sum");
+                artifactListener.artifactCreated(summaryFile, "sum", null, null);
             }
        }
         catch ( IOException e )

@@ -72,7 +72,7 @@ public class OneHashPerFileTargetTest
                 testFile.getPath() + DigesterFactory.getInstance().getFileDigester( testAlgorithm ).getFileExtension();
 
             // Call write()
-            target.write( "hash-file-content", new ChecksumFile( "", testFile ), testAlgorithm );
+            target.write( "hash-file-content", new ChecksumFile( "", testFile, null, null ), testAlgorithm );
 
             // Assert the file has been created with the right content
             Assert.assertTrue( new File( hashcodeFile ).exists() );

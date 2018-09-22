@@ -28,12 +28,18 @@ public class ChecksumFile
 {
 	protected final String basePath;
 
-	protected final File file;
+    protected final File file;
 
-	public ChecksumFile(String basePath, File file)
+    protected final String type;
+
+    protected final String classifier;
+
+	public ChecksumFile(String basePath, File file, String type, String classifier)
 	{
 		this.basePath = basePath;
-		this.file = file;
+        this.file = file;
+        this.type = type;
+        this.classifier = classifier;
 	}
 
 	public String getBasePath()
@@ -41,10 +47,20 @@ public class ChecksumFile
 		return basePath;
 	}
 
-	public File getFile()
-	{
-		return file;
-	}
+    public File getFile()
+    {
+        return file;
+    }
+
+    public String getType()
+    {
+        return type;
+    }
+
+    public String getClassifier()
+    {
+        return classifier;
+    }
 
 	public String getRelativePath(ChecksumFile file, String subPath)
 	{

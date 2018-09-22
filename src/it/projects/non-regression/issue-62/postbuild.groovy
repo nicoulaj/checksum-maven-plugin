@@ -38,15 +38,14 @@ try
   helper.assertFileIsNotEmpty( "target/issue-62-1.0-SNAPSHOT-src.zip.sha512" )
 
   // Check files are installed to the right location
-  //
-  helper.assertFileExists( "${localRepositoryPath}/net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT.jar.sha256" )
-  helper.assertFileExists( "${localRepositoryPath}/net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT.jar.sha512" )
-  helper.assertFileExists( "${localRepositoryPath}/net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.tar.bz2.sha256" )
-  helper.assertFileExists( "${localRepositoryPath}/net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.tar.bz2.sha512" )
-  helper.assertFileExists( "${localRepositoryPath}/net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.tar.gz.sha256" )
-  helper.assertFileExists( "${localRepositoryPath}/net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.tar.gz.sha512" )
-  helper.assertFileExists( "${localRepositoryPath}/net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.zip.sha256" )
-  helper.assertFileExists( "${localRepositoryPath}/net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.zip.sha512" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT.jar.sha256" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT.jar.sha512" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.tar.bz2.sha256" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.tar.bz2.sha512" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.tar.gz.sha256" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.tar.gz.sha512" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.zip.sha256" )
+  helper.assertFileIsNotEmptyInLocalRepo( "net/nicoulaj/maven/plugins/checksum/test/projects/issue-62/1.0-SNAPSHOT/issue-62-1.0-SNAPSHOT-src.zip.sha512" )
 
 }
 catch ( Exception e )

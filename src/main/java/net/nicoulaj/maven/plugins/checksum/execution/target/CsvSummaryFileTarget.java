@@ -177,7 +177,7 @@ public class CsvSummaryFileTarget
         {
             FileUtils.fileWrite( summaryFile.getPath(), encoding, sb.toString() );
             for (ArtifactListener artifactListener : artifactListeners) {
-                artifactListener.artifactCreated(summaryFile, "csv");
+                artifactListener.artifactCreated(summaryFile, "csv", null,null);
             }
         }
         catch ( IOException e )

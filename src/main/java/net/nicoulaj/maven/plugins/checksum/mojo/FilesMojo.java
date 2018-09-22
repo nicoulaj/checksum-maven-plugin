@@ -198,7 +198,7 @@ public class FilesMojo
 
             for ( String filePath : scanner.getIncludedFiles() )
             {
-                filesToProcess.add( new ChecksumFile( (new File( fileSetDirectory ) ).getPath(), new File( fileSetDirectory, filePath ) ) );
+                filesToProcess.add( new ChecksumFile( (new File( fileSetDirectory ) ).getPath(), new File( fileSetDirectory, filePath ), null, null ) );
             }
             }
 
