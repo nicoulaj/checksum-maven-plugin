@@ -215,7 +215,7 @@
           <settingsFile>${invoker.settings-file}</settingsFile>
           <projectsDirectory>${project.basedir}/src/it/projects</projectsDirectory>
           <pomIncludes>
-            <pomInclude>*/*/*/pom.xml</pomInclude>
+            <pomInclude>**/pom.xml</pomInclude>
           </pomIncludes>
           <cloneProjectsTo>${project.build.directory}/it/projects</cloneProjectsTo>
           <cloneClean>true</cloneClean>
