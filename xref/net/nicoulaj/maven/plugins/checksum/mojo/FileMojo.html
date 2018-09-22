@@ -79,7 +79,7 @@
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>          <em class="jxr_comment">// Prepare an execution.</em>
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/execution/Execution.html">Execution</a> execution = <strong class="jxr_keyword">new</strong> <a href="../../../../../../net/nicoulaj/maven/plugins/checksum/execution/FailOnErrorExecution.html">FailOnErrorExecution</a>();
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>          execution.setAlgorithms( Arrays.asList( Constants.SUPPORTED_ALGORITHMS ) );
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>          execution.addFile( <strong class="jxr_keyword">new</strong> ChecksumFile( <span class="jxr_string">""</span>, <strong class="jxr_keyword">new</strong> File( file ) ) );
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          execution.addFile( <strong class="jxr_keyword">new</strong> ChecksumFile( <span class="jxr_string">""</span>, <strong class="jxr_keyword">new</strong> File( file ), <strong class="jxr_keyword">null</strong>,<strong class="jxr_keyword">null</strong> ) );
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>          execution.addTarget( <strong class="jxr_keyword">new</strong> MavenLogTarget( getLog() ) );
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>          <em class="jxr_comment">// Run the execution.</em>

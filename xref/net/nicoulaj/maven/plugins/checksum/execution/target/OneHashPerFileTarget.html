@@ -151,7 +151,7 @@
 <a class="jxr_linenumber" name="L143" href="#L143">143</a>             FileUtils.fileWrite( outputFile, digestToPrint.toString() );
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>            
 <a class="jxr_linenumber" name="L145" href="#L145">145</a>             <strong class="jxr_keyword">for</strong> (ArtifactListener artifactListener : artifactListeners) {
-<a class="jxr_linenumber" name="L146" href="#L146">146</a>                 artifactListener.artifactCreated(outputFile, fileExtension);
+<a class="jxr_linenumber" name="L146" href="#L146">146</a>                 artifactListener.artifactCreated(outputFile, fileExtension, file.getType(), file.getClassifier());
 <a class="jxr_linenumber" name="L147" href="#L147">147</a>             }
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>         }
 <a class="jxr_linenumber" name="L149" href="#L149">149</a>         <strong class="jxr_keyword">catch</strong> ( IOException e )

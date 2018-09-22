@@ -185,7 +185,7 @@
 <a class="jxr_linenumber" name="L177" href="#L177">177</a>         {
 <a class="jxr_linenumber" name="L178" href="#L178">178</a>             FileUtils.fileWrite( summaryFile.getPath(), encoding, sb.toString() );
 <a class="jxr_linenumber" name="L179" href="#L179">179</a>             <strong class="jxr_keyword">for</strong> (ArtifactListener artifactListener : artifactListeners) {
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>                 artifactListener.artifactCreated(summaryFile, <span class="jxr_string">"csv"</span>);
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>                 artifactListener.artifactCreated(summaryFile, <span class="jxr_string">"csv"</span>, <strong class="jxr_keyword">null</strong>,<strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L181" href="#L181">181</a>             }
 <a class="jxr_linenumber" name="L182" href="#L182">182</a>         }
 <a class="jxr_linenumber" name="L183" href="#L183">183</a>         <strong class="jxr_keyword">catch</strong> ( IOException e )
