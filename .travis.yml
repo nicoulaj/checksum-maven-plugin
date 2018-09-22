@@ -48,8 +48,10 @@ notifications:
   email: false
   irc:
     channels:
-      - "chat.freenode.net#nicoulaj"
+    - "chat.freenode.net#nicoulaj"
     on_success: never
     on_failure: change
     on_start: never
     use_notice: true
+    template:
+    - "%{repository}/%{branch}#%{build_number}: %{message} | changes : %{compare_url} | build : %{build_url}"
