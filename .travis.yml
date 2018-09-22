@@ -45,14 +45,11 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 notifications:
-  email:
-    on_success: never
-    on_failure: change
-    on_start: never
+  email: false
   irc:
     channels:
       - "chat.freenode.net#nicoulaj"
-    on_success: always
-    on_failure: always
+    on_success: never
+    on_failure: change
     on_start: never
     use_notice: true
