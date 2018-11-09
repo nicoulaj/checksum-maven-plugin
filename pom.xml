@@ -77,7 +77,7 @@
 
     <!-- Versions -->
     <java.level>1.6</java.level>
-    <maven-model.version>2.2.1</maven-model.version>
+    <maven-model.version>3.6.0</maven-model.version>
     <maven-project.version>2.2.1</maven-project.version>
     <maven-min-supported.version>3.0.5</maven-min-supported.version>
     <bouncycastle.version>1.60</bouncycastle.version>
