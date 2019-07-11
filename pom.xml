@@ -81,7 +81,7 @@
     <maven-project.version>2.2.1</maven-project.version>
     <maven-min-supported.version>3.0.5</maven-min-supported.version>
     <bouncycastle.version>1.62</bouncycastle.version>
-    <plexus-utils.version>3.2.0</plexus-utils.version>
+    <plexus-utils.version>3.2.1</plexus-utils.version>
 
     <!-- Build settings -->
     <debug>false</debug>
