@@ -2,8 +2,6 @@ language: java
 sudo: false
 
 jdk:
-  - openjdk7
-  - oraclejdk8
   - openjdk8
   - oraclejdk9
   - openjdk9
@@ -15,7 +13,7 @@ env:
   - MAVEN=3.2.5
   - MAVEN=3.3.9
   - MAVEN=3.5.4
-  - MAVEN=3.6.0
+  - MAVEN=3.6.2
 
 cache:
     directories:
