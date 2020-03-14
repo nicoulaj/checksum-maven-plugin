@@ -3,10 +3,10 @@ sudo: false
 
 jdk:
   - openjdk8
-  - oraclejdk9
   - openjdk9
   - openjdk10
   - openjdk11
+  - openjdk12
 env:
   - MAVEN=3.0.5
   - MAVEN=3.1.1
