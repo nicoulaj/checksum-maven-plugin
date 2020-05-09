@@ -69,7 +69,7 @@ public class DigestersTest
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters()
     {
-        List<Object[]> data = new ArrayList<Object[]>();
+        List<Object[]> data = new ArrayList<>();
         for ( String algorithm : net.nicoulaj.maven.plugins.checksum.Constants.SUPPORTED_ALGORITHMS )
         {
             data.add( new String[]{ algorithm } );

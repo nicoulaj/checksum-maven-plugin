@@ -23,7 +23,6 @@ import net.nicoulaj.maven.plugins.checksum.execution.ExecutionException;
 import net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -31,7 +30,6 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.IOUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -120,7 +118,7 @@ public class DependenciesCheckMojo extends AbstractMojo
   protected boolean skip;
 
   @Override
-  public void execute() throws MojoExecutionException, MojoFailureException
+  public void execute() throws MojoFailureException
   {
     if (skip)
     {
@@ -208,12 +206,11 @@ public class DependenciesCheckMojo extends AbstractMojo
 
   private List<Artifact> getArtifactsToProcess()
   {
-    List<Artifact> result = new LinkedList<Artifact>();
+    List<Artifact> result = new LinkedList<>();
 
-    Set<Artifact> allProjectModules = new HashSet<Artifact>();
+    Set<Artifact> allProjectModules = new HashSet<>();
     allModules(project, allProjectModules);
 
-    @SuppressWarnings("unchecked")
     Set<Artifact> artifacts = transitive ? project.getArtifacts() : project.getDependencyArtifacts();
     for ( Artifact artifact : artifacts )
     {
@@ -236,13 +233,12 @@ public class DependenciesCheckMojo extends AbstractMojo
     }
     result.add(mavenProject.getArtifact());
 
-    List<MavenProject> modules = new ArrayList<MavenProject>();
+    List<MavenProject> modules = new ArrayList<>();
     if (mavenProject.hasParent())
     {
       modules.add(mavenProject.getParent());
     }
 
-    @SuppressWarnings("unchecked")
     List<MavenProject> collectedProjects = mavenProject.getCollectedProjects();
     if (collectedProjects != null)
     {
@@ -256,42 +252,36 @@ public class DependenciesCheckMojo extends AbstractMojo
 
   /**
    * Read the summary file
-   * 
+   *
    * @param outputFile the summary file
    * @return the summary content (<filename, <algo, checksum>>)
    * @throws ExecutionException if an error happens while running the execution.
    */
   private Map<String, Map<String, String>> readSummaryFile(File outputFile) throws ExecutionException
   {
-    List<String> algorithms = new ArrayList<String>();
-    Map<String, Map<String, String>> filesHashcodes = new HashMap<String, Map<String, String>>();
-    BufferedReader reader = null;
-    try
-    {
-      reader = new BufferedReader(new FileReader(outputFile));
-      String line;
-      while ((line = reader.readLine()) != null)
+    List<String> algorithms = new ArrayList<>();
+    Map<String, Map<String, String>> filesHashcodes = new HashMap<>();
+      try ( BufferedReader reader = new BufferedReader( new FileReader( outputFile ) ) )
       {
-        // Read the CVS file header
-        if (isFileHeader(line))
-        {
-          readFileHeader(line, algorithms);
-        }
-        else
-        {
-          // Read the dependencies checksums
-          readDependenciesChecksums(line, algorithms, filesHashcodes);
-        }
+          String line;
+          while ( ( line = reader.readLine() ) != null )
+          {
+              // Read the CVS file header
+              if ( isFileHeader( line ) )
+              {
+                  readFileHeader( line, algorithms );
+              }
+              else
+              {
+                  // Read the dependencies checksums
+                  readDependenciesChecksums( line, algorithms, filesHashcodes );
+              }
+          }
       }
-    }
-    catch (IOException e)
-    {
-      throw new ExecutionException(e.getMessage());
-    }
-    finally
-    {
-      IOUtil.close(reader);
-    }
+      catch ( IOException e )
+      {
+          throw new ExecutionException( e.getMessage() );
+      }
 
     return filesHashcodes;
   }
@@ -305,10 +295,7 @@ public class DependenciesCheckMojo extends AbstractMojo
   {
     // #File,sha1,md5,...
     String[] split = line.split(CsvSummaryFileTarget.CSV_COLUMN_SEPARATOR);
-    for ( int i = 1 ; i < split.length ; i++ )
-    {
-      algorithms.add(split[i]);
-    }
+    algorithms.addAll( Arrays.asList( split ).subList( 1, split.length ) );
   }
 
   private void readDependenciesChecksums(String line,
@@ -317,7 +304,7 @@ public class DependenciesCheckMojo extends AbstractMojo
   {
     String[] split = line.split(CsvSummaryFileTarget.CSV_COLUMN_SEPARATOR);
     String fileName = split[0];
-    Map<String, String> fileHashcodes = new HashMap<String, String>();
+    Map<String, String> fileHashcodes = new HashMap<>();
     for ( int i = 1 ; i < split.length ; i++ )
     {
       fileHashcodes.put(algorithms.get(i - 1), split[i]);

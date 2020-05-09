@@ -76,10 +76,8 @@
   <properties>
 
     <!-- Versions -->
-    <java.level>1.6</java.level>
-    <maven-model.version>2.2.1</maven-model.version>
-    <maven-project.version>2.2.1</maven-project.version>
-    <maven-min-supported.version>3.0.5</maven-min-supported.version>
+    <java.level>1.7</java.level>
+    <maven.version>3.0.5</maven.version>
     <bouncycastle.version>1.62</bouncycastle.version>
     <plexus-utils.version>3.2.1</plexus-utils.version>
 
@@ -90,25 +88,25 @@
   </properties>
 
   <prerequisites>
-    <maven>${maven-min-supported.version}</maven>
+    <maven>${maven.version}</maven>
   </prerequisites>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>org.apache.maven</groupId>
-        <artifactId>maven-project</artifactId>
-        <version>${maven-project.version}</version>
+        <artifactId>maven-core</artifactId>
+        <version>${maven.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.maven</groupId>
         <artifactId>maven-model</artifactId>
-        <version>${maven-model.version}</version>
+        <version>${maven.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.maven</groupId>
         <artifactId>maven-plugin-api</artifactId>
-        <version>${maven-model.version}</version>
+        <version>${maven.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.maven.plugin-tools</groupId>
@@ -136,7 +134,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
-      <artifactId>maven-project</artifactId>
+      <artifactId>maven-core</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
@@ -171,8 +169,8 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>[${maven-min-supported.version},)</version>
-                  <message>Maven v${maven-min-supported.version}+ is required to build this project, please update.</message>
+                  <version>[${maven.version},)</version>
+                  <message>Maven v${maven.version}+ is required to build this project, please update.</message>
                 </requireMavenVersion>
               </rules>
             </configuration>
@@ -190,7 +188,7 @@
             <configuration>
               <signature>
                 <groupId>org.codehaus.mojo.signature</groupId>
-                <artifactId>java16</artifactId>
+                <artifactId>java17</artifactId>
                 <version>1.0</version>
               </signature>
             </configuration>
@@ -271,6 +269,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.5</version>
           <configuration>
             <excludes>
               <exclude>**/HelpMojo.class</exclude>

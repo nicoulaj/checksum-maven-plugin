@@ -49,18 +49,8 @@ public class CksumFileDigester
 	{
 		int value = 0;
 		long length = 0L;
-		BufferedInputStream fis;
 
-		try
-		{
-			fis = new BufferedInputStream( new FileInputStream(file) );
-		}
-		catch ( FileNotFoundException e )
-		{
-			throw new DigesterException( "Unable to read " + file.getPath() + ": " + e.getMessage() );
-		}
-
-		try
+		try (BufferedInputStream fis = new BufferedInputStream( new FileInputStream(file) ))
 		{
 			int byteRead;
 			while ( (byteRead = fis.read()) >= 0 )
@@ -75,27 +65,15 @@ public class CksumFileDigester
 		    }
 		    return Long.toString((value ^ 0xFFFFFFFFL) & 0xFFFFFFFFL);
 		}
+        catch ( FileNotFoundException e )
+        {
+            throw new DigesterException( "Unable to read " + file.getPath() + ": " + e.getMessage() );
+        }
 		catch ( IOException e )
 		{
 			throw new DigesterException(
 	                "Unable to calculate the " + getAlgorithm() + " hashcode for " + file.getPath() + ": "
 	                    + e.getMessage() );
-		}
-		finally
-		{
-			if (fis != null)
-			{
-				try
-				{
-					fis.close();
-				}
-				catch (IOException e)
-				{
-					throw new DigesterException(
-			                "Unable to calculate the " + getAlgorithm() + " hashcode for " + file.getPath() + ": "
-			                    + e.getMessage() );
-				}
-			}
 		}
 	}
 
