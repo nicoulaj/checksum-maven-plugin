@@ -9,8 +9,6 @@ jdk:
   - openjdk11
   - openjdk14
 env:
-  - MAVEN=3.0.5
-  - MAVEN=3.1.1
   - MAVEN=3.2.5
   - MAVEN=3.3.9
   - MAVEN=3.5.4
