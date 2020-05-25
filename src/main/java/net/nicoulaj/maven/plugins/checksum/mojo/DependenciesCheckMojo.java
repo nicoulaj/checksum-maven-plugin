@@ -214,8 +214,8 @@ public class DependenciesCheckMojo extends AbstractMojo
     Set<Artifact> artifacts = transitive ? project.getArtifacts() : project.getDependencyArtifacts();
     for ( Artifact artifact : artifacts )
     {
-      if ((!allProjectModules.contains(artifact)) || (scopes == null || scopes.contains(artifact.getScope()))
-                                                     && (types == null || types.contains(artifact.getType())))
+      if (!allProjectModules.contains(artifact) && (scopes == null || scopes.contains(artifact.getScope()))
+          && (types == null || types.contains(artifact.getType())))
       {
         getLog().debug(String.format("check artifact %s", artifact));
         result.add(artifact);
