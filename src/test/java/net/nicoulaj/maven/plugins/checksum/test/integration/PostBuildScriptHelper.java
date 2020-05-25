@@ -51,6 +51,7 @@ public class PostBuildScriptHelper
     /**
      * The storage of key-value pairs used to pass data from the pre-build hook script to the post-build hook script.
      */
+    @SuppressWarnings( "rawtypes" )
     protected Map context;
 
     /**
@@ -64,7 +65,7 @@ public class PostBuildScriptHelper
      * @see <a href="http://maven.apache.org/plugins/maven-invoker-plugin/examples/post-build-script.html">
      *      maven-invoker-plugin post-build script invocation</a>
      */
-    public PostBuildScriptHelper( File baseDirectory, File localRepositoryPath, Map context )
+    public PostBuildScriptHelper( File baseDirectory, File localRepositoryPath, @SuppressWarnings( "rawtypes" ) Map context )
     {
         this.baseDirectory = baseDirectory;
         this.localRepositoryPath = localRepositoryPath;

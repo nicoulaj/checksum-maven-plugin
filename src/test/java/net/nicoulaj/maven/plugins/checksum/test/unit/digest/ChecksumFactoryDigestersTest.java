@@ -52,7 +52,7 @@ public class ChecksumFactoryDigestersTest
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters()
     {
-        List<Object[]> data = new ArrayList<Object[]>();
+        List<Object[]> data = new ArrayList<>();
         for ( String algorithm : Constants.SUPPORTED_ALGORITHMS )
         {
             data.add( new String[]{ algorithm } );

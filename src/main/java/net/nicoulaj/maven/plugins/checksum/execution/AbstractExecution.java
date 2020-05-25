@@ -74,7 +74,7 @@ public abstract class AbstractExecution
     {
         if ( files == null )
         {
-            files = new LinkedList<ChecksumFile>();
+            files = new LinkedList<>();
         }
         return files;
     }
@@ -129,7 +129,7 @@ public abstract class AbstractExecution
     {
         if ( algorithms == null )
         {
-            algorithms = new LinkedList<String>();
+            algorithms = new LinkedList<>();
         }
         return algorithms;
     }
@@ -168,7 +168,7 @@ public abstract class AbstractExecution
     {
         if ( targets == null )
         {
-            targets = new LinkedList<ExecutionTarget>();
+            targets = new LinkedList<>();
         }
         return targets;
     }

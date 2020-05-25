@@ -22,7 +22,6 @@ import net.nicoulaj.maven.plugins.checksum.execution.ExecutionException;
 import net.nicoulaj.maven.plugins.checksum.execution.FailOnErrorExecution;
 import net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget;
 import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -32,9 +31,9 @@ import java.util.Arrays;
 
 /**
  * Compute specified file checksum digest for all supported checksum algorithms.
- * 
+ *
  * <p>This goal is a facility for invoking checksum-maven-plugin through the command line.</p>
- * 
+ *
  * <p>Here is an example of use:<pre>
  * mvn checksum:file -Dfile=some-file.zip
  * </pre>
@@ -66,7 +65,7 @@ public class FileMojo
      */
     @Override
     public void execute()
-        throws MojoExecutionException, MojoFailureException
+        throws MojoFailureException
     {
         // Prepare an execution.
         Execution execution = new FailOnErrorExecution();

@@ -51,22 +51,11 @@ public class MessageDigestFileDigester
      * {@inheritDoc}
      */
     public String calculate( File file )
-        throws DigesterException, NoSuchAlgorithmException
+        throws DigesterException
     {
-        // Try to open the file.
-        FileInputStream fis;
-        try
-        {
-            fis = new FileInputStream( file );
-        }
-        catch ( Exception e )
-        {
-            throw new DigesterException( "Unable not read " + file.getPath() + ": " + e.getMessage() );
-        }
-
         String result;
 
-        try
+        try( FileInputStream fis = new FileInputStream( file ) )
         {
             MessageDigest messageDigest = MessageDigest.getInstance( algorithm );
 
@@ -87,17 +76,9 @@ public class MessageDigestFileDigester
                 "Unable to calculate the " + getAlgorithm() + " hashcode for " + file.getPath() + ": "
                     + e.getMessage() );
         }
-        finally
+        catch ( Exception e )
         {
-            try
-            {
-                fis.close();
-            }
-            catch ( IOException e )
-            {
-                // Don't take any chance, return an empty string if something went wrong.
-                result = "";
-            }
+            throw new DigesterException( "Unable not read " + file.getPath() + ": " + e.getMessage() );
         }
         return result;
     }

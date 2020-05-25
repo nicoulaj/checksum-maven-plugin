@@ -167,7 +167,7 @@ public class FilesMojo
     @Override
     protected List<ChecksumFile> getFilesToProcess()
     {
-        final List<ChecksumFile> filesToProcess = new ArrayList<ChecksumFile>();
+        final List<ChecksumFile> filesToProcess = new ArrayList<>();
         for ( final FileSet fileSet : fileSets )
         {
             final DirectoryScanner scanner = new DirectoryScanner();
@@ -178,7 +178,7 @@ public class FilesMojo
             if ( fileSet.getIncludes() != null && !fileSet.getIncludes().isEmpty() )
             {
                 final List<String> fileSetIncludes = fileSet.getIncludes();
-                includes = fileSetIncludes.toArray( new String[fileSetIncludes.size()] );
+                includes = fileSetIncludes.toArray( new String[0] );
             }
             else
             {
@@ -189,7 +189,7 @@ public class FilesMojo
             if ( fileSet.getExcludes() != null && !fileSet.getExcludes().isEmpty() )
             {
                 final List<String> fileSetExcludes = fileSet.getExcludes();
-                scanner.setExcludes( fileSetExcludes.toArray( new String[fileSetExcludes.size()] ) );
+                scanner.setExcludes( fileSetExcludes.toArray( new String[0] ) );
             }
 
             scanner.addDefaultExcludes();

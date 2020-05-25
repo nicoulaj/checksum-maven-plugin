@@ -140,7 +140,7 @@ public class ArtifactsMojo
     @Override
     protected List<ChecksumFile> getFilesToProcess()
     {
-        List<ChecksumFile> files = new LinkedList<ChecksumFile>();
+        List<ChecksumFile> files = new LinkedList<>();
 
         // Add project main artifact.
         if ( hasValidFile( project.getArtifact() ) )

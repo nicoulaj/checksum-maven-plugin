@@ -171,9 +171,8 @@ public class DependenciesMojo
     @Override
     protected List<ChecksumFile> getFilesToProcess()
     {
-        List<ChecksumFile> files = new LinkedList<ChecksumFile>();
+        List<ChecksumFile> files = new LinkedList<>();
 
-        @SuppressWarnings("unchecked")
         Set<Artifact> artifacts = transitive ?  project.getArtifacts() : project.getDependencyArtifacts();
         for ( Artifact artifact : artifacts )
         {

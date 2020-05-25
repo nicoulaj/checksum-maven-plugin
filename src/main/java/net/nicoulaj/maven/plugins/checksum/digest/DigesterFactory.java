@@ -26,7 +26,7 @@ import java.util.Map;
 
 /**
  * Singleton class used to get instances of {@link FileDigester}.
- * 
+ *
  * <p>Each {@link FileDigester} object is a singleton itself.</p>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
@@ -43,8 +43,7 @@ public class DigesterFactory
     /**
      * The map (algorithm, digester).
      */
-    protected Map<String, FileDigester> digesters =
-        new HashMap<String, FileDigester>( Constants.SUPPORTED_ALGORITHMS.length );
+    protected Map<String, FileDigester> digesters = new HashMap<>( Constants.SUPPORTED_ALGORITHMS.length );
 
     /**
      * Build a new {@link net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory}.
@@ -89,7 +88,7 @@ public class DigesterFactory
             {
                 digester = new CRC32FileDigester();
             }
-            
+
             else if ( CksumFileDigester.ALGORITHM.equals( algorithm ) )
             {
                 digester = new CksumFileDigester();
