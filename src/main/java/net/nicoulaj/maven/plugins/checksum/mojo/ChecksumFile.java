@@ -30,15 +30,15 @@ public class ChecksumFile
 
     protected final File file;
 
-    protected final String type;
+    protected final String extension;
 
     protected final String classifier;
 
-	public ChecksumFile(String basePath, File file, String type, String classifier)
+	public ChecksumFile(String basePath, File file, String extension, String classifier)
 	{
 		this.basePath = basePath;
         this.file = file;
-        this.type = type;
+        this.extension = extension;
         this.classifier = classifier;
 	}
 
@@ -52,9 +52,9 @@ public class ChecksumFile
         return file;
     }
 
-    public String getType()
+    public String getExtension()
     {
-        return type;
+        return extension;
     }
 
     public String getClassifier()

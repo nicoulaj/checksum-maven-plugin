@@ -145,7 +145,7 @@ public class ArtifactsMojo
         // Add project main artifact.
         if ( hasValidFile( project.getArtifact() ) )
         {
-            files.add( new ChecksumFile( "", project.getArtifact().getFile(), project.getArtifact().getType(),null ) );
+            files.add( new ChecksumFile( "", project.getArtifact().getFile(), project.getArtifact().getArtifactHandler().getExtension(), null ) );
         }
 
         // Add projects attached.
@@ -155,7 +155,7 @@ public class ArtifactsMojo
             {
                 if ( hasValidFile( artifact ) )
                 {
-                    files.add( new ChecksumFile( "", artifact.getFile(), artifact.getType(), artifact.getClassifier() ) );
+                    files.add( new ChecksumFile( "", artifact.getFile(), artifact.getArtifactHandler().getExtension(), artifact.getClassifier() ) );
                 }
             }
         }

@@ -143,7 +143,7 @@ public class OneHashPerFileTarget
             FileUtils.fileWrite( outputFile, digestToPrint.toString() );
 
             for (ArtifactListener artifactListener : artifactListeners) {
-                artifactListener.artifactCreated(outputFile, fileExtension, file.getType(), file.getClassifier());
+                artifactListener.artifactCreated(outputFile, fileExtension, file.getExtension(), file.getClassifier());
             }
         }
         catch ( IOException | NoSuchAlgorithmException e )
