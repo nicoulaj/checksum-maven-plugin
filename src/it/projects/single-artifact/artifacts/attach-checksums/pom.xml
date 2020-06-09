@@ -66,6 +66,11 @@
             </goals>
             <configuration>
               <attachChecksums>true</attachChecksums>
+              <algorithms>
+                <!-- use non standard algorithm to verify really checksums of this plugin and not of maven-install-plugin -->
+                <algorithm>SHA-256</algorithm>
+                <algorithm>SHA-512</algorithm>
+              </algorithms>
             </configuration>
           </execution>
         </executions>
