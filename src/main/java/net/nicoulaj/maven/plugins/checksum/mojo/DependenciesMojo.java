@@ -177,7 +177,7 @@ public class DependenciesMojo
         for ( Artifact artifact : artifacts )
         {
             if ( ( scopes == null || scopes.contains( artifact.getScope() ) ) && ( types == null || types.contains(
-                artifact.getType() ) ) )
+                artifact.getType() ) ) &&  artifact.getFile() != null )
             {
                 files.add( new ChecksumFile( "", artifact.getFile(), artifact.getType(), artifact.getClassifier() ) );
             }
