@@ -41,6 +41,20 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+      <!-- type = java-source (https://github.com/apache/maven-source-plugin/blob/b677bb8bd173c621ec3c28842aa296f8c149f059/src/main/java/org/apache/maven/plugins/source/AbstractSourceJarMojo.java#L519) -->
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>net.nicoulaj.maven.plugins</groupId>
         <artifactId>checksum-maven-plugin</artifactId>
@@ -52,6 +66,11 @@
             </goals>
             <configuration>
               <attachChecksums>true</attachChecksums>
+              <algorithms>
+                <!-- use non standard algorithm to verify really checksums of this plugin and not of maven-install-plugin -->
+                <algorithm>SHA-256</algorithm>
+                <algorithm>SHA-512</algorithm>
+              </algorithms>
             </configuration>
           </execution>
         </executions>

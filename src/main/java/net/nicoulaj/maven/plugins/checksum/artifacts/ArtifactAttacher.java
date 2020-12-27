@@ -31,14 +31,13 @@ public class ArtifactAttacher implements ArtifactListener {
     }
 
     @Override
-    public void artifactCreated(File artifact, String checksumType, String artifactType, String artifactClassifier) {
+    public void artifactCreated(File artifact, String checksumType, String artifactExtension, String artifactClassifier) {
         if (checksumType.startsWith(".")) {
             // Project helper expects a type without leading dot (e.g. turn ".md5" into "md5").
             checksumType = checksumType.substring(1);
         }
 
-        String attachmentType = artifactType == null ? checksumType : artifactType + "." + checksumType;
-
-        projectHelper.attachArtifact(project, attachmentType, artifactClassifier, artifact);
+        String checksumArtifactType = artifactExtension + "." + checksumType;
+        projectHelper.attachArtifact(project, checksumArtifactType, artifactClassifier, artifact);
     }
 }
