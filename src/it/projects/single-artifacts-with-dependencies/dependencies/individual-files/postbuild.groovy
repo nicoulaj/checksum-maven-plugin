@@ -37,7 +37,7 @@ try
     helper.assertFileIsNotEmpty( "target/maven-plugin-api-2.2.0.jar" + extension );
     helper.assertFileIsNotEmpty( "target/maven-project-2.2.0.jar" + extension );
     helper.assertFileIsNotEmpty( "target/plexus-utils-1.1.jar" + extension );
-    helper.assertFileIsNotEmpty( "target/junit-4.8.1.jar" + extension );
+    helper.assertFileIsNotEmpty( "target/junit-4.13.1.jar" + extension );
   }
 
 }

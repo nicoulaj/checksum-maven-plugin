@@ -42,7 +42,7 @@ try
   helper.assertFileContains( "target/dependencies-checksums.csv", "maven-plugin-api-2.2.0.jar" )
   helper.assertFileContains( "target/dependencies-checksums.csv", "maven-project-2.2.0.jar" )
   helper.assertFileContains( "target/dependencies-checksums.csv", "plexus-utils-1.1.jar" )
-  helper.assertFileContains( "target/dependencies-checksums.csv", "junit-4.8.1.jar" )
+  helper.assertFileContains( "target/dependencies-checksums.csv", "junit-4.13.1.jar" )
 
 }
 catch ( Exception e )
