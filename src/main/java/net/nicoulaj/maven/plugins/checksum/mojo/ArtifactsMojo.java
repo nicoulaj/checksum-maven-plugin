@@ -20,13 +20,16 @@ import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.shared.artifact.filter.collection.ClassifierFilter;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
- * Compute project artifacts checksum digests and store them in individual files and/or a summary file.
- *
+ * Compute project artifact's checksum digests and store them in individual files and/or a summary file.
+ * Optionally attaches the checksum files as additional project artifacts.
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
  */
@@ -119,8 +122,28 @@ public class ArtifactsMojo
      * @see #individualFiles
      * @since 1.4
      */
-    @Parameter (defaultValue = "false")
+    @Parameter( defaultValue = "false" )
     protected boolean appendFilename;
+
+    /**
+     * Whether to skip checksum generation for the project's main artifact.
+     */
+    @Parameter( defaultValue = "false" )
+    protected boolean excludeMainArtifact;
+
+    /**
+     * Comma-separated list of classifiers. For all secondary project artifacts having any of the given classifiers checksums are generated.
+     * If not set all secondary project artifacts are considered.
+     */
+    @Parameter
+    protected String includeClassifiers;
+
+    /**
+     * Comma-separated list of classifiers. For all secondary project artifacts having any of the given classifiers checksums are not generated.
+     * Takes precedence over {@link #includeClassifiers}.
+     */
+    @Parameter
+    protected String excludeClassifiers;
 
     /**
      * Constructor.
@@ -143,7 +166,7 @@ public class ArtifactsMojo
         List<ChecksumFile> files = new LinkedList<>();
 
         // Add project main artifact.
-        if ( hasValidFile( project.getArtifact() ) )
+        if ( !excludeMainArtifact && hasValidFile( project.getArtifact() ) )
         {
             files.add( new ChecksumFile( "", project.getArtifact().getFile(), project.getArtifact().getArtifactHandler().getExtension(), null ) );
         }
@@ -151,7 +174,10 @@ public class ArtifactsMojo
         // Add projects attached.
         if ( project.getAttachedArtifacts() != null )
         {
-            for ( Artifact artifact : (List<Artifact>) project.getAttachedArtifacts() )
+            Set<Artifact> filteredArtifacts = new HashSet<>(project.getAttachedArtifacts());
+            ClassifierFilter classifierFilter = new ClassifierFilter( includeClassifiers, excludeClassifiers );
+            filteredArtifacts = classifierFilter.filter( filteredArtifacts );
+            for ( Artifact artifact : filteredArtifacts )
             {
                 if ( hasValidFile( artifact ) )
                 {
