@@ -58,7 +58,12 @@ jobs:
 
     - name: Collect code coverage data
       if: success() && matrix.os == 'ubuntu-latest' && matrix.java == '8' && matrix.maven == '3.6.3'
-      shell: bash
       run: curl -s https://codecov.io/bash | bash
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+    - name: Run Snyk to check for vulnerabilities
+      if: success() && matrix.os == 'ubuntu-latest' && matrix.java == '8' && matrix.maven == '3.6.3'
+      uses: snyk/actions/maven@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
