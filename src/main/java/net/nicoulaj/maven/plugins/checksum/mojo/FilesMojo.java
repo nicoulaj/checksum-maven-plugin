@@ -31,6 +31,8 @@ import java.util.List;
  * and/or a summary file.
  *
  * The files are not filtered.
+ * 
+ * Optionally attaches the checksum files as additional project artifacts (with no classifier)
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0

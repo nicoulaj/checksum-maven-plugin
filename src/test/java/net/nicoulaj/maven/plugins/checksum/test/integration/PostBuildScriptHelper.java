@@ -128,6 +128,19 @@ public class PostBuildScriptHelper
     }
 
     /**
+     * Assert the given file does not exist in the local repository.
+     *
+     * @param path the path to the file relative to {@link #localRepositoryPath}.
+     * @throws Exception  if conditions are not fulfilled.
+     */
+    public void assertFileDoesNotExistInLocalRepo( String path )
+        throws Exception
+    {
+        File file = new File( localRepositoryPath, path );
+        assertFileDoesNotExist( file.getAbsolutePath() );
+    }
+
+    /**
      * Assert the given file exists and is a file.
      *
      * @param directory the path to the file directory relative to {@link #baseDirectory}.
@@ -180,11 +193,11 @@ public class PostBuildScriptHelper
         File file = new File( directory, path );
         if ( !file.isFile() )
         {
-            throw new Exception( "The file " + path + " is missing or not a file." );
+            throw new Exception( "The file " + file + " is missing or not a file." );
         }
         else if ( FileUtils.fileRead( file ).length() == 0 )
         {
-            throw new Exception( "The file " + path + " is empty." );
+            throw new Exception( "The file " + file + " is empty." );
         }
     }
 
