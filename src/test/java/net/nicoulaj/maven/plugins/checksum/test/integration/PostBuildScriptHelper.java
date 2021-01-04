@@ -16,7 +16,7 @@
  */
 package net.nicoulaj.maven.plugins.checksum.test.integration;
 
-import org.codehaus.plexus.util.FileUtils;
+import org.apache.maven.shared.utils.io.FileUtils;
 
 import java.io.File;
 import java.util.Map;

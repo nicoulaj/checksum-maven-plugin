@@ -24,10 +24,11 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
 import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
-import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.security.NoSuchAlgorithmException;
 
 /**
@@ -140,7 +141,7 @@ public class OneHashPerFileTarget
                 digestToPrint.append("  ");
                 digestToPrint.append(file.getFile().getName());
             }
-            FileUtils.fileWrite( outputFile, digestToPrint.toString() );
+            Files.write(outputFile.toPath(), digestToPrint.toString().getBytes(), StandardOpenOption.CREATE);
 
             for (ArtifactListener artifactListener : artifactListeners) {
                 artifactListener.artifactCreated(outputFile, fileExtension, file.getExtension(), file.getClassifier());
