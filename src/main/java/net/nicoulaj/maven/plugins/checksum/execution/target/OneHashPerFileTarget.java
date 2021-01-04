@@ -141,7 +141,7 @@ public class OneHashPerFileTarget
                 digestToPrint.append("  ");
                 digestToPrint.append(file.getFile().getName());
             }
-            Files.write(outputFile.toPath(), digestToPrint.toString().getBytes(), StandardOpenOption.CREATE);
+            Files.write(outputFile.toPath(), digestToPrint.toString().getBytes(encoding), StandardOpenOption.CREATE);
 
             for (ArtifactListener artifactListener : artifactListeners) {
                 artifactListener.artifactCreated(outputFile, fileExtension, file.getExtension(), file.getClassifier());

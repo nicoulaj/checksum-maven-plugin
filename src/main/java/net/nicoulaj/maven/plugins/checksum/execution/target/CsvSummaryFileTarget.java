@@ -23,10 +23,11 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
 
 import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
 import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
-import org.apache.maven.shared.utils.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 /**
@@ -130,6 +131,16 @@ public class CsvSummaryFileTarget
     public void close(final String subPath )
         throws ExecutionTargetCloseException
     {
+        // Make sure the parent directory exists.
+        try
+        {
+            Files.createDirectories( summaryFile.getParentFile().toPath() );
+        }
+        catch ( IOException e )
+        {
+            throw new ExecutionTargetCloseException( e.getMessage() );
+        }
+
         StringBuilder sb = new StringBuilder();
 
         // Write the CSV file header.
@@ -169,13 +180,10 @@ public class CsvSummaryFileTarget
 
         sb.append( LINE_SEPARATOR );
 
-        // Make sure the parent directory exists.
-        FileUtils.mkdir( summaryFile.getParent() );
-
         // Write the result to the summary file.
         try
         {
-            FileUtils.fileWrite( summaryFile.getPath(), encoding, sb.toString() );
+            Files.write(summaryFile.toPath(), sb.toString().getBytes(encoding), StandardOpenOption.CREATE);
             for (ArtifactListener artifactListener : artifactListeners) {
                 artifactListener.artifactCreated(summaryFile, "csv", null,null);
             }
