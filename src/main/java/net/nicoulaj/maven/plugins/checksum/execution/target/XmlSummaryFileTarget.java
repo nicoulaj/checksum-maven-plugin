@@ -119,7 +119,7 @@ public class XmlSummaryFileTarget
         }
         catch ( IOException e )
         {
-            throw new ExecutionTargetCloseException( e.getMessage() );
+            throw new ExecutionTargetCloseException( "Could not create summary file parent directory", e );
         }
 
         // Open the target file.
@@ -130,7 +130,7 @@ public class XmlSummaryFileTarget
         }
         catch ( FileNotFoundException | UnsupportedEncodingException e )
         {
-            throw new ExecutionTargetCloseException( e.getMessage() );
+            throw new ExecutionTargetCloseException( "Failed writing to output summary file", e );
         }
 
         // Write in sorted order (per globing argument)
@@ -170,7 +170,7 @@ public class XmlSummaryFileTarget
         }
         catch ( IOException e )
         {
-            throw new ExecutionTargetCloseException( e.getMessage() );
+            throw new ExecutionTargetCloseException( "Failed writing to output summary file", e );
         }
 
         // Close the target file.
@@ -183,7 +183,7 @@ public class XmlSummaryFileTarget
         }
         catch ( IOException e )
         {
-            throw new ExecutionTargetCloseException( e.getMessage() );
+            throw new ExecutionTargetCloseException( "Failed writing to output summary file", e );
         }
     }
 }

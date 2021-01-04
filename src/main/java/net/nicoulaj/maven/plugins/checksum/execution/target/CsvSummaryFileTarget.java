@@ -138,7 +138,7 @@ public class CsvSummaryFileTarget
         }
         catch ( IOException e )
         {
-            throw new ExecutionTargetCloseException( e.getMessage() );
+            throw new ExecutionTargetCloseException( "Could not create summary file parent directory", e );
         }
 
         StringBuilder sb = new StringBuilder();
@@ -190,7 +190,7 @@ public class CsvSummaryFileTarget
         }
         catch ( IOException e )
         {
-            throw new ExecutionTargetCloseException( e.getMessage() );
+            throw new ExecutionTargetCloseException( "Failed writing to output summary file", e );
         }
     }
 }
