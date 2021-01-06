@@ -24,10 +24,11 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
 import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
-import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.security.NoSuchAlgorithmException;
 
 /**
@@ -42,12 +43,12 @@ public class OneHashPerFileTarget
     /**
      * Encoding to use for generated files.
      */
-    protected String encoding;
+    protected final String encoding;
 
     /**
      * The files output directory.
      */
-    protected File outputDirectory;
+    protected final File outputDirectory;
 
     /**
      * List of listeners which are notified every time a checksum file is created.
@@ -65,7 +66,7 @@ public class OneHashPerFileTarget
 
     /**
      * Build a new instance of {@link OneHashPerFileTarget}.
-     *  @param encoding        the encoding to use for generated files.
+     * @param encoding        the encoding to use for generated files.
      * @param outputDirectory the files output directory.
      * @param artifactListeners listeners which are notified every time a CSV file is created
      */
@@ -140,7 +141,7 @@ public class OneHashPerFileTarget
                 digestToPrint.append("  ");
                 digestToPrint.append(file.getFile().getName());
             }
-            FileUtils.fileWrite( outputFile, digestToPrint.toString() );
+            Files.write(outputFile.toPath(), digestToPrint.toString().getBytes(encoding), StandardOpenOption.CREATE);
 
             for (ArtifactListener artifactListener : artifactListeners) {
                 artifactListener.artifactCreated(outputFile, fileExtension, file.getExtension(), file.getClassifier());

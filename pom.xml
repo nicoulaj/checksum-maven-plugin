@@ -76,10 +76,9 @@
   <properties>
 
     <!-- Versions -->
-    <java.level>1.7</java.level>
-    <maven.version>3.0.5</maven.version>
+    <java.level>1.8</java.level>
+    <maven.version>3.2.5</maven.version>
     <bouncycastle.version>1.68</bouncycastle.version>
-    <plexus-utils.version>3.3.0</plexus-utils.version>
     <maven-common-artifact-filters.version>3.1.0</maven-common-artifact-filters.version>
     <maven-shared-utils.version>3.3.3</maven-shared-utils.version>
     <!-- Build settings -->
@@ -121,11 +120,6 @@
         <version>${bouncycastle.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.codehaus.plexus</groupId>
-        <artifactId>plexus-utils</artifactId>
-        <version>${plexus-utils.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.apache.maven.shared</groupId>
         <artifactId>maven-common-artifact-filters</artifactId>
         <version>${maven-common-artifact-filters.version}</version>
@@ -153,16 +147,16 @@
       <artifactId>maven-plugin-annotations</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-utils</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcprov-jdk15on</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.shared</groupId>
       <artifactId>maven-common-artifact-filters</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-shared-utils</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

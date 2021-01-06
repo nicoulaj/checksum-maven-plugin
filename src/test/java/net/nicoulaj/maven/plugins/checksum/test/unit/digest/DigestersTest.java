@@ -20,7 +20,7 @@ import net.nicoulaj.maven.plugins.checksum.digest.DigesterException;
 import net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory;
 import net.nicoulaj.maven.plugins.checksum.digest.FileDigester;
 import net.nicoulaj.maven.plugins.checksum.test.unit.Constants;
-import org.codehaus.plexus.util.FileUtils;
+import org.apache.maven.shared.utils.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;

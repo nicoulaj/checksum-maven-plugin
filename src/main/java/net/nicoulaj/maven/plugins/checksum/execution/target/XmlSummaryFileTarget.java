@@ -23,11 +23,11 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
 
 import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
 import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
-import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.StringUtils;
-import org.codehaus.plexus.util.xml.PrettyPrintXMLWriter;
+import org.apache.maven.shared.utils.StringUtils;
+import org.apache.maven.shared.utils.xml.PrettyPrintXMLWriter;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -50,7 +50,7 @@ public class XmlSummaryFileTarget
     /**
      * Encoding to use for generated files.
      */
-    protected String encoding;
+    protected final String encoding;
 
     /**
      * The association file =&gt; (algorithm,hashcode).
@@ -60,7 +60,7 @@ public class XmlSummaryFileTarget
     /**
      * The target file where the summary is written.
      */
-    protected File summaryFile;
+    protected final File summaryFile;
 
     /**
      * List of listeners which are notified every time a XML file is created.
@@ -71,7 +71,7 @@ public class XmlSummaryFileTarget
 
     /**
      * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget}.
-     *  @param summaryFile the file to which the summary should be written.
+     * @param summaryFile the file to which the summary should be written.
      * @param encoding    the encoding to use for generated files.
      * @param artifactListeners listeners which are notified every time a CSV file is created
      */
@@ -113,7 +113,14 @@ public class XmlSummaryFileTarget
         throws ExecutionTargetCloseException
     {
         // Make sure the parent directory exists.
-        FileUtils.mkdir( summaryFile.getParent() );
+        try
+        {
+            Files.createDirectories( summaryFile.getParentFile().toPath() );
+        }
+        catch ( IOException e )
+        {
+            throw new ExecutionTargetCloseException( "Could not create summary file parent directory", e );
+        }
 
         // Open the target file.
         Writer outputStream;
@@ -123,7 +130,7 @@ public class XmlSummaryFileTarget
         }
         catch ( FileNotFoundException | UnsupportedEncodingException e )
         {
-            throw new ExecutionTargetCloseException( e.getMessage() );
+            throw new ExecutionTargetCloseException( "Failed writing to output summary file", e );
         }
 
         // Write in sorted order (per globing argument)
@@ -139,25 +146,32 @@ public class XmlSummaryFileTarget
         });
 
         // Output hashcodes formatted in XML.
-        PrettyPrintXMLWriter xmlWriter =
-            new PrettyPrintXMLWriter( outputStream, StringUtils.repeat( " ", XML_INDENTATION_SIZE ) );
-        xmlWriter.startElement( "files" );
-        for ( Map.Entry<ChecksumFile, Map<String, String>> entry : entries )
+        try
         {
-            ChecksumFile file = entry.getKey();
-            xmlWriter.startElement( "file" );
-			xmlWriter.addAttribute( "name", file.getRelativePath(file, subPath) );
-            Map<String, String> fileHashcodes = entry.getValue();
-            for ( String algorithm : fileHashcodes.keySet() )
+            PrettyPrintXMLWriter xmlWriter =
+                new PrettyPrintXMLWriter( outputStream, StringUtils.repeat( " ", XML_INDENTATION_SIZE ) );
+            xmlWriter.startElement( "files" );
+            for ( Map.Entry<ChecksumFile, Map<String, String>> entry : entries )
             {
-                xmlWriter.startElement( "hashcode" );
-                xmlWriter.addAttribute( "algorithm", algorithm );
-                xmlWriter.writeText( fileHashcodes.get( algorithm ) );
+                ChecksumFile file = entry.getKey();
+                xmlWriter.startElement( "file" );
+                xmlWriter.addAttribute( "name", file.getRelativePath(file, subPath) );
+                Map<String, String> fileHashcodes = entry.getValue();
+                for ( String algorithm : fileHashcodes.keySet() )
+                {
+                    xmlWriter.startElement( "hashcode" );
+                    xmlWriter.addAttribute( "algorithm", algorithm );
+                    xmlWriter.writeText( fileHashcodes.get( algorithm ) );
+                    xmlWriter.endElement();
+                }
                 xmlWriter.endElement();
             }
             xmlWriter.endElement();
         }
-        xmlWriter.endElement();
+        catch ( IOException e )
+        {
+            throw new ExecutionTargetCloseException( "Failed writing to output summary file", e );
+        }
 
         // Close the target file.
         try
@@ -169,7 +183,7 @@ public class XmlSummaryFileTarget
         }
         catch ( IOException e )
         {
-            throw new ExecutionTargetCloseException( e.getMessage() );
+            throw new ExecutionTargetCloseException( "Failed writing to output summary file", e );
         }
     }
 }

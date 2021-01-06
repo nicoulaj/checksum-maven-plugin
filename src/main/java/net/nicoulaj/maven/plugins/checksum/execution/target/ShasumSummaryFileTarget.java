@@ -22,10 +22,11 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
 
 import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
 import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
-import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 /**
@@ -69,7 +70,12 @@ public class ShasumSummaryFileTarget
     /**
      * The target file where the summary is written.
      */
-    protected File summaryFile;
+    protected final File summaryFile;
+
+    /**
+     * Encoding to use for generated files.
+     */
+    protected final String encoding;
 
     /**
      * List of listeners which are notified every time a sum file is created.
@@ -82,11 +88,13 @@ public class ShasumSummaryFileTarget
      * Build a new instance of {@link ShasumSummaryFileTarget}.
      *
      * @param summaryFile the file to which the summary should be written.
+     * @param encoding    the encoding to use for generated files.
      * @param artifactListeners listeners which are notified every time a CSV file is created
      */
-    public ShasumSummaryFileTarget( File summaryFile, Iterable<? extends ArtifactListener> artifactListeners )
+    public ShasumSummaryFileTarget( File summaryFile, String encoding, Iterable<? extends ArtifactListener> artifactListeners )
     {
         this.summaryFile = summaryFile;
+        this.encoding = encoding;
         this.artifactListeners = artifactListeners;
     }
 
@@ -127,6 +135,16 @@ public class ShasumSummaryFileTarget
     public void close(final String subPath)
         throws ExecutionTargetCloseException
     {
+        // Make sure the parent directory exists.
+        try
+        {
+            Files.createDirectories( summaryFile.getParentFile().toPath() );
+        }
+        catch ( IOException e )
+        {
+            throw new ExecutionTargetCloseException( "Could not create summary file parent directory", e );
+        }
+
         StringBuilder sb = new StringBuilder();
 
         if (algorithms.size() != 1)
@@ -161,20 +179,17 @@ public class ShasumSummaryFileTarget
                     .append( LINE_SEPARATOR );
         }
 
-        // Make sure the parent directory exists.
-        FileUtils.mkdir( summaryFile.getParent() );
-
         // Write the result to the summary file.
         try
         {
-            FileUtils.fileWrite( summaryFile.getPath(), "US-ASCII", sb.toString() );
-             for (ArtifactListener artifactListener : artifactListeners) {
+            Files.write(summaryFile.toPath(), sb.toString().getBytes(encoding), StandardOpenOption.CREATE);
+            for (ArtifactListener artifactListener : artifactListeners) {
                 artifactListener.artifactCreated(summaryFile, "sum", null, null);
             }
        }
         catch ( IOException e )
         {
-            throw new ExecutionTargetCloseException( e.getMessage() );
+            throw new ExecutionTargetCloseException( "Failed writing to output summary file", e );
         }
     }
 }

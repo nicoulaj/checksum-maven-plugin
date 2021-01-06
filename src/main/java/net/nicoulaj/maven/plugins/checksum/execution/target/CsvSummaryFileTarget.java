@@ -23,10 +23,11 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
 
 import net.nicoulaj.maven.plugins.checksum.artifacts.ArtifactListener;
 import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
-import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 /**
@@ -56,7 +57,7 @@ public class CsvSummaryFileTarget
     /**
      * Encoding to use for generated files.
      */
-    protected String encoding;
+    protected final String encoding;
 
     /**
      * The association file =&gt; (algorithm,hashcode).
@@ -71,7 +72,7 @@ public class CsvSummaryFileTarget
     /**
      * The target file where the summary is written.
      */
-    protected File summaryFile;
+    protected final File summaryFile;
 
     /**
      * List of listeners which are notified every time a CSV file is created.
@@ -130,6 +131,16 @@ public class CsvSummaryFileTarget
     public void close(final String subPath )
         throws ExecutionTargetCloseException
     {
+        // Make sure the parent directory exists.
+        try
+        {
+            Files.createDirectories( summaryFile.getParentFile().toPath() );
+        }
+        catch ( IOException e )
+        {
+            throw new ExecutionTargetCloseException( "Could not create summary file parent directory", e );
+        }
+
         StringBuilder sb = new StringBuilder();
 
         // Write the CSV file header.
@@ -169,20 +180,17 @@ public class CsvSummaryFileTarget
 
         sb.append( LINE_SEPARATOR );
 
-        // Make sure the parent directory exists.
-        FileUtils.mkdir( summaryFile.getParent() );
-
         // Write the result to the summary file.
         try
         {
-            FileUtils.fileWrite( summaryFile.getPath(), encoding, sb.toString() );
+            Files.write(summaryFile.toPath(), sb.toString().getBytes(encoding), StandardOpenOption.CREATE);
             for (ArtifactListener artifactListener : artifactListeners) {
                 artifactListener.artifactCreated(summaryFile, "csv", null,null);
             }
         }
         catch ( IOException e )
         {
-            throw new ExecutionTargetCloseException( e.getMessage() );
+            throw new ExecutionTargetCloseException( "Failed writing to output summary file", e );
         }
     }
 }

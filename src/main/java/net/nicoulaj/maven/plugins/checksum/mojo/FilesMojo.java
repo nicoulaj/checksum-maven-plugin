@@ -20,7 +20,7 @@ import org.apache.maven.model.FileSet;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
-import org.codehaus.plexus.util.DirectoryScanner;
+import org.apache.maven.shared.utils.io.DirectoryScanner;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import java.util.List;
  * and/or a summary file.
  *
  * The files are not filtered.
- * 
+ *
  * Optionally attaches the checksum files as additional project artifacts (with no classifier)
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
