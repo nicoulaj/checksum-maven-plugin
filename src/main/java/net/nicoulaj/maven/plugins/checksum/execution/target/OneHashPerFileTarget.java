@@ -43,12 +43,12 @@ public class OneHashPerFileTarget
     /**
      * Encoding to use for generated files.
      */
-    protected String encoding;
+    protected final String encoding;
 
     /**
      * The files output directory.
      */
-    protected File outputDirectory;
+    protected final File outputDirectory;
 
     /**
      * List of listeners which are notified every time a checksum file is created.
@@ -66,7 +66,7 @@ public class OneHashPerFileTarget
 
     /**
      * Build a new instance of {@link OneHashPerFileTarget}.
-     *  @param encoding        the encoding to use for generated files.
+     * @param encoding        the encoding to use for generated files.
      * @param outputDirectory the files output directory.
      * @param artifactListeners listeners which are notified every time a CSV file is created
      */

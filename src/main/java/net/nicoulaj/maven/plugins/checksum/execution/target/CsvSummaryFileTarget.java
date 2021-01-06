@@ -57,7 +57,7 @@ public class CsvSummaryFileTarget
     /**
      * Encoding to use for generated files.
      */
-    protected String encoding;
+    protected final String encoding;
 
     /**
      * The association file =&gt; (algorithm,hashcode).
@@ -72,7 +72,7 @@ public class CsvSummaryFileTarget
     /**
      * The target file where the summary is written.
      */
-    protected File summaryFile;
+    protected final File summaryFile;
 
     /**
      * List of listeners which are notified every time a CSV file is created.

@@ -30,8 +30,8 @@ import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.project.MavenProjectHelper;
-import org.apache.maven.shared.utils.io.FileUtils;
 import org.apache.maven.shared.utils.StringUtils;
+import org.apache.maven.shared.utils.io.FileUtils;
 
 import java.io.File;
 import java.util.Arrays;
@@ -217,7 +217,7 @@ abstract class AbstractChecksumMojo
         if ( isShasumSummary() )
         {
             execution.addTarget( new ShasumSummaryFileTarget(
-                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getShasumSummaryFile() ), createArtifactListeners()) );
+                FileUtils.resolveFile( new File( project.getBuild().getDirectory() ), getShasumSummaryFile() ), encoding, createArtifactListeners()) );
         }
 
         // Run the execution.

@@ -70,12 +70,12 @@ public class ShasumSummaryFileTarget
     /**
      * The target file where the summary is written.
      */
-    protected File summaryFile;
+    protected final File summaryFile;
 
     /**
      * Encoding to use for generated files.
      */
-    protected String encoding;
+    protected final String encoding;
 
     /**
      * List of listeners which are notified every time a sum file is created.
@@ -88,11 +88,13 @@ public class ShasumSummaryFileTarget
      * Build a new instance of {@link ShasumSummaryFileTarget}.
      *
      * @param summaryFile the file to which the summary should be written.
+     * @param encoding    the encoding to use for generated files.
      * @param artifactListeners listeners which are notified every time a CSV file is created
      */
-    public ShasumSummaryFileTarget( File summaryFile, Iterable<? extends ArtifactListener> artifactListeners )
+    public ShasumSummaryFileTarget( File summaryFile, String encoding, Iterable<? extends ArtifactListener> artifactListeners )
     {
         this.summaryFile = summaryFile;
+        this.encoding = encoding;
         this.artifactListeners = artifactListeners;
     }
 
