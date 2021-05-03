@@ -2,7 +2,7 @@
 <!--
 
     checksum-maven-plugin - http://checksum-maven-plugin.nicoulaj.net
-    Copyright © 2010-2018 checksum-maven-plugin contributors
+    Copyright © 2010-2021 checksum-maven-plugin contributors
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@
   <artifactId>multi-module.check.default.module2</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-  
+
   <dependencies>
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
