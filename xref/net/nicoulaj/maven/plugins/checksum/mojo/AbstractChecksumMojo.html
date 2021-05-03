@@ -8,7 +8,7 @@
 <div id="overview"><a href="../../../../../../../apidocs/net/nicoulaj/maven/plugins/checksum/mojo/AbstractChecksumMojo.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * checksum-maven-plugin - <a href="http://checksum-maven-plugin.nicoulaj.net" target="alexandria_uri">http://checksum-maven-plugin.nicoulaj.net</a></em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * Copyright © 2010-2018 checksum-maven-plugin contributors</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * Copyright © 2010-2021 checksum-maven-plugin contributors</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -38,8 +38,8 @@
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.plugins.annotations.Parameter;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.project.MavenProject;
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.project.MavenProjectHelper;
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> org.codehaus.plexus.util.FileUtils;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> org.codehaus.plexus.util.StringUtils;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.shared.utils.StringUtils;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.shared.utils.io.FileUtils;
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> java.io.File;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> java.util.Arrays;
@@ -225,7 +225,7 @@
 <a class="jxr_linenumber" name="L217" href="#L217">217</a>         <strong class="jxr_keyword">if</strong> ( isShasumSummary() )
 <a class="jxr_linenumber" name="L218" href="#L218">218</a>         {
 <a class="jxr_linenumber" name="L219" href="#L219">219</a>             execution.addTarget( <strong class="jxr_keyword">new</strong> <a name="ShasumSummaryFileTarget" href="../../../../../../net/nicoulaj/maven/plugins/checksum/execution/target/ShasumSummaryFileTarget.html#ShasumSummaryFileTarget">ShasumSummaryFileTarget</a>(
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>                 FileUtils.resolveFile( <strong class="jxr_keyword">new</strong> File( project.getBuild().getDirectory() ), getShasumSummaryFile() ), createArtifactListeners()) );
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>                 FileUtils.resolveFile( <strong class="jxr_keyword">new</strong> File( project.getBuild().getDirectory() ), getShasumSummaryFile() ), encoding, createArtifactListeners()) );
 <a class="jxr_linenumber" name="L221" href="#L221">221</a>         }
 <a class="jxr_linenumber" name="L222" href="#L222">222</a> 
 <a class="jxr_linenumber" name="L223" href="#L223">223</a>         <em class="jxr_comment">// Run the execution.</em>
@@ -280,6 +280,6 @@
 <a class="jxr_linenumber" name="L272" href="#L272">272</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2020. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2010&#x2013;2021. All rights reserved.</div>
 </body>
 </html>

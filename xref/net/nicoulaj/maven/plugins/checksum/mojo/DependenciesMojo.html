@@ -8,7 +8,7 @@
 <div id="overview"><a href="../../../../../../../apidocs/net/nicoulaj/maven/plugins/checksum/mojo/DependenciesMojo.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * checksum-maven-plugin - <a href="http://checksum-maven-plugin.nicoulaj.net" target="alexandria_uri">http://checksum-maven-plugin.nicoulaj.net</a></em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * Copyright © 2010-2018 checksum-maven-plugin contributors</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * Copyright © 2010-2021 checksum-maven-plugin contributors</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -185,7 +185,7 @@
 <a class="jxr_linenumber" name="L177" href="#L177">177</a>         <strong class="jxr_keyword">for</strong> ( Artifact artifact : artifacts )
 <a class="jxr_linenumber" name="L178" href="#L178">178</a>         {
 <a class="jxr_linenumber" name="L179" href="#L179">179</a>             <strong class="jxr_keyword">if</strong> ( ( scopes == <strong class="jxr_keyword">null</strong> || scopes.contains( artifact.getScope() ) ) &amp;&amp; ( types == <strong class="jxr_keyword">null</strong> || types.contains(
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>                 artifact.getType() ) ) )
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>                 artifact.getType() ) ) &amp;&amp;  artifact.getFile() != <strong class="jxr_keyword">null</strong> )
 <a class="jxr_linenumber" name="L181" href="#L181">181</a>             {
 <a class="jxr_linenumber" name="L182" href="#L182">182</a>                 files.add( <strong class="jxr_keyword">new</strong> <a name="ChecksumFile" href="../../../../../../net/nicoulaj/maven/plugins/checksum/mojo/ChecksumFile.html#ChecksumFile">ChecksumFile</a>( <span class="jxr_string">""</span>, artifact.getFile(), artifact.getType(), artifact.getClassifier() ) );
 <a class="jxr_linenumber" name="L183" href="#L183">183</a>             }
@@ -268,6 +268,6 @@
 <a class="jxr_linenumber" name="L260" href="#L260">260</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2020. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2010&#x2013;2021. All rights reserved.</div>
 </body>
 </html>

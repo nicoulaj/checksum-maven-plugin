@@ -1,0 +1,7 @@
+net.nicoulaj.maven.plugins.checksum.test
+net.nicoulaj.maven.plugins.checksum.test.integration
+net.nicoulaj.maven.plugins.checksum.test.unit
+net.nicoulaj.maven.plugins.checksum.test.unit.digest
+net.nicoulaj.maven.plugins.checksum.test.unit.execution
+net.nicoulaj.maven.plugins.checksum.test.unit.execution.target
+net.nicoulaj.maven.plugins.checksum.test.unit.mojo
