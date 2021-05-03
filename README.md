@@ -3,4 +3,4 @@ checksum-maven-plugin [![Maven Central](https://maven-badges.herokuapp.com/maven
 
 **Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.**
 
-The documentation is at <http://checksum-maven-plugin.nicoulaj.net>.
+The documentation is at <https://checksum-maven-plugin.nicoulaj.net>.

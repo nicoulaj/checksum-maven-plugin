@@ -34,7 +34,7 @@
   <name>checksum-maven-plugin</name>
   <description>Compute project artifacts/dependencies/files checksum digests and output them to individual or summary files.
   </description>
-  <url>http://checksum-maven-plugin.nicoulaj.net</url>
+  <url>https://checksum-maven-plugin.nicoulaj.net</url>
   <inceptionYear>2010</inceptionYear>
 
   <licenses>
@@ -50,7 +50,7 @@
   </licenses>
 
   <scm>
-    <url>http://github.com/nicoulaj/checksum-maven-plugin</url>
+    <url>https://github.com/nicoulaj/checksum-maven-plugin</url>
     <connection>scm:git:git@github.com:nicoulaj/checksum-maven-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:nicoulaj/checksum-maven-plugin.git</developerConnection>
     <tag>HEAD</tag>
@@ -58,12 +58,12 @@
 
   <issueManagement>
     <system>Github</system>
-    <url>http://github.com/nicoulaj/checksum-maven-plugin/issues</url>
+    <url>https://github.com/nicoulaj/checksum-maven-plugin/issues</url>
   </issueManagement>
 
   <ciManagement>
-    <system>Travis-CI</system>
-    <url>https://travis-ci.org/nicoulaj/checksum-maven-plugin</url>
+    <system>Github</system>
+    <url>https://github.com/nicoulaj/checksum-maven-plugin/actions</url>
   </ciManagement>
 
   <distributionManagement>
