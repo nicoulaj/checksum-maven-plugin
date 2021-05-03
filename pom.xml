@@ -80,7 +80,7 @@
     <maven.version>3.2.5</maven.version>
     <bouncycastle.version>1.68</bouncycastle.version>
     <maven-common-artifact-filters.version>3.2.0</maven-common-artifact-filters.version>
-    <maven-shared-utils.version>3.3.3</maven-shared-utils.version>
+    <maven-shared-utils.version>3.3.4</maven-shared-utils.version>
     <!-- Build settings -->
     <debug>false</debug>
     <invoker.settings-file>${project.basedir}/src/it/settings.xml</invoker.settings-file>
