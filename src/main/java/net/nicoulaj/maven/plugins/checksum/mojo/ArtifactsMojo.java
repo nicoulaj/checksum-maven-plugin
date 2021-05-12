@@ -20,7 +20,9 @@ import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.shared.artifact.filter.collection.ArtifactIdFilter;
 import org.apache.maven.shared.artifact.filter.collection.ClassifierFilter;
+import org.apache.maven.shared.artifact.filter.collection.GroupIdFilter;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -146,6 +148,42 @@ public class ArtifactsMojo
     protected String excludeClassifiers;
 
     /**
+     * Comma-separated list of includes. For all secondary project artifacts matching any of the given includes checksums are generated.
+     * If not set all secondary project artifacts are considered.
+     *
+     * @since 1.11
+     */
+    @Parameter
+    protected String groupdIDincludes;
+
+    /**
+     * Comma-separated list of excludes. For all secondary project artifacts matching any of the given excludes checksums are not generated.
+     * Takes precedence over {@link #groupdIDincludes}.
+     *
+     * @since 1.11
+     */
+    @Parameter
+    protected String groupdIDexcludes;
+
+    /**
+     * Comma-separated list of includes. For all secondary project artifacts matching any of the given includes checksums are generated.
+     * If not set all secondary project artifacts are considered.
+     *
+     * @since 1.11
+     */
+    @Parameter
+    protected String artifactIDincludes;
+
+    /**
+     * Comma-separated list of excludes. For all secondary project artifacts matching any of the given excludes checksums are not generated.
+     * Takes precedence over {@link #artifactIDincludes}.
+     *
+     * @since 1.11
+     */
+    @Parameter
+    protected String artifactIDexcludes;
+
+    /**
      * Constructor.
      */
     public ArtifactsMojo() {
@@ -177,6 +215,10 @@ public class ArtifactsMojo
             Set<Artifact> filteredArtifacts = new HashSet<>(project.getAttachedArtifacts());
             ClassifierFilter classifierFilter = new ClassifierFilter( includeClassifiers, excludeClassifiers );
             filteredArtifacts = classifierFilter.filter( filteredArtifacts );
+            ArtifactIdFilter artifactIDFilter = new ArtifactIdFilter( artifactIDincludes, artifactIDexcludes );
+            filteredArtifacts = artifactIDFilter.filter( filteredArtifacts );
+            GroupIdFilter groupIdFilter = new GroupIdFilter( groupdIDincludes, groupdIDexcludes );
+            filteredArtifacts = groupIdFilter.filter( filteredArtifacts );
             for ( Artifact artifact : filteredArtifacts )
             {
                 if ( hasValidFile( artifact ) )
@@ -289,4 +331,6 @@ public class ArtifactsMojo
     {
         return shasumSummaryFile;
     }
+
+
 }

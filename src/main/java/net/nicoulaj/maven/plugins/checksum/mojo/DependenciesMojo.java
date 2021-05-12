@@ -21,6 +21,8 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
+import org.apache.maven.shared.artifact.filter.collection.ArtifactIdFilter;
+import org.apache.maven.shared.artifact.filter.collection.GroupIdFilter;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -155,6 +157,43 @@ public class DependenciesMojo
     protected boolean transitive;
 
     /**
+     * Comma-separated list of includes. For all secondary project artifacts matching any of the given includes checksums are generated.
+     * If not set all secondary project artifacts are considered.
+     *
+     * @since 1.11
+     */
+    @Parameter
+    protected String groupdIDincludes;
+
+    /**
+     * Comma-separated list of excludes. For all secondary project artifacts matching any of the given excludes checksums are not generated.
+     * Takes precedence over {@link #groupdIDincludes}.
+     *
+     * @since 1.11
+     */
+    @Parameter
+    protected String groupdIDexcludes;
+
+    /**
+     * Comma-separated list of includes. For all secondary project artifacts matching any of the given includes checksums are generated.
+     * If not set all secondary project artifacts are considered.
+     *
+     * @since 1.11
+     */
+    @Parameter
+    protected String artifactIDincludes;
+
+    /**
+     * Comma-separated list of excludes. For all secondary project artifacts matching any of the given excludes checksums are not generated.
+     * Takes precedence over {@link #artifactIDincludes}.
+     *
+     * @since 1.11
+     */
+    @Parameter
+    protected String artifactIDexcludes;
+
+
+    /**
      * Constructor.
      */
     public DependenciesMojo() {
@@ -174,6 +213,10 @@ public class DependenciesMojo
         List<ChecksumFile> files = new LinkedList<>();
 
         Set<Artifact> artifacts = transitive ?  project.getArtifacts() : project.getDependencyArtifacts();
+        ArtifactIdFilter artifactIDFilter = new ArtifactIdFilter( artifactIDincludes, artifactIDexcludes );
+        Set<Artifact> filteredArtifacts = artifactIDFilter.filter(artifacts);
+        GroupIdFilter groupIdFilter = new GroupIdFilter( groupdIDincludes, groupdIDexcludes );
+        filteredArtifacts = groupIdFilter.filter( filteredArtifacts );
         for ( Artifact artifact : artifacts )
         {
             if ( ( scopes == null || scopes.contains( artifact.getScope() ) ) && ( types == null || types.contains(
@@ -257,4 +300,6 @@ public class DependenciesMojo
     {
         return shasumSummaryFile;
     }
+
+   
 }
