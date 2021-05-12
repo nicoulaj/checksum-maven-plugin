@@ -217,7 +217,7 @@ public class DependenciesMojo
         Set<Artifact> filteredArtifacts = artifactIDFilter.filter(artifacts);
         GroupIdFilter groupIdFilter = new GroupIdFilter( groupdIDincludes, groupdIDexcludes );
         filteredArtifacts = groupIdFilter.filter( filteredArtifacts );
-        for ( Artifact artifact : artifacts )
+        for ( Artifact artifact : filteredArtifacts )
         {
             if ( ( scopes == null || scopes.contains( artifact.getScope() ) ) && ( types == null || types.contains(
                 artifact.getType() ) ) &&  artifact.getFile() != null )
@@ -301,5 +301,4 @@ public class DependenciesMojo
         return shasumSummaryFile;
     }
 
-   
 }
