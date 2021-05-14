@@ -117,6 +117,12 @@ public class DependenciesCheckMojo extends AbstractMojo
   @Parameter(property = "checksum.skip", defaultValue = "false")
   protected boolean skip;
 
+  /**
+   * Flag used to allow execution for pom packaging.
+   */
+  @Parameter(property = "checksum.pom.skip", defaultValue = "true")
+  protected boolean pomSkip;
+
   @Override
   public void execute() throws MojoFailureException
   {
@@ -124,9 +130,9 @@ public class DependenciesCheckMojo extends AbstractMojo
     {
       getLog().info("Skipping checksum:check execution because property checksum.skip is set.");
     }
-    else if (skipPackaging("pom"))
+    else if (pomSkip && skipPackaging("pom"))
     {
-      getLog().warn("The goal is skipped due to packaging '" + project.getPackaging() + "'");
+      getLog().warn("The goal is skipped due to packaging '" + project.getPackaging() + "'. You can override this using checksum.pom.skip=false property.");
     }
     else
     {
