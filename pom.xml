@@ -76,8 +76,8 @@
   <properties>
 
     <!-- Versions -->
-    <java.level>1.8</java.level>
-    <maven.version>3.2.5</maven.version>
+    <java.level>1.7</java.level>
+    <maven.version>3.0.5</maven.version>
     <bouncycastle.version>1.68</bouncycastle.version>
     <maven-common-artifact-filters.version>3.2.0</maven-common-artifact-filters.version>
     <maven-shared-utils.version>3.3.4</maven-shared-utils.version>
@@ -198,7 +198,7 @@
             <configuration>
               <signature>
                 <groupId>org.codehaus.mojo.signature</groupId>
-                <artifactId>java18</artifactId>
+                <artifactId>java17</artifactId>
                 <version>1.0</version>
               </signature>
             </configuration>
