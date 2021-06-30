@@ -81,9 +81,11 @@
     <bouncycastle.version>1.68</bouncycastle.version>
     <maven-common-artifact-filters.version>3.2.0</maven-common-artifact-filters.version>
     <maven-shared-utils.version>3.3.4</maven-shared-utils.version>
+    <maven-release-plugin.version>3.0.0-M4</maven-release-plugin.version>
     <!-- Build settings -->
     <debug>false</debug>
     <invoker.settings-file>${project.basedir}/src/it/settings.xml</invoker.settings-file>
+    <project.build.outputTimestamp>2021-05-22T20:04:00Z</project.build.outputTimestamp>
 
   </properties>
 
