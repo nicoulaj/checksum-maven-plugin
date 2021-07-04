@@ -54,6 +54,8 @@ jobs:
       shell: bash
       run: |
         unset M2_HOME
+        mkdir -p ~/.m2
+        echo "<settings><mirrors><mirror><mirrorOf>central</mirrorOf><name>central</name><url>https://repo.maven.apache.org/maven2/</url></mirror></mirrors></settings>" > ~/.m2/settings.xml # reqiored by Maven < 3.2.3
         ~/maven/bin/mvn -V --batch-mode clean verify
 
     - name: Collect code coverage data
