@@ -41,8 +41,9 @@ jobs:
           ${{ runner.os }}-maven-repo-
 
     - name: Setup JDK
-      uses: joschi/setup-jdk@v2
+      uses: actions/setup-java@v2
       with:
+        distribution: 'adopt'
         java-version: ${{ matrix.java }}
 
     - name: Setup Maven
