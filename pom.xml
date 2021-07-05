@@ -28,7 +28,7 @@
 
   <groupId>net.nicoulaj.maven.plugins</groupId>
   <artifactId>checksum-maven-plugin</artifactId>
-  <version>1.11</version>
+  <version>1.12-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <name>checksum-maven-plugin</name>
@@ -53,7 +53,7 @@
     <url>https://github.com/nicoulaj/checksum-maven-plugin</url>
     <connection>scm:git:git@github.com:nicoulaj/checksum-maven-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:nicoulaj/checksum-maven-plugin.git</developerConnection>
-    <tag>1.11</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
@@ -87,7 +87,7 @@
     <!-- Build settings -->
     <debug>false</debug>
     <invoker.settings-file>${project.basedir}/src/it/settings.xml</invoker.settings-file>
-    <project.build.outputTimestamp>2021-07-05T19:41:05Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2021-07-05T19:41:16Z</project.build.outputTimestamp>
 
   </properties>
 
