@@ -23,10 +23,11 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
 import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
 
 /**
- * An {@link ExecutionTarget} is an output target for calculated digests.
+ * An {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} is an output target for calculated digests.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 public interface ExecutionTarget
 {
@@ -35,7 +36,7 @@ public interface ExecutionTarget
      *
      * <p>Should be called before first call to {@link #write(String, ChecksumFile, String)}.</p>
      *
-     * @throws ExecutionTargetInitializationException
+     * @throws net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetInitializationException
      *          if an error occured while initializing the target.
      */
     void init()
@@ -47,7 +48,7 @@ public interface ExecutionTarget
      * @param digest    the digest to write.
      * @param file      the file for which the digest was calculated.
      * @param algorithm the algorithm used to calculate the digest.
-     * @throws ExecutionTargetWriteException if an error occured while writing to the target.
+     * @throws net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException if an error occured while writing to the target.
      */
     void write( String digest, ChecksumFile file, String algorithm )
         throws ExecutionTargetWriteException;
@@ -58,7 +59,7 @@ public interface ExecutionTarget
      * <p>Should be called after last call to {@link #write(String, ChecksumFile, String)}.</p>
      *
      * @param subPath part of relative path to exclude from file path
-     * @throws ExecutionTargetCloseException if an error occured while closing the target.
+     * @throws net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetCloseException if an error occured while closing the target.
      */
     void close(String subPath)
         throws ExecutionTargetCloseException;

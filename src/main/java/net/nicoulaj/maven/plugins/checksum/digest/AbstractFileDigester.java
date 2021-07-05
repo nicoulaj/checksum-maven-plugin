@@ -17,10 +17,11 @@
 package net.nicoulaj.maven.plugins.checksum.digest;
 
 /**
- * Base class for implementations of {@link FileDigester}.
+ * Base class for implementations of {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 public abstract class AbstractFileDigester
     implements FileDigester
@@ -31,7 +32,7 @@ public abstract class AbstractFileDigester
     protected final String algorithm;
 
     /**
-     * Build a new instance of {@link AbstractFileDigester}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.digest.AbstractFileDigester}.
      *
      * @param algorithm the algorithm used to compute checksum digests.
      */
@@ -42,6 +43,8 @@ public abstract class AbstractFileDigester
 
     /**
      * {@inheritDoc}
+     *
+     * @return a {@link java.lang.String} object
      */
     public String getAlgorithm()
     {
@@ -50,6 +53,8 @@ public abstract class AbstractFileDigester
 
     /**
      * {@inheritDoc}
+     *
+     * @return a {@link java.lang.String} object
      */
     public String getFileExtension()
     {

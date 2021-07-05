@@ -31,10 +31,11 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 /**
- * An {@link ExecutionTarget} that writes digests to a CSV file.
+ * An {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} that writes digests to a CSV file.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 public class CsvSummaryFileTarget
     implements ExecutionTarget
@@ -82,7 +83,8 @@ public class CsvSummaryFileTarget
     protected final Iterable<? extends ArtifactListener> artifactListeners;
 
     /**
-     * Build a new instance of {@link CsvSummaryFileTarget}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.CsvSummaryFileTarget}.
+     *
      * @param summaryFile the file to which the summary should be written.
      * @param encoding    the encoding to use for generated files.
      * @param artifactListeners listeners which are notified every time a CSV file is created
@@ -94,9 +96,7 @@ public class CsvSummaryFileTarget
         this.artifactListeners = artifactListeners;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void init()
     {
@@ -104,9 +104,7 @@ public class CsvSummaryFileTarget
         algorithms = new TreeSet<>();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void write( String digest, ChecksumFile file, String algorithm )
     {
@@ -124,9 +122,7 @@ public class CsvSummaryFileTarget
         algorithms.add( algorithm );
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void close(final String subPath )
         throws ExecutionTargetCloseException

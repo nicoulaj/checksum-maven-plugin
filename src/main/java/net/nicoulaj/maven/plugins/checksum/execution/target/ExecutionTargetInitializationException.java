@@ -21,17 +21,18 @@
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
 /**
- * Thrown when an error occurs while trying to initialize an {@link ExecutionTarget}.
+ * Thrown when an error occurs while trying to initialize an {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see ExecutionTarget#init()
  * @since 1.0
+ * @version $Id: $Id
  */
 public class ExecutionTargetInitializationException
     extends Exception
 {
     /**
-     * Build a new instance of {@link ExecutionTargetInitializationException}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetInitializationException}.
      *
      * @param message the message describing the error.
      */

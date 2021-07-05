@@ -44,6 +44,7 @@ import java.util.*;
  *
  * @author <a href="mailto:gunnar.tjarks@governikus.de">Gunnar Tjarks</a>
  * @since 1.8
+ * @version $Id: $Id
  */
 @Mojo(
    name = DependenciesCheckMojo.NAME,
@@ -123,6 +124,7 @@ public class DependenciesCheckMojo extends AbstractMojo
   @Parameter(property = "checksum.pom.skip", defaultValue = "true")
   protected boolean pomSkip;
 
+  /** {@inheritDoc} */
   @Override
   public void execute() throws MojoFailureException
   {

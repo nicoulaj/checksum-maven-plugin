@@ -24,11 +24,12 @@ import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
 
 /**
- * Implementation of {@link FileDigester} for the CRC32 algorithm.
+ * Implementation of {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} for the CRC32 algorithm.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see FileDigester
  * @since 1.0
+ * @version $Id: $Id
  */
 public class CRC32FileDigester
     extends AbstractFileDigester
@@ -39,16 +40,14 @@ public class CRC32FileDigester
     public static final String ALGORITHM = "CRC32";
 
     /**
-     * Build a new instance of {@link CRC32FileDigester}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.digest.CRC32FileDigester}.
      */
     public CRC32FileDigester()
     {
         super( ALGORITHM );
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public String calculate( File file )
         throws DigesterException
     {

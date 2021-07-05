@@ -36,6 +36,7 @@ import java.util.List;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 @Mojo(
     name = FilesMojo.NAME,
@@ -162,9 +163,9 @@ public class FilesMojo
     }
 
     /**
-     * Build the list of files from which digests should be generated.
+     * {@inheritDoc}
      *
-     * @return the list of files that should be processed.
+     * Build the list of files from which digests should be generated.
      */
     @Override
     protected List<ChecksumFile> getFilesToProcess()
@@ -207,81 +208,63 @@ public class FilesMojo
         return filesToProcess;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isIndividualFiles()
     {
         return individualFiles;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getIndividualFilesOutputDirectory()
     {
         return individualFilesOutputDirectory;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isCsvSummary()
     {
         return csvSummary;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getCsvSummaryFile()
     {
         return csvSummaryFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isXmlSummary()
     {
         return xmlSummary;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getXmlSummaryFile()
     {
         return xmlSummaryFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isShasumSummary()
     {
         return shasumSummary;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getShasumSummaryFile()
     {
         return shasumSummaryFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isFailIfNoFiles(){
         return failIfNoFiles;

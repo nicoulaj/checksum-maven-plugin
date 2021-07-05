@@ -31,6 +31,7 @@ import java.util.Set;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 @Mojo(
     name = DependenciesMojo.NAME,
@@ -162,11 +163,11 @@ public class DependenciesMojo
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Build the list of files from which digests should be generated.
      *
      * <p>The list is composed of the project dependencies.</p>
-     *
-     * @return the list of files that should be processed.
      */
     @Override
     protected List<ChecksumFile> getFilesToProcess()
@@ -186,72 +187,56 @@ public class DependenciesMojo
         return files;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isIndividualFiles()
     {
         return individualFiles;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getIndividualFilesOutputDirectory()
     {
         return individualFilesOutputDirectory;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isCsvSummary()
     {
         return csvSummary;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getCsvSummaryFile()
     {
         return csvSummaryFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isXmlSummary()
     {
         return xmlSummary;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getXmlSummaryFile()
     {
         return xmlSummaryFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isShasumSummary()
     {
         return shasumSummary;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getShasumSummaryFile()
     {

@@ -18,6 +18,20 @@ package net.nicoulaj.maven.plugins.checksum.artifacts;
 
 import java.io.File;
 
+/**
+ * <p>ArtifactListener interface.</p>
+ *
+ * @author nicoulaj
+ * @version $Id: $Id
+ */
 public interface ArtifactListener {
+    /**
+     * <p>artifactCreated.</p>
+     *
+     * @param artifact a {@link java.io.File} object
+     * @param checksumType a {@link java.lang.String} object
+     * @param artifactExtension a {@link java.lang.String} object
+     * @param artifactClassifier a {@link java.lang.String} object
+     */
     void artifactCreated(File artifact, String checksumType, String artifactExtension, String artifactClassifier);
 }

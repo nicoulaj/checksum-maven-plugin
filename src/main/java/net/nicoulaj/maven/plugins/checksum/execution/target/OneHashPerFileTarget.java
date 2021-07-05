@@ -32,10 +32,11 @@ import java.nio.file.StandardOpenOption;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * An {@link ExecutionTarget} that writes digests to separate files.
+ * An {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} that writes digests to separate files.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 public class OneHashPerFileTarget
     implements ExecutionTarget
@@ -65,7 +66,8 @@ public class OneHashPerFileTarget
     protected boolean appendFilename = false;
 
     /**
-     * Build a new instance of {@link OneHashPerFileTarget}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget}.
+     *
      * @param encoding        the encoding to use for generated files.
      * @param outputDirectory the files output directory.
      * @param artifactListeners listeners which are notified every time a CSV file is created
@@ -78,8 +80,9 @@ public class OneHashPerFileTarget
     }
 
     /**
-     * Build a new instance of {@link OneHashPerFileTarget}.
-     *  @param encoding        the encoding to use for generated files.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget}.
+     *
+     * @param encoding        the encoding to use for generated files.
      * @param outputDirectory the files output directory.
      * @param artifactListeners listeners which are notified every time a CSV file is created
      * @param appendFilename add filename in generated file
@@ -93,7 +96,7 @@ public class OneHashPerFileTarget
     }
 
     /**
-     * Build a new instance of {@link OneHashPerFileTarget}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget}.
      *
      * @param encoding the encoding to use for generated files.
      * @param artifactListeners listeners which are notified every time a CSV file is created
@@ -105,6 +108,8 @@ public class OneHashPerFileTarget
 
     /**
      * {@inheritDoc}
+     *
+     * @throws net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetInitializationException if any.
      */
     public void init()
         throws ExecutionTargetInitializationException
@@ -124,9 +129,7 @@ public class OneHashPerFileTarget
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void write( String digest, ChecksumFile file, String algorithm )
         throws ExecutionTargetWriteException
     {
@@ -153,9 +156,7 @@ public class OneHashPerFileTarget
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void close(String subPath)
     {
         // Nothing to do

@@ -24,11 +24,19 @@ import org.junit.Test;
 import java.io.File;
 
 /**
- * Special testcase for cksum {@link CksumFileDigester} of the empty file
+ * Special testcase for cksum {@link net.nicoulaj.maven.plugins.checksum.digest.CksumFileDigester} of the empty file
  *
+ * @author nicoulaj
+ * @version $Id: $Id
+ * @since 1.11
  */
 public class CksumFileDigesterTest  {
 
+    /**
+     * <p>testEmptyFileCksum.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testEmptyFileCksum() throws Exception {
         File empty_file = File.createTempFile("empty_file", null);

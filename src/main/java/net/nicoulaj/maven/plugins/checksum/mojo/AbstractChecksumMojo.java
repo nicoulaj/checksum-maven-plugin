@@ -168,9 +168,7 @@ abstract class AbstractChecksumMojo
         this.failIfNoTargets = failIfNoTargets;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void execute()
         throws MojoFailureException
@@ -246,26 +244,76 @@ abstract class AbstractChecksumMojo
      */
     protected abstract List<ChecksumFile> getFilesToProcess();
 
+    /**
+     * <p>isIndividualFiles.</p>
+     *
+     * @return a boolean
+     */
     protected abstract boolean isIndividualFiles();
 
+    /**
+     * <p>isAppendFilename.</p>
+     *
+     * @return a boolean
+     */
     protected boolean isAppendFilename(){
         return false;
     }
 
+    /**
+     * <p>getIndividualFilesOutputDirectory.</p>
+     *
+     * @return a {@link java.lang.String} object
+     */
     protected abstract String getIndividualFilesOutputDirectory();
 
+    /**
+     * <p>isCsvSummary.</p>
+     *
+     * @return a boolean
+     */
     protected abstract boolean isCsvSummary();
 
+    /**
+     * <p>getCsvSummaryFile.</p>
+     *
+     * @return a {@link java.lang.String} object
+     */
     protected abstract String getCsvSummaryFile();
 
+    /**
+     * <p>isXmlSummary.</p>
+     *
+     * @return a boolean
+     */
     protected abstract boolean isXmlSummary();
 
+    /**
+     * <p>getXmlSummaryFile.</p>
+     *
+     * @return a {@link java.lang.String} object
+     */
     protected abstract String getXmlSummaryFile();
 
+    /**
+     * <p>isShasumSummary.</p>
+     *
+     * @return a boolean
+     */
     protected abstract boolean isShasumSummary();
 
+    /**
+     * <p>getShasumSummaryFile.</p>
+     *
+     * @return a {@link java.lang.String} object
+     */
     protected abstract String getShasumSummaryFile();
 
+    /**
+     * <p>isFailIfNoFiles.</p>
+     *
+     * @return a boolean
+     */
     protected boolean isFailIfNoFiles(){
         return defaultFailIfNoFiles;
     }

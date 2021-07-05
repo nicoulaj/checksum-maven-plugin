@@ -23,11 +23,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Base class for {@link Execution} implementations.
+ * Base class for {@link net.nicoulaj.maven.plugins.checksum.execution.Execution} implementations.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see net.nicoulaj.maven.plugins.checksum.execution.Execution
  * @since 1.0
+ * @version $Id: $Id
  */
 public abstract class AbstractExecution
     implements Execution
@@ -69,6 +70,8 @@ public abstract class AbstractExecution
 
     /**
      * {@inheritDoc}
+     *
+     * @return a {@link java.util.List} object
      */
     public List<ChecksumFile> getFiles()
     {
@@ -79,9 +82,7 @@ public abstract class AbstractExecution
         return files;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void setFiles( List<ChecksumFile> files )
     {
         this.files = files;
@@ -89,31 +90,27 @@ public abstract class AbstractExecution
 
     /**
      * {@inheritDoc}
+     *
+     * @return a {@link java.lang.String} object
      */
     public String getSubPath()
     {
             return subPath;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void setSubPath( String subPath )
     {
             this.subPath = subPath;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void addFile( ChecksumFile file )
     {
         getFiles().add( file );
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void removeFile( ChecksumFile file )
     {
         if ( files != null )
@@ -124,6 +121,8 @@ public abstract class AbstractExecution
 
     /**
      * {@inheritDoc}
+     *
+     * @return a {@link java.util.List} object
      */
     public List<String> getAlgorithms()
     {
@@ -134,25 +133,19 @@ public abstract class AbstractExecution
         return algorithms;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void setAlgorithms( List<String> algorithms )
     {
         this.algorithms = algorithms;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void addAlgorithm( String algorithm )
     {
         getAlgorithms().add( algorithm );
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void removeAlgorithm( String algorithm )
     {
         if ( algorithms != null )
@@ -163,6 +156,8 @@ public abstract class AbstractExecution
 
     /**
      * {@inheritDoc}
+     *
+     * @return a {@link java.util.List} object
      */
     public List<ExecutionTarget> getTargets()
     {
@@ -173,17 +168,13 @@ public abstract class AbstractExecution
         return targets;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void addTarget( ExecutionTarget target )
     {
         getTargets().add( target );
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void removeTarget( ExecutionTarget target )
     {
         if ( targets != null )
@@ -192,57 +183,43 @@ public abstract class AbstractExecution
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void setTargets( List<ExecutionTarget> targets )
     {
         this.targets = targets;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isFailIfNoFiles() {
         return failIfNoFiles;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setFailIfNoFiles(boolean failIfNoFiles) {
         this.failIfNoFiles = failIfNoFiles;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isFailIfNoAlgorithms() {
         return failIfNoAlgorithms;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setFailIfNoAlgorithms(boolean failIfNoAlgorithms) {
         this.failIfNoAlgorithms = failIfNoAlgorithms;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isFailIfNoTargets() {
         return failIfNoTargets;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setFailIfNoTargets(boolean failIfNoTargets) {
         this.failIfNoTargets = failIfNoTargets;
@@ -250,6 +227,8 @@ public abstract class AbstractExecution
 
     /**
      * {@inheritDoc}
+     *
+     * @throws net.nicoulaj.maven.plugins.checksum.execution.ExecutionException if any.
      */
     public void checkParameters()
         throws ExecutionException

@@ -21,17 +21,18 @@
 package net.nicoulaj.maven.plugins.checksum.execution.target;
 
 /**
- * Thrown when an error occurs while trying to close an {@link ExecutionTarget}.
+ * Thrown when an error occurs while trying to close an {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see ExecutionTarget#close(String)
  * @since 1.0
+ * @version $Id: $Id
  */
 public class ExecutionTargetCloseException
     extends Exception
 {
     /**
-     * Build a new instance of {@link ExecutionTargetCloseException}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetCloseException}.
      *
      * @param message the message describing the error.
      */
@@ -40,7 +41,7 @@ public class ExecutionTargetCloseException
         super( message );
     }
     /**
-     * Build a new instance of {@link ExecutionTargetCloseException}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetCloseException}.
      *
      * @param message the message describing the error.
      * @param cause the cause exception.

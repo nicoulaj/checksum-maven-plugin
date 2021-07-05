@@ -23,17 +23,18 @@ package net.nicoulaj.maven.plugins.checksum.execution.target;
 import net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile;
 
 /**
- * Thrown when an error occurs while trying to write to an {@link ExecutionTarget}.
+ * Thrown when an error occurs while trying to write to an {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see ExecutionTarget#write(String, ChecksumFile, String)
  * @since 1.0
+ * @version $Id: $Id
  */
 public class ExecutionTargetWriteException
     extends Exception
 {
     /**
-     * Build a new instance of {@link ExecutionTargetWriteException}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException}.
      *
      * @param message the message describing the error.
      */

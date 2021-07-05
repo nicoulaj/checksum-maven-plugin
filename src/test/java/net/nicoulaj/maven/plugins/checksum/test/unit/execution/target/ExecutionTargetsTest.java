@@ -40,6 +40,7 @@ import java.util.Collections;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 @RunWith( Parameterized.class )
 public class ExecutionTargetsTest
@@ -54,6 +55,7 @@ public class ExecutionTargetsTest
      * Generate the list of arguments with which the test should be run.
      *
      * @return instances of {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget}
+     * @since 1.11
      */
     @Parameterized.Parameters
     public static Collection<Object[]> getTestParameters()
@@ -66,10 +68,11 @@ public class ExecutionTargetsTest
     }
 
     /**
-     * Build a new {@link ExecutionTargetsTest}.
+     * Build a new {@link net.nicoulaj.maven.plugins.checksum.test.unit.execution.target.ExecutionTargetsTest}.
      *
      * @param executionTarget the {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget}
      *                        implementation to test.
+     * @since 1.11
      */
     public ExecutionTargetsTest( ExecutionTarget executionTarget )
     {
@@ -78,6 +81,8 @@ public class ExecutionTargetsTest
 
     /**
      * TODO add Javadoc comment.
+     *
+     * @since 1.11
      */
     @Test
     public void testSomething()

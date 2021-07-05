@@ -29,6 +29,7 @@ import java.security.NoSuchAlgorithmException;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory
  * @since 1.0
+ * @version $Id: $Id
  */
 public class ChecksumFactoryTest
 {
@@ -44,6 +45,7 @@ public class ChecksumFactoryTest
      *
      * @throws java.security.NoSuchAlgorithmException
      *          should never happen.
+     * @since 1.11
      */
     @Test
     public void testNoSuchAlgorithmExceptionThrownOnInvalidAlgorithm()

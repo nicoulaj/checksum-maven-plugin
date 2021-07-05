@@ -25,11 +25,12 @@ import org.apache.maven.plugin.logging.Log;
 
 
 /**
- * An {@link ExecutionTarget} that writes digests to a Maven {@link org.apache.maven.plugin.logging.Log}.
+ * An {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} that writes digests to a Maven {@link org.apache.maven.plugin.logging.Log}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see org.apache.maven.plugin.logging.Log
  * @since 1.0
+ * @version $Id: $Id
  */
 public class MavenLogTarget
     implements ExecutionTarget
@@ -40,7 +41,7 @@ public class MavenLogTarget
     protected Log logger;
 
     /**
-     * Build an new instance of {@link MavenLogTarget}.
+     * Build an new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget}.
      *
      * @param logger the Maven {@link org.apache.maven.plugin.logging.Log} to use.
      */
@@ -57,17 +58,13 @@ public class MavenLogTarget
         // Nothing to do
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void write( String digest, ChecksumFile file, String algorithm )
     {
         logger.info( file.getFile().getName() + " - " + algorithm + " : " + digest );
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void close( String subPath)
     {
         // Nothing to do

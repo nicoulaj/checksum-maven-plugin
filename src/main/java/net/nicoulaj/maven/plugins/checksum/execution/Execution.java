@@ -27,6 +27,7 @@ import java.util.List;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see net.nicoulaj.maven.plugins.checksum.mojo
  * @since 1.0
+ * @version $Id: $Id
  */
 public interface Execution
 {
@@ -44,22 +45,20 @@ public interface Execution
      */
     void setFiles( List<ChecksumFile> files );
 
-    /**
-     * Get the part of relative path that will be removed.
-     *
-     * @return the part of relative path that will be removed.
-     *
-     * @since 1.3
-     */
+	/**
+	 * Get the part of relative path that will be removed.
+	 *
+	 * @return the part of relative path that will be removed.
+	 * @since 1.3
+	 */
 	String getSubPath();
 
-    /**
-     * Set the part of relative path that will be removed.
-     *
-     * @param subPath of relative path that will be removed.
-     *
-     * @since 1.3
-     */
+	/**
+	 * Set the part of relative path that will be removed.
+	 *
+	 * @param subPath of relative path that will be removed.
+	 * @since 1.3
+	 */
 	void setSubPath( String subPath );
 
     /**
@@ -145,7 +144,7 @@ public interface Execution
 
     /**
      * Execution should fail if no file has been added.
-
+     *
      * @param failIfNoFiles {@code true} if execution should fail if no file has been added
      */
     void setFailIfNoFiles(boolean failIfNoFiles);
@@ -159,7 +158,7 @@ public interface Execution
 
     /**
      * Execution should fail if no algorithm has been added.
-
+     *
      * @param failIfNoAlgorithms {@code true} if execution should fail if no algorithm has been added
      */
     void setFailIfNoAlgorithms(boolean failIfNoAlgorithms);
@@ -173,7 +172,7 @@ public interface Execution
 
     /**
      * Execution should fail if no target has been added.
-
+     *
      * @param failIfNoTargets {@code true} if execution should fail if no target has been added
      */
     void setFailIfNoTargets(boolean failIfNoTargets);
@@ -181,7 +180,7 @@ public interface Execution
     /**
      * Check that an execution can be run with the {@link #run()} method.
      *
-     * @throws ExecutionException if some parameters are not initialized or invalid.
+     * @throws net.nicoulaj.maven.plugins.checksum.execution.ExecutionException if some parameters are not initialized or invalid.
      */
     void checkParameters()
         throws ExecutionException;
@@ -189,7 +188,7 @@ public interface Execution
     /**
      * Run the execution using for the files, algorithms and targets set.
      *
-     * @throws ExecutionException if an error happens while running the execution.
+     * @throws net.nicoulaj.maven.plugins.checksum.execution.ExecutionException if an error happens while running the execution.
      */
     void run()
         throws ExecutionException;

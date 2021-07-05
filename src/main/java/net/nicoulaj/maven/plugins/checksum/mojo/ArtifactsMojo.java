@@ -30,8 +30,10 @@ import java.util.Set;
 /**
  * Compute project artifact's checksum digests and store them in individual files and/or a summary file.
  * Optionally attaches the checksum files as additional project artifacts.
+ *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 @Mojo(
     name = ArtifactsMojo.NAME,
@@ -153,11 +155,11 @@ public class ArtifactsMojo
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Build the list of files from which digests should be generated.
      *
      * <p>The list is composed of the project main and attached artifacts.</p>
-     *
-     * @return the list of files that should be processed.
      * @see #hasValidFile(org.apache.maven.artifact.Artifact)
      */
     @Override
@@ -211,35 +213,27 @@ public class ArtifactsMojo
         return hasValidFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isIndividualFiles()
     {
         return individualFiles;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getIndividualFilesOutputDirectory()
     {
         return individualFilesOutputDirectory;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isAppendFilename(){
         return this.appendFilename;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isCsvSummary()
     {
@@ -248,42 +242,36 @@ public class ArtifactsMojo
 
     /**
      * {@inheritDoc}
+     *
+     * @return a {@link java.lang.String} object
      */
     protected String getCsvSummaryFile()
     {
         return csvSummaryFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isXmlSummary()
     {
         return xmlSummary;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getXmlSummaryFile()
     {
         return xmlSummaryFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected boolean isShasumSummary()
     {
         return shasumSummary;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getShasumSummaryFile()
     {

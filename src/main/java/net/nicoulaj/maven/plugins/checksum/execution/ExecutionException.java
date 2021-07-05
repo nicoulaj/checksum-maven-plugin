@@ -17,17 +17,18 @@
 package net.nicoulaj.maven.plugins.checksum.execution;
 
 /**
- * Thrown when an error occurs while using an {@link Execution}.
+ * Thrown when an error occurs while using an {@link net.nicoulaj.maven.plugins.checksum.execution.Execution}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see Execution#run()
  * @since 1.0
+ * @version $Id: $Id
  */
 public class ExecutionException
     extends Exception
 {
     /**
-     * Build a new instance of {@link ExecutionException}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.ExecutionException}.
      *
      * @param message the message describing the error.
      */

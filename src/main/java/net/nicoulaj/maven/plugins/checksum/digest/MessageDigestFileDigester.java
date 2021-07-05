@@ -25,20 +25,21 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * An implementation of {@link FileDigester} that streams the content of files to a {@link
+ * An implementation of {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} that streams the content of files to a {@link
  * java.security.MessageDigest}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 public class MessageDigestFileDigester
     extends AbstractFileDigester
 {
     /**
-     * Build a new instance of {@link MessageDigestFileDigester}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.digest.MessageDigestFileDigester}.
      *
      * @param algorithm the algorithm used to compute checksum digests.
-     * @throws NoSuchAlgorithmException in case the given is not supported.
+     * @throws java.security.NoSuchAlgorithmException in case the given is not supported.
      */
     protected MessageDigestFileDigester( String algorithm )
         throws NoSuchAlgorithmException
@@ -47,9 +48,7 @@ public class MessageDigestFileDigester
         MessageDigest.getInstance( algorithm ); // just to check if algorithm is supported
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public String calculate( File file )
         throws DigesterException
     {

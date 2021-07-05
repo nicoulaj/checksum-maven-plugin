@@ -42,6 +42,8 @@ import java.util.List;
  * net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
+ * @version $Id: $Id
+ * @since 1.11
  */
 public class OneHashPerFileTargetTest
 {
@@ -54,9 +56,9 @@ public class OneHashPerFileTargetTest
     /**
      * Assert the target writes the right content to the right file.
      *
-     * @throws ExecutionTargetWriteException should never happen.
-     * @throws IOException                   should never happen.
-     * @throws NoSuchAlgorithmException      should never happen.
+     * @throws net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException should never happen.
+     * @throws java.io.IOException                   should never happen.
+     * @throws java.security.NoSuchAlgorithmException      should never happen.
      * @see net.nicoulaj.maven.plugins.checksum.execution.target.OneHashPerFileTarget#write(String, ChecksumFile, String)
      */
     @Test

@@ -24,6 +24,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 public interface FileDigester
 {
@@ -51,8 +52,8 @@ public interface FileDigester
      *
      * @param file the file to compute the checksum for.
      * @return the current checksum.
-     * @throws DigesterException if there was a problem computing the hashcode.
-     * @throws NoSuchAlgorithmException in case the given is not supported.
+     * @throws net.nicoulaj.maven.plugins.checksum.digest.DigesterException if there was a problem computing the hashcode.
+     * @throws java.security.NoSuchAlgorithmException in case the given is not supported.
      */
     String calculate( File file )
         throws DigesterException, NoSuchAlgorithmException;

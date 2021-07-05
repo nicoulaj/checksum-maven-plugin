@@ -41,6 +41,7 @@ import java.util.List;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester
  * @since 1.0
+ * @version $Id: $Id
  */
 @RunWith( Parameterized.class )
 public class DigestersTest
@@ -78,10 +79,10 @@ public class DigestersTest
     }
 
     /**
-     * Build a new {@link DigestersTest}.
+     * Build a new {@link net.nicoulaj.maven.plugins.checksum.test.unit.digest.DigestersTest}.
      *
      * @param algorithm the target checksum algorithm to run the test for.
-     * @throws NoSuchAlgorithmException should never happen.
+     * @throws java.security.NoSuchAlgorithmException should never happen.
      */
     public DigestersTest( String algorithm )
         throws NoSuchAlgorithmException
@@ -114,9 +115,10 @@ public class DigestersTest
     /**
      * Check the calculated checksum for a specific file is valid against a pre-calculated checksum.
      *
-     * @throws DigesterException if there was a problem while calculating the checksum.
-     * @throws IOException       if there was a problem reading the file containing the pre-calculated checksum.
+     * @throws net.nicoulaj.maven.plugins.checksum.digest.DigesterException if there was a problem while calculating the checksum.
+     * @throws java.io.IOException       if there was a problem reading the file containing the pre-calculated checksum.
      * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester#calculate(java.io.File)
+     * @throws java.security.NoSuchAlgorithmException if any.
      */
     @Test
     public void testCalculate()
@@ -140,8 +142,9 @@ public class DigestersTest
     /**
      * Check an exception is thrown when attempting to calculate the checksum of a file that does not exist.
      *
-     * @throws DigesterException should always happen.
+     * @throws net.nicoulaj.maven.plugins.checksum.digest.DigesterException should always happen.
      * @see net.nicoulaj.maven.plugins.checksum.digest.FileDigester#calculate(java.io.File)
+     * @throws java.security.NoSuchAlgorithmException if any.
      */
     @Test
     public void testCalculateExceptionThrownOnFileNotFound()

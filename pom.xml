@@ -87,7 +87,7 @@
     <!-- Build settings -->
     <debug>false</debug>
     <invoker.settings-file>${project.basedir}/src/it/settings.xml</invoker.settings-file>
-    <project.build.outputTimestamp>0</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2021-05-22T20:04:00Z</project.build.outputTimestamp>
 
   </properties>
 

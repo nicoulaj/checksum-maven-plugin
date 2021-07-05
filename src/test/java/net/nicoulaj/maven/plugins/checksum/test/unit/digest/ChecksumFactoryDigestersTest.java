@@ -30,11 +30,12 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Tests for each checksum algorithm supported by the {@link DigesterFactory} class.
+ * Tests for each checksum algorithm supported by the {@link net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory} class.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see net.nicoulaj.maven.plugins.checksum.digest.DigesterFactory
  * @since 1.0
+ * @version $Id: $Id
  */
 @RunWith( Parameterized.class )
 public class ChecksumFactoryDigestersTest
@@ -61,7 +62,7 @@ public class ChecksumFactoryDigestersTest
     }
 
     /**
-     * Build a new {@link ChecksumFactoryDigestersTest}.
+     * Build a new {@link net.nicoulaj.maven.plugins.checksum.test.unit.digest.ChecksumFactoryDigestersTest}.
      *
      * @param algorithm the target checksum algorithm to run the test for.
      */
@@ -73,7 +74,7 @@ public class ChecksumFactoryDigestersTest
     /**
      * Assert the returned {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} object is not null.
      *
-     * @throws NoSuchAlgorithmException should never happen.
+     * @throws java.security.NoSuchAlgorithmException should never happen.
      */
     @Test
     public void testDigesterIsNotNull()
@@ -86,7 +87,7 @@ public class ChecksumFactoryDigestersTest
     /**
      * Assert the returned {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} object is a singleton.
      *
-     * @throws NoSuchAlgorithmException should never happen.
+     * @throws java.security.NoSuchAlgorithmException should never happen.
      */
     @Test
     public void testDigesterIsSingleton()
@@ -101,7 +102,7 @@ public class ChecksumFactoryDigestersTest
     /**
      * Assert the returned {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} object is the good one..
      *
-     * @throws NoSuchAlgorithmException should never happen.
+     * @throws java.security.NoSuchAlgorithmException should never happen.
      */
     @Test
     public void testDigesterIsRightOne()

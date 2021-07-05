@@ -25,13 +25,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Singleton class used to get instances of {@link FileDigester}.
+ * Singleton class used to get instances of {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester}.
  *
- * <p>Each {@link FileDigester} object is a singleton itself.</p>
+ * <p>Each {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} object is a singleton itself.</p>
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see FileDigester
  * @since 1.0
+ * @version $Id: $Id
  */
 public class DigesterFactory
 {
@@ -69,11 +70,11 @@ public class DigesterFactory
     }
 
     /**
-     * Get an instance of {@link FileDigester} for the given checksum algorithm.
+     * Get an instance of {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester} for the given checksum algorithm.
      *
      * @param algorithm the target checksum algorithm.
-     * @return an instance of {@link FileDigester}.
-     * @throws NoSuchAlgorithmException if the checksum algorithm is not supported or invalid.
+     * @return an instance of {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester}.
+     * @throws java.security.NoSuchAlgorithmException if the checksum algorithm is not supported or invalid.
      * @see FileDigester
      */
     public synchronized FileDigester getFileDigester( String algorithm )

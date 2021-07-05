@@ -30,7 +30,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 /**
- * An {@link ExecutionTarget} that writes digests to a {@code shasum} file
+ * An {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget} that writes digests to a {@code shasum} file
  * compatible with "{@code shasum -b -a <algo> <files> > sha.sum}". For
  * compatibility with {@code shasum} only SHA-1, SHA-224, SHA-256, SHA-384,
  * SHA-512, SHA-512224 and SHA-512256 are supported. Only one algorithm may be
@@ -39,6 +39,7 @@ import java.util.*;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @author Mike Duigou
  * @since 1.3
+ * @version $Id: $Id
  */
 public class ShasumSummaryFileTarget
     implements ExecutionTarget
@@ -85,7 +86,7 @@ public class ShasumSummaryFileTarget
     protected final Iterable<? extends ArtifactListener> artifactListeners;
 
     /**
-     * Build a new instance of {@link ShasumSummaryFileTarget}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.ShasumSummaryFileTarget}.
      *
      * @param summaryFile the file to which the summary should be written.
      * @param encoding    the encoding to use for generated files.
@@ -98,9 +99,7 @@ public class ShasumSummaryFileTarget
         this.artifactListeners = artifactListeners;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void init()
     {
@@ -108,9 +107,7 @@ public class ShasumSummaryFileTarget
         algorithms = new TreeSet<>();
    }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void write( String digest, ChecksumFile file, String algorithm )
     {
@@ -128,9 +125,7 @@ public class ShasumSummaryFileTarget
         algorithms.add( algorithm );
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void close(final String subPath)
         throws ExecutionTargetCloseException

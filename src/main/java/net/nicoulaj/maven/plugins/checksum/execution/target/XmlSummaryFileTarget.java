@@ -38,6 +38,7 @@ import java.util.Map;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 public class XmlSummaryFileTarget
     implements ExecutionTarget
@@ -71,6 +72,7 @@ public class XmlSummaryFileTarget
 
     /**
      * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.execution.target.XmlSummaryFileTarget}.
+     *
      * @param summaryFile the file to which the summary should be written.
      * @param encoding    the encoding to use for generated files.
      * @param artifactListeners listeners which are notified every time a CSV file is created
@@ -90,9 +92,7 @@ public class XmlSummaryFileTarget
         filesHashcodes = new HashMap<>();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void write( String digest, ChecksumFile file, String algorithm )
     {
         // Initialize an entry for the file if needed.
@@ -106,9 +106,7 @@ public class XmlSummaryFileTarget
         fileHashcodes.put( algorithm, digest );
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void close(final String subPath)
         throws ExecutionTargetCloseException
     {

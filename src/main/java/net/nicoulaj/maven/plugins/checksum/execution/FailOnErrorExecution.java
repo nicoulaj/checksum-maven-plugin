@@ -34,12 +34,15 @@ import java.security.NoSuchAlgorithmException;
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @see net.nicoulaj.maven.plugins.checksum.execution.NeverFailExecution
  * @since 1.0
+ * @version $Id: $Id
  */
 public class FailOnErrorExecution
     extends AbstractExecution
 {
     /**
      * {@inheritDoc}
+     *
+     * @throws net.nicoulaj.maven.plugins.checksum.execution.ExecutionException if any.
      */
     public void run()
         throws ExecutionException

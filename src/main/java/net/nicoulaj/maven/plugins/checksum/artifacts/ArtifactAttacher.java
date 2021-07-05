@@ -21,15 +21,28 @@ import org.apache.maven.project.MavenProjectHelper;
 
 import java.io.File;
 
+/**
+ * <p>ArtifactAttacher class.</p>
+ *
+ * @author nicoulaj
+ * @version $Id: $Id
+ */
 public class ArtifactAttacher implements ArtifactListener {
     private final MavenProject project;
     private final MavenProjectHelper projectHelper;
 
+    /**
+     * <p>Constructor for ArtifactAttacher.</p>
+     *
+     * @param project a {@link org.apache.maven.project.MavenProject} object
+     * @param projectHelper a {@link org.apache.maven.project.MavenProjectHelper} object
+     */
     public ArtifactAttacher(MavenProject project, MavenProjectHelper projectHelper) {
         this.project = project;
         this.projectHelper = projectHelper;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void artifactCreated(File artifact, String checksumType, String artifactExtension, String artifactClassifier) {
         if (checksumType.startsWith(".")) {

@@ -30,6 +30,7 @@ import java.util.Map;
  * @see <a href="http://maven.apache.org/plugins/maven-invoker-plugin/examples/post-build-script.html">
  *      maven-invoker-plugin post-build script invocation</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 public class PostBuildScriptHelper
 {
@@ -55,7 +56,7 @@ public class PostBuildScriptHelper
     protected Map context;
 
     /**
-     * Build a new {@link PostBuildScriptHelper} instance.
+     * Build a new {@link net.nicoulaj.maven.plugins.checksum.test.integration.PostBuildScriptHelper} instance.
      *
      * @param baseDirectory       the absolute path to the base directory of the test project..
      * @param localRepositoryPath the absolute path to the local repository used for the Maven invocation on the test
@@ -77,7 +78,7 @@ public class PostBuildScriptHelper
      *
      * @param path the path to the file relative to {@link #baseDirectory}.
      * @return the file content.
-     * @throws Exception if the build log could not be open.
+     * @throws java.lang.Exception if the build log could not be open.
      */
     public String getFileContent( String path )
         throws Exception
@@ -89,7 +90,7 @@ public class PostBuildScriptHelper
      * Get the project build log content.
      *
      * @return the project build log content.
-     * @throws Exception if the build log could not be open.
+     * @throws java.lang.Exception if the build log could not be open.
      */
     public String getBuildLog()
         throws Exception
@@ -101,7 +102,7 @@ public class PostBuildScriptHelper
      * Assert the given file exists and is a file.
      *
      * @param path the path to the file relative to {@link #baseDirectory}.
-     * @throws Exception if conditions are not fulfilled.
+     * @throws java.lang.Exception if conditions are not fulfilled.
      */
     public void assertFileExists( String path )
         throws Exception
@@ -116,7 +117,7 @@ public class PostBuildScriptHelper
      * Assert the given file does not exist.
      *
      * @param path the path to the file relative to {@link #baseDirectory}.
-     * @throws Exception if conditions are not fulfilled.
+     * @throws java.lang.Exception if conditions are not fulfilled.
      */
     public void assertFileDoesNotExist( String path )
         throws Exception
@@ -131,7 +132,7 @@ public class PostBuildScriptHelper
      * Assert the given file does not exist in the local repository.
      *
      * @param path the path to the file relative to {@link #localRepositoryPath}.
-     * @throws Exception  if conditions are not fulfilled.
+     * @throws java.lang.Exception  if conditions are not fulfilled.
      */
     public void assertFileDoesNotExistInLocalRepo( String path )
         throws Exception
@@ -145,7 +146,7 @@ public class PostBuildScriptHelper
      *
      * @param directory the path to the file directory relative to {@link #baseDirectory}.
      * @param pattern file name pattern.
-     * @throws Exception if conditions are not fulfilled.
+     * @throws java.lang.Exception if conditions are not fulfilled.
      */
     public void assertFileExists( String directory, String pattern )
         throws Exception
@@ -167,7 +168,7 @@ public class PostBuildScriptHelper
      * Assert the given file exists and is a non-empty file.
      *
      * @param path the path to the file relative to {@link #baseDirectory}.
-     * @throws Exception if conditions are not fulfilled.
+     * @throws java.lang.Exception if conditions are not fulfilled.
      */
     public void assertFileIsNotEmpty( String path )
         throws Exception
@@ -179,7 +180,7 @@ public class PostBuildScriptHelper
      * Assert the given file exists and is a non-empty file.
      *
      * @param path the path to the file relative to {@link #localRepositoryPath}.
-     * @throws Exception  if conditions are not fulfilled.
+     * @throws java.lang.Exception  if conditions are not fulfilled.
      */
     public void assertFileIsNotEmptyInLocalRepo( String path )
         throws Exception
@@ -206,7 +207,7 @@ public class PostBuildScriptHelper
      *
      * @param path   the path to the file relative to {@link #baseDirectory}.
      * @param search the expression to search in the build log.
-     * @throws Exception if conditions are not fulfilled.
+     * @throws java.lang.Exception if conditions are not fulfilled.
      */
     public void assertFileContains( String path, String search )
         throws Exception
@@ -221,7 +222,7 @@ public class PostBuildScriptHelper
      * Assert the project build log contains the given search.
      *
      * @param search the expression to search in the build log.
-     * @throws Exception if conditions are not fulfilled.
+     * @throws java.lang.Exception if conditions are not fulfilled.
      */
     public void assertBuildLogContains( String search )
         throws Exception
@@ -234,7 +235,7 @@ public class PostBuildScriptHelper
      *
      * @param path   the path to the file relative to {@link #baseDirectory}.
      * @param search the expression to search in the build log.
-     * @throws Exception if conditions are not fulfilled.
+     * @throws java.lang.Exception if conditions are not fulfilled.
      */
     public void assertFileDoesNotContain( String path, String search )
         throws Exception
@@ -249,7 +250,7 @@ public class PostBuildScriptHelper
      * Assert the project build log does not contain the given search.
      *
      * @param search the expression to search in the build log.
-     * @throws Exception if conditions are not fulfilled.
+     * @throws java.lang.Exception if conditions are not fulfilled.
      */
     public void assertBuildLogDoesNotContain( String search )
         throws Exception

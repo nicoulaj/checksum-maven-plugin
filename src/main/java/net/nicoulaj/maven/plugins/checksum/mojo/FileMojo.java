@@ -40,6 +40,7 @@ import java.util.Arrays;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 @Mojo(
     name = FileMojo.NAME,
@@ -60,9 +61,7 @@ public class FileMojo
     @Parameter( property = "file", required = true )
     protected String file;
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void execute()
         throws MojoFailureException

@@ -34,6 +34,8 @@ import java.io.File;
  * {@link net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTarget}.
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
+ * @version $Id: $Id
+ * @since 1.11
  */
 public class MavenLogTargetTest
 {
@@ -45,7 +47,7 @@ public class MavenLogTargetTest
     /**
      * Assert wrting to the target does not throw exceptions.
      *
-     * @throws ExecutionTargetWriteException should never happen.
+     * @throws net.nicoulaj.maven.plugins.checksum.execution.target.ExecutionTargetWriteException should never happen.
      * @see net.nicoulaj.maven.plugins.checksum.execution.target.MavenLogTarget#write(String, ChecksumFile, String)
      */
     @Test

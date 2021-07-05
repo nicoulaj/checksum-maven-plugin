@@ -23,6 +23,7 @@ import java.io.File;
  *
  * @author <a href="mailto:jerome.lacube@gmail.com">Jerome Lacube</a>
  * @since 1.3
+ * @version $Id: $Id
  */
 public class ChecksumFile
 {
@@ -34,6 +35,14 @@ public class ChecksumFile
 
     protected final String classifier;
 
+	/**
+	 * <p>Constructor for ChecksumFile.</p>
+	 *
+	 * @param basePath a {@link java.lang.String} object
+	 * @param file a {@link java.io.File} object
+	 * @param extension a {@link java.lang.String} object
+	 * @param classifier a {@link java.lang.String} object
+	 */
 	public ChecksumFile(String basePath, File file, String extension, String classifier)
 	{
 		this.basePath = basePath;
@@ -42,26 +51,53 @@ public class ChecksumFile
         this.classifier = classifier;
 	}
 
+	/**
+	 * <p>Getter for the field <code>basePath</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getBasePath()
 	{
 		return basePath;
 	}
 
+    /**
+     * <p>Getter for the field <code>file</code>.</p>
+     *
+     * @return a {@link java.io.File} object
+     */
     public File getFile()
     {
         return file;
     }
 
+    /**
+     * <p>Getter for the field <code>extension</code>.</p>
+     *
+     * @return a {@link java.lang.String} object
+     */
     public String getExtension()
     {
         return extension;
     }
 
+    /**
+     * <p>Getter for the field <code>classifier</code>.</p>
+     *
+     * @return a {@link java.lang.String} object
+     */
     public String getClassifier()
     {
         return classifier;
     }
 
+	/**
+	 * <p>getRelativePath.</p>
+	 *
+	 * @param file a {@link net.nicoulaj.maven.plugins.checksum.mojo.ChecksumFile} object
+	 * @param subPath a {@link java.lang.String} object
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getRelativePath(ChecksumFile file, String subPath)
 	{
 		String filePath = file.getFile().getName();

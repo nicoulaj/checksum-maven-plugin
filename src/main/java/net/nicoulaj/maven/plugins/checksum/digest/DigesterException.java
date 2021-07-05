@@ -21,12 +21,13 @@ package net.nicoulaj.maven.plugins.checksum.digest;
  *
  * @author <a href="mailto:julien.nicoulaud@gmail.com">Julien Nicoulaud</a>
  * @since 1.0
+ * @version $Id: $Id
  */
 public class DigesterException
     extends Exception
 {
     /**
-     * Build a new instance of {@link DigesterException}.
+     * Build a new instance of {@link net.nicoulaj.maven.plugins.checksum.digest.DigesterException}.
      *
      * @param message the message describing the error.
      */
