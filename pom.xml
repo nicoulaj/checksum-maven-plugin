@@ -76,7 +76,7 @@
   <properties>
 
     <!-- Versions -->
-    <java.level>1.8</java.level>
+    <java.level>1.7</java.level>
     <maven.version>3.2.5</maven.version>
     <bouncycastle.version>1.69</bouncycastle.version>
     <aether.version>0.9.0.M2</aether.version>
@@ -229,7 +229,7 @@
             <configuration>
               <signature>
                 <groupId>org.codehaus.mojo.signature</groupId>
-                <artifactId>java18</artifactId>
+                <artifactId>java17</artifactId>
                 <version>1.0</version>
               </signature>
             </configuration>
