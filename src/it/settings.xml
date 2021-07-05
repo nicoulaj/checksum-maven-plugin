@@ -18,6 +18,13 @@
 
 -->
 <settings>
+  <mirrors>
+    <mirror>
+      <mirrorOf>central</mirrorOf>
+      <name>central</name>
+      <url>https://repo.maven.apache.org/maven2/</url>
+    </mirror>
+  </mirrors>
   <profiles>
     <profile>
       <id>it-repo</id>
