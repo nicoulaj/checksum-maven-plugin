@@ -23,7 +23,7 @@
   <parent>
     <groupId>net.nicoulaj</groupId>
     <artifactId>parent</artifactId>
-    <version>60</version>
+    <version>61</version>
   </parent>
 
   <groupId>net.nicoulaj.maven.plugins</groupId>
@@ -79,13 +79,15 @@
     <java.level>1.8</java.level>
     <maven.version>3.2.5</maven.version>
     <bouncycastle.version>1.69</bouncycastle.version>
+    <aether.version>0.9.0.M2</aether.version>
+    <sisu.version>0.3.4</sisu.version>
     <maven-common-artifact-filters.version>3.2.0</maven-common-artifact-filters.version>
     <maven-shared-utils.version>3.3.4</maven-shared-utils.version>
-    <maven-release-plugin.version>3.0.0-M4</maven-release-plugin.version>
+
     <!-- Build settings -->
     <debug>false</debug>
     <invoker.settings-file>${project.basedir}/src/it/settings.xml</invoker.settings-file>
-    <project.build.outputTimestamp>2021-05-22T20:04:00Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>0</project.build.outputTimestamp>
 
   </properties>
 
@@ -122,19 +124,19 @@
       <dependency>
         <groupId>org.eclipse.sisu</groupId>
         <artifactId>org.eclipse.sisu.plexus</artifactId>
-        <version>0.3.4</version>
+        <version>${sisu.version}</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.eclipse.aether</groupId>
         <artifactId>aether-api</artifactId>
-        <version>0.9.0.M2</version>
+        <version>${aether.version}</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.eclipse.aether</groupId>
         <artifactId>aether-util</artifactId>
-        <version>0.9.0.M2</version>
+        <version>${aether.version}</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
@@ -300,7 +302,6 @@
             <tagletArtifact>
               <groupId>org.apache.maven.plugin-tools</groupId>
               <artifactId>maven-plugin-tools-javadoc</artifactId>
-              <version>${maven-plugin-tools-javadoc.version}</version>
             </tagletArtifact>
           </tagletArtifacts>
         </configuration>
@@ -308,12 +309,11 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.7</version>
-          <configuration>
-            <excludes>
-              <exclude>**/HelpMojo.class</exclude>
-            </excludes>
-          </configuration>
+        <configuration>
+          <excludes>
+            <exclude>**/HelpMojo.class</exclude>
+          </excludes>
+        </configuration>
         <executions>
           <execution>
             <id>setup-coverage-unit-tests</id>
@@ -395,32 +395,27 @@
     <plugins>
       <plugin>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>${maven-plugin-plugin.version}</version>
       </plugin>
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${maven-javadoc-plugin.version}</version>
         <configuration>
           <encoding>${encoding}</encoding>
           <tagletArtifacts>
             <tagletArtifact>
               <groupId>org.apache.maven.plugin-tools</groupId>
               <artifactId>maven-plugin-tools-javadoc</artifactId>
-              <version>${maven-plugin-tools-javadoc.version}</version>
             </tagletArtifact>
           </tagletArtifacts>
         </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
-        <version>${maven-invoker-plugin.version}</version>
         <configuration>
           <reportsDirectory>${project.build.directory}/it/reports</reportsDirectory>
         </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>${maven-pmd-plugin.version}</version>
         <configuration>
           <targetJdk>${java.level}</targetJdk>
         </configuration>
