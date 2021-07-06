@@ -77,7 +77,7 @@
 
     <!-- Versions -->
     <java.level>1.8</java.level>
-    <maven.version>3.1.1</maven.version>
+    <maven.version>3.2.5</maven.version>
     <bouncycastle.version>1.69</bouncycastle.version>
     <aether.version>0.9.0.M2</aether.version>
     <sisu.version>0.3.4</sisu.version>
