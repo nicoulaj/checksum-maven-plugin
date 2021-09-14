@@ -80,7 +80,7 @@
     <maven.version>3.1.1</maven.version>
     <bouncycastle.version>1.69</bouncycastle.version>
     <aether.version>0.9.0.M2</aether.version>
-    <sisu.version>0.3.4</sisu.version>
+    <sisu.version>0.3.5</sisu.version>
     <maven-common-artifact-filters.version>3.2.0</maven-common-artifact-filters.version>
     <maven-shared-utils.version>3.3.4</maven-shared-utils.version>
 
