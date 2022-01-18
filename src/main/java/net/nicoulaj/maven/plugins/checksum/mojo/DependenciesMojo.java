@@ -152,7 +152,7 @@ public class DependenciesMojo
      *
      * @since 1.0
      */
-    @Parameter( defaultValue = "false" )
+    @Parameter( property = "transitive", defaultValue = "false" )
     protected boolean transitive;
 
     /**
