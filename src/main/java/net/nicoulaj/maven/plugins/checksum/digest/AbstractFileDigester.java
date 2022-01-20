@@ -16,6 +16,8 @@
  */
 package net.nicoulaj.maven.plugins.checksum.digest;
 
+import java.util.Locale;
+
 /**
  * Base class for implementations of {@link net.nicoulaj.maven.plugins.checksum.digest.FileDigester}.
  *
@@ -58,6 +60,6 @@ public abstract class AbstractFileDigester
      */
     public String getFileExtension()
     {
-        return "." + algorithm.toLowerCase().replaceAll( "[\\W]", "" );
+        return "." + algorithm.toLowerCase(Locale.ROOT).replaceAll( "[\\W]", "" );
     }
 }
