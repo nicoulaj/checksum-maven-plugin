@@ -36,7 +36,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -140,8 +147,8 @@ public class DependenciesCheckMojo extends AbstractMojo
     {
       try
       {
-        File summaryFile = FileUtils.resolveFile(new File(project.getBasedir().getAbsolutePath()),
-                                                 csvSummaryFile);
+        // read file from target folder
+        File summaryFile = FileUtils.resolveFile(new File(project.getBuild().getDirectory()), csvSummaryFile);
         // 1. read summeryFile
         Map<String, Map<String, String>> summaryFileContent = readSummaryFile(summaryFile);
 
